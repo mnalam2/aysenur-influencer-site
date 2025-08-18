@@ -13,17 +13,14 @@
 import { Mail, Instagram, ChevronDown, ArrowUp, Youtube, Music2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+// Helmet removed to avoid extra dependency on Netlify
+// We will set document.title in useEffect and move meta tags to public/index.html
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import "@fontsource/playfair-display";
 
 export default function AysenurInfluencerSite() {
-  return (
-    <HelmetProvider>
-      <Page />
-    </HelmetProvider>
-  );
+  return <Page />;
 }
 
 function Page() {
@@ -42,6 +39,11 @@ function Page() {
 
   // Reduced motion preference
   const prefersReducedMotion = useReducedMotion();
+
+  // Set document title client-side (meta moved to index.html)
+  useEffect(() => {
+    document.title = "Aysenur Alam | Lifestyle & Fashion";
+  }, []);
 
   // Hero: progressive swap from poster image to video after hydration
   const [showVideo, setShowVideo] = useState(false);
@@ -135,31 +137,7 @@ function Page() {
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#4a3f3e] selection:bg-[#d9cfc1] selection:text-[#3b3130]" style={{ fontFamily: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}>
-      {/* HEAD */}
-      <Helmet>
-        <title>Aysenur Alam | Lifestyle & Fashion</title>
-        <meta name="description" content="Lifestyle & fashion content creator sharing daily elegance and brand collaborations." />
-        <link rel="canonical" href="https://aysenuralam.com/" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* OpenGraph & Twitter */}
-        <meta property="og:title" content="Aysenur Alam" />
-        <meta property="og:description" content="Lifestyle & fashion content creator sharing daily elegance and brand collaborations." />
-        <meta property="og:image" content={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aysenuralam.com/" />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        {/* Preconnect */}
-        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="" />
-
-        {/* Optional: Plausible analytics */}
-        {/* <script defer data-domain="aysenuralam.com" src="https://plausible.io/js/script.js"></script> */}
-
-        {/* JSON-LD Person Schema */}
-        <script type="application/ld+json">{JSON.stringify(personJsonLd)}</script>
-      </Helmet>
+      {/* HEAD moved to public/index.html. Title set via useEffect below. */}
 
       {/* NAV */}
       <header className="sticky top-0 z-40 bg-[#f5f0e8]/80 backdrop-blur border-b border-[#e8e0d6]">
