@@ -1,36 +1,35 @@
 /*
-  Full one-file React page implementing:
-  - Proper <head> via react-helmet-async (swap for next/head if using Next.js)
-  - Accessible nav + sections (Looks, About, Work With Me)
-  - Hero image→video progressive LCP strategy
-  - Prefers-reduced-motion support for animations
-  - Slider with keen-slider, keyboardable controls, no layout shift
-  - Cloudinary responsive images with srcSet/sizes
-  - Lightbox with ESC close and click-outside, focus safety
-  - SEO: OpenGraph/Twitter + JSON-LD Person schema + canonical + preconnect
-  - Conversion: expanded Work With Me section + mailto prefill + Media Kit link
-  - Utilities: Scroll-to-top button, IntersectionObserver video pause
+  React (JavaScript) single-file version for Vite + Netlify
+  - No TypeScript syntax (fixes esbuild “Expected ')' but found ':'”)
+  - Uses react-helmet-async with local HelmetProvider (no change to main.jsx needed)
+  - Accessible nav, sections, progressive hero, slider, lightbox, SEO JSON-LD
 
-  If you use Next.js:
-    - Replace Helmet import/usage with `import Head from 'next/head'` and <Head>...</Head>.
-    - Optionally switch <img> to `next/image` if you configure images.domains for res.cloudinary.com.
-
-  Libraries to install (if not already):
+  Install deps:
     npm i framer-motion lucide-react keen-slider react-helmet-async @fontsource/playfair-display
+
+  If you already added Tailwind, classes will just work. If not, you can still ship this as plain CSS utility classes (they’ll be ignored).
 */
 
 import { Mail, Instagram, ChevronDown, ArrowUp, Youtube, Music2, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import "@fontsource/playfair-display";
 
 export default function AysenurInfluencerSite() {
+  return (
+    <HelmetProvider>
+      <Page />
+    </HelmetProvider>
+  );
+}
+
+function Page() {
   // Lightbox state
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const openLightbox = (src: string) => setLightboxImage(src);
+  const [lightboxImage, setLightboxImage] = useState(null);
+  const openLightbox = (src) => setLightboxImage(src);
   const closeLightbox = () => setLightboxImage(null);
 
   // Scroll-to-top visibility
@@ -52,7 +51,7 @@ export default function AysenurInfluencerSite() {
   }, []);
 
   // Video pause/resume when offscreen
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef(null);
   useEffect(() => {
     if (!videoRef.current) return;
     const el = videoRef.current;
@@ -73,7 +72,7 @@ export default function AysenurInfluencerSite() {
   }, [showVideo]);
 
   // Slider
-  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+  const [sliderRef, slider] = useKeenSlider({
     loop: true,
     mode: "snap",
     rubberband: true,
@@ -94,27 +93,19 @@ export default function AysenurInfluencerSite() {
 
   // Cloudinary helpers
   const CLD_BASE = "https://res.cloudinary.com/deh9ptcb7/image/upload";
-  const cldUrl = (file: string, w = 1600) => `${CLD_BASE}/f_auto,q_auto,c_fill,g_auto,w_${w}/${file}`;
-  const cldSrcSet = (file: string, widths = [480, 768, 1024, 1280, 1600, 2000]) =>
+  const cldUrl = (file, w = 1600) => `${CLD_BASE}/f_auto,q_auto,c_fill,g_auto,w_${w}/${file}`;
+  const cldSrcSet = (file, widths = [480, 768, 1024, 1280, 1600, 2000]) =>
     widths.map((w) => `${cldUrl(file, w)} ${w}w`).join(", ");
 
   // Smooth scroll helper
-  const scrollToId = (id: string) => {
+  const scrollToId = (id) => {
     const el = document.getElementById(id);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Keep track of last focused element for lightbox
-  const lastFocusedRef = useRef<HTMLElement | null>(null);
+  // Close lightbox on ESC + arrow key slide nav
   useEffect(() => {
-    if (lightboxImage) {
-      lastFocusedRef.current = document.activeElement as HTMLElement;
-    }
-  }, [lightboxImage]);
-
-  // Close lightbox on ESC
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
+    const onKey = (e) => {
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") slider.current?.prev();
       if (e.key === "ArrowRight") slider.current?.next();
@@ -144,7 +135,7 @@ export default function AysenurInfluencerSite() {
 
   return (
     <div className="min-h-screen bg-[#f5f0e8] text-[#4a3f3e] selection:bg-[#d9cfc1] selection:text-[#3b3130]" style={{ fontFamily: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}>
-      {/* HEAD (Helmet; swap for next/head if using Next) */}
+      {/* HEAD */}
       <Helmet>
         <title>Aysenur Alam | Lifestyle & Fashion</title>
         <meta name="description" content="Lifestyle & fashion content creator sharing daily elegance and brand collaborations." />
@@ -160,11 +151,11 @@ export default function AysenurInfluencerSite() {
         <meta property="og:url" content="https://aysenuralam.com/" />
         <meta name="twitter:card" content="summary_large_image" />
 
-        {/* Performance hints */}
+        {/* Preconnect */}
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="" />
 
-        {/* Analytics (Plausible) — remove if you don't want analytics */}
-        <script defer data-domain="aysenuralam.com" src="https://plausible.io/js/script.js"></script>
+        {/* Optional: Plausible analytics */}
+        {/* <script defer data-domain="aysenuralam.com" src="https://plausible.io/js/script.js"></script> */}
 
         {/* JSON-LD Person Schema */}
         <script type="application/ld+json">{JSON.stringify(personJsonLd)}</script>
@@ -186,7 +177,6 @@ export default function AysenurInfluencerSite() {
 
       {/* HERO */}
       <section id="home" className="relative h-[80vh] max-h-[900px] rounded-none md:rounded-2xl overflow-hidden shadow-md mx-0 md:mx-6 mt-4">
-        {/* Poster as LCP */}
         {!showVideo ? (
           <img
             src={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`}
@@ -369,7 +359,7 @@ export default function AysenurInfluencerSite() {
           <div className="bg-white shadow-md rounded-2xl p-6">
             <h2 className="text-2xl font-semibold mb-3">About</h2>
             <p className="text-base leading-relaxed text-[#5a4e4d]">
-              I’m Aysenur, a lifestyle & fashion creator focused on everyday elegance—styling, beauty, and home moments that feel effortless and warm. 
+              I’m Aysenur, a lifestyle & fashion creator focused on everyday elegance—styling, beauty, and home moments that feel effortless and warm.
               I collaborate with brands to craft content that’s authentic, feminine, and saves-to-favorites.
             </p>
           </div>
