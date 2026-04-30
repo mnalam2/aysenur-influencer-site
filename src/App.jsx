@@ -85,7 +85,6 @@ function Page() {
 
   // Featured looks (Cloudinary filenames)
   const featuredLooks = [
-    "IMG_0634_a9fbgn.jpg",
     "29055FAD-6228-4195-9C4A-8981D4961E4E_rgmf4y.jpg",
     "IMG_1312_avzg8x.jpg",
     "20FF5F9B-D102-4ECF-9515-77E880EBC6DE_sm7m17.heic",
