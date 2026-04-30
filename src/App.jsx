@@ -4,7 +4,7 @@ import { ArrowUp, ArrowRight, Mail, Instagram, Menu, X } from "lucide-react";
 import "@fontsource/playfair-display";
 
 const CLD_BASE = "https://res.cloudinary.com/deh9ptcb7/image/upload";
-const heroImg = `${CLD_BASE}/f_auto,q_auto,c_fill,g_face,w_900,h_1100/${`look1_nvqz1k.jpg`}`;
+const heroImg = `${CLD_BASE}/f_auto,q_auto,c_fill,g_face,w_900,h_1100/20FF5F9B-D102-4ECF-9515-77E880EBC6DE_sm7m17.heic`;
 const aboutImg = `${CLD_BASE}/f_auto,q_auto,c_fill,g_face,w_800,h_960/29055FAD-6228-4195-9C4A-8981D4961E4E_rgmf4y.jpg`;
 
 function FadeUp({ children, delay = 0, className = "" }) {
