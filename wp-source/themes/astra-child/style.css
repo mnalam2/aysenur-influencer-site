@@ -1,0 +1,242 @@
+/**
+Theme Name: Astra Child
+Author: Brainstorm Force
+Author URI: http://wpastra.com/about/
+Description: Astra is the fastest, fully customizable & beautiful theme suitable for blogs, personal portfolios and business websites. It is very lightweight (less than 50KB on frontend) and offers unparalleled speed. Built with SEO in mind, Astra comes with schema.org code integrated so search engines will love your site. Astra offers plenty of sidebar options and widget areas giving you a full control for customizations. Furthermore, we have included special features and templates so feel free to choose any of your favorite page builder plugin to create pages flexibly. Some of the other features: # WooCommerce Ready # Responsive # Compatible with major plugins # Translation Ready # Extendible with premium addons # Regularly updated # Designed, Developed, Maintained & Supported by Brainstorm Force. Looking for a perfect base theme? Look no further. Astra is fast, fully customizable and beautiful theme!
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: astra-child
+Template: astra
+*/
+
+.my-tab {
+    color: #000;
+    background: #f4f6f9;
+    font-weight: 700;
+}
+
+
+.justyfy-text p
+{
+    text-align: justify;
+}
+
+.subsribe input {
+    right: 0;
+    position: absolute;
+    top: 0;
+    padding: 18px 30px;
+}
+
+.anchor-color-white a {
+    color: #fff;
+}
+
+.banner-heading {
+     position: absolute;
+    top: 15%;
+	z-index:2;
+}
+
+.bubblebox img{
+    position: fixed;
+    top: 37%;
+    right: 10px;
+}
+.bubblebox2 img{
+    position: fixed;
+    top: 55%;
+    right: 10px;
+}
+ul.list-icon {
+    margin: 0px;
+}
+ul.list-icon li {
+    padding: 5px 10px;
+    background-color: #202020;
+    margin: 10px 0px;
+    list-style-type: none;
+}
+
+
+ul.list-icon li a:hover {
+    color: #fff;
+}
+
+
+
+
+.banner_content_wrap:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    top: 0;
+	z-index:1;
+    bottom: 0;
+    background-color: #ef4136;
+    opacity: 0.6;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: 50%;
+}
+.banner_content_wrap:after {
+    position: absolute;
+    content: "";
+    background-image: url(https://moviphones.com/wp-content/uploads/2021/05/banner-pattern.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 281px;
+    left: 50%;
+    top: 0;
+	    opacity: 1;
+    bottom: 0;
+		z-index:1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.service-header
+{
+	position:absolute;
+	width:100%;
+}
+
+
+
+
+
+.single-post #content {
+       background: #000000;
+}
+.single-post h1, .single-post h2, .single-post h3, .single-post h4, .single-post h5, .single-post p{
+       color: #fff;
+}
+.single-post .ast-article-single {
+    border-bottom: 0;
+    padding: 30px;
+	box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+	background-color: #111;
+}
+.single-post .ast-article-single img {
+    width: 100%;
+}
+.single-post .sidebar-main .widget {
+    background: #111;
+    padding: 40px 30px 40px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+}
+.single-post #secondary {
+    padding-left: 30px!important;
+    margin-top: 4rem!important;
+}
+.single-post .widget-title {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0;
+    margin-bottom: 20px;
+    position: relative;
+    line-height: 50px;
+	color:#fff;
+}
+.single-post a, .page-title {
+    color: #fff;
+}
+.single-post .widget_search .search-form .search-field {
+    background: #00000000;
+}
+.single-post .widget-title:before {
+    content: "";
+    position: absolute;
+    border: 0;
+    width: 50px;
+    height: 2px;
+    background: #fff;
+    z-index: 1;
+    margin-left: 0;
+    bottom: 0;
+    left: 0;
+}
+.ast-separate-container .post-navigation {
+    padding-left: 0;
+    padding-right: 0;
+}
+.ast-separate-container .comment-respond {
+    background-color: #111;
+    padding: 2em 3em;
+    border-bottom: 0;
+}
+
+.ast-separate-container .comment-respond textarea#comment {
+    background: transparent;
+    border-color: #181818;
+}
+
+.single-post #text-2 h2.widget-title {
+    text-align: center;
+    line-height: 1.5!important;
+    font-size: 25px!important;
+		color:#000;
+}
+.single-post #text-2 h2.widget-title:before {
+	display:none;
+}
+/*.single .entry-header .post-thumb img {
+    border-radius: 20px;
+    max-width: 100%;
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}*/
+.single-post strong
+{
+	color:#3b4245;
+}
+
+
+.elementor-lightbox .elementor-lightbox-item {
+    padding: 0px;
+}
+.dialog-type-lightbox .dialog-widget-content {
+    width: 466px;
+}
+
+@media only screen and (max-width: 600px) {
+.single-post #secondary {
+    padding-left: 15px!important;
+}
+	.single-post .ast-article-single {
+    padding: 30px 15px;
+}
+	.ast-separate-container .comment-respond {
+    padding: 2em 1.5em;
+}
+	.responsive-icon-center .elementskit-infobox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dialog-type-lightbox .dialog-widget-content {
+    width: 100%;
+}
+	.banner_content_wrap:before {
+   content: unset;
+}
+.banner_content_wrap:after {
+       content: unset;
+}
+	.mobile-header .elementskit-navbar-nav .elementskit-submenu-panel {
+    background-color: #00000008!important;
+    box-shadow: revert!important;
+}
+.mobile-header .elementskit-navbar-nav .elementskit-submenu-panel > li > a {
+    color: #000!important;
+}	
+
+}
+
