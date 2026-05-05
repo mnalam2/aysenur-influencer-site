@@ -111,22 +111,24 @@ function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2" style={{ textDecoration:"none" }}>
             <div className="flex flex-col items-start gap-0.5">
-              {/* WM logo — inline SVG, always white on dark */}
-              <div className="flex items-end gap-1.5">
-                <svg width="66" height="34" viewBox="0 0 66 34" fill="none">
-                  {/* W — 3-sided frame open on right (left wall + top bar + bottom bar) + 2 inner bars */}
-                  <rect x="0"    y="0"    width="2.5" height="33"  fill="white"/>
-                  <rect x="0"    y="0"    width="30"  height="2.5" fill="white"/>
-                  <rect x="0"    y="30.5" width="30"  height="2.5" fill="white"/>
-                  <rect x="10.5" y="2.5"  width="2.5" height="28"  fill="white"/>
-                  <rect x="19.5" y="2.5"  width="2.5" height="28"  fill="white"/>
-                  {/* M — closed 4-sided box + 2 inner bars */}
-                  <rect x="33" y="0" width="30" height="33" fill="none" stroke="white" strokeWidth="2.5"/>
-                  <rect x="42" y="2.5" width="2.5" height="28" fill="white"/>
-                  <rect x="51" y="2.5" width="2.5" height="28" fill="white"/>
+              {/* WMS logo: W + M with 3 blue S-dots at bottom-right of M */}
+              <div className="flex items-end gap-1">
+                <svg width="66" height="33" viewBox="0 0 66 33" fill="none">
+                  {/* W — 4 bars: outer full-height, inner shorter, top connector + bottom pair connectors */}
+                  <rect x="0"  y="0"  width="3"  height="33" fill="white"/>
+                  <rect x="9"  y="0"  width="3"  height="21" fill="white"/>
+                  <rect x="18" y="0"  width="3"  height="21" fill="white"/>
+                  <rect x="27" y="0"  width="3"  height="33" fill="white"/>
+                  <rect x="0"  y="0"  width="30" height="3"  fill="white"/>
+                  <rect x="0"  y="18" width="12" height="3"  fill="white"/>
+                  <rect x="18" y="18" width="12" height="3"  fill="white"/>
+                  {/* M — closed box + 2 inner bars at equal thirds */}
+                  <rect x="33" y="0"   width="33"  height="33" fill="none" stroke="white" strokeWidth="2.5"/>
+                  <rect x="43" y="2.5" width="2.5" height="28" fill="white"/>
+                  <rect x="53" y="2.5" width="2.5" height="28" fill="white"/>
                 </svg>
-                {/* 3 blue square dots */}
-                <span className="flex gap-1 items-center mb-1">
+                {/* S — 3 blue animated dots off the bottom-right of M */}
+                <span className="flex gap-1">
                   {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background:"#0db4e8" }}/>)}
                 </span>
               </div>
