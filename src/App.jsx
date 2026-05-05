@@ -87,8 +87,8 @@ function Page() {
     transition:  { duration: 0.55, delay, ease: "easeOut" },
   };
 
-  const [sliderRef, sliderInstance] = useKeenSlider({
-    loop: true, mode: "snap", slides: { perView: 1 }, drag: true,
+  const [anywhereSliderRef, anywhereInstance] = useKeenSlider({
+    loop: true, mode: "snap", slides: { perView: 1, spacing: 0 }, drag: true,
   });
   const [gallerySliderRef, galleryInstance] = useKeenSlider({
     loop: true, mode: "snap", drag: true,
@@ -112,6 +112,9 @@ function Page() {
           <a href="#home" className="flex items-center gap-2" style={{ textDecoration:"none" }}>
             <span className="text-xl font-extrabold tracking-tight" style={{ color: RED }}>MOVI</span>
             <span className="text-xl font-extrabold tracking-tight text-white">PHONES</span>
+            <span className="flex gap-1 items-center">
+              {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background: RED }}/>)}
+            </span>
           </a>
 
           <nav className="hidden lg:flex gap-1" aria-label="Primary">
@@ -236,8 +239,8 @@ function Page() {
             <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO preview"
               className="w-12 h-12 rounded-xl object-cover flex-shrink-0"/>
             <div>
-              <p className="font-extrabold text-white text-sm sm:text-base tracking-wide">MOVI TWO — COMING 2026</p>
-              <p className="text-red-100 text-xs">Next-generation projector smartphone. Register your interest.</p>
+              <p className="font-extrabold text-white text-sm sm:text-base tracking-wide">MOVI TWO — CES 2027 · Q1 2027</p>
+              <p className="text-red-100 text-xs">Next-generation DLP projector smartphone. Register your interest.</p>
             </div>
           </div>
           <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest&body=Hi%2C%20I%27d%20like%20to%20register%20my%20interest%20for%20MOVI%20TWO."
@@ -327,6 +330,36 @@ function Page() {
               </motion.div>
             ))}
           </div>
+
+          {/* DLP specs card */}
+          <motion.div {...fi(0.1)} className="mt-10">
+            <GlassCard className="p-8" style={{ background:"#13161c", borderColor:"rgba(239,65,54,0.25)" }}>
+              <div className="grid md:grid-cols-2 gap-8 items-start">
+                <div>
+                  <h3 className="text-lg font-bold mb-5" style={{ color:"#e2e8f0" }}>MOVI-2 DLP Projector Engine Features</h3>
+                  <div className="space-y-3">
+                    {["70–80 lm brightness","Contrast 400:1","Autofocus","Throw Ratio 1.2","1080P Resolution — 100% Offset"].map(spec => (
+                      <div key={spec} className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: RED }}/>
+                        <span className="text-sm" style={{ color:"#cbd5e1" }}>{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center p-6 rounded-xl text-center"
+                  style={{ background:"rgba(239,65,54,0.06)", border:`1px solid rgba(239,65,54,0.15)` }}>
+                  <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: RED }}>Upcoming Launch</div>
+                  <div className="text-2xl font-extrabold text-white mb-1">CES 2027</div>
+                  <div className="text-sm" style={{ color:"#94a3b8" }}>Launch date: <strong className="text-white">Q1, 2027</strong></div>
+                  <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
+                    className="inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold"
+                    style={{ background: RED }}>
+                    Register Interest →
+                  </a>
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
         </div>
       </section>
 
@@ -452,6 +485,133 @@ function Page() {
         </div>
       </section>
 
+      {/* ── WHAT CAN BE USED DO ────────────────────────────────── */}
+      <section className="py-24" style={{ background: CARD2 }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <motion.div {...fi()}>
+              <h2 className="text-4xl sm:text-5xl font-extrabold mb-10 uppercase leading-tight">
+                What Can Be<br/><RedText>Used Do?</RedText>
+              </h2>
+              <div className="space-y-4">
+                {["Good selling tools for salesmen","Sales Presentation","Meeting in office",
+                  "Private cinema Romantic moment","Car Movie","Traffic jam is not boring",
+                  "Crazy Games","Enjoy 3D world","Outdoor travel","Give You More Happiness",
+                ].map(item => (
+                  <div key={item} className="flex items-center gap-3">
+                    <Check size={16} className="flex-shrink-0" style={{ color: RED }}/>
+                    <span className="text-base" style={{ color:"#cbd5e1" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div {...fi(0.1)} className="space-y-4">
+              {["/images/usecase-1.jpg","/images/usecase-2.jpg","/images/usecase-4.jpg"].map((src, i) => (
+                <div key={i} className="rounded-2xl overflow-hidden" style={{ height:180 }}>
+                  <img src={src} alt={`MOVI use case ${i+1}`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"/>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ANYWHERE & ANYTIME ─────────────────────────────────── */}
+      <section className="py-24" style={{ background: BG }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div {...fi()} className="text-center mb-14">
+            <h2 className="text-4xl sm:text-5xl font-extrabold uppercase mb-6">
+              Anywhere &amp; Anytime<br/><RedText>Projection</RedText>
+            </h2>
+            <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
+              MOVI projector smartphone can be used everywhere in your life — not only movies but also
+              video games and music. Mount it to the ceiling. Portable fashionable design, light weight —
+              carry to every place you like.
+            </p>
+          </motion.div>
+          <motion.div {...fi(0.1)} className="relative">
+            <div ref={anywhereSliderRef} className="keen-slider rounded-2xl overflow-hidden">
+              {["/images/usecase-5.jpg","/images/usecase-6.jpg","/images/usecase-7.jpg",
+                "/images/usecase-8.jpg","/images/usecase-9.jpg"].map((src, i) => (
+                <div key={i} className="keen-slider__slide">
+                  <div style={{ height:420 }}>
+                    <img src={src} alt={`MOVI projection ${i+1}`} className="w-full h-full object-cover"/>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => anywhereInstance.current?.prev()}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
+              style={{ background:"rgba(10,12,15,0.8)", border:`1px solid ${BORDER}` }}>
+              <ChevronLeft size={18}/>
+            </button>
+            <button onClick={() => anywhereInstance.current?.next()}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
+              style={{ background:"rgba(10,12,15,0.8)", border:`1px solid ${BORDER}` }}>
+              <ChevronRight size={18}/>
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── CUSTOMER REVIEWS ───────────────────────────────────── */}
+      <section className="py-24" style={{ background: CARD2 }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <motion.div {...fi()}>
+            <div className="w-16 h-px mx-auto mb-10" style={{ background: BORDER }}/>
+            <h2 className="text-4xl font-extrabold uppercase mb-12 tracking-wide">Our Customer Reviews</h2>
+            <GlassCard className="p-10">
+              <div className="text-7xl font-serif leading-none mb-2" style={{ color:"rgba(239,65,54,0.2)" }}>"</div>
+              <p className="text-base leading-loose italic mb-8" style={{ color:"#cbd5e1" }}>
+                Amazing &amp; great product loves it. Yes, some brands tried this before, and they failed
+                but not MOVI. For you to anything and everything on 100 inch of screening on any color
+                surface is fantastic. You can lay back in bed and project movies, android games, etc. to
+                the ceiling. Plus it is very bright and last it is truly unlocked phone with any carrier
+                can be connected.
+              </p>
+              <div className="flex justify-center gap-1">
+                {[1,2,3,4,5].map(i => (
+                  <span key={i} style={{ color:"#f59e0b", fontSize:24 }}>★</span>
+                ))}
+              </div>
+            </GlassCard>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── EDUCATIONAL ────────────────────────────────────────── */}
+      <section className="py-24" style={{ background: BG }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <motion.div {...fi(0.1)} className="flex justify-center">
+              <img src="/images/usecase-3.jpg" alt="Educational interactive projection"
+                className="rounded-2xl w-full object-cover" style={{ maxHeight:440 }}/>
+            </motion.div>
+            <motion.div {...fi()}>
+              <Chip>Educational</Chip>
+              <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-6 leading-tight">
+                Interactive<br/><RedText>Educational Projection</RedText>
+              </h2>
+              <p className="text-base leading-relaxed mb-4" style={{ color:"#94a3b8" }}>
+                Educational Interactive Projection (Floor and/or Globe) — Interactive displays can be used
+                as an exciting educational tool that keeps younger audiences entertained while being taught.
+              </p>
+              <p className="text-base leading-relaxed mb-4" style={{ color:"#94a3b8" }}>
+                Using motion tracking, pupils and teachers are able to interact with the projected image
+                to reveal new layers — perfect for starting discussions and getting young minds interested
+                in the subjects they are learning.
+              </p>
+              <p className="text-base leading-relaxed" style={{ color:"#94a3b8" }}>
+                Teachers can project live from the web (Wi-Fi or wireless network) or upload their own
+                videos, pictures, and audio based on the current curriculum — and students can interact
+                within seconds.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CES 2018 ───────────────────────────────────────────── */}
       <section className="py-20" style={{ background: BG }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -489,6 +649,40 @@ function Page() {
               </div>
             </GlassCard>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── PR NEWSWIRE ────────────────────────────────────────── */}
+      <section className="py-20" style={{ background: CARD2 }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <motion.div {...fi()} className="mb-10">
+            <Chip>Media Coverage</Chip>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 uppercase leading-tight">
+              Pickup by PR Newswire<br/><RedText>Top Media Outlets</RedText>
+            </h2>
+          </motion.div>
+          <div className="space-y-2">
+            {[
+              ["Yahoo Finance","https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
+              ["Market Watch","https://www.marketwatch.com/story/movi-smartphone-with-embedded-pico-projector-showcased-at-ces-2018-2018-01-08"],
+              ["Seeking Alpha","https://seekingalpha.com/pr/17040283-movi-smartphone-embedded-pico-projector-showcased-ces-2018"],
+              ["Business Review — Albany","https://www.bizjournals.com/albany/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["New Mexico Business Weekly","https://www.bizjournals.com/albuquerque/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Atlanta Business Chronicle","https://www.bizjournals.com/atlanta/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Austin Business Journal","https://www.bizjournals.com/austin/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Baltimore Business Journal","https://www.bizjournals.com/baltimore/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Birmingham Business Journal","https://www.bizjournals.com/birmingham/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+            ].map(([name, url], i) => (
+              <motion.div key={name} {...fi(i * 0.03)}>
+                <GlassCard className="px-5 py-4 flex items-center justify-between hover:border-red-900/30 transition-colors">
+                  <span className="text-sm font-semibold">{name}</span>
+                  <a href={url} target="_blank" rel="noopener noreferrer"
+                    className="text-xs font-semibold hover:text-white transition-colors"
+                    style={{ color: RED }}>View →</a>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -593,6 +787,11 @@ function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div {...fi()}>
+              <div className="flex gap-2 items-center mb-5">
+                {[0,1,2].map(i => (
+                  <div key={i} className="wms-dot" style={{ background: RED }}/>
+                ))}
+              </div>
               <Chip>About Us</Chip>
               <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-6 leading-tight">
                 Wireless Mobi<br/><RedText>Solution, Inc.</RedText>
@@ -611,7 +810,7 @@ function Page() {
                 projector smartphone, built on everything we've learned.
               </p>
               <div className="mt-10 grid grid-cols-3 gap-6">
-                {[{n:"2008",l:"Founded"},{n:"San Diego",l:"HQ"},{n:"2026",l:"MOVI TWO"}].map((s) => (
+                {[{n:"2008",l:"Founded"},{n:"San Diego",l:"HQ"},{n:"2027",l:"MOVI TWO CES"}].map((s) => (
                   <div key={s.l}>
                     <div className="text-2xl font-extrabold" style={{ color: RED }}>{s.n}</div>
                     <div className="text-xs mt-1" style={{ color:"#64748b" }}>{s.l}</div>
@@ -628,7 +827,7 @@ function Page() {
                 <div className="absolute inset-0 flex items-end p-6"
                   style={{ background:"linear-gradient(to top, rgba(10,12,15,0.95) 0%, transparent 60%)" }}>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: RED }}>Coming 2026</div>
+                    <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: RED }}>CES 2027 · Q1 2027</div>
                     <div className="text-2xl font-extrabold">MOVI TWO</div>
                     <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
                       className="inline-block mt-3 px-4 py-2 rounded-full text-sm font-bold"
@@ -862,52 +1061,86 @@ function Page() {
         </div>
       </section>
 
+      {/* ── BUY NOW BAR ────────────────────────────────────────── */}
+      <section className="py-14 text-center" style={{ background:"#0099cc" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div {...fi()}>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white uppercase mb-6 tracking-wide">
+              Buy Now from Moviphone
+            </h2>
+            <a href="#order"
+              className="inline-block px-10 py-4 rounded-full font-bold text-lg bg-white hover:opacity-90 transition"
+              style={{ color:"#0099cc", textDecoration:"none" }}>
+              Shop Now →
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── FOOTER ─────────────────────────────────────────────── */}
       <footer style={{ borderTop:`1px solid ${BORDER}`, background: BG }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <div>
-              <div className="flex items-center gap-1 mb-3">
+              <div className="flex items-center gap-1 mb-4">
                 <span className="text-lg font-extrabold" style={{ color: RED }}>MOVI</span>
                 <span className="text-lg font-extrabold">PHONES</span>
               </div>
               <p className="text-xs leading-relaxed mb-4" style={{ color:"#64748b" }}>
-                A product of Wireless Mobi Solution, Inc. (WMS). Built in San Diego, shipped worldwide.
+                A product of Wireless Mobi Solution, Inc. (WMS) — an American company, built and shipped worldwide.
               </p>
-              <a href="https://www.facebook.com/MoviWMS" target="_blank" rel="noopener noreferrer"
-                className="text-xs font-semibold hover:text-white transition-colors" style={{ color:"#64748b" }}>
-                Facebook · @MoviWMS
+              <p className="text-xs leading-relaxed mb-4" style={{ color:"#64748b" }}>
+                <span style={{ color:"#94a3b8" }}>Laser Beam Steering (LBS)</span> — a laser beam pulses light
+                individually to form each pixel, directed by a solid-state mirror, projecting content from your
+                phone onto any flat surface.
+              </p>
+              <a href="#projector" className="text-xs font-semibold hover:text-white transition-colors" style={{ color: RED, textDecoration:"none" }}>
+                Read More »
               </a>
             </div>
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color:"#64748b" }}>Product</div>
-              {["Phone","Projector","Gallery","Specs","Order"].map((l) => (
-                <button key={l} onClick={() => go(l.toLowerCase())}
-                  className="block text-sm mb-2 hover:text-white transition-colors" style={{ color:"#64748b" }}>
-                  {l}
-                </button>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color:"#64748b" }}>Useful Links</div>
+              {[["Moviphone","phone"],["Specifications","specs"],["About Us","about"],
+                ["CES","gallery"],["Media Release","gallery"],["Services","services"],["Projector","projector"]].map(([l,id]) => (
+                <div key={l} className="flex items-center gap-2 mb-2">
+                  <Check size={11} style={{ color: RED, flexShrink:0 }}/>
+                  <a href={`#${id}`} className="text-sm hover:text-white transition-colors" style={{ color:"#64748b", textDecoration:"none" }}>{l}</a>
+                </div>
               ))}
             </div>
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color:"#64748b" }}>Company</div>
-              {[["Services","services"],["About","about"],["FAQ","faq"],["Contact","contact"]].map(([l,id]) => (
-                <button key={l} onClick={() => go(id)}
-                  className="block text-sm mb-2 hover:text-white transition-colors" style={{ color:"#64748b" }}>
-                  {l}
-                </button>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color:"#64748b" }}>Support</div>
+              {["FAQs","Warranty","Shipping Policy","Refund Replacement","Order","Blogs","Contact Us","Video Clips"].map(l => (
+                <div key={l} className="flex items-center gap-2 mb-2">
+                  <Check size={11} style={{ color: RED, flexShrink:0 }}/>
+                  <span className="text-sm" style={{ color:"#64748b" }}>{l}</span>
+                </div>
               ))}
             </div>
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color:"#64748b" }}>Policies</div>
-              {["Warranty","Shipping Policy","Refund & Replacement","Terms of Service"].map((l) => (
-                <span key={l} className="block text-sm mb-2" style={{ color:"#64748b" }}>{l}</span>
-              ))}
-              <div className="mt-4 pt-4" style={{ borderTop:`1px solid ${BORDER}` }}>
-                <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Coming 2026</div>
-                <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
-                  className="text-sm font-bold hover:opacity-80 transition" style={{ color: RED }}>
-                  MOVI TWO →
-                </a>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color:"#64748b" }}>Get in Touch</div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2 text-sm" style={{ color:"#64748b" }}>
+                  <MapPin size={14} style={{ flexShrink:0, marginTop:2, color: RED }}/>
+                  <span>30 N Gould ST, Suite-R<br/>Sheridan, WY 82801 USA</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm" style={{ color:"#64748b" }}>
+                  <Phone size={14} style={{ color: RED, flexShrink:0 }}/>
+                  <a href="tel:+16198874570" className="hover:text-white transition-colors">(619) 887 4570</a>
+                </div>
+                <div className="flex items-center gap-2 text-sm" style={{ color:"#64748b" }}>
+                  <Mail size={14} style={{ color: RED, flexShrink:0 }}/>
+                  <a href="mailto:info@moviphones.com" className="hover:text-white transition-colors" style={{ textDecoration:"none" }}>info@moviphones.com</a>
+                </div>
+              </div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color:"#64748b" }}>Follow</div>
+              <div className="flex flex-wrap gap-3">
+                {[["Facebook","https://www.facebook.com/MoviWMS"],["Twitter","#"],["Instagram","#"],["Snapchat","#"]].map(([name, href]) => (
+                  <a key={name} href={href} target="_blank" rel="noopener noreferrer"
+                    className="text-xs font-semibold hover:text-white transition-colors" style={{ color:"#64748b", textDecoration:"none" }}>
+                    {name}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
