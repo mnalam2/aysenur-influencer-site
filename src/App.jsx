@@ -60,8 +60,6 @@ function Page() {
     setMobileOpen(false);
   };
 
-
-
   const toggleVideo = () => {
     if (!videoRef.current) return;
     if (videoPaused) { videoRef.current.play(); setVideoPaused(false); }
@@ -485,12 +483,23 @@ function Page() {
 
           <motion.div {...fi(0.1)} className="relative">
             <div ref={gallerySliderRef} className="keen-slider rounded-2xl overflow-hidden">
-              {[1,2,3,4,5,6,7,8,9].map((n) => (
+              {[
+                "/images/usecase-1.jpg",
+                "/images/usecase-1b.jpg",
+                "/images/usecase-3.jpg",
+                "/images/usecase-4.jpg",
+                "/images/usecase-5.jpg",
+                "/images/usecase-6.jpg",
+                "/images/usecase-7.jpg",
+                "/images/usecase-8.jpg",
+                "/images/feature-1.jpeg",
+                "/images/feature-2.jpeg",
+                "/images/feature-3.jpeg",
+              ].map((src, n) => (
                 <div key={n} className="keen-slider__slide">
                   <div className="rounded-2xl overflow-hidden" style={{ height:320 }}>
-                    <img src={`/images/usecase-${n}.jpg`} alt={`MOVI use case ${n}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      onError={(e) => { e.currentTarget.style.display = "none"; }}/>
+                    <img src={src} alt={`MOVI use case ${n + 1}`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"/>
                   </div>
                 </div>
               ))}
@@ -530,7 +539,7 @@ function Page() {
               </div>
             </motion.div>
             <motion.div {...fi(0.1)} className="space-y-4">
-              {["/images/usecase-1.jpg","/images/usecase-2.jpg","/images/usecase-4.jpg"].map((src, i) => (
+              {["/images/usecase-1.jpg","/images/usecase-1b.jpg","/images/usecase-4.jpg"].map((src, i) => (
                 <div key={i} className="rounded-2xl overflow-hidden" style={{ height:180 }}>
                   <img src={src} alt={`MOVI use case ${i+1}`}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"/>
@@ -556,7 +565,7 @@ function Page() {
           <motion.div {...fi(0.1)} className="relative">
             <div ref={anywhereSliderRef} className="keen-slider rounded-2xl overflow-hidden">
               {["/images/usecase-5.jpg","/images/usecase-6.jpg","/images/usecase-7.jpg",
-                "/images/usecase-8.jpg","/images/usecase-9.jpg"].map((src, i) => (
+                "/images/usecase-8.jpg","/images/projector-hero.jpg"].map((src, i) => (
                 <div key={i} className="keen-slider__slide">
                   <div style={{ height:420 }}>
                     <img src={src} alt={`MOVI projection ${i+1}`} className="w-full h-full object-cover"/>
@@ -580,26 +589,45 @@ function Page() {
 
       {/* ── CUSTOMER REVIEWS ───────────────────────────────────── */}
       <section className="py-24" style={{ background: CARD2 }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div {...fi()}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div {...fi()} className="text-center mb-12">
             <div className="w-16 h-px mx-auto mb-10" style={{ background: BORDER }}/>
-            <h2 className="text-4xl font-extrabold uppercase mb-12 tracking-wide">Our Customer Reviews</h2>
-            <GlassCard className="p-10">
-              <div className="text-7xl font-serif leading-none mb-2" style={{ color:"rgba(239,65,54,0.2)" }}>"</div>
-              <p className="text-base leading-loose italic mb-8" style={{ color:"#cbd5e1" }}>
-                Amazing &amp; great product loves it. Yes, some brands tried this before, and they failed
-                but not MOVI. For you to anything and everything on 100 inch of screening on any color
-                surface is fantastic. You can lay back in bed and project movies, android games, etc. to
-                the ceiling. Plus it is very bright and last it is truly unlocked phone with any carrier
-                can be connected.
-              </p>
-              <div className="flex justify-center gap-1">
-                {[1,2,3,4,5].map(i => (
-                  <span key={i} style={{ color:"#f59e0b", fontSize:24 }}>★</span>
-                ))}
-              </div>
-            </GlassCard>
+            <h2 className="text-4xl font-extrabold uppercase tracking-wide">Our Customer Reviews</h2>
           </motion.div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                source:"Amazon",
+                stars:5,
+                review:"Amazing & great product loves it. Yes, some brands tried this before, and they failed but not MOVI. For you to do anything and everything on 100 inch of screening on any color surface is fantastic. You can lay back in bed and project movies, android games, etc. to the ceiling. Plus it is very bright and it is truly an unlocked phone — any carrier can be connected.",
+              },
+              {
+                source:"Reddit",
+                stars:5,
+                review:"YES IT IS FINALLY HERE! I received my Moviphone yesterday. Being a Samsung phone user I can say as a first impression this is a very nice smart phone, less bulky than I imagined, very nice look and feel and easy operation. PLUS a very nice LBS projector. The auto-keystone correction is excellent — it adjusts at any angle between 0 and ±30 degrees. Very easy to use and come in and out of projector mode from any app.",
+              },
+              {
+                source:"PCMag",
+                stars:4,
+                review:"Movi Delivers a Projector Phone You Might Actually Want! You wouldn't know the MOVI had a projector in it if somebody didn't tell you. It's just a good-looking Android smartphone, with a metal back and a 5.5-inch 1080p screen. Projector phones never quite take off — but the $599 MOVI might be the exception, because it doesn't feel like a projector phone.",
+              },
+            ].map((r, i) => (
+              <motion.div key={r.source} {...fi(i * 0.1)}>
+                <GlassCard className="p-8 flex flex-col h-full">
+                  <div className="text-5xl font-serif leading-none mb-2" style={{ color:"rgba(239,65,54,0.2)" }}>"</div>
+                  <p className="text-sm leading-relaxed italic flex-1 mb-6" style={{ color:"#cbd5e1" }}>{r.review}</p>
+                  <div>
+                    <div className="flex gap-1 mb-2">
+                      {Array.from({ length: r.stars }).map((_, j) => (
+                        <span key={j} style={{ color:"#f59e0b", fontSize:18 }}>★</span>
+                      ))}
+                    </div>
+                    <div className="font-bold text-sm" style={{ color: RED }}>{r.source}</div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1146,21 +1174,47 @@ function Page() {
               </div>
             </GlassCard>
           </motion.div>
+
+          <motion.div {...fi(0.15)}>
+            <GlassCard className="mt-6 p-8 flex flex-col sm:flex-row items-center justify-between gap-6"
+              style={{ borderColor:"rgba(239,65,54,0.15)" }}>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Careers</div>
+                <h3 className="font-bold text-xl mb-2">Join the MOVI Team</h3>
+                <p className="text-sm" style={{ color:"#94a3b8" }}>
+                  We're always looking for talented, passionate people. No open positions currently, but we'd love to hear from you.
+                </p>
+              </div>
+              <a href="mailto:work@moviphones.com?subject=Career%20Inquiry&body=Hi%20WMS%20Team%2C%0A%0AI%27d%20love%20to%20join%20your%20team.%0A%0AName%3A%20%0ARole%20interest%3A%20"
+                className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition"
+                style={{ background:"rgba(239,65,54,0.1)", border:`1px solid rgba(239,65,54,0.3)`, color: RED }}>
+                <Mail size={14}/> work@moviphones.com
+              </a>
+            </GlassCard>
+          </motion.div>
         </div>
       </section>
 
       {/* ── BUY NOW BAR ────────────────────────────────────────── */}
-      <section className="py-14 text-center" style={{ background:"#0099cc" }}>
+      <section className="py-14 text-center" style={{ background:"linear-gradient(135deg, #0099cc 0%, #0077aa 100%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fi()}>
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-100 mb-3">Free USA Shipping · Global & Africa shipping $100</p>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white uppercase mb-6 tracking-wide">
               Buy Now from Moviphone
             </h2>
-            <a href="#order"
-              className="inline-block px-10 py-4 rounded-full font-bold text-lg bg-white hover:opacity-90 transition"
-              style={{ color:"#0099cc", textDecoration:"none" }}>
-              Shop Now →
-            </a>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Pro&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Pro%20(4GB%2F64GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
+                className="inline-block px-10 py-4 rounded-full font-bold text-lg bg-white hover:opacity-90 transition"
+                style={{ color:"#0099cc", textDecoration:"none" }}>
+                Order Now — $699 →
+              </a>
+              <a href="#order"
+                className="inline-block px-10 py-4 rounded-full font-bold text-lg hover:opacity-90 transition"
+                style={{ background:"rgba(255,255,255,0.15)", border:"1px solid rgba(255,255,255,0.4)", color:"white", textDecoration:"none" }}>
+                See All Options
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -1198,10 +1252,20 @@ function Page() {
             </div>
             <div>
               <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color:"#64748b" }}>Support</div>
-              {["FAQs","Warranty","Shipping Policy","Refund Replacement","Order","Blogs","Contact Us","Video Clips"].map(l => (
-                <div key={l} className="flex items-center gap-2 mb-2">
+              {[
+                { label:"FAQs", id:"faq" },
+                { label:"Warranty", email:"warranty@moviphones.com" },
+                { label:"Shipping Policy", email:"info@moviphones.com" },
+                { label:"Refund & Replacement", email:"info@moviphones.com" },
+                { label:"Order", id:"order" },
+                { label:"Contact Us", id:"contact" },
+              ].map(l => (
+                <div key={l.label} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink:0 }}/>
-                  <span className="text-sm" style={{ color:"#64748b" }}>{l}</span>
+                  {l.id
+                    ? <a href={`#${l.id}`} className="text-sm hover:text-white transition-colors" style={{ color:"#64748b", textDecoration:"none" }}>{l.label}</a>
+                    : <a href={`mailto:${l.email}?subject=${encodeURIComponent(l.label + " Inquiry")}`} className="text-sm hover:text-white transition-colors" style={{ color:"#64748b", textDecoration:"none" }}>{l.label}</a>
+                  }
                 </div>
               ))}
             </div>
