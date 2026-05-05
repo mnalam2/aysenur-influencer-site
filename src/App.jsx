@@ -510,12 +510,12 @@ function Page() {
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <motion.div {...fi()}>
               <h2 className="text-4xl sm:text-5xl font-extrabold mb-10 uppercase leading-tight">
-                What Can Be<br/><RedText>Used Do?</RedText>
+                What Can the<br/><RedText>MOVI Do?</RedText>
               </h2>
               <div className="space-y-4">
-                {["Good selling tools for salesmen","Sales Presentation","Meeting in office",
-                  "Private cinema Romantic moment","Car Movie","Traffic jam is not boring",
-                  "Crazy Games","Enjoy 3D world","Outdoor travel","Give You More Happiness",
+                {["Sales tool for professionals","Sales presentations","Meetings in the office",
+                  "Private cinema & romantic moments","In-car movies","Beat the traffic jam",
+                  "Gaming","Enjoy a 3D world","Outdoor travel","Give you more happiness",
                 ].map(item => (
                   <div key={item} className="flex items-center gap-3">
                     <Check size={16} className="flex-shrink-0" style={{ color: RED }}/>
@@ -544,9 +544,8 @@ function Page() {
               Anywhere &amp; Anytime<br/><RedText>Projection</RedText>
             </h2>
             <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color:"#94a3b8" }}>
-              MOVI projector smartphone can be used everywhere in your life — not only movies but also
-              video games and music. Mount it to the ceiling. Portable fashionable design, light weight —
-              carry to every place you like.
+              The MOVI projector smartphone can be used anywhere in your life — not just movies, but also
+              video games and music. Mount it to the ceiling. Lightweight and portable — take it wherever you go.
             </p>
           </motion.div>
           <motion.div {...fi(0.1)} className="relative">
@@ -677,7 +676,7 @@ function Page() {
           <motion.div {...fi()} className="mb-10">
             <Chip>Media Release</Chip>
             <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 uppercase leading-tight">
-              Pickup by PR Newswire<br/><RedText>Media Partner Websites — Top Outlets</RedText>
+              Picked Up by PR Newswire<br/><RedText>Media Partner Websites — Top Outlets</RedText>
             </h2>
           </motion.div>
           <div className="grid sm:grid-cols-2 gap-2 mb-16">
@@ -890,7 +889,7 @@ function Page() {
                 <em className="text-white"> what if the screen was as big as you wanted it to be?</em>
               </p>
               <p className="text-base leading-relaxed" style={{ color:"#94a3b8" }}>
-                The MOVI debuted at CES 2018. Now, MOVI TWO is coming in 2026 — the next generation of
+                The MOVI debuted at CES 2018. Now, MOVI TWO is coming in 2027 — the next generation of
                 projector smartphone, built on everything we've learned.
               </p>
               <div className="mt-10 grid grid-cols-3 gap-6">
@@ -906,7 +905,7 @@ function Page() {
             <motion.div {...fi(0.1)} className="space-y-5">
               {/* MOVI TWO teaser card */}
               <div className="rounded-2xl overflow-hidden relative" style={{ border:`1px solid rgba(239,65,54,0.3)` }}>
-                <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO — Coming 2026"
+                <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO — Coming 2027"
                   className="w-full object-cover" style={{ height:280 }}/>
                 <div className="absolute inset-0 flex items-end p-6"
                   style={{ background:"linear-gradient(to top, rgba(10,12,15,0.95) 0%, transparent 60%)" }}>
@@ -959,7 +958,7 @@ function Page() {
               { q:"How long does the battery last with the projector on?",
                 a:"Approximately 4 hours at maximum brightness, 5.1 hours at medium brightness, or 6 hours with the phone screen off and only the projector running." },
               { q:"What is MOVI TWO?",
-                a:"MOVI TWO is the next generation MOVI projector smartphone, coming in 2026. Email us at info@moviphones.com to register your interest and be first to know." },
+                a:"MOVI TWO is the next-generation MOVI projector smartphone, coming in 2027. Email us at info@moviphones.com to register your interest and be the first to know." },
               { q:"What network and carriers does the MOVI support?",
                 a:"The MOVI is an unlocked 4G LTE smartphone that works on most major 4G GSM networks worldwide, plus Bluetooth 4.2 and dual-band Wi-Fi." },
               { q:"Does it have expandable storage?",
