@@ -60,6 +60,8 @@ function Page() {
     setMobileOpen(false);
   };
 
+
+
   const toggleVideo = () => {
     if (!videoRef.current) return;
     if (videoPaused) { videoRef.current.play(); setVideoPaused(false); }
@@ -99,7 +101,7 @@ function Page() {
 
   return (
     <div style={{ background: BG, fontFamily:"'Inter',system-ui,-apple-system,sans-serif" }}
-         className="min-h-screen text-white overflow-x-hidden">
+         className="min-h-screen text-white">
 
       {/* ── NAV ────────────────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
