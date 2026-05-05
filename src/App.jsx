@@ -1,414 +1,896 @@
-/*
-  React (JavaScript) single-file version for Vite + Netlify
-  - No TypeScript syntax (fixes esbuild “Expected ')' but found ':'”)
-  - Uses react-helmet-async with local HelmetProvider (no change to main.jsx needed)
-  - Accessible nav, sections, progressive hero, slider, lightbox, SEO JSON-LD
-
-  Install deps:
-    npm i framer-motion lucide-react keen-slider react-helmet-async @fontsource/playfair-display
-
-  If you already added Tailwind, classes will just work. If not, you can still ship this as plain CSS utility classes (they’ll be ignored).
-*/
-
-import { Mail, Instagram, ChevronDown, ArrowUp, Youtube, Music2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-// Helmet removed to avoid extra dependency on Netlify
-// We will set document.title in useEffect and move meta tags to public/index.html
-import "keen-slider/keen-slider.min.css";
-import { useKeenSlider } from "keen-slider/react";
-import "@fontsource/playfair-display";
+import {
+  Phone, Mail, MapPin, ChevronDown, ChevronUp, Star, ArrowUp,
+  Menu, X, Monitor, Smartphone, Zap, Globe, Users, Award,
+  BookOpen, Briefcase, Home, Film, Car, MessageSquare, Battery,
+  Wifi, Camera, Cpu,
+} from "lucide-react";
 
-export default function AysenurInfluencerSite() {
+export default function MoviphonesApp() {
   return <Page />;
 }
 
 function Page() {
-  // Lightbox state
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const openLightbox = (src) => setLightboxImage(src);
-  const closeLightbox = () => setLightboxImage(null);
-
-  // Scroll-to-top visibility
+  const [navOpen, setNavOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    document.title = "Moviphones — MOVI-2 Projector Smartphone";
+  }, []);
+
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 500);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Reduced motion preference
-  const prefersReducedMotion = useReducedMotion();
-
-  // Set document title client-side (meta moved to index.html)
-  useEffect(() => {
-    document.title = "Aysenur Alam | Lifestyle & Fashion";
-  }, []);
-
-  // Hero: progressive swap from poster image to video after hydration
-  const [showVideo, setShowVideo] = useState(false);
-  useEffect(() => {
-    const id = window.setTimeout(() => setShowVideo(true), 0);
-    return () => window.clearTimeout(id);
-  }, []);
-
-  // Video pause/resume when offscreen
-  const videoRef = useRef(null);
-  useEffect(() => {
-    if (!videoRef.current) return;
-    const el = videoRef.current;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries[0]?.isIntersecting;
-        if (!el) return;
-        if (isVisible) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [showVideo]);
-
-  // Slider
-  const [sliderRef, slider] = useKeenSlider({
-    loop: true,
-    mode: "snap",
-    rubberband: true,
-    slides: { perView: 1, spacing: 16 },
-    drag: true,
-    renderMode: "precision",
-  });
-
-  // Featured looks (Cloudinary filenames)
-  const featuredLooks = [
-    "29055FAD-6228-4195-9C4A-8981D4961E4E_rgmf4y.jpg",
-    "IMG_1312_avzg8x.jpg",
-    "20FF5F9B-D102-4ECF-9515-77E880EBC6DE_sm7m17.heic",
-    "080F033E-C47E-496F-8B9D-85DF878CD6A8_hg188b.jpg",
-    "IMG_7861_v7c6ym.jpg",
-  ];
-
-  // Cloudinary helpers
-  const CLD_BASE = "https://res.cloudinary.com/deh9ptcb7/image/upload";
-  const cldUrl = (file, w = 1600) => `${CLD_BASE}/f_auto,q_auto,c_fill,g_auto,w_${w}/${file}`;
-  const cldSrcSet = (file, widths = [480, 768, 1024, 1280, 1600, 2000]) =>
-    widths.map((w) => `${cldUrl(file, w)} ${w}w`).join(", ");
-
-  // Smooth scroll helper
-  const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setNavOpen(false);
   };
 
-  // Close lightbox on ESC + arrow key slide nav
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") slider.current?.prev();
-      if (e.key === "ArrowRight") slider.current?.next();
-    };
-    if (lightboxImage) window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightboxImage, slider]);
-
-  // JSON-LD Person schema
-  const personJsonLd = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: "Aysenur Alam",
-      url: "https://aysenuralam.com/",
-      image: `${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`,
-      sameAs: [
-        "https://www.instagram.com/ayseniorr/",
-        "https://www.tiktok.com/@aysenurbutaya",
-        "https://youtube.com/@aysenuralam",
-        "https://linktr.ee/ayseniorr",
-      ],
-      jobTitle: "Lifestyle & Fashion Creator",
-    }),
-    []
-  );
+  const navLinks = [
+    { label: "Home", id: "home" },
+    { label: "Phone", id: "product" },
+    { label: "Specifications", id: "specs" },
+    { label: "About", id: "about" },
+    { label: "FAQ", id: "faq" },
+    { label: "Contact", id: "contact" },
+  ];
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8] text-[#4a3f3e] selection:bg-[#d9cfc1] selection:text-[#3b3130]" style={{ fontFamily: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}>
-      {/* HEAD moved to public/index.html. Title set via useEffect below. */}
+    <div className="min-h-screen bg-[#070d1a] text-white" style={{ fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
 
       {/* NAV */}
-      <header className="sticky top-0 z-40 bg-[#f5f0e8]/80 backdrop-blur border-b border-[#e8e0d6]">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold tracking-wide">Aysenur Alam</a>
-          <nav aria-label="Primary">
-            <ul className="flex gap-4 text-sm">
-              <li><a className="hover:underline" href="#looks">Looks</a></li>
-              <li><a className="hover:underline" href="#about">About</a></li>
-              <li><a className="hover:underline" href="#work">Work with me</a></li>
-            </ul>
+      <header className="fixed top-0 w-full z-50 bg-[#070d1a]/90 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+          <button onClick={() => scrollTo("home")} className="flex flex-col leading-tight text-left">
+            <span className="text-[10px] text-blue-400 font-semibold tracking-[0.3em] uppercase">An American</span>
+            <span className="text-lg font-bold tracking-wide">Moviphones</span>
+          </button>
+
+          <nav className="hidden md:flex items-center gap-6 text-sm text-gray-300">
+            {navLinks.map((l) => (
+              <button key={l.id} onClick={() => scrollTo(l.id)} className="hover:text-white transition-colors">
+                {l.label}
+              </button>
+            ))}
           </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="mailto:info@moviphones.com?subject=Order%20Inquiry"
+              className="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-500 transition-colors"
+            >
+              Order Now
+            </a>
+            <button className="md:hidden p-2" onClick={() => setNavOpen(!navOpen)} aria-label="Toggle menu">
+              {navOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
+
+        {navOpen && (
+          <div className="md:hidden bg-[#0d1629] border-t border-white/5 px-4 py-4 flex flex-col gap-3">
+            {navLinks.map((l) => (
+              <button key={l.id} onClick={() => scrollTo(l.id)} className="text-left text-gray-300 hover:text-white py-1">
+                {l.label}
+              </button>
+            ))}
+            <a
+              href="mailto:info@moviphones.com?subject=Order%20Inquiry"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium mt-2"
+            >
+              Order Now
+            </a>
+          </div>
+        )}
       </header>
 
       {/* HERO */}
-      <section id="home" className="relative h-[80vh] max-h-[900px] rounded-none md:rounded-2xl overflow-hidden shadow-md mx-0 md:mx-6 mt-4">
-        {!showVideo ? (
-          <img
-            src={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`}
-            alt="Aysenur presenting an elegant look"
-            className="absolute inset-0 w-full h-full object-cover"
-            width={1920}
-            height={1080}
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            src="https://res.cloudinary.com/deh9ptcb7/video/upload/v1751529899/e47fd93721ae4952ada0d5c50c114b7d_gbj5bi.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        )}
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#070d1a] via-[#0d1a3a] to-[#070d1a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(59,130,246,0.12)_0%,_transparent_60%)]" />
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
 
-        <div className="relative z-10 flex flex-col justify-center items-center h-full text-white bg-black/30 backdrop-blur-sm">
-          <motion.h1
-            initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
-            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold tracking-wide text-center"
           >
-            Aysenur Alam
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-sm mb-6">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              MOVI-2 showcasing at CES 2027 · Launch Q1, 2027
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-extrabold leading-tight mb-6"
+          >
+            Share Your<br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              Favorite Content
+            </span>
+            <br />
+            Anytime, Anywhere.
           </motion.h1>
-          <p className="mt-2 text-lg md:text-xl italic text-center">Inspiring everyday elegance</p>
 
-          <div className="flex justify-center mt-4 gap-3 md:gap-4 flex-wrap">
-            <a
-              href="https://www.instagram.com/ayseniorr/"
-              target="_blank"
-              rel="noopener noreferrer me"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-              aria-label="Open Instagram profile in a new tab"
-            >
-              <Instagram className="mr-2 h-4 w-4" /> Instagram
-            </a>
-
-            <a
-              href="mailto:aysenuralam@gmail.com?subject=Brand%20Collab%20Inquiry&body=Hi%20Aysenur,%0D%0AWe'd%20love%20to%20work%20with%20you%20on..."
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-              aria-label="Email Aysenur about collaboration"
-            >
-              <Mail className="mr-2 h-4 w-4" /> Contact
-            </a>
-
-            <a
-              href="https://linktr.ee/ayseniorr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              🔗 Linktree
-            </a>
-
-            <a
-              href="https://www.tiktok.com/@aysenurbutaya?_t=ZP-8xiO3wnA7BP&_r=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              <Music2 className="mr-2 h-4 w-4" /> TikTok
-            </a>
-
-            <a
-              href="https://youtube.com/@aysenuralam?si=aCGSQKZ48F1tiD3e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              <Youtube className="mr-2 h-4 w-4" /> YouTube
-            </a>
-          </div>
-
-          <button
-            className="mt-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 focus-visible:ring"
-            onClick={() => scrollToId("looks")}
-            aria-label="Scroll to Featured Looks"
+          <motion.p
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8"
           >
-            {!prefersReducedMotion && <ChevronDown className="text-white animate-bounce" size={24} />}
-            {prefersReducedMotion && <ChevronDown className="text-white" size={24} />}
-          </button>
+            MOVI-2 — a flagship Android 16 smartphone with a built-in DLP projector delivering 1080P at up to 80 lumens. Project up to 200 inches on any surface.
+          </motion.p>
+
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-4"
+          >
+            <a
+              href="mailto:info@moviphones.com?subject=Order%20Inquiry"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg shadow-blue-500/25"
+            >
+              Order Now
+            </a>
+            <button
+              onClick={() => scrollTo("product")}
+              className="px-8 py-3 rounded-full border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-colors"
+            >
+              Learn More
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap justify-center gap-4 mt-12"
+          >
+            {[
+              { label: "Projection", value: "1080P · 100% Offset" },
+              { label: "Battery", value: "7000mAh" },
+              { label: "Camera", value: "50+5MP Rear" },
+              { label: "Storage", value: "8GB+256GB" },
+            ].map((s) => (
+              <div key={s.label} className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-center">
+                <div className="text-blue-300 font-bold text-sm">{s.value}</div>
+                <div className="text-xs text-gray-500">{s.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
-      </section>
 
-      {/* QUOTE */}
-      <section className="text-center my-12 italic text-lg text-[#7a6e6c] px-6">
-        “Elegance is when the inside is as beautiful as the outside.” – Coco Chanel
-      </section>
-
-      {/* LOOKS */}
-      <main id="looks" className="max-w-5xl mx-auto px-4">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+        <button
+          onClick={() => scrollTo("product")}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 hover:text-white transition-colors"
+          aria-label="Scroll down"
         >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Featured Looks</h2>
-            <div className="relative">
-              <button
-                onClick={() => slider.current?.prev()}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#f5f0e8] text-[#5a4e4d] p-2 rounded-full shadow z-10 focus-visible:ring"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft size={20} />
-              </button>
+          <ChevronDown size={28} className={prefersReducedMotion ? "" : "animate-bounce"} />
+        </button>
+      </section>
 
-              <div ref={sliderRef} className="keen-slider touch-pan-x">
-                {featuredLooks.map((fileName, idx) => (
-                  <div className="keen-slider__slide" key={fileName}>
-                    <button
-                      onClick={() => openLightbox(cldUrl(fileName, 1920))}
-                      className="block w-full"
-                      aria-label={`Open featured look ${idx + 1}`}
-                    >
-                      <motion.img
-                        src={cldUrl(fileName, 1200)}
-                        srcSet={cldSrcSet(fileName)}
-                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 900px"
-                        alt={`Featured look ${idx + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                        width={1200}
-                        height={800}
-                        className="rounded-xl shadow-md object-cover w-full h-72 md:h-[28rem] aspect-[3/2] hover:scale-[1.02] hover:shadow-lg transition-transform"
-                      />
-                    </button>
+      {/* PRODUCT */}
+      <section id="product" className="py-24 px-4 max-w-7xl mx-auto">
+        <FadeIn>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-sm mb-4">
+              Flagship Product
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">MOVI-2 Projector Smartphone</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              A full-featured Android 16 smartphone with a built-in DLP projector. Project on any wall, ceiling, or screen — from 12 to 200 inches — wherever you are.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <FadeIn delay={0.1}>
+            <div className="bg-gradient-to-br from-[#0d1629] to-[#111827] rounded-2xl p-8 border border-white/5 h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 rounded-xl bg-blue-500/10">
+                  <Monitor size={22} className="text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold">DLP Projector Engine</h3>
+              </div>
+              <div className="space-y-0">
+                {[
+                  ["Brightness", "70–80 lumens"],
+                  ["Contrast Ratio", "400:1"],
+                  ["Focus", "Autofocus"],
+                  ["Throw Ratio", "1.2"],
+                  ["Resolution", "1080P Full HD"],
+                  ["Offset", "100% (wall / ceiling projection)"],
+                  ["Image Size", "12–200 inches diagonal"],
+                  ["Projector Battery", "4h max · 5.1h mid · 6h screen-off"],
+                ].map(([label, value]) => (
+                  <div key={label} className="flex justify-between items-center py-3 border-b border-white/5 last:border-0 gap-4">
+                    <span className="text-gray-400 text-sm">{label}</span>
+                    <span className="font-medium text-sm text-right">{value}</span>
                   </div>
                 ))}
               </div>
+            </div>
+          </FadeIn>
 
-              <button
-                onClick={() => slider.current?.next()}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#f5f0e8] text-[#5a4e4d] p-2 rounded-full shadow z-10 focus-visible:ring"
-                aria-label="Next slide"
-              >
-                <ChevronRight size={20} />
-              </button>
+          <FadeIn delay={0.2}>
+            <div className="bg-gradient-to-br from-[#0d1629] to-[#111827] rounded-2xl p-8 border border-white/5 h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 rounded-xl bg-cyan-500/10">
+                  <Smartphone size={22} className="text-cyan-400" />
+                </div>
+                <h3 className="text-xl font-bold">Smartphone Specs</h3>
+              </div>
+              <div className="space-y-0">
+                {[
+                  ["OS", "Android 16"],
+                  ["Processor", "MTK 24E (Octa-core)"],
+                  ["Display", '6.8" INCELL FHD IPS · 1920×1080'],
+                  ["Memory", "8GB RAM + 256GB ROM"],
+                  ["Camera", "16MP front / 50+5MP rear AF"],
+                  ["Battery", "7000mAh lithium polymer"],
+                  ["Dimensions", "171.2 × 78 × 12mm · <200g"],
+                  ["SIM", "eSIM + 1 nano SIM slot"],
+                  ["5G Bands", "N2/5/25/28/41/66/71/77"],
+                  ["Network", "GSM · LTE · 5G NR"],
+                ].map(([label, value]) => (
+                  <div key={label} className="flex justify-between items-center py-3 border-b border-white/5 last:border-0 gap-4">
+                    <span className="text-gray-400 text-sm">{label}</span>
+                    <span className="font-medium text-sm text-right">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+
+        <FadeIn delay={0.3}>
+          <div className="mt-6 bg-gradient-to-br from-[#0d1629] to-[#111827] rounded-2xl p-8 border border-white/5">
+            <h3 className="text-xl font-bold mb-6">Key Features</h3>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                "Big-screen entertainment without a TV",
+                "Effortless display on walls & ceilings",
+                "Thin, elegant design — no bulk",
+                "Impressive image clarity up to 200\"",
+                "Powerful 7000mAh for all-day use",
+                "Business presentations anywhere",
+                "Android 16 with full Google apps",
+                "5G connectivity for fast streaming",
+              ].map((f) => (
+                <div key={f} className="flex items-start gap-2">
+                  <span className="mt-0.5 w-4 h-4 flex-shrink-0 rounded-full bg-blue-500/20 text-blue-400 text-[10px] flex items-center justify-center font-bold">
+                    ✓
+                  </span>
+                  <span className="text-sm text-gray-300">{f}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </motion.div>
-      </main>
+        </FadeIn>
+      </section>
 
-      {/* LIGHTBOX */}
-      {lightboxImage && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Expanded image"
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
-          onClick={closeLightbox}
-        >
-          <img
-            src={lightboxImage}
-            alt="Expanded featured look"
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-full max-h-[90vh] rounded-xl border-4 border-white shadow-xl"
-          />
+      {/* USE CASES */}
+      <section className="py-24 px-4 bg-gradient-to-b from-[#070d1a] via-[#0a1020] to-[#070d1a]">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">What Can MOVI Do?</h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                From boardrooms to backyards, MOVI transforms how you share and enjoy content.
+              </p>
+            </div>
+          </FadeIn>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { Icon: Briefcase, label: "Sales Presentations", desc: "Impress clients anywhere, no screen needed" },
+              { Icon: Users, label: "Office Meetings", desc: "Project your pitch to the whole room" },
+              { Icon: Film, label: "Private Cinema", desc: "Romantic movie nights on any wall" },
+              { Icon: Car, label: "Car Movies", desc: "Turn your car into a movie theater" },
+              { Icon: Monitor, label: "3D Gaming", desc: "Enjoy games on a massive projected screen" },
+              { Icon: Globe, label: "Outdoor Adventures", desc: "Portable entertainment wherever you go" },
+              { Icon: BookOpen, label: "Education", desc: "Interactive floor & ceiling classroom projection" },
+              { Icon: Home, label: "Ceiling Mode", desc: "Mount and project from bed onto the ceiling" },
+            ].map(({ Icon, label, desc }, i) => (
+              <FadeIn key={label} delay={i * 0.05}>
+                <div className="bg-[#0d1629] rounded-2xl p-6 border border-white/5 hover:border-blue-500/30 transition-colors group h-full">
+                  <div className="p-3 rounded-xl bg-blue-500/10 w-fit mb-4 group-hover:bg-blue-500/20 transition-colors">
+                    <Icon size={20} className="text-blue-400" />
+                  </div>
+                  <h3 className="font-semibold mb-1 text-sm">{label}</h3>
+                  <p className="text-xs text-gray-400">{desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
-      )}
+      </section>
+
+      {/* PRESS */}
+      <section className="py-24 px-4 max-w-7xl mx-auto">
+        <FadeIn>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">As Seen In</h2>
+            <p className="text-gray-400">Recognized by the world's top tech publications at CES</p>
+          </div>
+        </FadeIn>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              outlet: "CNET",
+              quote: "MOVI Phone rated #6 out of 33 all new innovation phones at CES 2018",
+              year: "CES 2018",
+            },
+            {
+              outlet: "The New York Times",
+              quote: "MOVI Phone rated #9 out of 10 of the coolest Gadgets at CES 2018",
+              year: "CES 2018",
+            },
+            {
+              outlet: "PCMag",
+              quote: "Movi Delivers a Projector Phone You Might Actually Want!",
+              year: "CES 2018",
+            },
+          ].map(({ outlet, quote, year }, i) => (
+            <FadeIn key={outlet} delay={i * 0.1}>
+              <div className="bg-[#0d1629] rounded-2xl p-8 border border-white/5 flex flex-col gap-4 h-full">
+                <MessageSquare size={22} className="text-blue-400 opacity-60" />
+                <p className="text-base font-medium leading-snug flex-1">"{quote}"</p>
+                <div className="pt-4 border-t border-white/5 flex justify-between items-center">
+                  <span className="font-bold text-blue-400">{outlet}</span>
+                  <span className="text-gray-500 text-sm">{year}</span>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="py-24 px-4 bg-gradient-to-b from-[#070d1a] via-[#0a1020] to-[#070d1a]">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">What Customers Say</h2>
+            </div>
+          </FadeIn>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                source: "Amazon",
+                stars: 5,
+                review:
+                  "Amazing & great product loves it. For you to do anything and everything on 100 inch of screening on any color surface is fantastic. You can lay back in bed and project movies, android games, etc. to the ceiling. Plus it is very bright and it's truly an unlocked phone that works with any carrier.",
+              },
+              {
+                source: "Reddit",
+                stars: 5,
+                review:
+                  "YES IT IS FINALLY HERE! I received my Moviphone yesterday. As a Samsung phone user I can say this is a very nice smart phone — less bulky than I imagined, very nice look and feel. PLUS a very nice LBS projector. The auto-keystone correction is excellent. Very easy to use and come in and out of projector mode from any app.",
+              },
+              {
+                source: "PCMag",
+                stars: 4,
+                review:
+                  "You wouldn't know the MOVI had a projector in it if somebody didn't tell you. It's just a good-looking Android smartphone with a metal back. It doesn't feel like a projector phone — it might be the exception that actually takes off.",
+              },
+            ].map(({ source, stars, review }, i) => (
+              <FadeIn key={source} delay={i * 0.1}>
+                <div className="bg-[#0d1629] rounded-2xl p-8 border border-white/5 flex flex-col gap-4 h-full">
+                  <div className="flex gap-1">
+                    {Array.from({ length: stars }).map((_, j) => (
+                      <Star key={j} size={14} className="text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 text-sm leading-relaxed flex-1">"{review}"</p>
+                  <div className="pt-4 border-t border-white/5">
+                    <span className="font-bold text-blue-400">{source}</span>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ABOUT */}
-      <section id="about" className="max-w-5xl mx-auto px-4 py-10">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-3">About</h2>
-            <p className="text-base leading-relaxed text-[#5a4e4d]">
-              I’m Aysenur, a lifestyle & fashion creator focused on everyday elegance—styling, beauty, and home moments that feel effortless and warm.
-              I collaborate with brands to craft content that’s authentic, feminine, and saves-to-favorites.
-            </p>
-          </div>
-        </motion.div>
+      <section id="about" className="py-24 px-4 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <FadeIn>
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/40 bg-blue-500/10 text-blue-300 text-sm mb-4">
+                Founded 2008 · San Diego, CA
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">About Wireless Mobi Solution</h2>
+              <div className="space-y-4 text-gray-300 leading-relaxed text-sm">
+                <p>
+                  Wireless Mobi Solution, Inc. (WMS) is a privately held American company founded in 2008. Our original mission was to provide wireless expertise to enterprise customers by developing wireless devices, software, and infrastructure solutions.
+                </p>
+                <p>
+                  WMS has evolved to specialize in designing, developing, and manufacturing high-quality mobile technology — with the mantra of{" "}
+                  <strong className="text-white">"better and affordable wireless experiences"</strong> for consumers.
+                </p>
+                <p>
+                  With a diverse design team in San Diego, WMS designed the Movi Smartphone for consumers who rely on their phone for streaming content, Google apps, and everyday functions. Unlike other technologies, Movi's HD projection brings an entirely new segment of consumers into the market — projection enthusiasts, educators, and mobile workers alike.
+                </p>
+                <p>
+                  WMS is actively researching THz spectrum and 6G technologies for next-generation holographic projection. WMS' vision: <strong className="text-white">bring tomorrow to our customers, today.</strong>
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="space-y-4">
+              {[
+                {
+                  Icon: Award,
+                  label: "Industry Recognition",
+                  desc: "Top-ranked innovation at CES 2018 by CNET, the New York Times, and PCMag",
+                },
+                {
+                  Icon: Globe,
+                  label: "Global Distribution",
+                  desc: "Accepting distributor applications in all regions worldwide",
+                },
+                {
+                  Icon: Zap,
+                  label: "6G & THz Research",
+                  desc: "Exploring THz spectrum for peak data rates 50× faster than 5G and holographic projection",
+                },
+                {
+                  Icon: Users,
+                  label: "Passionate Team",
+                  desc: "A dynamic, collaborative team building unique technology for society",
+                },
+              ].map(({ Icon, label, desc }) => (
+                <div key={label} className="flex gap-4 p-5 bg-[#0d1629] rounded-xl border border-white/5">
+                  <div className="p-2 rounded-lg bg-blue-500/10 h-fit">
+                    <Icon size={18} className="text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1 text-sm">{label}</h3>
+                    <p className="text-xs text-gray-400">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
       </section>
 
-      {/* WORK WITH ME */}
-      <section id="work" className="max-w-5xl mx-auto px-4 py-10">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-4">Work with me</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <ul className="list-disc pl-5 space-y-2 text-[#5a4e4d]">
-                  <li><strong>Content</strong>: Reels, TikToks, static posts, YouTube Shorts</li>
-                  <li><strong>Verticals</strong>: Fashion, beauty, lifestyle, travel, home</li>
-                  <li><strong>Deliverables</strong>: UGC, whitelisting, brand photos, lookbooks</li>
-                  <li><strong>Turnaround</strong>: 5–10 days (rush available)</li>
-                </ul>
+      {/* FULL SPECS */}
+      <section id="specs" className="py-24 px-4 bg-gradient-to-b from-[#070d1a] via-[#0a1020] to-[#070d1a]">
+        <div className="max-w-4xl mx-auto">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Full Specifications</h2>
+              <p className="text-gray-400">MOVI-2 — complete technical details</p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="bg-[#0d1629] rounded-2xl border border-white/5 overflow-hidden">
+              {[
+                {
+                  category: "Platform & OS",
+                  Icon: Cpu,
+                  rows: [
+                    ["CPU", "MTK 24E — 4×Cortex A53 1.5GHz + 4×Cortex A53 1.0GHz"],
+                    ["GPU", "Mali-T860 MP2 650MHz"],
+                    ["OS", "Android 16"],
+                  ],
+                },
+                {
+                  category: "Display",
+                  Icon: Monitor,
+                  rows: [
+                    ["Screen", '6.8" INCELL FHD IPS'],
+                    ["Resolution", "1920×1080"],
+                    ["Brightness", "400 cd/㎡ typical"],
+                    ["Touch", "Capacitive, 5-point, 2.5D in-cell"],
+                  ],
+                },
+                {
+                  category: "DLP Projector",
+                  Icon: Zap,
+                  rows: [
+                    ["Brightness", "70–80 lumens"],
+                    ["Contrast", "400:1"],
+                    ["Focus", "Autofocus"],
+                    ["Throw Ratio", "1.2"],
+                    ["Resolution", "1080P (100% Offset)"],
+                    ["Image Size", "12–200 inches diagonal"],
+                    ["Battery (projector on)", "4h max · 5.1h mid brightness · 6h screen off"],
+                  ],
+                },
+                {
+                  category: "Battery",
+                  Icon: Battery,
+                  rows: [
+                    ["Capacity", "7000mAh lithium polymer"],
+                    ["Idle", "~285 hours"],
+                    ["Talk Time", "~22 hours"],
+                    ["Voltage", "4.35V"],
+                  ],
+                },
+                {
+                  category: "Memory",
+                  Icon: Cpu,
+                  rows: [
+                    ["RAM + Storage", "8GB + 256GB"],
+                    ["Extended Storage", "Up to 128GB microSD"],
+                    ["Core", "Octa-core"],
+                  ],
+                },
+                {
+                  category: "Camera",
+                  Icon: Camera,
+                  rows: [
+                    ["Front Camera", "16MP, FF, soft-LED flash"],
+                    ["Rear Camera", "50+5MP, AF, single LED flash"],
+                  ],
+                },
+                {
+                  category: "Network & Connectivity",
+                  Icon: Wifi,
+                  rows: [
+                    ["GSM", "850/900/1800/1900"],
+                    ["LTE Bands", "B2/4/5/12/13/17/25/28/29/30/41/66/71"],
+                    ["5G NR", "N2/5/25/28/41/66/71/77"],
+                    ["Wi-Fi", "IEEE 802.11b/g/n · Wi-Fi Hotspot"],
+                    ["Bluetooth", "BT 4.1"],
+                    ["FM Radio", "Yes"],
+                    ["GPS", "Yes (A-GPS)"],
+                  ],
+                },
+                {
+                  category: "Physical",
+                  Icon: Smartphone,
+                  rows: [
+                    ["Dimensions", "171.2 × 78 × 12mm"],
+                    ["Weight", "<200g"],
+                    ["SIM", "eSIM + 1 nano SIM slot"],
+                    ["Colors", "Black (initially)"],
+                    ["USB", "USB 2.0 Micro USB 5-pin, OTG"],
+                    ["Audio", "3.5mm headphone jack"],
+                  ],
+                },
+                {
+                  category: "Sensors",
+                  Icon: Zap,
+                  rows: [
+                    ["Sensors", "G-sensor, Proximity, Light, E-Compass, Gyroscope, Fingerprint"],
+                  ],
+                },
+                {
+                  category: "In the Box",
+                  Icon: Award,
+                  rows: [
+                    [
+                      "Accessories",
+                      "AC adapter (5V 1.5A), USB cable, Earphone, Warranty card, SIM tool, User manual, Screen protector, Silicone case",
+                    ],
+                  ],
+                },
+              ].map(({ category, rows }, ci) => (
+                <div key={category} className={ci > 0 ? "border-t border-white/5" : ""}>
+                  <div className="px-6 py-3 bg-white/5">
+                    <h3 className="font-semibold text-blue-400 text-xs uppercase tracking-wider">{category}</h3>
+                  </div>
+                  <div className="divide-y divide-white/5">
+                    {rows.map(([label, value]) => (
+                      <div key={label} className="grid grid-cols-5 px-6 py-3 gap-4">
+                        <span className="col-span-2 text-gray-400 text-sm">{label}</span>
+                        <span className="col-span-3 text-sm text-gray-200">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-24 px-4 max-w-4xl mx-auto">
+        <FadeIn>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h2>
+          </div>
+        </FadeIn>
+        <div className="space-y-8">
+          <FaqGroup
+            title="General Questions"
+            items={[
+              {
+                q: "Is account registration required to buy?",
+                a: "No. You can purchase a MOVI Smartphone as a guest without registering. However, creating an account lets you track your order and view your order history.",
+              },
+              {
+                q: "What currency are prices in?",
+                a: "All prices are listed in USD.",
+              },
+              {
+                q: "What payment methods are accepted?",
+                a: "We accept all major credit cards and PayPal.",
+              },
+            ]}
+          />
+          <FaqGroup
+            title="Product Questions"
+            items={[
+              {
+                q: "When will the MOVI-2 ship?",
+                a: "MOVI-2 is showcasing at CES 2027 with a planned launch in Q1, 2027. Contact us at info@moviphones.com to get on the pre-order list.",
+              },
+              {
+                q: "Where can I find full specifications?",
+                a: "The complete technical specifications are in the Specifications section of this page.",
+              },
+              {
+                q: "Is the MOVI Smartphone unlocked?",
+                a: "Yes — MOVI is a fully unlocked phone compatible with any carrier.",
+              },
+              {
+                q: "Can the MOVI project on any surface?",
+                a: "Yes. The DLP projector with 100% offset can project on walls, ceilings, car interiors, and any flat surface from 12 to 200 inches diagonally.",
+              },
+            ]}
+          />
+          <FaqGroup
+            title="Distributors"
+            items={[
+              {
+                q: "How can I become a MOVI distributor?",
+                a: "Contact us at info@moviphones.com with your business information. A representative will follow up within 48 hours.",
+              },
+              {
+                q: "Are there distributor opportunities outside the US?",
+                a: "Yes. We are accepting distributor applications in all regions worldwide.",
+              },
+            ]}
+          />
+          <FaqGroup
+            title="Support & Warranty"
+            items={[
+              {
+                q: "What does the warranty cover?",
+                a: "New MOVI devices come with a 1-year limited warranty covering defects in materials and workmanship under normal use. Refurbished devices carry a 90-day warranty.",
+              },
+              {
+                q: "How do I make a warranty claim?",
+                a: "Email info@moviphones.com with your name, contact info, and IMEI number (found on the packaging or in the SIM tray). You will need your purchase receipt.",
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-24 px-4 bg-gradient-to-b from-[#070d1a] via-[#0a1020] to-[#070d1a]">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">We Want to Hear From You</h2>
+              <p className="text-gray-400">
+                Whether you're ordering, partnering, or just curious — reach out.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                Icon: Mail,
+                label: "Email",
+                value: "info@moviphones.com",
+                href: "mailto:info@moviphones.com",
+              },
+              {
+                Icon: Phone,
+                label: "Phone",
+                value: "(619) 887 4570",
+                href: "tel:+16198874570",
+              },
+              {
+                Icon: MapPin,
+                label: "Address",
+                value: "30 N Gould ST, Suite-R\nSheridan, WY 82801 USA",
+                href: null,
+              },
+            ].map(({ Icon, label, value, href }, i) => (
+              <FadeIn key={label} delay={i * 0.1}>
+                <div className="bg-[#0d1629] rounded-2xl p-8 border border-white/5 text-center">
+                  <div className="p-4 rounded-2xl bg-blue-500/10 w-fit mx-auto mb-4">
+                    <Icon size={22} className="text-blue-400" />
+                  </div>
+                  <h3 className="font-semibold mb-2">{label}</h3>
+                  {href ? (
+                    <a href={href} className="text-gray-300 hover:text-blue-400 transition-colors text-sm">
+                      {value}
+                    </a>
+                  ) : (
+                    <p className="text-gray-300 text-sm whitespace-pre-line">{value}</p>
+                  )}
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.4}>
+            <div className="mt-8 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-2xl p-8 border border-blue-500/20 text-center">
+              <h3 className="text-xl font-bold mb-2">Join the MOVI Team</h3>
+              <p className="text-gray-300 mb-4 max-w-xl mx-auto text-sm">
+                We're always looking for talented, passionate people. No open positions currently, but we'd love to hear from you. Send your resume and cover letter.
+              </p>
+              <a
+                href="mailto:work@moviphones.com?subject=Career%20Inquiry"
+                className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 hover:bg-blue-500/30 transition-colors text-sm"
+              >
+                <Mail size={14} />
+                work@moviphones.com
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/5 py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="mb-3">
+                <div className="text-[10px] text-blue-400 font-semibold tracking-[0.3em] uppercase mb-1">
+                  An American Company
+                </div>
+                <div className="text-xl font-bold">Wireless Mobi Solution, Inc.</div>
               </div>
-              <div>
-                <ul className="list-disc pl-5 space-y-2 text-[#5a4e4d]">
-                  <li><strong>Audience</strong>: share IG/TikTok stats on request</li>
-                  <li><strong>Past partners</strong>: available in media kit</li>
-                  <li><strong>Process</strong>: Brief → moodboard → shoot → edit → deliver</li>
-                  <li>
-                    <a href="/media-kit.pdf" className="underline hover:no-underline" target="_blank" rel="noopener noreferrer">Download media kit (PDF)</a>
+              <p className="text-gray-400 text-sm max-w-sm mb-4">
+                Delivering better and affordable wireless experiences. Projector smartphones for everyone, everywhere.
+              </p>
+              <div className="text-sm text-gray-400 space-y-1">
+                <div>
+                  <a href="mailto:info@moviphones.com" className="hover:text-white transition-colors">
+                    info@moviphones.com
+                  </a>
+                </div>
+                <div>
+                  <a href="tel:+16198874570" className="hover:text-white transition-colors">
+                    (619) 887 4570
+                  </a>
+                </div>
+                <div className="text-gray-500">30 N Gould ST, Suite-R, Sheridan, WY 82801 USA</div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-xs uppercase tracking-wider text-gray-400">Product</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                {[
+                  { label: "MOVI-2 Phone", id: "product" },
+                  { label: "Specifications", id: "specs" },
+                  { label: "Order Now", id: "contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <button onClick={() => scrollTo(l.id)} className="hover:text-white transition-colors">
+                      {l.label}
+                    </button>
                   </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="mailto:aysenuralam@gmail.com?subject=Brand%20Collab%20Inquiry&body=Hi%20Aysenur,%0D%0AWe'd%20love%20to%20work%20with%20you%20on...%0D%0ABudget:%20%0D%0ATimeline:%20%0D%0ADeliverables:%20"
-                className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus-visible:ring"
-              >
-                <Mail className="mr-2 h-4 w-4" /> Email me
-              </a>
-              <a
-                href="https://www.instagram.com/ayseniorr/"
-                target="_blank"
-                rel="noopener noreferrer me"
-                className="inline-flex items-center px-4 py-2 rounded-full bg-[#f5f0e8] text-[#5a4e4d] hover:bg-[#e8ded0] focus-visible:ring"
-              >
-                <Instagram className="mr-2 h-4 w-4" /> DM on Instagram
-              </a>
+            <div>
+              <h4 className="font-semibold mb-4 text-xs uppercase tracking-wider text-gray-400">Company</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                {[
+                  { label: "About WMS", id: "about" },
+                  { label: "Careers", id: "contact" },
+                  { label: "FAQ", id: "faq" },
+                  { label: "Contact Us", id: "contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <button onClick={() => scrollTo(l.id)} className="hover:text-white transition-colors">
+                      {l.label}
+                    </button>
+                  </li>
+                ))}
+                <li>
+                  <a href="mailto:info@moviphones.com" className="hover:text-white transition-colors">
+                    Support
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
-        </motion.div>
-      </section>
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <span>© 2008–{new Date().getFullYear()} Wireless Mobi Solution, Inc. All rights reserved.</span>
+            <div className="flex gap-4">
+              <span className="hover:text-gray-300 cursor-default">Terms of Service</span>
+              <span className="hover:text-gray-300 cursor-default">Privacy Policy</span>
+              <span className="hover:text-gray-300 cursor-default">Warranty</span>
+              <span className="hover:text-gray-300 cursor-default">Shipping Policy</span>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* SCROLL TO TOP */}
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 bg-[#d9cfc1] hover:bg-[#cdbfb0] text-[#5a4e4d] p-3 rounded-full shadow-lg z-50 focus-visible:ring"
+          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-500 text-white p-3 rounded-full shadow-lg z-50 transition-colors"
           aria-label="Scroll to top"
         >
           <ArrowUp size={20} />
         </button>
       )}
+    </div>
+  );
+}
 
-      {/* FOOTER */}
-      <footer className="text-center py-10 text-sm text-[#7a6e6c] border-t border-[#e8e0d6] mt-10">
-        © {new Date().getFullYear()} Aysenur Alam · All rights reserved
-      </footer>
+function FadeIn({ children, delay = 0 }) {
+  const prefersReducedMotion = useReducedMotion();
+  return (
+    <motion.div
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
+      whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function FaqGroup({ title, items }) {
+  return (
+    <div>
+      <h3 className="text-xs font-semibold text-blue-400 mb-4 uppercase tracking-wider">{title}</h3>
+      <div className="space-y-2">
+        {items.map((item) => (
+          <FaqItem key={item.q} q={item.q} a={item.a} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FaqItem({ q, a }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="bg-[#0d1629] rounded-xl border border-white/5 overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-6 py-4 text-left gap-4 hover:bg-white/5 transition-colors"
+        aria-expanded={open}
+      >
+        <span className="font-medium text-sm">{q}</span>
+        {open ? (
+          <ChevronUp size={16} className="text-blue-400 flex-shrink-0" />
+        ) : (
+          <ChevronDown size={16} className="text-gray-400 flex-shrink-0" />
+        )}
+      </button>
+      {open && (
+        <div className="px-6 pb-4 text-gray-300 text-sm leading-relaxed border-t border-white/5 pt-4">
+          {a}
+        </div>
+      )}
     </div>
   );
 }
