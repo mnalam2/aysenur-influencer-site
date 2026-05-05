@@ -113,22 +113,20 @@ function Page() {
             <div className="flex flex-col items-start gap-0.5">
               {/* WMS logo */}
               <div className="flex items-end gap-1">
-                <svg width="64" height="30" viewBox="0 0 60 28" fill="white" style={{flexShrink:0}}>
-                  {/* W — 4 thick bars, top cap, two bottom-pair caps */}
-                  <rect x="0"  y="0" width="4" height="26"/>
-                  <rect x="8"  y="0" width="4" height="26"/>
-                  <rect x="16" y="0" width="4" height="26"/>
-                  <rect x="24" y="0" width="4" height="26"/>
-                  <rect x="0"  y="0" width="28" height="4"/>
-                  <rect x="0"  y="22" width="12" height="4"/>
-                  <rect x="16" y="22" width="12" height="4"/>
-                  {/* M — filled walls + 2 inner bars flush to top/bottom */}
-                  <rect x="32" y="0"  width="4"  height="26"/>
-                  <rect x="54" y="0"  width="4"  height="26"/>
-                  <rect x="32" y="0"  width="26" height="4"/>
-                  <rect x="32" y="22" width="26" height="4"/>
-                  <rect x="39" y="4"  width="4"  height="18"/>
-                  <rect x="46" y="4"  width="4"  height="18"/>
+                <svg width="64" height="30" viewBox="0 0 60 30" fill="white" style={{flexShrink:0}}>
+                  {/* W — outer bars full height, inner bars shorter (W valley = height diff), open valley bottom */}
+                  <rect x="0"  y="0"  width="4" height="28"/>  {/* left outer — full height */}
+                  <rect x="11" y="10" width="4" height="18"/>  {/* left inner — shorter */}
+                  <rect x="0"  y="24" width="15" height="4"/>  {/* left foot */}
+                  <rect x="21" y="10" width="4" height="18"/>  {/* right inner — shorter */}
+                  <rect x="32" y="0"  width="4" height="28"/>  {/* right outer / M left wall */}
+                  <rect x="21" y="24" width="15" height="4"/>  {/* right foot */}
+                  {/* M — right outer of W is shared as M left wall */}
+                  <rect x="32" y="0"  width="28" height="4"/>  {/* top */}
+                  <rect x="32" y="24" width="28" height="4"/>  {/* bottom */}
+                  <rect x="56" y="0"  width="4"  height="28"/> {/* right wall */}
+                  <rect x="40" y="4"  width="4"  height="20"/> {/* inner bar 1 */}
+                  <rect x="48" y="4"  width="4"  height="20"/> {/* inner bar 2 */}
                 </svg>
                 {/* S — 3 blue animated dots at bottom-right of M */}
                 <span className="flex gap-1">
