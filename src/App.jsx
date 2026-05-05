@@ -113,19 +113,17 @@ function Page() {
             <div className="flex flex-col items-start gap-0.5">
               {/* WM logo — inline SVG, always white on dark */}
               <div className="flex items-end gap-1.5">
-                <svg width="72" height="36" viewBox="0 0 72 36" fill="none">
-                  {/* W — 4 bars + top connector + two bottom connectors (creates W valley in middle) */}
-                  <rect x="0"    y="0" width="3" height="33" fill="white"/>
-                  <rect x="7.5"  y="0" width="3" height="33" fill="white"/>
-                  <rect x="15"   y="0" width="3" height="33" fill="white"/>
-                  <rect x="22.5" y="0" width="3" height="33" fill="white"/>
-                  <rect x="0"    y="0"  width="25.5" height="3" fill="white"/>
-                  <rect x="0"    y="30" width="10.5" height="3" fill="white"/>
-                  <rect x="15"   y="30" width="10.5" height="3" fill="white"/>
-                  {/* M — transparent-interior outline box + 2 inner bars */}
-                  <rect x="30" y="0" width="33" height="33" fill="none" stroke="white" strokeWidth="2.5"/>
-                  <rect x="40"   y="2.5" width="2.5" height="28" fill="white"/>
-                  <rect x="50"   y="2.5" width="2.5" height="28" fill="white"/>
+                <svg width="66" height="34" viewBox="0 0 66 34" fill="none">
+                  {/* W — 3-sided frame open on right (left wall + top bar + bottom bar) + 2 inner bars */}
+                  <rect x="0"    y="0"    width="2.5" height="33"  fill="white"/>
+                  <rect x="0"    y="0"    width="30"  height="2.5" fill="white"/>
+                  <rect x="0"    y="30.5" width="30"  height="2.5" fill="white"/>
+                  <rect x="10.5" y="2.5"  width="2.5" height="28"  fill="white"/>
+                  <rect x="19.5" y="2.5"  width="2.5" height="28"  fill="white"/>
+                  {/* M — closed 4-sided box + 2 inner bars */}
+                  <rect x="33" y="0" width="30" height="33" fill="none" stroke="white" strokeWidth="2.5"/>
+                  <rect x="42" y="2.5" width="2.5" height="28" fill="white"/>
+                  <rect x="51" y="2.5" width="2.5" height="28" fill="white"/>
                 </svg>
                 {/* 3 blue square dots */}
                 <span className="flex gap-1 items-center mb-1">
