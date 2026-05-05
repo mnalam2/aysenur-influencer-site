@@ -110,16 +110,30 @@ function Page() {
                  borderBottom: scrollY > 40 ? `1px solid ${BORDER}` : "none" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2" style={{ textDecoration:"none" }}>
-            <div className="flex flex-col items-start">
-              <img src="/images/wm-logo.jpg" alt="Wireless Mobi Solution"
-                style={{ height:32, objectFit:"contain", filter:"brightness(0) invert(1)" }}/>
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: RED, fontSize:"0.55rem", letterSpacing:"0.12em" }}>
-                An American Company
+            <div className="flex flex-col items-start gap-0.5">
+              {/* WM logo — inline SVG, always white on dark */}
+              <div className="flex items-end gap-1.5">
+                <svg width="76" height="40" viewBox="0 0 76 40" fill="none">
+                  {/* W shape */}
+                  <rect x="0" y="0" width="4" height="34" fill="white" opacity="0.9"/>
+                  <rect x="0" y="30" width="31" height="4" fill="white" opacity="0.9"/>
+                  <rect x="10" y="6" width="4" height="24" fill="white" opacity="0.7"/>
+                  <rect x="20" y="6" width="4" height="24" fill="white" opacity="0.7"/>
+                  {/* M shape — dark block with inner frame */}
+                  <rect x="34" y="0" width="42" height="34" fill="#222428"/>
+                  <rect x="37" y="3" width="36" height="28" fill="none" stroke="white" strokeWidth="3" opacity="0.9"/>
+                  <rect x="47" y="6" width="4" height="20" fill="white" opacity="0.7"/>
+                  <rect x="59" y="6" width="4" height="20" fill="white" opacity="0.7"/>
+                </svg>
+                {/* 3 blue square dots */}
+                <span className="flex gap-1 items-center mb-1">
+                  {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background:"#0db4e8" }}/>)}
+                </span>
+              </div>
+              <span style={{ fontSize:"0.52rem", letterSpacing:"0.14em", fontWeight:700, color:"#94a3b8" }}>
+                AN AMERICAN <span style={{ color: RED }}>COMPANY</span>
               </span>
             </div>
-            <span className="flex gap-1 items-center self-center">
-              {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background: RED }}/>)}
-            </span>
           </a>
 
           <nav className="hidden lg:flex gap-1" aria-label="Primary">
