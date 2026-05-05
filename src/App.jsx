@@ -132,7 +132,8 @@ function Page() {
                   {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background:"#0db4e8" }}/>)}
                 </span>
               </div>
-              <span style={{ fontSize:"0.52rem", letterSpacing:"0.14em", fontWeight:700, color:"#94a3b8" }}>
+              <span style={{ display:"block", fontSize:"0.52rem", letterSpacing:"0.14em", fontWeight:700,
+                color:"#1a3060", background:"white", padding:"2px 5px", width:"100%" }}>
                 AN AMERICAN <span style={{ color: RED }}>COMPANY</span>
               </span>
             </div>
