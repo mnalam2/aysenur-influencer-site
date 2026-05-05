@@ -111,23 +111,23 @@ function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2" style={{ textDecoration:"none" }}>
             <div className="flex flex-col items-start gap-0.5">
-              {/* WMS logo: W + M with 3 blue S-dots at bottom-right of M */}
+              {/* WMS logo */}
               <div className="flex items-end gap-1">
-                <svg width="66" height="33" viewBox="0 0 66 33" fill="none">
-                  {/* W — 4 bars: outer full-height, inner shorter, top connector + bottom pair connectors */}
-                  <rect x="0"  y="0"  width="3"  height="33" fill="white"/>
-                  <rect x="9"  y="0"  width="3"  height="21" fill="white"/>
-                  <rect x="18" y="0"  width="3"  height="21" fill="white"/>
-                  <rect x="27" y="0"  width="3"  height="33" fill="white"/>
-                  <rect x="0"  y="0"  width="30" height="3"  fill="white"/>
-                  <rect x="0"  y="18" width="12" height="3"  fill="white"/>
-                  <rect x="18" y="18" width="12" height="3"  fill="white"/>
+                <svg width="62" height="30" viewBox="0 0 62 30" fill="none" style={{flexShrink:0}}>
+                  {/* W — 4 equal-height bars + top cap + bottom-pair caps, valley gap creates W */}
+                  <rect x="0"    y="0"    width="2.5"  height="27.5" fill="white"/>
+                  <rect x="9"    y="0"    width="2.5"  height="27.5" fill="white"/>
+                  <rect x="18"   y="0"    width="2.5"  height="27.5" fill="white"/>
+                  <rect x="27"   y="0"    width="2.5"  height="27.5" fill="white"/>
+                  <rect x="0"    y="0"    width="29.5" height="2.5"  fill="white"/>
+                  <rect x="0"    y="25"   width="11.5" height="2.5"  fill="white"/>
+                  <rect x="18"   y="25"   width="11.5" height="2.5"  fill="white"/>
                   {/* M — closed box + 2 inner bars at equal thirds */}
-                  <rect x="33" y="0"   width="33"  height="33" fill="none" stroke="white" strokeWidth="2.5"/>
-                  <rect x="43" y="2.5" width="2.5" height="28" fill="white"/>
-                  <rect x="53" y="2.5" width="2.5" height="28" fill="white"/>
+                  <rect x="33" y="0" width="29" height="27.5" fill="none" stroke="white" strokeWidth="2.5"/>
+                  <rect x="42" y="2.5" width="2.5" height="22.5" fill="white"/>
+                  <rect x="51" y="2.5" width="2.5" height="22.5" fill="white"/>
                 </svg>
-                {/* S — 3 blue animated dots off the bottom-right of M */}
+                {/* S — 3 blue animated dots at bottom-right of M */}
                 <span className="flex gap-1">
                   {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background:"#0db4e8" }}/>)}
                 </span>
