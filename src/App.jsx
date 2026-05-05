@@ -113,20 +113,21 @@ function Page() {
             <div className="flex flex-col items-start gap-0.5">
               {/* WMS logo */}
               <div className="flex items-end gap-1">
-                <svg width="64" height="30" viewBox="0 0 60 30" fill="white" style={{flexShrink:0}}>
-                  {/* W — outer bars full height, inner bars shorter (W valley = height diff), open valley bottom */}
-                  <rect x="0"  y="0"  width="4" height="28"/>  {/* left outer — full height */}
-                  <rect x="11" y="10" width="4" height="18"/>  {/* left inner — shorter */}
-                  <rect x="0"  y="24" width="15" height="4"/>  {/* left foot */}
-                  <rect x="21" y="10" width="4" height="18"/>  {/* right inner — shorter */}
-                  <rect x="32" y="0"  width="4" height="28"/>  {/* right outer / M left wall */}
-                  <rect x="21" y="24" width="15" height="4"/>  {/* right foot */}
-                  {/* M — right outer of W is shared as M left wall */}
-                  <rect x="32" y="0"  width="28" height="4"/>  {/* top */}
-                  <rect x="32" y="24" width="28" height="4"/>  {/* bottom */}
-                  <rect x="56" y="0"  width="4"  height="28"/> {/* right wall */}
-                  <rect x="40" y="4"  width="4"  height="20"/> {/* inner bar 1 */}
-                  <rect x="48" y="4"  width="4"  height="20"/> {/* inner bar 2 */}
+                <svg width="70" height="30" viewBox="0 0 65 30" fill="white" style={{flexShrink:0}}>
+                  {/* W — outer bars full height, inner bars shorter, valley open at bottom.
+                       All bars, gaps and valley are 5 units wide for balanced proportions. */}
+                  <rect x="0"  y="0"  width="5" height="28"/>  {/* left outer — full height */}
+                  <rect x="10" y="8"  width="5" height="20"/>  {/* left inner — shorter */}
+                  <rect x="0"  y="23" width="15" height="5"/>  {/* left foot (fills gap x=5–10) */}
+                  <rect x="20" y="8"  width="5" height="20"/>  {/* right inner — shorter */}
+                  <rect x="30" y="0"  width="5" height="28"/>  {/* right outer = M left wall */}
+                  <rect x="20" y="23" width="15" height="5"/>  {/* right foot (fills gap x=25–30) */}
+                  {/* M — 7 equal-width (5 unit) elements: wall|gap|bar|gap|bar|gap|wall */}
+                  <rect x="30" y="0"  width="35" height="5"/>  {/* top */}
+                  <rect x="30" y="23" width="35" height="5"/>  {/* bottom */}
+                  <rect x="60" y="0"  width="5"  height="28"/> {/* right wall */}
+                  <rect x="40" y="5"  width="5"  height="18"/> {/* inner bar 1 */}
+                  <rect x="50" y="5"  width="5"  height="18"/> {/* inner bar 2 */}
                 </svg>
                 {/* S — 3 blue animated dots at bottom-right of M */}
                 <span className="flex gap-1">
