@@ -113,19 +113,22 @@ function Page() {
             <div className="flex flex-col items-start gap-0.5">
               {/* WMS logo */}
               <div className="flex items-end gap-1">
-                <svg width="62" height="30" viewBox="0 0 62 30" fill="none" style={{flexShrink:0}}>
-                  {/* W — 4 equal-height bars + top cap + bottom-pair caps, valley gap creates W */}
-                  <rect x="0"    y="0"    width="2.5"  height="27.5" fill="white"/>
-                  <rect x="9"    y="0"    width="2.5"  height="27.5" fill="white"/>
-                  <rect x="18"   y="0"    width="2.5"  height="27.5" fill="white"/>
-                  <rect x="27"   y="0"    width="2.5"  height="27.5" fill="white"/>
-                  <rect x="0"    y="0"    width="29.5" height="2.5"  fill="white"/>
-                  <rect x="0"    y="25"   width="11.5" height="2.5"  fill="white"/>
-                  <rect x="18"   y="25"   width="11.5" height="2.5"  fill="white"/>
-                  {/* M — closed box + 2 inner bars at equal thirds */}
-                  <rect x="33" y="0" width="29" height="27.5" fill="none" stroke="white" strokeWidth="2.5"/>
-                  <rect x="42" y="2.5" width="2.5" height="22.5" fill="white"/>
-                  <rect x="51" y="2.5" width="2.5" height="22.5" fill="white"/>
+                <svg width="64" height="30" viewBox="0 0 60 28" fill="white" style={{flexShrink:0}}>
+                  {/* W — 4 thick bars, top cap, two bottom-pair caps */}
+                  <rect x="0"  y="0" width="4" height="26"/>
+                  <rect x="8"  y="0" width="4" height="26"/>
+                  <rect x="16" y="0" width="4" height="26"/>
+                  <rect x="24" y="0" width="4" height="26"/>
+                  <rect x="0"  y="0" width="28" height="4"/>
+                  <rect x="0"  y="22" width="12" height="4"/>
+                  <rect x="16" y="22" width="12" height="4"/>
+                  {/* M — filled walls + 2 inner bars flush to top/bottom */}
+                  <rect x="32" y="0"  width="4"  height="26"/>
+                  <rect x="54" y="0"  width="4"  height="26"/>
+                  <rect x="32" y="0"  width="26" height="4"/>
+                  <rect x="32" y="22" width="26" height="4"/>
+                  <rect x="39" y="4"  width="4"  height="18"/>
+                  <rect x="46" y="4"  width="4"  height="18"/>
                 </svg>
                 {/* S — 3 blue animated dots at bottom-right of M */}
                 <span className="flex gap-1">
