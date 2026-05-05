@@ -110,9 +110,14 @@ function Page() {
                  borderBottom: scrollY > 40 ? `1px solid ${BORDER}` : "none" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#home" className="flex items-center gap-2" style={{ textDecoration:"none" }}>
-            <span className="text-xl font-extrabold tracking-tight" style={{ color: RED }}>MOVI</span>
-            <span className="text-xl font-extrabold tracking-tight text-white">PHONES</span>
-            <span className="flex gap-1 items-center">
+            <div className="flex flex-col items-start">
+              <img src="/images/wm-logo.jpg" alt="Wireless Mobi Solution"
+                style={{ height:32, objectFit:"contain", filter:"brightness(0) invert(1)" }}/>
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: RED, fontSize:"0.55rem", letterSpacing:"0.12em" }}>
+                An American Company
+              </span>
+            </div>
+            <span className="flex gap-1 items-center self-center">
               {[0,1,2].map(i => <span key={i} className="wms-dot" style={{ background: RED }}/>)}
             </span>
           </a>
@@ -653,36 +658,101 @@ function Page() {
       </section>
 
       {/* ── PR NEWSWIRE ────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: CARD2 }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section id="media" className="py-20" style={{ background: CARD2 }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div {...fi()} className="mb-10">
-            <Chip>Media Coverage</Chip>
+            <Chip>Media Release</Chip>
             <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 uppercase leading-tight">
-              Pickup by PR Newswire<br/><RedText>Top Media Outlets</RedText>
+              Pickup by PR Newswire<br/><RedText>Media Partner Websites — Top Outlets</RedText>
             </h2>
           </motion.div>
-          <div className="space-y-2">
+          <div className="grid sm:grid-cols-2 gap-2 mb-16">
             {[
-              ["Yahoo Finance","https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
+              ["Yahoo","https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
               ["Market Watch","https://www.marketwatch.com/story/movi-smartphone-with-embedded-pico-projector-showcased-at-ces-2018-2018-01-08"],
               ["Seeking Alpha","https://seekingalpha.com/pr/17040283-movi-smartphone-embedded-pico-projector-showcased-ces-2018"],
-              ["Business Review — Albany","https://www.bizjournals.com/albany/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Business Review (Albany)","https://www.bizjournals.com/albany/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
               ["New Mexico Business Weekly","https://www.bizjournals.com/albuquerque/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
               ["Atlanta Business Chronicle","https://www.bizjournals.com/atlanta/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
               ["Austin Business Journal","https://www.bizjournals.com/austin/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
               ["Baltimore Business Journal","https://www.bizjournals.com/baltimore/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
               ["Birmingham Business Journal","https://www.bizjournals.com/birmingham/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
-            ].map(([name, url], i) => (
-              <motion.div key={name} {...fi(i * 0.03)}>
-                <GlassCard className="px-5 py-4 flex items-center justify-between hover:border-red-900/30 transition-colors">
-                  <span className="text-sm font-semibold">{name}</span>
-                  <a href={url} target="_blank" rel="noopener noreferrer"
-                    className="text-xs font-semibold hover:text-white transition-colors"
-                    style={{ color: RED }}>View →</a>
-                </GlassCard>
-              </motion.div>
+              ["Boston Business Journal","https://www.bizjournals.com/boston/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Business First of Buffalo","https://www.bizjournals.com/buffalo/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Charlotte Business Journal","https://www.bizjournals.com/charlotte/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Chicago Business News","https://www.bizjournals.com/chicago/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Cincinnati Business Courier","https://www.bizjournals.com/cincinnati/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Business First of Columbus","https://www.bizjournals.com/columbus/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Dallas Business Journal","https://www.bizjournals.com/dallas/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Dayton Business Journal","https://www.bizjournals.com/dayton/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Denver Business Journal","https://www.bizjournals.com/denver/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Houston Business Journal","https://www.bizjournals.com/houston/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Jacksonville Business Journal","https://www.bizjournals.com/jacksonville/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Kansas City Business Journal","https://www.bizjournals.com/kansascity/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Los Angeles Business Journal","https://www.bizjournals.com/losangeles/press-release?ana=prnews"],
+              ["Business First of Louisville","https://www.bizjournals.com/louisville/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Memphis Business Journal","https://www.bizjournals.com/memphis/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+              ["Business Journal of Greater Milwaukee","https://www.bizjournals.com/milwaukee/prnewswire/press_releases/Georgia/2018/01/08/NY81946?ana=prnews"],
+            ].map(([name, url]) => (
+              <GlassCard key={name} className="px-5 py-3.5 flex items-center justify-between hover:border-red-900/30 transition-colors">
+                <span className="text-sm font-medium" style={{ color:"#cbd5e1" }}>{name}</span>
+                <a href={url} target="_blank" rel="noopener noreferrer"
+                  className="text-xs font-semibold hover:text-white transition-colors flex-shrink-0 ml-3"
+                  style={{ color: RED }}>View →</a>
+              </GlassCard>
             ))}
           </div>
+
+          {/* Media Coverage */}
+          <motion.div {...fi()} className="mb-8">
+            <h3 className="text-2xl sm:text-3xl font-extrabold uppercase mb-8">
+              <RedText>Media Coverage</RedText>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {[
+                ["Time — Best of CES 2018","http://time.com/5100244/best-ces-2018-consumer-electronics-show/"],
+                ["Time — Android Projector Phone","http://time.com/5097330/android-projector-phone-ces-2018/"],
+                ["CNET — New Phones at CES 2018","https://www.cnet.com/pictures/all-the-new-phones-at-ces-2018/6/"],
+                ["CNET — Moviphone Review","https://www.cnet.com/g00/news/moviphone-looks-like-a-oneplus-5-with-a-built-in-projector/"],
+                ["Business Insider","http://markets.businessinsider.com/news/stocks/Movi-Smartphone-With-Embedded-Pico-Projector-Showcased-at-CES-2018-1012665801"],
+                ["YouTube Demo","https://www.youtube.com/watch?time_continue=1&v=ed5G9Oucn_U"],
+                ["PCMag","https://www.pcmag.com/news/358474/movi-delivers-a-projector-phone-you-might-actually-want"],
+                ["BGR India","http://www.bgr.in/features/movi-to-sony-xperia-xa2-smartphones-that-made-news-at-ces-2018/"],
+                ["NotebookCheck","https://www.notebookcheck.net/MediaTek-powered-Movi-smartphone-features-a-built-in-projector-already-retails-for-US-599.277724.0.html"],
+                ["International Business Times UK","http://www.ibtimes.co.uk/ces-2018-forget-apple-samsung-these-are-best-phones-show-las-vegas-1654378"],
+                ["k-tai.watch.impress.co.jp","https://k-tai.watch.impress.co.jp/docs/event/ces2018/1100935.html"],
+                ["zougla.gr","http://www.zougla.gr/technology/smart-home-gadgets/article/moviphone-to-kinito-me-ton-ensomatomeno-hd-provolea"],
+                ["Engadget Japan","http://japanese.engadget.com/2018/01/10/movi-phone-at-ces-2018/"],
+                ["PR Newswire Official","https://www.prnewswire.com/news-releases/movi-smartphone-with-embedded-pico-projector-showcased-at-ces-2018-300578415.html"],
+                ["FirstPost","http://www.firstpost.com/tech/news-analysis/movi-smartphone-housing-an-inbuilt-projector-has-been-launched-at-ces-2018-available-at-a-price-tag-of-599-4297881.html"],
+                ["Twitter / @moviphones","https://twitter.com/moviphones?lang=en"],
+                ["Gizmochina","https://www.gizmochina.com/2018/01/11/moviphone-android-phone-built-projector/"],
+                ["areamobile.de","http://www.areamobile.de/news/46761-moviphone-android-smartphone-mit-laser-beamer"],
+                ["AndroidHeadlines","https://www.androidheadlines.com/2016/07/movi-smartphone-built-projector.html"],
+                ["androidworld.nl","https://androidworld.nl/nieuws/moviphone-projector/"],
+                ["GizChina","https://www.gizchina.com/2018/01/11/smartphones-now-come-with-in-built-projector-moviphone-is-one-of-them/"],
+                ["The Android Soul","https://www.theandroidsoul.com/moviphone/"],
+                ["TellForceBlog","https://www.tellforceblog.com/2018/01/meet-the-most-affordable-phone-with-built-in-projector.html"],
+                ["GadgetByteNepal","https://www.gadgetbytenepal.com/movi-phone-projector-2018/"],
+                ["FreeBrowsingLink","https://www.freebrowsinglink.com/movi-phone-with-a-built-in-projector/"],
+                ["Rediff","http://www.rediff.com/getahead/report/gadgets-best-smartphones-at-ces-foldable-samsung-huawei-movi-razer-vivo/20180117.html"],
+                ["Liliputing","https://liliputing.com/2018/01/moviphone-600-smartphone-built-projector.html"],
+                ["dime.jp","https://dime.jp/genre/508752/"],
+                ["Instagram","https://www.instagram.com/p/BdunN_wFkLV/"],
+                ["TopGadgetsNews","https://www.topgadgetsnews.com/moviphone-built-projector-launched/"],
+                ["ithome.com","https://www.ithome.com/html/android/342719.htm"],
+                ["ComputerWorld","https://www.computerworld.com/article/3260185/smartphones/get-ready-for-an-explosion-of-smartphone-innovation.html"],
+                ["YouTube — Full Review","https://youtu.be/H6KcWKYpET8"],
+              ].map(([name, url]) => (
+                <a key={name} href={url} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium hover:border-red-500/40 transition-all"
+                  style={{ background: CARD, border:`1px solid ${BORDER}`, color:"#94a3b8", textDecoration:"none" }}>
+                  {name}
+                  <span style={{ color: RED }}>↗</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
