@@ -93,8 +93,10 @@ export default function Home() {
                   transform: "scale(1.3)",
                 }} />
                 <img
-                  src="/images/movi2-render.jpg"
+                  src="/images/movi2-render.webp"
                   alt="MOVI — smartphone with built-in laser projector"
+                  fetchPriority="high"
+                  loading="eager"
                   className="relative rounded-3xl"
                   style={{
                     width: "100%", maxWidth: 400,
@@ -127,8 +129,9 @@ export default function Home() {
               <video
                 ref={videoRef}
                 autoPlay muted={videoMuted} loop playsInline
+                preload="none"
                 onCanPlay={() => setVideoReady(true)}
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover transition-opacity duration-500 ${videoReady ? "opacity-100" : "opacity-0"}`}
               >
                 <source src="/videos/movi-demo.mp4" type="video/mp4" />
               </video>
@@ -185,6 +188,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO preview"
+              loading="lazy"
               className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
             <div>
               <p className="font-extrabold text-white text-sm sm:text-base tracking-wide">MOVI TWO — CES 2027 · Q1 2027</p>
@@ -225,6 +229,7 @@ export default function Home() {
                 <GlassCard className="overflow-hidden h-full">
                   <div className="h-48 overflow-hidden">
                     <img src={c.img} alt={c.title}
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                   <div className="p-6">
