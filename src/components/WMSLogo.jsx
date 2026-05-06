@@ -2,161 +2,169 @@ import { useEffect, useState } from "react";
 import { RED, BLUE } from "./shared";
 
 /*
-  WMS logo mark:
-  - W: 4 vertical bars (outer-tall, inner-short, inner-short, outer-tall)
-       + 2 horizontal feet at the valley bottoms
-  - M: rectangular frame with 2 inner bars
-  - S: 3 animated blue squares (signal dots)
-  All bar animation is staggered left-to-right, rising from bottom.
-  A laser line sweeps across the top after build-up.
+  WMS Logo — "The Projection W"
+
+  The W is a clean geometric stroke path that draws itself (stroke-dashoffset),
+  like a laser beam tracing the letterform. A glowing cyan dot (the laser source)
+  travels along the path as it draws. After the intro, the dot periodically
+  re-traces the W to keep the logo alive.
+
+  Layout:  [W mark] | [MS wordmark]
+                    AN AMERICAN COMPANY
 */
 
-const VBARS = [
-  // W vertical bars
-  { x: 0,  y: 0, w: 6, h: 28, delay: 0.00 },
-  { x: 12, y: 9, w: 6, h: 19, delay: 0.08 },
-  { x: 24, y: 9, w: 6, h: 19, delay: 0.16 },
-  { x: 36, y: 0, w: 6, h: 28, delay: 0.22 }, // shared W-right / M-left
-  // M inner bars
-  { x: 48, y: 6, w: 6, h: 16, delay: 0.30 },
-  { x: 60, y: 6, w: 6, h: 16, delay: 0.36 },
-  { x: 72, y: 0, w: 6, h: 28, delay: 0.42 },
-];
+// Geometric W — two V's, smooth proportions, 48×36 viewport
+const W_PATH   = "M 2,2 L 13,34 L 24,16 L 35,34 L 46,2";
+const W_LENGTH = 110; // approximate stroke-dasharray length
 
-const HBARS = [
-  // W valley connectors
-  { x: 0,  y: 23, w: 18, h: 5, delay: 0.22 }, // left foot  (outer→inner)
-  { x: 24, y: 23, w: 18, h: 5, delay: 0.22 }, // right foot (inner→outer)
-  // M top & bottom rails
-  { x: 36, y: 0,  w: 42, h: 6, delay: 0.26 },
-  { x: 36, y: 22, w: 42, h: 6, delay: 0.44 },
-];
-
-const DOTS = [
-  { y: 5,  delaySuffix: 0.00 },
-  { y: 13, delaySuffix: 0.12 },
-  { y: 21, delaySuffix: 0.24 },
-];
-
-function barStyle(delay) {
-  return {
-    transformBox: "fill-box",
-    transformOrigin: "bottom",
-    animationDelay: `${delay}s`,
-  };
-}
-
-function hbarStyle(delay) {
-  return {
-    animationDelay: `${delay}s`,
-    opacity: 0,
-    animation: `wmsFadeUp 0.3s ease ${delay}s both`,
-  };
-}
+// How often the laser re-traces after the intro (ms)
+const RETRACE_INTERVAL = 5000;
+const RETRACE_DUR      = "0.7s";
 
 export default function WMSLogo({ compact = false }) {
-  const [go, setGo] = useState(false);
+  const [phase, setPhase] = useState("idle"); // idle → intro → rest → retrace → rest …
 
   useEffect(() => {
-    const t = setTimeout(() => setGo(true), 80);
+    // Small delay so CSS is loaded before animation kicks off
+    const t = setTimeout(() => setPhase("intro"), 120);
     return () => clearTimeout(t);
   }, []);
 
+  // After intro finishes, schedule periodic re-traces
+  useEffect(() => {
+    if (phase !== "intro") return;
+    const afterIntro = setTimeout(() => setPhase("rest"), 1200);
+    return () => clearTimeout(afterIntro);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "rest") return;
+    const id = setTimeout(() => {
+      setPhase("retrace");
+      setTimeout(() => setPhase("rest"), 900);
+    }, RETRACE_INTERVAL);
+    return () => clearTimeout(id);
+  }, [phase]);
+
+  const show       = phase !== "idle";
+  const animating  = phase === "intro" || phase === "retrace";
+  const drawDelay  = phase === "intro" ? "0.12s" : "0s";
+  const dotDur     = phase === "intro" ? "0.65s" : RETRACE_DUR;
+  const dotBegin   = drawDelay;
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1 }}>
-      {/* Mark row: WM bars + S dots */}
-      <div style={{ display: "flex", alignItems: "flex-end", gap: 5 }}>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", lineHeight: 1 }}
+      aria-label="WMS — Wireless Mobi Solution"
+    >
+      {/* ── Mark + wordmark row ────────────────────── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+
+        {/* W mark */}
         <svg
-          width="78"
-          height="28"
-          viewBox="0 0 78 28"
-          fill="none"
-          style={{ display: "block", overflow: "visible" }}
-          aria-label="WMS logo mark"
+          width="48" height="36"
+          viewBox="0 0 48 36"
+          overflow="visible"
+          style={{ display: "block", flexShrink: 0 }}
         >
           <defs>
-            <linearGradient id="wmsBarGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stopColor="#ffffff" />
-              <stop offset="100%" stopColor="rgba(210,230,255,0.82)" />
-            </linearGradient>
-            <filter id="wmsGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="1.2" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
+            <filter id="wmsWGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="1.2" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="wmsDotGlow" x="-150%" y="-150%" width="400%" height="400%">
+              <feGaussianBlur stdDeviation="3" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
           </defs>
 
-          {/* Vertical bars */}
-          {go && VBARS.map((b, i) => (
-            <rect
-              key={`v${i}`}
-              x={b.x} y={b.y} width={b.w} height={b.h}
-              fill="url(#wmsBarGrad)"
-              className="wms-bar"
-              style={barStyle(b.delay)}
+          {/* W stroke — draws itself via stroke-dashoffset */}
+          {show && (
+            <path
+              d={W_PATH}
+              stroke="white"
+              strokeWidth="5.5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              fill="none"
+              filter="url(#wmsWGlow)"
+              style={{
+                strokeDasharray: W_LENGTH,
+                strokeDashoffset: animating ? undefined : 0,
+                animation: animating
+                  ? `wmsDrawW ${dotDur} cubic-bezier(0.4,0,0.2,1) ${drawDelay} both`
+                  : "none",
+              }}
             />
-          ))}
+          )}
 
-          {/* Horizontal connectors */}
-          {go && HBARS.map((b, i) => (
-            <rect
-              key={`h${i}`}
-              x={b.x} y={b.y} width={b.w} height={b.h}
-              fill="url(#wmsBarGrad)"
-              style={hbarStyle(b.delay)}
-            />
-          ))}
-
-          {/* Laser sweep line */}
-          {go && (
-            <rect
-              x={0} y={-1.5} width={78} height={2.5}
-              fill={BLUE}
-              className="wms-laser"
-              style={{ animationDelay: "0.62s", filter: "url(#wmsGlow)" }}
-            />
+          {/* Glowing cyan dot — travels along the W path */}
+          {show && animating && (
+            <circle r="3.8" fill={BLUE} filter="url(#wmsDotGlow)" opacity="0">
+              <animateMotion dur={dotDur} begin={dotBegin} fill="freeze" path={W_PATH} />
+              <animate
+                attributeName="opacity"
+                values="0;1;1;0"
+                keyTimes="0;0.04;0.88;1"
+                dur={dotDur}
+                begin={dotBegin}
+                fill="freeze"
+              />
+            </circle>
           )}
         </svg>
 
-        {/* S — three stacked signal squares */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 2 }}>
-          {go && DOTS.map((d, i) => (
-            <span
-              key={i}
-              className="wms-dot-animated"
-              style={{
-                display: "block",
-                width: 5,
-                height: 5,
-                borderRadius: 1,
-                background: BLUE,
-                animationDelay: `${0.80 + d.delaySuffix}s`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Separator */}
+        {show && (
+          <div style={{
+            width: 1,
+            height: 30,
+            background: "rgba(255,255,255,0.18)",
+            flexShrink: 0,
+            animation: "wmsFadeIn 0.3s ease 0.8s both",
+          }} />
+        )}
+
+        {/* MS wordmark */}
+        {show && (
+          <div style={{ animation: "wmsFadeUp 0.4s ease 0.85s both" }}>
+            <div style={{
+              fontSize: "1.45rem",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              color: "white",
+              lineHeight: 1,
+            }}>
+              MS
+            </div>
+            <div style={{
+              fontSize: "0.43rem",
+              letterSpacing: "0.18em",
+              color: "#475569",
+              marginTop: 4,
+              textTransform: "uppercase",
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+            }}>
+              Wireless Mobi Solution
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* "AN AMERICAN COMPANY" badge */}
-      {!compact && go && (
-        <div
-          className="wms-company-tag"
-          style={{
-            animationDelay: "1.0s",
-            opacity: 0,
-            fontSize: "0.5rem",
-            letterSpacing: "0.15em",
-            fontWeight: 800,
-            color: "#1a3060",
-            background: "white",
-            padding: "2px 6px",
-            marginTop: 3,
-            width: "100%",
-            whiteSpace: "nowrap",
-          }}
-        >
+      {/* AN AMERICAN COMPANY badge */}
+      {!compact && show && (
+        <div style={{
+          animation: "wmsFadeUp 0.4s ease 1.05s both",
+          marginTop: 5,
+          fontSize: "0.47rem",
+          letterSpacing: "0.14em",
+          fontWeight: 800,
+          color: "#1a3060",
+          background: "white",
+          padding: "2px 7px",
+          whiteSpace: "nowrap",
+        }}>
           AN AMERICAN <span style={{ color: RED }}>COMPANY</span>
         </div>
       )}
