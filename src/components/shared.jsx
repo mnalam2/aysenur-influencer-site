@@ -1,16 +1,19 @@
 export const RED    = "#ef4136";
 export const RED2   = "#c9342b";
 export const BLUE   = "#0db4e8";
-export const BG     = "#0a0c0f";
-export const CARD   = "#111418";
-export const CARD2  = "#0e1115";
-export const BORDER = "rgba(255,255,255,0.07)";
+export const BG     = "#FAF8F5";
+export const CARD   = "#FFFFFF";
+export const CARD2  = "#F3EFE9";
+export const BORDER = "rgba(0,0,0,0.09)";
+export const TEXT   = "#1E2128";
+export const MUTED  = "#6B7280";
+export const MUTED2 = "#9CA3AF";
 
 export function GlassCard({ children, className = "", style = {} }) {
   return (
     <div
       className={`rounded-2xl ${className}`}
-      style={{ background: CARD, border: `1px solid ${BORDER}`, ...style }}
+      style={{ background: CARD, border: `1px solid ${BORDER}`, boxShadow: "0 1px 6px rgba(0,0,0,0.06)", ...style }}
     >
       {children}
     </div>

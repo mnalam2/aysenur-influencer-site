@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi, TEXT, MUTED, MUTED2 } from "../components/shared";
 
 const PRESS_LINKS = [
   ["Yahoo", "https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
@@ -55,18 +55,17 @@ export default function CES() {
 
   return (
     <div style={{ background: BG }} className="min-h-screen">
-      {/* ── PAGE HERO ─────────────────────────────────── */}
       <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+        style={{ background: `linear-gradient(180deg,#EDE8E0 0%,${BG} 100%)` }}>
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 70%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <Chip>Press</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight" style={{ color: TEXT }}>
             Seen at <RedText>CES 2018</RedText>
           </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: MUTED }}>
             The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
             drawing international attention as one of the show's most innovative mobile devices.
           </p>
@@ -74,21 +73,20 @@ export default function CES() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-        {/* ── CES FEATURE CARD ──────────────────────── */}
         <motion.div {...fi()} className="mb-20">
           <GlassCard className="overflow-hidden"
-            style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
+            style={{ borderColor: "rgba(239,65,54,0.18)", background: `linear-gradient(135deg,rgba(239,65,54,0.04),${CARD})` }}>
             <div className="grid md:grid-cols-2">
               <div className="p-8 sm:p-12 flex flex-col justify-center">
-                <p className="text-base leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+                <p className="text-base leading-relaxed mb-6" style={{ color: MUTED }}>
                   The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
                   drawing international attention as one of the show's most innovative mobile devices.
-                  Exhibited at the Sands Expo, <strong className="text-white">Booth #52827</strong>.
+                  Exhibited at the Sands Expo, <strong style={{ color: TEXT }}>Booth #52827</strong>.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {["Android Authority","Liliputing","Android Guys","Gizmochina","NotebookCheck"].map((p) => (
                     <span key={p} className="text-xs font-semibold px-3 py-1.5 rounded-full"
-                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: "#64748b" }}>
+                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: MUTED2 }}>
                       {p}
                     </span>
                   ))}
@@ -106,11 +104,10 @@ export default function CES() {
           </GlassCard>
         </motion.div>
 
-        {/* ── GALLERY SLIDER ───────────────────────── */}
         <motion.div {...fi()} className="mb-6">
           <Chip>Gallery</Chip>
-          <h2 className="text-4xl font-extrabold mt-3 mb-4 text-white">The Perfect MOVI Experience</h2>
-          <p style={{ color: "#94a3b8" }} className="text-lg max-w-xl mb-10">
+          <h2 className="text-4xl font-extrabold mt-3 mb-4" style={{ color: TEXT }}>The Perfect MOVI Experience</h2>
+          <p style={{ color: MUTED }} className="text-lg max-w-xl mb-10">
             From outdoor movie nights to business presentations — everywhere deserves a bigger screen.
           </p>
         </motion.div>
@@ -130,48 +127,46 @@ export default function CES() {
             ))}
           </div>
           <button onClick={() => gallerySlider.current?.prev()}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
-            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}` }}>
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 text-white"
+            style={{ background: "rgba(10,12,15,0.7)", border: `1px solid rgba(255,255,255,0.15)` }}>
             <ChevronLeft size={18} />
           </button>
           <button onClick={() => gallerySlider.current?.next()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
-            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}` }}>
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 text-white"
+            style={{ background: "rgba(10,12,15,0.7)", border: `1px solid rgba(255,255,255,0.15)` }}>
             <ChevronRight size={18} />
           </button>
         </motion.div>
 
-        {/* ── PR NEWSWIRE ──────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
           <Chip>Media Release</Chip>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-2 uppercase leading-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-2 uppercase leading-tight" style={{ color: TEXT }}>
             Picked Up by PR Newswire
           </h2>
-          <p className="text-base mb-8" style={{ color: "#94a3b8" }}>
+          <p className="text-base mb-8" style={{ color: MUTED }}>
             <RedText>Media Partner Websites — Top Outlets</RedText>
           </p>
         </motion.div>
         <div className="grid sm:grid-cols-2 gap-2 mb-16">
           {PRESS_LINKS.map(([name, url]) => (
-            <GlassCard key={name} className="px-5 py-3.5 flex items-center justify-between hover:border-red-900/30 transition-colors">
-              <span className="text-sm font-medium" style={{ color: "#cbd5e1" }}>{name}</span>
+            <GlassCard key={name} className="px-5 py-3.5 flex items-center justify-between transition-colors">
+              <span className="text-sm font-medium" style={{ color: TEXT }}>{name}</span>
               <a href={url} target="_blank" rel="noopener noreferrer"
-                className="text-xs font-semibold hover:text-white transition-colors flex-shrink-0 ml-3"
+                className="text-xs font-semibold transition-colors flex-shrink-0 ml-3"
                 style={{ color: RED }}>View →</a>
             </GlassCard>
           ))}
         </div>
 
-        {/* ── MEDIA COVERAGE ───────────────────────── */}
         <motion.div {...fi()} className="mb-8">
-          <h3 className="text-2xl sm:text-3xl font-extrabold uppercase mb-8 text-white">
+          <h3 className="text-2xl sm:text-3xl font-extrabold uppercase mb-8" style={{ color: TEXT }}>
             <RedText>Media Coverage</RedText>
           </h3>
           <div className="flex flex-wrap gap-2">
             {MEDIA_LINKS.map(([name, url]) => (
               <a key={name} href={url} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium hover:border-red-500/40 transition-all"
-                style={{ background: CARD, border: `1px solid ${BORDER}`, color: "#94a3b8", textDecoration: "none" }}>
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium transition-all"
+                style={{ background: CARD, border: `1px solid ${BORDER}`, color: MUTED, textDecoration: "none" }}>
                 {name}
                 <span style={{ color: RED }}>↗</span>
               </a>

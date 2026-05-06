@@ -1,22 +1,21 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { RED, BG, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, BORDER, CARD2, GlassCard, Chip, RedText, fi, TEXT, MUTED, MUTED2 } from "../components/shared";
 
 export default function Services() {
   return (
     <div style={{ background: BG }} className="min-h-screen">
-      {/* ── PAGE HERO ─────────────────────────────────── */}
       <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+        style={{ background: `linear-gradient(180deg,#EDE8E0 0%,${BG} 100%)` }}>
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 70%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <Chip>Enterprise Services</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight" style={{ color: TEXT }}>
             Beyond the Phone.<br /><RedText>Full Wireless Solutions.</RedText>
           </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: MUTED }}>
             Wireless Mobi Solution, Inc. (WMS) empowers system integrators, enterprise customers,
             and government agencies with commercial-ready IoT, 5G, AI, and cyber solutions.
           </p>
@@ -24,14 +23,13 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
-        {/* ── INTRO WITH IMAGE ──────────────────────── */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div {...fi()}>
-            <p className="text-lg leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+            <p className="text-lg leading-relaxed mb-6" style={{ color: MUTED }}>
               Built on the same engineering discipline behind the MOVI phone, WMS delivers enterprise
               technology solutions that keep your organization connected, secure, and ready for what's next.
             </p>
-            <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed" style={{ color: MUTED }}>
               From private 5G networks to AI-driven analytics and hardened cybersecurity — we build
               the infrastructure that powers modern enterprise.
             </p>
@@ -42,10 +40,9 @@ export default function Services() {
           </motion.div>
         </div>
 
-        {/* ── SERVICE CARDS ────────────────────────── */}
         <motion.div {...fi()} className="mb-6">
-          <h2 className="text-4xl font-extrabold mb-2 text-white">Core Capabilities</h2>
-          <p style={{ color: "#64748b" }} className="mb-10">What we deliver for enterprise customers.</p>
+          <h2 className="text-4xl font-extrabold mb-2" style={{ color: TEXT }}>Core Capabilities</h2>
+          <p style={{ color: MUTED2 }} className="mb-10">What we deliver for enterprise customers.</p>
         </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
           {[
@@ -57,39 +54,37 @@ export default function Services() {
             { title: "Cloud Solutions",             desc: "Cloud-native architecture, migration, and managed services across AWS, Azure, and GCP." },
           ].map((s, i) => (
             <motion.div key={s.title} {...fi(i * 0.07)}>
-              <GlassCard className="p-6 h-full hover:border-red-900/40 transition-colors">
+              <GlassCard className="p-6 h-full transition-colors">
                 <div className="w-2 h-8 rounded-full mb-4" style={{ background: RED }} />
-                <h3 className="font-bold text-base mb-2 text-white">{s.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{s.desc}</p>
+                <h3 className="font-bold text-base mb-2" style={{ color: TEXT }}>{s.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: MUTED }}>{s.desc}</p>
               </GlassCard>
             </motion.div>
           ))}
         </div>
 
-        {/* ── ADDITIONAL SERVICES ──────────────────── */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {["Data Management","Digital Engineering","Systems Integration","Staff Augmentation"].map((s, i) => (
             <motion.div key={s} {...fi(i * 0.07)}>
               <GlassCard className="p-4 flex items-center gap-3">
                 <Check size={14} style={{ color: RED, flexShrink: 0 }} />
-                <span className="text-sm font-medium text-white">{s}</span>
+                <span className="text-sm font-medium" style={{ color: TEXT }}>{s}</span>
               </GlassCard>
             </motion.div>
           ))}
         </div>
 
-        {/* ── ENTERPRISE CTA ───────────────────────── */}
         <motion.div {...fi()}>
           <GlassCard className="p-10 text-center"
-            style={{ borderColor: "rgba(239,65,54,0.2)", background: "linear-gradient(135deg,rgba(239,65,54,0.04),rgba(17,20,24,1))" }}>
-            <h3 className="text-3xl font-extrabold mb-4 text-white">Ready to talk enterprise?</h3>
-            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "#94a3b8" }}>
+            style={{ borderColor: "rgba(239,65,54,0.18)", background: `linear-gradient(135deg,rgba(239,65,54,0.04),${CARD2})` }}>
+            <h3 className="text-3xl font-extrabold mb-4" style={{ color: TEXT }}>Ready to talk enterprise?</h3>
+            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: MUTED }}>
               Whether you need IoT infrastructure, a private 5G network, or AI-powered analytics —
               our team responds personally within 48 hours.
             </p>
             <a href="mailto:info@moviphones.com?subject=Enterprise%20Services%20Inquiry&body=Hi%20WMS%20Team%2C%0A%0AWe%20are%20interested%20in%20your%20enterprise%20services.%0A%0ACompany%3A%20%0AService%20needed%3A%20%0AContact%3A%20"
               className="inline-block px-10 py-4 rounded-full font-bold text-base text-white hover:opacity-90 transition"
-              style={{ background: RED, boxShadow: `0 0 28px rgba(239,65,54,0.4)` }}>
+              style={{ background: RED, boxShadow: `0 0 28px rgba(239,65,54,0.3)` }}>
               Get in Touch
             </a>
           </GlassCard>

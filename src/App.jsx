@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence kept for mobile menu + scroll-top
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUp, Check, Mail, Phone, MapPin } from "lucide-react";
 
 import "@fontsource/inter/400.css";
@@ -9,7 +9,7 @@ import "@fontsource/inter/700.css";
 import "@fontsource/inter/800.css";
 
 import WMSLogo from "./components/WMSLogo";
-import { RED, BG, CARD2, BORDER } from "./components/shared";
+import { RED, BG, BORDER, TEXT, MUTED, MUTED2 } from "./components/shared";
 
 import Home         from "./pages/Home";
 import PhonePage    from "./pages/Phone";
@@ -35,7 +35,6 @@ export default function App() {
           <Route path="support"   element={<Support />}   />
           <Route path="order"     element={<Order />}     />
           <Route path="contact"   element={<Contact />}   />
-          {/* 404 fallback */}
           <Route path="*" element={<Home />} />
         </Route>
       </Routes>
@@ -43,7 +42,6 @@ export default function App() {
   );
 }
 
-/* ── NAV LINKS ──────────────────────────────────────────── */
 const NAV = [
   { to: "/",          label: "Home",      exact: true  },
   { to: "/phone",     label: "Phone"                   },
@@ -54,7 +52,6 @@ const NAV = [
   { to: "/support",   label: "Support"                 },
 ];
 
-/* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
   const [scrollY, setScrollY]         = useState(0);
@@ -70,13 +67,8 @@ function Layout() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setMobileOpen(false); }, [location.pathname]);
-
-  // Scroll to top on page change
   useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [location.pathname]);
-
-  // Set document title
   useEffect(() => {
     document.title = "Movi Phones | Built-In Laser Projector Smartphone";
   }, []);
@@ -84,25 +76,23 @@ function Layout() {
   const navScrolled = scrollY > 40;
 
   return (
-    <div style={{ background: BG, fontFamily: "'Inter',system-ui,-apple-system,sans-serif" }}
-      className="min-h-screen text-white">
+    <div style={{ background: BG, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: TEXT }}
+      className="min-h-screen">
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: navScrolled ? "rgba(10,12,15,0.97)" : "transparent",
+          background: navScrolled ? "rgba(250,248,245,0.97)" : "transparent",
           backdropFilter: navScrolled ? "blur(18px)" : "none",
           borderBottom: navScrolled ? `1px solid ${BORDER}` : "none",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
           <Link to="/" style={{ textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
             <WMSLogo />
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden lg:flex gap-1" aria-label="Primary">
             {NAV.map((l) => (
               <NavLink
@@ -110,8 +100,8 @@ function Layout() {
                 to={l.to}
                 end={!!l.exact}
                 style={({ isActive }) => ({
-                  color: isActive ? RED : "#94a3b8",
-                  background: isActive ? "rgba(239,65,54,0.1)" : "transparent",
+                  color: isActive ? RED : "#374151",
+                  background: isActive ? "rgba(239,65,54,0.08)" : "transparent",
                   textDecoration: "none",
                   padding: "6px 14px",
                   borderRadius: 999,
@@ -125,32 +115,30 @@ function Layout() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <NavLink to="/contact"
               style={({ isActive }) => ({
-                color: isActive ? "#fff" : "#94a3b8",
+                color: isActive ? TEXT : "#374151",
                 textDecoration: "none",
                 fontSize: 14,
                 fontWeight: 500,
                 padding: "6px 14px",
                 borderRadius: 999,
-                background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
+                background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
                 transition: "all 0.2s",
               })}>
               Contact
             </NavLink>
             <Link to="/order"
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold text-white"
-              style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.35)`, textDecoration: "none" }}>
+              style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.3)`, textDecoration: "none" }}>
               Order — $699
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 rounded-lg"
-            style={{ color: "#94a3b8" }}
+            style={{ color: "#374151" }}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
@@ -158,7 +146,6 @@ function Layout() {
           </button>
         </div>
 
-        {/* ── MOBILE MENU ──────────────────────────── */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -168,7 +155,7 @@ function Layout() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="lg:hidden overflow-hidden"
-              style={{ background: "rgba(10,12,15,0.99)", backdropFilter: "blur(20px)", borderTop: `1px solid ${BORDER}` }}
+              style={{ background: "rgba(250,248,245,0.99)", backdropFilter: "blur(20px)", borderTop: `1px solid ${BORDER}` }}
             >
               <div className="px-4 py-6 flex flex-col gap-1">
                 {[...NAV, { to: "/contact", label: "Contact" }].map((l) => (
@@ -184,7 +171,7 @@ function Layout() {
                       borderRadius: 12,
                       fontSize: 15,
                       fontWeight: 500,
-                      color: isActive ? RED : "#94a3b8",
+                      color: isActive ? RED : "#374151",
                       background: isActive ? "rgba(239,65,54,0.08)" : "transparent",
                       textDecoration: "none",
                       transition: "all 0.15s",
@@ -207,49 +194,45 @@ function Layout() {
         </AnimatePresence>
       </header>
 
-      {/* ── PAGE CONTENT ────────────────────────────── */}
       <Outlet />
 
       {/* ── FOOTER ───────────────────────────────────── */}
-      <footer style={{ borderTop: `1px solid ${BORDER}`, background: BG }}>
+      <footer style={{ borderTop: `1px solid ${BORDER}`, background: "#F3EFE9" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
 
-            {/* Brand */}
             <div>
               <div className="flex items-center gap-1 mb-4">
                 <span className="text-lg font-extrabold" style={{ color: RED }}>MOVI</span>
-                <span className="text-lg font-extrabold text-white">PHONES</span>
+                <span className="text-lg font-extrabold" style={{ color: TEXT }}>PHONES</span>
               </div>
-              <p className="text-xs leading-relaxed mb-4" style={{ color: "#64748b" }}>
+              <p className="text-xs leading-relaxed mb-4" style={{ color: MUTED }}>
                 A product of Wireless Mobi Solution, Inc. (WMS) — an American company, built and shipped worldwide.
               </p>
-              <p className="text-xs leading-relaxed mb-2" style={{ color: "#64748b" }}>
-                <span style={{ color: "#94a3b8" }}>Laser Beam Steering (LBS)</span> — a laser beam pulses
+              <p className="text-xs leading-relaxed mb-2" style={{ color: MUTED }}>
+                <span style={{ color: "#374151" }}>Laser Beam Steering (LBS)</span> — a laser beam pulses
                 light individually to form each pixel, projected onto any flat surface.
               </p>
-              <Link to="/projector" className="text-xs font-semibold hover:text-white transition-colors"
+              <Link to="/projector" className="text-xs font-semibold transition-colors"
                 style={{ color: RED, textDecoration: "none" }}>
                 Read More »
               </Link>
             </div>
 
-            {/* Useful links */}
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Useful Links</div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: MUTED2 }}>Useful Links</div>
               {[["Moviphone", "/phone"],["Specifications", "/phone"],["About Us", "/about"],
                 ["CES", "/ces"],["Media Release", "/ces"],["Services", "/services"],["Projector", "/projector"]].map(([l, to]) => (
                 <div key={l} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
-                  <Link to={to} className="text-sm hover:text-white transition-colors"
-                    style={{ color: "#64748b", textDecoration: "none" }}>{l}</Link>
+                  <Link to={to} className="text-sm transition-colors hover:text-gray-900"
+                    style={{ color: MUTED, textDecoration: "none" }}>{l}</Link>
                 </div>
               ))}
             </div>
 
-            {/* Support */}
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Support</div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: MUTED2 }}>Support</div>
               {[
                 { label: "FAQs", to: "/support" },
                 { label: "Warranty", email: "warranty@moviphones.com" },
@@ -261,39 +244,38 @@ function Layout() {
                 <div key={l.label} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
                   {l.to
-                    ? <Link to={l.to} className="text-sm hover:text-white transition-colors"
-                        style={{ color: "#64748b", textDecoration: "none" }}>{l.label}</Link>
+                    ? <Link to={l.to} className="text-sm transition-colors hover:text-gray-900"
+                        style={{ color: MUTED, textDecoration: "none" }}>{l.label}</Link>
                     : <a href={`mailto:${l.email}?subject=${encodeURIComponent(l.label + " Inquiry")}`}
-                        className="text-sm hover:text-white transition-colors"
-                        style={{ color: "#64748b", textDecoration: "none" }}>{l.label}</a>}
+                        className="text-sm transition-colors hover:text-gray-900"
+                        style={{ color: MUTED, textDecoration: "none" }}>{l.label}</a>}
                 </div>
               ))}
             </div>
 
-            {/* Contact */}
             <div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Get in Touch</div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: MUTED2 }}>Get in Touch</div>
               <div className="space-y-3 mb-6">
-                <div className="flex items-start gap-2 text-sm" style={{ color: "#64748b" }}>
+                <div className="flex items-start gap-2 text-sm" style={{ color: MUTED }}>
                   <MapPin size={14} style={{ flexShrink: 0, marginTop: 2, color: RED }} />
                   <span>30 N Gould ST, Suite-R<br />Sheridan, WY 82801 USA</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
+                <div className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
                   <Phone size={14} style={{ color: RED, flexShrink: 0 }} />
-                  <a href="tel:+16198874570" className="hover:text-white transition-colors">(619) 887 4570</a>
+                  <a href="tel:+16198874570" className="hover:text-gray-900 transition-colors">(619) 887 4570</a>
                 </div>
-                <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
+                <div className="flex items-center gap-2 text-sm" style={{ color: MUTED }}>
                   <Mail size={14} style={{ color: RED, flexShrink: 0 }} />
-                  <a href="mailto:info@moviphones.com" className="hover:text-white transition-colors"
+                  <a href="mailto:info@moviphones.com" className="hover:text-gray-900 transition-colors"
                     style={{ textDecoration: "none" }}>info@moviphones.com</a>
                 </div>
               </div>
-              <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748b" }}>Follow</div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: MUTED2 }}>Follow</div>
               <div className="flex flex-wrap gap-3">
                 {[["Facebook","https://www.facebook.com/MoviWMS"],["Twitter","#"],["Instagram","#"],["Snapchat","#"]].map(([name, href]) => (
                   <a key={name} href={href} target="_blank" rel="noopener noreferrer"
-                    className="text-xs font-semibold hover:text-white transition-colors"
-                    style={{ color: "#64748b", textDecoration: "none" }}>
+                    className="text-xs font-semibold hover:text-gray-900 transition-colors"
+                    style={{ color: MUTED, textDecoration: "none" }}>
                     {name}
                   </a>
                 ))}
@@ -303,23 +285,22 @@ function Layout() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between pt-8 gap-4"
             style={{ borderTop: `1px solid ${BORDER}` }}>
-            <p className="text-xs" style={{ color: "#475569" }}>
+            <p className="text-xs" style={{ color: MUTED }}>
               © {new Date().getFullYear()} Wireless Mobi Solution, Inc. All rights reserved.
             </p>
-            <a href="mailto:info@moviphones.com" className="text-xs hover:text-white transition-colors"
-              style={{ color: "#475569" }}>info@moviphones.com</a>
+            <a href="mailto:info@moviphones.com" className="text-xs hover:text-gray-900 transition-colors"
+              style={{ color: MUTED }}>info@moviphones.com</a>
           </div>
         </div>
       </footer>
 
-      {/* ── SCROLL TO TOP ────────────────────────────── */}
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="fixed bottom-6 right-6 w-11 h-11 rounded-full flex items-center justify-center z-50 text-white"
-            style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.5)` }}
+            style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.4)` }}
             aria-label="Scroll to top">
             <ArrowUp size={18} />
           </motion.button>

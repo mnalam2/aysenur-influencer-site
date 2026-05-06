@@ -1,4 +1,4 @@
-import { RED } from "./shared";
+import { RED, TEXT } from "./shared";
 
 const W_PATH   = "M 2,2 L 13,34 L 24,16 L 35,34 L 46,2";
 const W_LENGTH = 110;
@@ -26,7 +26,7 @@ export default function WMSLogo({ compact = false }) {
 
           <path
             d={W_PATH}
-            stroke="white"
+            stroke={TEXT}
             strokeWidth="5.5"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -37,7 +37,7 @@ export default function WMSLogo({ compact = false }) {
         </svg>
 
         {/* Separator */}
-        <div style={{ width: 1, height: 30, background: "rgba(255,255,255,0.18)", flexShrink: 0 }} />
+        <div style={{ width: 1, height: 30, background: "rgba(0,0,0,0.15)", flexShrink: 0 }} />
 
         {/* MS wordmark */}
         <div>
@@ -45,7 +45,7 @@ export default function WMSLogo({ compact = false }) {
             fontSize: "1.45rem",
             fontWeight: 800,
             letterSpacing: "-0.03em",
-            color: "white",
+            color: TEXT,
             lineHeight: 1,
           }}>
             MS
@@ -53,7 +53,7 @@ export default function WMSLogo({ compact = false }) {
           <div style={{
             fontSize: "0.43rem",
             letterSpacing: "0.18em",
-            color: "#475569",
+            color: "#6B7280",
             marginTop: 4,
             textTransform: "uppercase",
             fontWeight: 600,
@@ -74,6 +74,7 @@ export default function WMSLogo({ compact = false }) {
           color: "#1a3060",
           background: "white",
           padding: "2px 7px",
+          border: "1px solid rgba(0,0,0,0.1)",
           whiteSpace: "nowrap",
         }}>
           AN AMERICAN <span style={{ color: RED }}>COMPANY</span>

@@ -1,43 +1,39 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, CARD, BORDER, GlassCard, Chip, RedText, fi, TEXT, MUTED, MUTED2 } from "../components/shared";
 
 export default function Phone() {
   return (
     <div style={{ background: BG }} className="min-h-screen">
-      {/* ── PAGE HERO ─────────────────────────────────── */}
       <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+        style={{ background: `linear-gradient(180deg,#EDE8E0 0%,${BG} 100%)` }}>
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 70%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <Chip>The MOVI Phone</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
+          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight" style={{ color: TEXT }}>
             A Smartphone.<br /><RedText>A Cinema.</RedText> One Device.
           </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: MUTED }}>
             MOVI is a premium metal-body Android smartphone engineered around a single breakthrough:
             a laser projector that lives in your pocket.
           </p>
         </div>
       </div>
 
-      {/* ── MAIN CONTENT ─────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
           <motion.div {...fi()}>
-            {/* Spec pills */}
             <div className="flex flex-wrap gap-2 mb-8">
               {["5.5\" FHD IPS","13 MP Camera","4000 mAh","4G LTE","Android 7","Fingerprint","microSD 128GB"].map((s) => (
                 <span key={s} className="px-3 py-1.5 rounded-full text-xs font-semibold"
-                  style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.2)`, color: "#fca5a5" }}>
+                  style={{ background: "rgba(239,65,54,0.08)", border: `1px solid rgba(239,65,54,0.2)`, color: RED }}>
                   {s}
                 </span>
               ))}
             </div>
 
-            {/* Feature icon grid */}
             <div className="grid grid-cols-4 gap-4 mb-8">
               {[
                 { icon: "/images/icon-camera.png",  label: "Camera"   },
@@ -50,15 +46,14 @@ export default function Phone() {
                 { icon: "/images/icon-android.png", label: "Android"  },
               ].map((f) => (
                 <div key={f.label} className="flex flex-col items-center gap-2 p-3 rounded-xl"
-                  style={{ background: CARD, border: `1px solid ${BORDER}` }}>
-                  <img src={f.icon} alt={f.label} className="w-7 h-7 object-contain"
-                    style={{ filter: "brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(-10deg)" }} />
-                  <span className="text-xs" style={{ color: "#64748b" }}>{f.label}</span>
+                  style={{ background: CARD, border: `1px solid ${BORDER}`, boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
+                  <img src={f.icon} alt={f.label} className="w-7 h-7 object-contain" />
+                  <span className="text-xs" style={{ color: MUTED2 }}>{f.label}</span>
                 </div>
               ))}
             </div>
 
-            <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed" style={{ color: MUTED }}>
               No warm-up. No focus adjustment. Just point and project. The laser beam steering
               system is always perfectly sharp at any size from 12 to 100 inches.
             </p>
@@ -67,15 +62,14 @@ export default function Phone() {
           <motion.div {...fi(0.15)} className="flex justify-center">
             <div className="relative">
               <div className="absolute inset-0 rounded-3xl pointer-events-none"
-                style={{ boxShadow: `0 0 120px rgba(239,65,54,0.15)` }} />
+                style={{ boxShadow: `0 0 80px rgba(239,65,54,0.1)` }} />
               <img src="/images/movi2-render.jpg" alt="MOVI 2 — product render"
                 className="rounded-3xl max-w-full"
-                style={{ maxHeight: 520, objectFit: "contain", filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.8))" }} />
+                style={{ maxHeight: 520, objectFit: "contain", filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.15))" }} />
             </div>
           </motion.div>
         </div>
 
-        {/* 3-column feature photos */}
         <div className="grid sm:grid-cols-3 gap-6 mb-16">
           {[
             { img: "/images/feature-1.jpeg",     title: "Enterprise Ready",  desc: "Built for business. Connects teams and powers presentations wherever you are." },
@@ -89,25 +83,24 @@ export default function Phone() {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-bold text-lg mb-2 text-white">{c.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{c.desc}</p>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: TEXT }}>{c.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: MUTED }}>{c.desc}</p>
                 </div>
               </GlassCard>
             </motion.div>
           ))}
         </div>
 
-        {/* DLP / MOVI-2 specs card */}
         <motion.div {...fi(0.1)} className="mb-16">
-          <GlassCard className="p-8" style={{ background: "#13161c", borderColor: "rgba(239,65,54,0.25)" }}>
+          <GlassCard className="p-8" style={{ borderColor: "rgba(239,65,54,0.2)" }}>
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
-                <h3 className="text-lg font-bold mb-5 text-white">MOVI-2 DLP Projector Engine Features</h3>
+                <h3 className="text-lg font-bold mb-5" style={{ color: TEXT }}>MOVI-2 DLP Projector Engine Features</h3>
                 <div className="space-y-3">
                   {["70–80 lm brightness","Contrast 400:1","Autofocus","Throw Ratio 1.2","1080P Resolution — 100% Offset"].map((spec) => (
                     <div key={spec} className="flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: RED }} />
-                      <span className="text-sm" style={{ color: "#cbd5e1" }}>{spec}</span>
+                      <span className="text-sm" style={{ color: "#374151" }}>{spec}</span>
                     </div>
                   ))}
                 </div>
@@ -115,8 +108,8 @@ export default function Phone() {
               <div className="flex flex-col justify-center p-6 rounded-xl text-center"
                 style={{ background: "rgba(239,65,54,0.06)", border: `1px solid rgba(239,65,54,0.15)` }}>
                 <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: RED }}>Upcoming Launch</div>
-                <div className="text-2xl font-extrabold text-white mb-1">CES 2027</div>
-                <div className="text-sm" style={{ color: "#94a3b8" }}>Launch date: <strong className="text-white">Q1, 2027</strong></div>
+                <div className="text-2xl font-extrabold mb-1" style={{ color: TEXT }}>CES 2027</div>
+                <div className="text-sm" style={{ color: MUTED }}>Launch date: <strong style={{ color: TEXT }}>Q1, 2027</strong></div>
                 <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
                   className="inline-block mt-4 px-5 py-2 rounded-full text-sm font-bold text-white"
                   style={{ background: RED }}>
@@ -127,10 +120,9 @@ export default function Phone() {
           </GlassCard>
         </motion.div>
 
-        {/* Full specs table */}
         <motion.div {...fi()} className="mb-4">
           <Chip>Specifications</Chip>
-          <h2 className="text-4xl font-extrabold mt-3 mb-8 text-white">Full Technical Specs</h2>
+          <h2 className="text-4xl font-extrabold mt-3 mb-8" style={{ color: TEXT }}>Full Technical Specs</h2>
         </motion.div>
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
           {[
@@ -146,15 +138,15 @@ export default function Phone() {
           ].map((cat, i) => (
             <motion.div key={cat.cat} {...fi(i * 0.04)}>
               <GlassCard className="overflow-hidden h-full">
-                <div className="px-5 py-3" style={{ background: "rgba(239,65,54,0.08)", borderBottom: `1px solid ${BORDER}` }}>
+                <div className="px-5 py-3" style={{ background: "rgba(239,65,54,0.06)", borderBottom: `1px solid ${BORDER}` }}>
                   <span className="text-xs font-bold uppercase tracking-widest" style={{ color: RED }}>{cat.cat}</span>
                 </div>
                 <table className="w-full">
                   <tbody>
                     {cat.rows.map(([k, v]) => (
-                      <tr key={k} style={{ borderBottom: `1px solid rgba(255,255,255,0.03)` }} className="last:border-0">
-                        <td className="px-5 py-3 text-xs align-top w-5/12" style={{ color: "#64748b" }}>{k}</td>
-                        <td className="px-5 py-3 text-xs font-semibold text-white">{v}</td>
+                      <tr key={k} style={{ borderBottom: `1px solid rgba(0,0,0,0.04)` }} className="last:border-0">
+                        <td className="px-5 py-3 text-xs align-top w-5/12" style={{ color: MUTED2 }}>{k}</td>
+                        <td className="px-5 py-3 text-xs font-semibold" style={{ color: TEXT }}>{v}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -164,10 +156,9 @@ export default function Phone() {
           ))}
         </div>
 
-        {/* What can MOVI do */}
         <div className="mt-20 grid lg:grid-cols-2 gap-14 items-center">
           <motion.div {...fi()}>
-            <h2 className="text-4xl sm:text-5xl font-extrabold mb-10 uppercase leading-tight text-white">
+            <h2 className="text-4xl sm:text-5xl font-extrabold mb-10 uppercase leading-tight" style={{ color: TEXT }}>
               What Can the<br /><RedText>MOVI Do?</RedText>
             </h2>
             <div className="space-y-4">
@@ -178,7 +169,7 @@ export default function Phone() {
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <Check size={16} className="flex-shrink-0" style={{ color: RED }} />
-                  <span className="text-base" style={{ color: "#cbd5e1" }}>{item}</span>
+                  <span className="text-base" style={{ color: "#374151" }}>{item}</span>
                 </div>
               ))}
             </div>

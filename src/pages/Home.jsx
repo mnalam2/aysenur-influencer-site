@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Play, Pause, Volume2, VolumeX, ChevronDown } from "lucide-react";
-import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi, TEXT, MUTED, MUTED2 } from "../components/shared";
 
 export default function Home() {
   const [videoMuted, setVideoMuted]   = useState(true);
@@ -40,56 +40,53 @@ export default function Home() {
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative pt-24 pb-0 overflow-hidden"
-        style={{ background: "linear-gradient(180deg,#0d1018 0%,#0a0c0f 100%)" }}>
+        style={{ background: `linear-gradient(180deg,#EDE8E0 0%,${BG} 100%)` }}>
 
-        {/* Subtle red glow behind everything */}
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 60%)"
+          background: "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(239,65,54,0.05) 0%, transparent 60%)"
         }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
 
-          {/* ── Top: headline + phone render ── */}
           <div className="grid lg:grid-cols-2 gap-10 items-center pb-12">
 
-            {/* Left — headline + CTAs */}
             <div>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
-                style={{ background: "rgba(239,65,54,0.15)", border: `1px solid rgba(239,65,54,0.35)`, color: RED }}>
+                style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
                 CES 2018 · Showcased in Las Vegas
               </span>
 
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none tracking-tight mb-6 text-white">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-none tracking-tight mb-6"
+                style={{ color: TEXT }}>
                 Your Phone.<br />
                 <span style={{ color: RED }}>Your Screen.</span><br />
                 Anywhere.
               </h1>
 
-              <p className="text-lg sm:text-xl max-w-lg mb-10 leading-relaxed" style={{ color: "#cbd5e1" }}>
+              <p className="text-lg sm:text-xl max-w-lg mb-10 leading-relaxed" style={{ color: MUTED }}>
                 The MOVI is a full-featured Android smartphone with a built-in HD laser projector.
-                Project up to <strong className="text-white">100 inches</strong> on any flat surface —
+                Project up to <strong style={{ color: TEXT }}>100 inches</strong> on any flat surface —
                 no cables, no extra device.
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <button onClick={() => navigate("/order")}
                   className="px-8 py-4 rounded-full font-bold text-base text-white"
-                  style={{ background: RED, boxShadow: `0 0 36px rgba(239,65,54,0.5)` }}>
+                  style={{ background: RED, boxShadow: `0 0 36px rgba(239,65,54,0.4)` }}>
                   Order Now — $699
                 </button>
                 <button onClick={() => navigate("/phone")}
-                  className="px-8 py-4 rounded-full font-semibold text-base text-white hover:bg-white/5 transition-all"
-                  style={{ border: `1px solid rgba(255,255,255,0.2)` }}>
+                  className="px-8 py-4 rounded-full font-semibold text-base transition-all"
+                  style={{ border: `1px solid rgba(0,0,0,0.18)`, color: TEXT, background: "transparent" }}>
                   Explore the Phone
                 </button>
               </div>
             </div>
 
-            {/* Right — phone render */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute inset-0 pointer-events-none" style={{
-                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.2) 0%, transparent 70%)",
+                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.12) 0%, transparent 70%)",
                   transform: "scale(1.3)",
                 }} />
                 <img
@@ -99,7 +96,7 @@ export default function Home() {
                   style={{
                     width: "100%", maxWidth: 400,
                     objectFit: "contain",
-                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.8))",
+                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.18))",
                   }}
                 />
                 <motion.div
@@ -107,7 +104,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9, duration: 0.5 }}
                   className="absolute bottom-6 left-4 sm:left-6 px-4 py-2.5 rounded-2xl backdrop-blur-md"
-                  style={{ background: "rgba(10,12,15,0.8)", border: `1px solid rgba(255,255,255,0.1)` }}
+                  style={{ background: "rgba(10,12,15,0.75)", border: `1px solid rgba(255,255,255,0.12)` }}
                 >
                   <div className="text-xs font-bold text-white mb-0.5">HD Laser Projector</div>
                   <div className="text-xs" style={{ color: "#94a3b8" }}>Up to 100" · Always in focus</div>
@@ -116,12 +113,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ── VIDEO — full-width, below headline, edge-to-edge ── */}
+          {/* ── VIDEO ── */}
           <div
             className="relative w-full rounded-t-3xl overflow-hidden"
             style={{ aspectRatio: "16/9", maxHeight: 540, background: "#000" }}
           >
-            {/* Poster as persistent background — prevents white flash when video loads or resumes after scroll */}
             <div className="absolute inset-0 bg-center bg-cover"
               style={{ backgroundImage: "url(/images/projector-hero.jpg)" }}>
               <video
@@ -134,15 +130,13 @@ export default function Home() {
               </video>
             </div>
 
-            {/* "See MOVI in Action" label */}
             <div className="absolute top-4 left-5 z-10">
               <span className="text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
-                style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)" }}>
+                style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)" }}>
                 See MOVI in Action
               </span>
             </div>
 
-            {/* Big centered play/pause button */}
             <button
               onClick={toggleVideo}
               aria-label={videoPaused ? "Play" : "Pause"}
@@ -157,7 +151,6 @@ export default function Home() {
               </div>
             </button>
 
-            {/* Bottom controls bar */}
             <div className="absolute bottom-0 left-0 right-0 z-10 px-5 py-3 flex items-center justify-between"
               style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)" }}>
               <button onClick={toggleVideo}
@@ -200,14 +193,14 @@ export default function Home() {
       </section>
 
       {/* ── FEATURES ─────────────────────────────────────────────── */}
-      <section id="home-features" className="py-28" style={{ background: `linear-gradient(180deg,${BG} 0%,#0d1018 100%)` }}>
+      <section id="home-features" className="py-28" style={{ background: BG }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fi()} className="text-center mb-14">
             <Chip>Why MOVI</Chip>
-            <h2 className="text-4xl sm:text-5xl font-extrabold mt-4 mb-4 text-white">
+            <h2 className="text-4xl sm:text-5xl font-extrabold mt-4 mb-4" style={{ color: TEXT }}>
               One Device.<br /><RedText>Infinite Possibilities.</RedText>
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: MUTED }}>
               The world's first smartphone with a built-in always-focused laser projector. No setup, no cables — just project.
             </p>
           </motion.div>
@@ -228,15 +221,14 @@ export default function Home() {
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
                   </div>
                   <div className="p-6">
-                    <h3 className="font-bold text-lg mb-2 text-white">{c.title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{c.desc}</p>
+                    <h3 className="font-bold text-lg mb-2" style={{ color: TEXT }}>{c.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color: MUTED }}>{c.desc}</p>
                   </div>
                 </GlassCard>
               </motion.div>
             ))}
           </div>
 
-          {/* Quick stat strip */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
               { value: "100\"",  label: "Max Projection" },
@@ -247,7 +239,7 @@ export default function Home() {
               <motion.div key={s.label} {...fi(i * 0.07)}>
                 <GlassCard className="p-5 text-center">
                   <div className="text-3xl font-extrabold mb-1" style={{ color: RED }}>{s.value}</div>
-                  <div className="text-xs uppercase tracking-wider" style={{ color: "#64748b" }}>{s.label}</div>
+                  <div className="text-xs uppercase tracking-wider" style={{ color: MUTED2 }}>{s.label}</div>
                 </GlassCard>
               </motion.div>
             ))}
@@ -260,7 +252,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div {...fi()} className="text-center mb-12">
             <div className="w-16 h-px mx-auto mb-10" style={{ background: BORDER }} />
-            <h2 className="text-4xl font-extrabold uppercase tracking-wide text-white">What People Say</h2>
+            <h2 className="text-4xl font-extrabold uppercase tracking-wide" style={{ color: TEXT }}>What People Say</h2>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -280,7 +272,7 @@ export default function Home() {
               <motion.div key={r.source} {...fi(i * 0.1)}>
                 <GlassCard className="p-8 flex flex-col h-full">
                   <div className="text-5xl font-serif leading-none mb-2" style={{ color: "rgba(239,65,54,0.2)" }}>"</div>
-                  <p className="text-sm leading-relaxed italic flex-1 mb-6" style={{ color: "#cbd5e1" }}>{r.review}</p>
+                  <p className="text-sm leading-relaxed italic flex-1 mb-6" style={{ color: "#374151" }}>{r.review}</p>
                   <div>
                     <div className="flex gap-1 mb-2">
                       {Array.from({ length: r.stars }).map((_, j) => (
