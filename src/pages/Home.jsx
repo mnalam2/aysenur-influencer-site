@@ -121,15 +121,18 @@ export default function Home() {
             className="relative w-full rounded-t-3xl overflow-hidden"
             style={{ aspectRatio: "16/9", maxHeight: 540, background: "#000" }}
           >
-            <video
-              ref={videoRef}
-              autoPlay muted={videoMuted} loop playsInline
-              onCanPlay={() => setVideoReady(true)}
-              className="w-full h-full object-cover"
-              poster="/images/projector-hero.jpg"
-            >
-              <source src="/videos/movi-demo.mp4" type="video/mp4" />
-            </video>
+            {/* Poster as persistent background — prevents white flash when video loads or resumes after scroll */}
+            <div className="absolute inset-0 bg-center bg-cover"
+              style={{ backgroundImage: "url(/images/projector-hero.jpg)" }}>
+              <video
+                ref={videoRef}
+                autoPlay muted={videoMuted} loop playsInline
+                onCanPlay={() => setVideoReady(true)}
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/movi-demo.mp4" type="video/mp4" />
+              </video>
+            </div>
 
             {/* "See MOVI in Action" label */}
             <div className="absolute top-4 left-5 z-10">
