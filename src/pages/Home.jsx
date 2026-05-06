@@ -1,31 +1,26 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
 export default function Home() {
   const [videoMuted, setVideoMuted]   = useState(true);
   const [videoPaused, setVideoPaused] = useState(false);
-  const [showVideo, setShowVideo]     = useState(false);
+  const [videoReady, setVideoReady]   = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const t = setTimeout(() => setShowVideo(true), 0);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    if (!videoRef.current) return;
     const el = videoRef.current;
+    if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) el.play().catch(() => {}); else el.pause(); },
-      { threshold: 0.25 }
+      { threshold: 0.2 }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [showVideo]);
+  }, []);
 
   const toggleVideo = () => {
     if (!videoRef.current) return;
@@ -44,55 +39,24 @@ export default function Home() {
     <div style={{ background: BG }}>
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative pt-24 pb-0 overflow-hidden"
+        style={{ background: "linear-gradient(180deg,#0d1018 0%,#0a0c0f 100%)" }}>
 
-        {/* Video — lighter overlays so it actually shows */}
-        {showVideo ? (
-          <video
-            ref={videoRef}
-            autoPlay muted={videoMuted} loop playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            poster="/images/projector-hero.jpg"
-          >
-            <source src="/videos/movi-demo.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <img src="/images/projector-hero.jpg" alt=""
-            className="absolute inset-0 w-full h-full object-cover" />
-        )}
-
-        {/* Gradient: only darken the left half for text, let right breathe */}
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(105deg, rgba(10,12,15,0.88) 0%, rgba(10,12,15,0.55) 45%, rgba(10,12,15,0.18) 100%)"
-        }} />
-        {/* Bottom fade for continuity */}
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(to top, rgba(10,12,15,0.95) 0%, transparent 40%)"
+        {/* Subtle red glow behind everything */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 60%)"
         }} />
 
-        {/* Video controls — bottom-right corner, subtle */}
-        <div className="absolute bottom-8 right-5 flex gap-2 z-20">
-          <button onClick={toggleVideo} aria-label={videoPaused ? "Play" : "Pause"}
-            className="flex items-center justify-center w-9 h-9 rounded-full backdrop-blur-sm border text-white transition-opacity hover:opacity-80"
-            style={{ background: "rgba(0,0,0,0.5)", borderColor: "rgba(255,255,255,0.15)" }}>
-            {videoPaused ? <Play size={13} /> : <Pause size={13} />}
-          </button>
-          <button onClick={toggleMute} aria-label={videoMuted ? "Unmute" : "Mute"}
-            className="flex items-center justify-center w-9 h-9 rounded-full backdrop-blur-sm border text-white transition-opacity hover:opacity-80"
-            style={{ background: "rgba(0,0,0,0.5)", borderColor: "rgba(255,255,255,0.15)" }}>
-            {videoMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
-          </button>
-        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
 
-        {/* ── Hero content: text left, phone right ──── */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-20">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          {/* ── Top: headline + phone render ── */}
+          <div className="grid lg:grid-cols-2 gap-10 items-center pb-12">
 
             {/* Left — headline + CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75 }}
+              transition={{ duration: 0.7 }}
             >
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
                 style={{ background: "rgba(239,65,54,0.15)", border: `1px solid rgba(239,65,54,0.35)`, color: RED }}>
@@ -114,7 +78,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <button onClick={() => navigate("/order")}
                   className="px-8 py-4 rounded-full font-bold text-base text-white"
-                  style={{ background: RED, boxShadow: `0 0 36px rgba(239,65,54,0.55)` }}>
+                  style={{ background: RED, boxShadow: `0 0 36px rgba(239,65,54,0.5)` }}>
                   Order Now — $699
                 </button>
                 <button onClick={() => navigate("/phone")}
@@ -125,44 +89,34 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right — phone render, prominent */}
+            {/* Right — phone render */}
             <motion.div
               initial={{ opacity: 0, x: 40, scale: 0.95 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
               className="flex justify-center lg:justify-end"
             >
               <div className="relative">
-                {/* Red glow behind phone */}
-                <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{
-                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.22) 0%, transparent 70%)",
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.2) 0%, transparent 70%)",
                   transform: "scale(1.3)",
                 }} />
-                {/* Subtle outer ring */}
-                <div className="absolute -inset-px rounded-3xl pointer-events-none" style={{
-                  background: "linear-gradient(135deg, rgba(239,65,54,0.15), transparent 60%)",
-                  borderRadius: 28,
-                }} />
-
                 <img
                   src="/images/movi2-render.jpg"
                   alt="MOVI — smartphone with built-in laser projector"
                   className="relative rounded-3xl"
                   style={{
-                    width: "100%",
-                    maxWidth: 420,
+                    width: "100%", maxWidth: 400,
                     objectFit: "contain",
-                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.7))",
+                    filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.8))",
                   }}
                 />
-
-                {/* Floating spec badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9, duration: 0.5 }}
                   className="absolute bottom-6 left-4 sm:left-6 px-4 py-2.5 rounded-2xl backdrop-blur-md"
-                  style={{ background: "rgba(10,12,15,0.75)", border: `1px solid rgba(255,255,255,0.1)` }}
+                  style={{ background: "rgba(10,12,15,0.8)", border: `1px solid rgba(255,255,255,0.1)` }}
                 >
                   <div className="text-xs font-bold text-white mb-0.5">HD Laser Projector</div>
                   <div className="text-xs" style={{ color: "#94a3b8" }}>Up to 100" · Always in focus</div>
@@ -170,14 +124,69 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-        </div>
 
-        <button
-          onClick={() => document.getElementById("home-features")?.scrollIntoView({ behavior: "smooth" })}
-          aria-label="Scroll down"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-slate-300 transition z-20">
-          <ChevronDown size={26} className="animate-bounce" />
-        </button>
+          {/* ── VIDEO — full-width, below headline, edge-to-edge ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative w-full rounded-t-3xl overflow-hidden"
+            style={{ aspectRatio: "16/9", maxHeight: 540, background: "#000" }}
+          >
+            <video
+              ref={videoRef}
+              autoPlay muted={videoMuted} loop playsInline
+              onCanPlay={() => setVideoReady(true)}
+              className="w-full h-full object-cover"
+              poster="/images/projector-hero.jpg"
+            >
+              <source src="/videos/movi-demo.mp4" type="video/mp4" />
+            </video>
+
+            {/* "See MOVI in Action" label */}
+            <div className="absolute top-4 left-5 z-10">
+              <span className="text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-full"
+                style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)" }}>
+                See MOVI in Action
+              </span>
+            </div>
+
+            {/* Big centered play/pause button */}
+            <button
+              onClick={toggleVideo}
+              aria-label={videoPaused ? "Play" : "Pause"}
+              className="absolute inset-0 flex items-center justify-center z-10 group"
+              style={{ background: "transparent" }}
+            >
+              <div
+                className="flex items-center justify-center w-16 h-16 rounded-full backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100"
+                style={{ background: "rgba(0,0,0,0.55)", border: "2px solid rgba(255,255,255,0.25)" }}
+              >
+                {videoPaused ? <Play size={24} className="text-white ml-1" /> : <Pause size={24} className="text-white" />}
+              </div>
+            </button>
+
+            {/* Bottom controls bar */}
+            <div className="absolute bottom-0 left-0 right-0 z-10 px-5 py-3 flex items-center justify-between"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)" }}>
+              <button onClick={toggleVideo}
+                className="flex items-center gap-2 text-white text-xs font-semibold hover:opacity-80 transition"
+                aria-label={videoPaused ? "Play" : "Pause"}>
+                <div className="flex items-center justify-center w-7 h-7 rounded-full"
+                  style={{ background: "rgba(255,255,255,0.15)" }}>
+                  {videoPaused ? <Play size={11} className="ml-0.5" /> : <Pause size={11} />}
+                </div>
+                {videoPaused ? "Play" : "Pause"}
+              </button>
+              <button onClick={toggleMute}
+                className="flex items-center gap-2 text-white text-xs font-semibold hover:opacity-80 transition"
+                aria-label={videoMuted ? "Unmute" : "Mute"}>
+                {videoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                {videoMuted ? "Unmute" : "Mute"}
+              </button>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── MOVI TWO TEASER BAR ───────────────────────────────────── */}
