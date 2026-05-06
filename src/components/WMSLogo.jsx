@@ -22,13 +22,7 @@ const RETRACE_INTERVAL = 5000;
 const RETRACE_DUR      = "0.7s";
 
 export default function WMSLogo({ compact = false }) {
-  const [phase, setPhase] = useState("idle"); // idle → intro → rest → retrace → rest …
-
-  useEffect(() => {
-    // Small delay so CSS is loaded before animation kicks off
-    const t = setTimeout(() => setPhase("intro"), 120);
-    return () => clearTimeout(t);
-  }, []);
+  const [phase, setPhase] = useState("intro"); // intro → rest → retrace → rest …
 
   // After intro finishes, schedule periodic re-traces
   useEffect(() => {

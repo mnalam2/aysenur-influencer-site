@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence kept for mobile menu + scroll-top
 import { Menu, X, ArrowUp, Check, Mail, Phone, MapPin } from "lucide-react";
 
 import "@fontsource/inter/400.css";
@@ -207,18 +207,8 @@ function Layout() {
         </AnimatePresence>
       </header>
 
-      {/* ── PAGE CONTENT with fade transition ──────── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.28, ease: "easeOut" }}
-        >
-          <Outlet />
-        </motion.div>
-      </AnimatePresence>
+      {/* ── PAGE CONTENT ────────────────────────────── */}
+      <Outlet />
 
       {/* ── FOOTER ───────────────────────────────────── */}
       <footer style={{ borderTop: `1px solid ${BORDER}`, background: BG }}>
