@@ -176,23 +176,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── MOVI TWO TEASER BAR ───────────────────────────────────── */}
-      <section className="py-5" style={{ background: `linear-gradient(90deg, ${RED} 0%, #c9342b 100%)` }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO preview"
+      {/* ── MOVI TWO TEASER CARD ─────────────────────────────────── */}
+      <section className="py-10" style={{ background: BG }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl overflow-hidden relative"
+            style={{ border: `1px solid rgba(239,65,54,0.25)` }}>
+            <img src="/images/movi-two-promo.jpeg" alt="MOVI TWO — Coming 2027"
               loading="lazy"
-              className="w-12 h-12 rounded-xl object-cover flex-shrink-0" />
-            <div>
-              <p className="font-extrabold text-white text-sm sm:text-base tracking-wide">MOVI TWO — CES 2027 · Q1 2027</p>
-              <p className="text-red-100 text-xs">Next-generation DLP projector smartphone. Register your interest.</p>
+              className="w-full object-cover" style={{ height: 320 }} />
+            <div className="absolute inset-0 flex items-end p-8"
+              style={{ background: "linear-gradient(to top, rgba(10,12,15,0.9) 0%, transparent 60%)" }}>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: RED }}>CES 2027 · Q1 2027</div>
+                <div className="text-3xl font-extrabold text-white">MOVI TWO</div>
+                <p className="text-sm mt-1 mb-3" style={{ color: "#cbd5e1" }}>Next-generation DLP projector smartphone.</p>
+                <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest&body=Hi%2C%20I%27d%20like%20to%20register%20my%20interest%20for%20MOVI%20TWO."
+                  className="inline-block px-5 py-2.5 rounded-full text-sm font-bold text-white"
+                  style={{ background: RED }}>
+                  Register Interest →
+                </a>
+              </div>
             </div>
           </div>
-          <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest&body=Hi%2C%20I%27d%20like%20to%20register%20my%20interest%20for%20MOVI%20TWO."
-            className="flex-shrink-0 px-5 py-2 rounded-full font-bold text-sm bg-white"
-            style={{ color: RED }}>
-            Register Interest →
-          </a>
         </div>
       </section>
 
