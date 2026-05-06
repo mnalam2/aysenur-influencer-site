@@ -87,7 +87,7 @@ export default function Home() {
 
             {/* Right — phone render */}
             <div className="flex justify-center lg:justify-end">
-              <div className="relative">
+              <div className="relative pb-16 lg:pb-0">
                 <div className="absolute inset-0 pointer-events-none" style={{
                   background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.2) 0%, transparent 70%)",
                   transform: "scale(1.3)",
