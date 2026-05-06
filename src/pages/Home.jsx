@@ -53,11 +53,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-10 items-center pb-12">
 
             {/* Left — headline + CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
+            <div>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
                 style={{ background: "rgba(239,65,54,0.15)", border: `1px solid rgba(239,65,54,0.35)`, color: RED }}>
                 CES 2018 · Showcased in Las Vegas
@@ -87,15 +83,10 @@ export default function Home() {
                   Explore the Phone
                 </button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right — phone render */}
-            <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
-              className="flex justify-center lg:justify-end"
-            >
+            <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 <div className="absolute inset-0 pointer-events-none" style={{
                   background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.2) 0%, transparent 70%)",
@@ -122,14 +113,11 @@ export default function Home() {
                   <div className="text-xs" style={{ color: "#94a3b8" }}>Up to 100" · Always in focus</div>
                 </motion.div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* ── VIDEO — full-width, below headline, edge-to-edge ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <div
             className="relative w-full rounded-t-3xl overflow-hidden"
             style={{ aspectRatio: "16/9", maxHeight: 540, background: "#000" }}
           >
@@ -185,7 +173,7 @@ export default function Home() {
                 {videoMuted ? "Unmute" : "Mute"}
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

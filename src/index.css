@@ -11,22 +11,4 @@ body {
   overflow-x: hidden;
 }
 
-/* ── WMS Logo animations ──────────────────────────────── */
 
-/* W stroke draw: dashoffset 110 → 0 (laser tracing the W path) */
-@keyframes wmsDrawW {
-  from { stroke-dashoffset: 110; }
-  to   { stroke-dashoffset: 0;   }
-}
-
-/* Generic fade in (separator, etc.) */
-@keyframes wmsFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* Fade up (wordmark, badge) */
-@keyframes wmsFadeUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0);   }
-}
