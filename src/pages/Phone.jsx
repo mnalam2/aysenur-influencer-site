@@ -12,7 +12,6 @@ const GALLERY_IMGS = [
   { src: "/images/usecase-3.jpg",  alt: "MOVI educational use"     },
   { src: "/images/usecase-4.jpg",  alt: "MOVI ceiling projection"  },
   { src: "/images/usecase-5.jpg",  alt: "MOVI in the car"          },
-  { src: "/images/feature-1.jpeg", alt: "MOVI enterprise use"      },
 ];
 
 const SPECS = [
