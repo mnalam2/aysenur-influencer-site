@@ -69,7 +69,7 @@ const TICKER_ITEMS = [
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
-  const [scrollY, setScrollY]             = useState(0);
+  const [navScrolled, setNavScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen]       = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
@@ -86,7 +86,7 @@ function Layout() {
         setHeaderVisible(true);
       }
       lastScrollY.current = current;
-      setScrollY(current);
+      setNavScrolled(current > 40);
       setShowScrollTop(current > 600);
     };
     window.addEventListener("scroll", fn, { passive: true });
@@ -104,7 +104,6 @@ function Layout() {
     document.title = "Movi Phones | Built-In Laser Projector Smartphone";
   }, []);
 
-  const navScrolled = scrollY > 40;
 
   return (
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
@@ -121,19 +120,16 @@ function Layout() {
           position: "absolute", top: "-25%", left: "-20%",
           width: "85vmax", height: "85vmax", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(20,40,75,0.18), rgba(20,40,75,0) 62%)",
-          filter: "blur(40px)",
         }} />
         <div className="aurora-blob aurora-blob--steel" style={{
           position: "absolute", bottom: "-25%", right: "-20%",
           width: "90vmax", height: "90vmax", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(60,90,130,0.16), rgba(60,90,130,0) 62%)",
-          filter: "blur(40px)",
         }} />
         <div className="aurora-blob aurora-blob--charcoal" style={{
           position: "absolute", top: "30%", left: "40%",
           width: "60vmax", height: "60vmax", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
-          filter: "blur(50px)",
         }} />
         {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
         <div style={{
