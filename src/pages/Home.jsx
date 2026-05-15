@@ -4,7 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
 
-const PRESS = ["Time", "PCMag", "CNET", "Business Insider", "Engadget", "NotebookCheck"];
+const PRESS = [
+  { name: "Time",             domain: "time.com"            },
+  { name: "PCMag",            domain: "pcmag.com"           },
+  { name: "CNET",             domain: "cnet.com"            },
+  { name: "Business Insider", domain: "businessinsider.com" },
+  { name: "Engadget",         domain: "engadget.com"        },
+  { name: "NotebookCheck",    domain: "notebookcheck.net"   },
+];
 
 const REVIEWS = [
   {
@@ -511,15 +518,21 @@ export default function Home() {
             <div className="text-[9px] font-bold tracking-[0.28em] uppercase mb-10" style={{ color: "#9ca3af" }}>
               As Featured In
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-14">
+            <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16">
               {PRESS.map((pub) => (
-                <span
-                  key={pub}
-                  className="text-lg sm:text-xl font-bold"
-                  style={{ color: "#374151", letterSpacing: "-0.02em" }}
-                >
-                  {pub}
-                </span>
+                <img
+                  key={pub.name}
+                  src={`https://logo.clearbit.com/${pub.domain}`}
+                  alt={pub.name}
+                  title={pub.name}
+                  style={{ height: 28, objectFit: "contain", filter: "grayscale(1)", opacity: 0.6 }}
+                  onError={(e) => {
+                    e.target.replaceWith(Object.assign(document.createElement("span"), {
+                      textContent: pub.name,
+                      style: "font-size:1rem;font-weight:700;color:#374151;letter-spacing:-0.02em",
+                    }));
+                  }}
+                />
               ))}
             </div>
           </motion.div>
