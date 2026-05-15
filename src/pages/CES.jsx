@@ -58,7 +58,7 @@ export default function CES() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 65%)"
@@ -74,7 +74,7 @@ export default function CES() {
             >
               Seen at CES 2018
             </h1>
-            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
               The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
               drawing international attention as one of the show's most innovative mobile devices.
             </p>
@@ -89,7 +89,7 @@ export default function CES() {
             style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
             <div className="grid md:grid-cols-2">
               <div className="p-8 sm:p-12 flex flex-col justify-center">
-                <p className="text-base leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+                <p className="text-base leading-relaxed mb-6" style={{ color: "#6b7280" }}>
                   The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
                   drawing international attention as one of the show's most innovative mobile devices.
                   Exhibited at the Sands Expo, <strong className="text-white">Booth #52827</strong>.
@@ -97,7 +97,7 @@ export default function CES() {
                 <div className="flex flex-wrap gap-3">
                   {["Android Authority","Liliputing","Android Guys","Gizmochina","NotebookCheck"].map((p) => (
                     <span key={p} className="text-xs font-semibold px-3 py-1.5 rounded-full"
-                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: "#64748b" }}>
+                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: "#6b7280" }}>
                       {p}
                     </span>
                   ))}
@@ -118,8 +118,8 @@ export default function CES() {
         {/* ── GALLERY SLIDER ───────────────────────── */}
         <motion.div {...fi()} className="mb-6">
           <Chip>Gallery</Chip>
-          <h2 className="text-4xl font-extrabold mt-3 mb-4 text-white">The Perfect MOVI Experience</h2>
-          <p style={{ color: "#94a3b8" }} className="text-lg max-w-xl mb-10">
+          <h2 className="text-4xl font-extrabold mt-3 mb-4 ">The Perfect MOVI Experience</h2>
+          <p style={{ color: "#6b7280" }} className="text-lg max-w-xl mb-10">
             From outdoor movie nights to business presentations — everywhere deserves a bigger screen.
           </p>
         </motion.div>
@@ -153,17 +153,17 @@ export default function CES() {
         {/* ── PR NEWSWIRE ──────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
           <Chip>Media Release</Chip>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-2 uppercase leading-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-2 uppercase leading-tight ">
             Picked Up by PR Newswire
           </h2>
-          <p className="text-base mb-8" style={{ color: "#94a3b8" }}>
+          <p className="text-base mb-8" style={{ color: "#6b7280" }}>
             <RedText>Media Partner Websites — Top Outlets</RedText>
           </p>
         </motion.div>
         <div className="grid sm:grid-cols-2 gap-2 mb-16">
           {PRESS_LINKS.map(([name, url]) => (
             <GlassCard key={name} className="px-5 py-3.5 flex items-center justify-between hover:border-red-900/30 transition-colors">
-              <span className="text-sm font-medium" style={{ color: "#cbd5e1" }}>{name}</span>
+              <span className="text-sm font-medium" style={{ color: "#374151" }}>{name}</span>
               <a href={url} target="_blank" rel="noopener noreferrer"
                 className="text-xs font-semibold hover:text-white transition-colors flex-shrink-0 ml-3"
                 style={{ color: RED }}>View →</a>
@@ -173,14 +173,14 @@ export default function CES() {
 
         {/* ── MEDIA COVERAGE ───────────────────────── */}
         <motion.div {...fi()} className="mb-8">
-          <h3 className="text-2xl sm:text-3xl font-extrabold uppercase mb-8 text-white">
+          <h3 className="text-2xl sm:text-3xl font-extrabold uppercase mb-8 ">
             <RedText>Media Coverage</RedText>
           </h3>
           <div className="flex flex-wrap gap-2">
             {MEDIA_LINKS.map(([name, url]) => (
               <a key={name} href={url} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium hover:border-red-500/40 transition-all"
-                style={{ background: CARD, border: `1px solid ${BORDER}`, color: "#94a3b8", textDecoration: "none" }}>
+                style={{ background: CARD, border: `1px solid ${BORDER}`, color: "#6b7280", textDecoration: "none" }}>
                 {name}
                 <span style={{ color: RED }}>↗</span>
               </a>

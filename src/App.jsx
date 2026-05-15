@@ -96,16 +96,16 @@ function Layout() {
   const navScrolled = scrollY > 40;
 
   return (
-    <div style={{ background: BG, fontFamily: "'Inter',system-ui,-apple-system,sans-serif" }}
-      className="min-h-screen text-white">
+    <div style={{ background: BG, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
+      className="min-h-screen">
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: navScrolled ? "rgba(10,12,15,0.97)" : "rgba(10,12,15,0.78)",
-          backdropFilter: "blur(18px)",
-          borderBottom: navScrolled ? `1px solid ${BORDER}` : "none",
+          background: navScrolled ? "rgba(249,248,245,0.97)" : "rgba(249,248,245,0.88)",
+          backdropFilter: "blur(20px)",
+          borderBottom: `1px solid ${BORDER}`,
         }}
       >
         {/* Announcement ticker — top strip */}
@@ -124,7 +124,7 @@ function Layout() {
               <span
                 key={i}
                 className="flex-shrink-0 flex items-center font-bold uppercase px-6"
-                style={{ color: RED, fontSize: "9px", letterSpacing: "0.2em" }}
+                style={{ color: RED, fontSize: "9px", letterSpacing: "0.2em", opacity: 0.85 }}
               >
                 {item}
                 <span className="ml-6 opacity-20">·</span>
@@ -148,7 +148,7 @@ function Layout() {
                 to={l.to}
                 end={!!l.exact}
                 style={({ isActive }) => ({
-                  color: isActive ? "white" : "#475569",
+                  color: isActive ? "#0a0c0f" : "#6b7280",
                   background: "transparent",
                   textDecoration: "none",
                   padding: "6px 13px",
@@ -169,7 +169,7 @@ function Layout() {
           <div className="hidden lg:flex items-center gap-4">
             <NavLink to="/contact"
               style={({ isActive }) => ({
-                color: isActive ? "white" : "#475569",
+                color: isActive ? "#0a0c0f" : "#6b7280",
                 textDecoration: "none",
                 fontSize: 12,
                 fontWeight: 600,
@@ -191,7 +191,7 @@ function Layout() {
           {/* Mobile hamburger */}
           <button
             className="lg:hidden p-2 rounded-lg"
-            style={{ color: "#94a3b8" }}
+            style={{ color: "#6b7280" }}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
@@ -209,7 +209,7 @@ function Layout() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="lg:hidden overflow-hidden"
-              style={{ background: "rgba(10,12,15,0.99)", backdropFilter: "blur(20px)", borderTop: `1px solid ${BORDER}` }}
+              style={{ background: "rgba(249,248,245,0.99)", backdropFilter: "blur(20px)", borderTop: `1px solid ${BORDER}` }}
             >
               <div className="px-4 py-6 flex flex-col gap-1">
                 {[...NAV, { to: "/contact", label: "Contact" }].map((l) => (
@@ -222,11 +222,10 @@ function Layout() {
                       display: "block",
                       textAlign: "left",
                       padding: "12px 16px",
-                      borderRadius: 12,
                       fontSize: 15,
                       fontWeight: 500,
-                      color: isActive ? RED : "#94a3b8",
-                      background: isActive ? "rgba(239,65,54,0.08)" : "transparent",
+                      color: isActive ? RED : "#374151",
+                      background: isActive ? "rgba(239,65,54,0.06)" : "transparent",
                       textDecoration: "none",
                       transition: "all 0.15s",
                     })}
@@ -260,7 +259,7 @@ function Layout() {
             <div>
               <div className="flex items-center gap-1 mb-4">
                 <span className="text-lg font-extrabold" style={{ color: RED }}>MOVI</span>
-                <span className="text-lg font-extrabold text-white">PHONES</span>
+                <span className="text-lg font-extrabold" style={{ color: "#0a0c0f" }}>PHONES</span>
               </div>
               <p className="text-xs leading-relaxed mb-4" style={{ color: "#64748b" }}>
                 A product of Wireless Mobi Solution, Inc. (WMS) — an American company, built and shipped worldwide.
@@ -282,8 +281,8 @@ function Layout() {
                 ["CES", "/ces"],["Media Release", "/ces"],["Services", "/services"],["Projector", "/projector"]].map(([l, to]) => (
                 <div key={l} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
-                  <Link to={to} className="text-sm hover:text-white transition-colors"
-                    style={{ color: "#64748b", textDecoration: "none" }}>{l}</Link>
+                  <Link to={to} className="text-sm hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>{l}</Link>
                 </div>
               ))}
             </div>
@@ -302,11 +301,11 @@ function Layout() {
                 <div key={l.label} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
                   {l.to
-                    ? <Link to={l.to} className="text-sm hover:text-white transition-colors"
-                        style={{ color: "#64748b", textDecoration: "none" }}>{l.label}</Link>
+                    ? <Link to={l.to} className="text-sm hover:opacity-70 transition-opacity"
+                        style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</Link>
                     : <a href={`mailto:${l.email}?subject=${encodeURIComponent(l.label + " Inquiry")}`}
-                        className="text-sm hover:text-white transition-colors"
-                        style={{ color: "#64748b", textDecoration: "none" }}>{l.label}</a>}
+                        className="text-sm hover:opacity-70 transition-opacity"
+                        style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</a>}
                 </div>
               ))}
             </div>
@@ -321,11 +320,11 @@ function Layout() {
                 </div>
                 <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
                   <Phone size={14} style={{ color: RED, flexShrink: 0 }} />
-                  <a href="tel:+16198874570" className="hover:text-white transition-colors">(619) 887 4570</a>
+                  <a href="tel:+16198874570" className="hover:opacity-70 transition-opacity">(619) 887 4570</a>
                 </div>
                 <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
                   <Mail size={14} style={{ color: RED, flexShrink: 0 }} />
-                  <a href="mailto:info@moviphones.com" className="hover:text-white transition-colors"
+                  <a href="mailto:info@moviphones.com" className="hover:opacity-70 transition-opacity"
                     style={{ textDecoration: "none" }}>info@moviphones.com</a>
                 </div>
               </div>
@@ -333,8 +332,8 @@ function Layout() {
               <div className="flex flex-wrap gap-3">
                 {[["Facebook","https://www.facebook.com/MoviWMS"],["Twitter","#"],["Instagram","#"],["Snapchat","#"]].map(([name, href]) => (
                   <a key={name} href={href} target="_blank" rel="noopener noreferrer"
-                    className="text-xs font-semibold hover:text-white transition-colors"
-                    style={{ color: "#64748b", textDecoration: "none" }}>
+                    className="text-xs font-semibold hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>
                     {name}
                   </a>
                 ))}
@@ -344,11 +343,11 @@ function Layout() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between pt-8 gap-4"
             style={{ borderTop: `1px solid ${BORDER}` }}>
-            <p className="text-xs" style={{ color: "#475569" }}>
+            <p className="text-xs" style={{ color: "#9ca3af" }}>
               © {new Date().getFullYear()} Wireless Mobi Solution, Inc. All rights reserved.
             </p>
-            <a href="mailto:info@moviphones.com" className="text-xs hover:text-white transition-colors"
-              style={{ color: "#475569" }}>info@moviphones.com</a>
+            <a href="mailto:info@moviphones.com" className="text-xs hover:opacity-70 transition-opacity"
+              style={{ color: "#9ca3af" }}>info@moviphones.com</a>
           </div>
         </div>
       </footer>

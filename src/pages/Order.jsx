@@ -9,7 +9,7 @@ export default function Order() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 65%)"
@@ -25,7 +25,7 @@ export default function Order() {
             >
               Get Your MOVI Phone
             </h1>
-            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
               Free USA shipping. Global &amp; Africa shipping $100.
               Every order is handled personally — we respond within 24 hours.
             </p>
@@ -41,16 +41,16 @@ export default function Order() {
           {/* Standard */}
           <motion.div {...fi(0)}>
             <GlassCard className="p-8 flex flex-col h-full">
-              <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#64748b" }}>Standard</div>
-              <h3 className="text-xl font-extrabold mb-1 text-white">MOVI</h3>
-              <p className="text-sm mb-5" style={{ color: "#94a3b8" }}>3 GB RAM · 32 GB Storage</p>
+              <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#6b7280" }}>Standard</div>
+              <h3 className="text-xl font-extrabold mb-1 ">MOVI</h3>
+              <p className="text-sm mb-5" style={{ color: "#6b7280" }}>3 GB RAM · 32 GB Storage</p>
               <img src="/images/movi1-phone.jpg" alt="MOVI phone"
                 className="w-full h-32 object-contain my-4 rounded-xl" />
-              <div className="text-4xl font-extrabold mb-1 text-white">$699</div>
-              <p className="text-xs mb-6" style={{ color: "#64748b" }}>+ Free USA shipping</p>
+              <div className="text-4xl font-extrabold mb-1 ">$699</div>
+              <p className="text-xs mb-6" style={{ color: "#6b7280" }}>+ Free USA shipping</p>
               <ul className="space-y-2 mb-8 flex-1">
                 {["5.5\" FHD display","Built-in laser projector","13 MP PDAF camera","microSD up to 128 GB","4G LTE unlocked","4000 mAh battery"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#cbd5e1" }}>
+                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#374151" }}>
                     <Check size={13} style={{ color: RED, flexShrink: 0 }} />{f}
                   </li>
                 ))}
@@ -58,7 +58,7 @@ export default function Order() {
               <a
                 href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Standard&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Standard%20(3GB%2F32GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
                 className="block w-full py-3 rounded-xl text-center font-bold text-sm text-white hover:opacity-80 transition"
-                style={{ background: "rgba(255,255,255,0.06)", border: `1px solid ${BORDER}` }}
+                style={{ background: "rgba(0,0,0,0.04)", border: `1px solid ${BORDER}` }}
               >
                 Order MOVI
               </a>
@@ -71,12 +71,12 @@ export default function Order() {
               style={{ borderColor: "rgba(239,65,54,0.4)", boxShadow: "0 0 40px rgba(239,65,54,0.12)" }}>
               <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: RED }} />
               <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Most Popular</div>
-              <h3 className="text-xl font-extrabold mb-1 text-white">MOVI Pro</h3>
-              <p className="text-sm mb-5" style={{ color: "#94a3b8" }}>4 GB RAM · 64 GB Storage</p>
+              <h3 className="text-xl font-extrabold mb-1 ">MOVI Pro</h3>
+              <p className="text-sm mb-5" style={{ color: "#6b7280" }}>4 GB RAM · 64 GB Storage</p>
               <img src="/images/movi2-render.jpg" alt="MOVI 2 render"
                 className="w-full h-32 object-contain my-4 rounded-xl" />
-              <div className="text-4xl font-extrabold mb-1 text-white">$699</div>
-              <p className="text-xs mb-6" style={{ color: "#64748b" }}>+ Free USA shipping</p>
+              <div className="text-4xl font-extrabold mb-1 ">$699</div>
+              <p className="text-xs mb-6" style={{ color: "#6b7280" }}>+ Free USA shipping</p>
               <ul className="space-y-2 mb-8 flex-1">
                 {["Everything in MOVI, plus:","4 GB RAM","64 GB built-in storage","All features included","Same great projector","Same $699 price"].map((f, i) => (
                   <li key={f} className="flex items-center gap-2 text-sm"
@@ -98,16 +98,16 @@ export default function Order() {
           {/* Wholesale */}
           <motion.div {...fi(0.16)}>
             <GlassCard className="p-8 flex flex-col h-full" style={{ borderColor: "rgba(239,65,54,0.15)" }}>
-              <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#94a3b8" }}>Enterprise</div>
-              <h3 className="text-xl font-extrabold mb-1 text-white">Wholesale</h3>
-              <p className="text-sm mb-5" style={{ color: "#94a3b8" }}>Min. 1,000 units · Custom pricing</p>
+              <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#6b7280" }}>Enterprise</div>
+              <h3 className="text-xl font-extrabold mb-1 ">Wholesale</h3>
+              <p className="text-sm mb-5" style={{ color: "#6b7280" }}>Min. 1,000 units · Custom pricing</p>
               <img src="/images/enterprise.jpg" alt="Enterprise"
                 className="w-full h-32 object-cover my-4 rounded-xl" />
-              <div className="text-3xl font-extrabold mb-1 text-white">1,000+</div>
-              <p className="text-xs mb-6" style={{ color: "#64748b" }}>units minimum order</p>
+              <div className="text-3xl font-extrabold mb-1 ">1,000+</div>
+              <p className="text-xs mb-6" style={{ color: "#6b7280" }}>units minimum order</p>
               <ul className="space-y-2 mb-8 flex-1">
                 {["Volume pricing","Global shipping","Account manager","White-label options","Custom config","48-hr response"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#cbd5e1" }}>
+                  <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "#374151" }}>
                     <Check size={13} style={{ color: RED, flexShrink: 0 }} />{f}
                   </li>
                 ))}
@@ -136,10 +136,10 @@ export default function Order() {
                 { emoji: "📖", label: "Quick Start Guide", sub: "English" },
                 { emoji: "📦", label: "Premium Packaging", sub: "Gift-ready box" },
               ].map((item) => (
-                <div key={item.label} className="p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${BORDER}` }}>
+                <div key={item.label} className="p-4 rounded-xl" style={{ background: "rgba(0,0,0,0.02)", border: `1px solid ${BORDER}` }}>
                   <div className="text-2xl mb-2">{item.emoji}</div>
                   <div className="font-semibold text-sm text-white mb-0.5">{item.label}</div>
-                  <div className="text-xs" style={{ color: "#475569" }}>{item.sub}</div>
+                  <div className="text-xs" style={{ color: "#9ca3af" }}>{item.sub}</div>
                 </div>
               ))}
             </div>
@@ -159,7 +159,7 @@ export default function Order() {
                 <div key={s.label}>
                   <div className="text-3xl mb-2">{s.flag}</div>
                   <div className="font-bold text-sm text-white mb-1">{s.label}</div>
-                  <div className="text-xs" style={{ color: "#64748b" }}>{s.detail}</div>
+                  <div className="text-xs" style={{ color: "#6b7280" }}>{s.detail}</div>
                 </div>
               ))}
             </div>
@@ -181,7 +181,7 @@ export default function Order() {
                   {g.icon}
                 </div>
                 <div className="font-bold text-sm text-white mb-1">{g.label}</div>
-                <div className="text-xs" style={{ color: "#475569" }}>{g.sub}</div>
+                <div className="text-xs" style={{ color: "#9ca3af" }}>{g.sub}</div>
               </GlassCard>
             ))}
           </div>
@@ -189,10 +189,10 @@ export default function Order() {
       </div>
 
       {/* ── BUY NOW BAR ─────────────────────────────── */}
-      <section className="py-24 text-center dot-grid" style={{ background: "#080a0d", borderTop: `1px solid ${BORDER}` }}>
+      <section className="py-24 text-center dot-grid" style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fi()}>
-            <div className="text-[9px] font-bold tracking-[0.3em] uppercase mb-8" style={{ color: "#1e293b" }}>
+            <div className="text-[9px] font-bold tracking-[0.3em] uppercase mb-8" style={{ color: "#e5e7eb" }}>
               Free USA Shipping · Global &amp; Africa $100 Flat
             </div>
             <h2

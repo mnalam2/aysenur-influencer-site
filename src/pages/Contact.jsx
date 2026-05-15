@@ -8,7 +8,7 @@ export default function Contact() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
@@ -24,7 +24,7 @@ export default function Contact() {
             >
               Get in Touch
             </h1>
-            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
               Orders, enterprise, distribution, or MOVI TWO — we respond personally.
             </p>
           </motion.div>
@@ -45,10 +45,10 @@ export default function Contact() {
                   style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.2)`, color: RED }}>
                   {c.icon}
                 </div>
-                <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#64748b" }}>{c.label}</div>
+                <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#6b7280" }}>{c.label}</div>
                 {c.href
-                  ? <a href={c.href} className="font-semibold text-sm hover:text-red-400 transition-colors text-white">{c.value}</a>
-                  : <p className="font-semibold text-sm whitespace-pre-line text-center text-white">{c.value}</p>}
+                  ? <a href={c.href} className="font-semibold text-sm hover:text-red-400 transition-colors ">{c.value}</a>
+                  : <p className="font-semibold text-sm whitespace-pre-line text-center ">{c.value}</p>}
               </GlassCard>
             </motion.div>
           ))}
@@ -57,8 +57,8 @@ export default function Contact() {
         {/* ── EMAIL ACTIONS ────────────────────────── */}
         <motion.div {...fi(0.1)}>
           <GlassCard className="p-8 text-center mb-6">
-            <h3 className="font-bold text-xl mb-3 text-white">Send Us an Email</h3>
-            <p className="text-sm mb-6" style={{ color: "#94a3b8" }}>All orders and inquiries handled personally.</p>
+            <h3 className="font-bold text-xl mb-3 ">Send Us an Email</h3>
+            <p className="text-sm mb-6" style={{ color: "#6b7280" }}>All orders and inquiries handled personally.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a href="mailto:info@moviphones.com?subject=General%20Inquiry"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white hover:opacity-90 transition"
@@ -66,12 +66,12 @@ export default function Contact() {
                 <Mail size={14} /> General Inquiry
               </a>
               <a href="mailto:info@moviphones.com?subject=Order%20Inquiry"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/5 transition"
-                style={{ border: `1px solid ${BORDER}`, color: "#cbd5e1" }}>
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
+                style={{ border: `1px solid ${BORDER}`, color: "#374151" }}>
                 Order Inquiry
               </a>
               <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/5 transition"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
                 style={{ border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
                 MOVI TWO Interest
               </a>
@@ -85,8 +85,8 @@ export default function Contact() {
             style={{ borderColor: "rgba(239,65,54,0.15)" }}>
             <div>
               <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Careers</div>
-              <h3 className="font-bold text-xl mb-2 text-white">Join the MOVI Team</h3>
-              <p className="text-sm" style={{ color: "#94a3b8" }}>
+              <h3 className="font-bold text-xl mb-2 ">Join the MOVI Team</h3>
+              <p className="text-sm" style={{ color: "#6b7280" }}>
                 We're always looking for talented, passionate people. No open positions currently,
                 but we'd love to hear from you.
               </p>

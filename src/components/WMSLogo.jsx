@@ -20,7 +20,7 @@ export default function WMSLogo() {
           fontWeight: 900,
           fontSize: "1.45rem",
           letterSpacing: "-0.045em",
-          color: "white",
+          color: "#0a0c0f",
           lineHeight: 1,
         }}
       >
@@ -32,7 +32,7 @@ export default function WMSLogo() {
         style={{
           width: 1,
           height: 22,
-          background: "rgba(255,255,255,0.2)",
+          background: "rgba(0,0,0,0.14)",
           flexShrink: 0,
         }}
       />

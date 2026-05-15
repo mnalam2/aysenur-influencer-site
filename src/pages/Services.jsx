@@ -8,7 +8,7 @@ export default function Services() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
@@ -24,7 +24,7 @@ export default function Services() {
             >
               Beyond the Phone.<br />Full Wireless Solutions.
             </h1>
-            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
               Wireless Mobi Solution, Inc. (WMS) empowers system integrators, enterprise customers,
               and government agencies with commercial-ready IoT, 5G, AI, and cyber solutions.
             </p>
@@ -36,11 +36,11 @@ export default function Services() {
         {/* ── INTRO WITH IMAGE ──────────────────────── */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div {...fi()}>
-            <p className="text-lg leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+            <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
               Built on the same engineering discipline behind the MOVI phone, WMS delivers enterprise
               technology solutions that keep your organization connected, secure, and ready for what's next.
             </p>
-            <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
               From private 5G networks to AI-driven analytics and hardened cybersecurity — we build
               the infrastructure that powers modern enterprise.
             </p>
@@ -53,8 +53,8 @@ export default function Services() {
 
         {/* ── SERVICE CARDS ────────────────────────── */}
         <motion.div {...fi()} className="mb-6">
-          <h2 className="text-4xl font-extrabold mb-2 text-white">Core Capabilities</h2>
-          <p style={{ color: "#64748b" }} className="mb-10">What we deliver for enterprise customers.</p>
+          <h2 className="text-4xl font-extrabold mb-2 ">Core Capabilities</h2>
+          <p style={{ color: "#6b7280" }} className="mb-10">What we deliver for enterprise customers.</p>
         </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
           {[
@@ -68,8 +68,8 @@ export default function Services() {
             <motion.div key={s.title} {...fi(i * 0.07)}>
               <GlassCard className="p-6 h-full hover:border-red-900/40 transition-colors">
                 <div className="w-2 h-8 rounded-full mb-4" style={{ background: RED }} />
-                <h3 className="font-bold text-base mb-2 text-white">{s.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{s.desc}</p>
+                <h3 className="font-bold text-base mb-2 ">{s.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>{s.desc}</p>
               </GlassCard>
             </motion.div>
           ))}
@@ -81,7 +81,7 @@ export default function Services() {
             <motion.div key={s} {...fi(i * 0.07)}>
               <GlassCard className="p-4 flex items-center gap-3">
                 <Check size={14} style={{ color: RED, flexShrink: 0 }} />
-                <span className="text-sm font-medium text-white">{s}</span>
+                <span className="text-sm font-medium ">{s}</span>
               </GlassCard>
             </motion.div>
           ))}
@@ -91,8 +91,8 @@ export default function Services() {
         <motion.div {...fi()}>
           <GlassCard className="p-10 text-center"
             style={{ borderColor: "rgba(239,65,54,0.2)", background: "linear-gradient(135deg,rgba(239,65,54,0.04),rgba(17,20,24,1))" }}>
-            <h3 className="text-3xl font-extrabold mb-4 text-white">Ready to talk enterprise?</h3>
-            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "#94a3b8" }}>
+            <h3 className="text-3xl font-extrabold mb-4 ">Ready to talk enterprise?</h3>
+            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "#6b7280" }}>
               Whether you need IoT infrastructure, a private 5G network, or AI-powered analytics —
               our team responds personally within 48 hours.
             </p>

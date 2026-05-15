@@ -54,7 +54,7 @@ export default function Support() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
@@ -70,7 +70,7 @@ export default function Support() {
             >
               How Can We<br />Help You?
             </h1>
-            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
               Everything you need to know about the MOVI phone, ordering, shipping, and support.
             </p>
           </motion.div>
@@ -81,7 +81,7 @@ export default function Support() {
         {/* ── FAQ ──────────────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
           <h2 className="text-3xl font-extrabold text-white mb-2">Frequently Asked Questions</h2>
-          <p style={{ color: "#64748b" }}>Can't find your answer? Email us — we respond personally.</p>
+          <p style={{ color: "#6b7280" }}>Can't find your answer? Email us — we respond personally.</p>
         </motion.div>
 
         <div className="space-y-3 mb-20">
@@ -89,14 +89,14 @@ export default function Support() {
             <motion.div key={faq.q} {...fi(i * 0.04)}>
               <GlassCard className="overflow-hidden">
                 <button
-                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
+                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-black/[0.02] transition-colors"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   aria-expanded={openFaq === i}
                 >
-                  <span className="font-semibold text-sm pr-4 text-white">{faq.q}</span>
+                  <span className="font-semibold text-sm pr-4 ">{faq.q}</span>
                   {openFaq === i
                     ? <ChevronUp size={16} style={{ color: RED, flexShrink: 0 }} />
-                    : <ChevronDown size={16} style={{ color: "#64748b", flexShrink: 0 }} />}
+                    : <ChevronDown size={16} style={{ color: "#6b7280", flexShrink: 0 }} />}
                 </button>
                 <AnimatePresence>
                   {openFaq === i && (
@@ -104,7 +104,7 @@ export default function Support() {
                       initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }}
                       className="overflow-hidden">
                       <p className="px-6 pb-5 pt-3 text-sm leading-relaxed"
-                        style={{ color: "#94a3b8", borderTop: `1px solid ${BORDER}` }}>
+                        style={{ color: "#6b7280", borderTop: `1px solid ${BORDER}` }}>
                         {faq.a}
                       </p>
                     </motion.div>
@@ -118,8 +118,8 @@ export default function Support() {
         {/* ── SUPPORT LINKS ────────────────────────── */}
         <motion.div {...fi()}>
           <GlassCard className="p-8 text-center" style={{ borderColor: "rgba(239,65,54,0.15)" }}>
-            <h3 className="font-bold text-xl mb-3 text-white">Still Need Help?</h3>
-            <p className="text-sm mb-6" style={{ color: "#94a3b8" }}>
+            <h3 className="font-bold text-xl mb-3 ">Still Need Help?</h3>
+            <p className="text-sm mb-6" style={{ color: "#6b7280" }}>
               Our team handles every inquiry personally. We typically respond within 24–48 hours.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -129,12 +129,12 @@ export default function Support() {
                 <Mail size={14} /> Email Support
               </a>
               <a href="mailto:warranty@moviphones.com?subject=Warranty%20Inquiry"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/5 transition"
-                style={{ border: `1px solid ${BORDER}`, color: "#cbd5e1" }}>
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
+                style={{ border: `1px solid ${BORDER}`, color: "#374151" }}>
                 Warranty Claims
               </a>
               <a href="tel:+16198874570"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/5 transition"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
                 style={{ border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
                 (619) 887-4570
               </a>

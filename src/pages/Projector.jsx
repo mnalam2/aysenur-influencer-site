@@ -15,7 +15,7 @@ export default function Projector() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <div
         className="relative overflow-hidden dot-grid"
-        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+        style={{ background: BG, paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(0,180,232,0.06) 0%, transparent 65%)"
@@ -31,7 +31,7 @@ export default function Projector() {
           >
             Laser Beam Steering.<br />Always in Focus.
           </h1>
-          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#6b7280" }}>
             MOVI uses Laser Beam Steering (LBS) — a solid-state mirror directs a laser beam pixel-by-pixel
             to build a crisp, vivid image on any flat surface.
           </p>
@@ -54,12 +54,12 @@ export default function Projector() {
           </motion.div>
 
           <motion.div {...fi()} className="order-1 lg:order-2">
-            <p className="text-lg leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+            <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
               MOVI uses <strong className="text-white">Laser Beam Steering (LBS)</strong> — a solid-state
               mirror directs a laser beam pixel-by-pixel to build a crisp, vivid image on any flat surface.
               No warm-up. No focus adjustment. No bulb to replace. Ever.
             </p>
-            <p className="text-base leading-relaxed mb-8" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed mb-8" style={{ color: "#6b7280" }}>
               Because LBS is laser-based, the image stays razor-sharp at any distance from 12 to 100 inches.
               Sit close or fill an entire wall — the MOVI handles it automatically.
             </p>
@@ -88,7 +88,7 @@ export default function Projector() {
           ].map((s, i) => (
             <motion.div key={s.label} {...fi(i * 0.05)}>
               <GlassCard className="p-5 text-center">
-                <div className="text-xs uppercase tracking-wider mb-2" style={{ color: "#64748b" }}>{s.label}</div>
+                <div className="text-xs uppercase tracking-wider mb-2" style={{ color: "#6b7280" }}>{s.label}</div>
                 <div className="font-extrabold text-xl" style={{ color: RED }}>{s.value}</div>
               </GlassCard>
             </motion.div>
@@ -98,7 +98,7 @@ export default function Projector() {
         {/* ── BATTERY LIFE ─────────────────────────────── */}
         <motion.div {...fi()} className="mb-20">
           <GlassCard className="p-8">
-            <h3 className="font-bold text-xl mb-8 text-white">Projector Battery Life</h3>
+            <h3 className="font-bold text-xl mb-8 ">Projector Battery Life</h3>
             <div className="grid sm:grid-cols-3 gap-8">
               {[
                 { mode: "Max Brightness", time: "4 hours",   bar: 67,  note: "Screen on · full brightness"   },
@@ -107,8 +107,8 @@ export default function Projector() {
               ].map((b) => (
                 <div key={b.mode}>
                   <div className="text-4xl font-extrabold mb-1" style={{ color: RED }}>{b.time}</div>
-                  <div className="font-semibold text-sm mb-1 text-white">{b.mode}</div>
-                  <div className="text-xs mb-4" style={{ color: "#64748b" }}>{b.note}</div>
+                  <div className="font-semibold text-sm mb-1 ">{b.mode}</div>
+                  <div className="text-xs mb-4" style={{ color: "#6b7280" }}>{b.note}</div>
                   <div className="h-1.5 rounded-full" style={{ background: BORDER }}>
                     <div className="h-1.5 rounded-full" style={{ width: `${b.bar}%`, background: RED }} />
                   </div>
@@ -121,10 +121,10 @@ export default function Projector() {
         {/* ── ANYWHERE & ANYTIME SLIDER ────────────────── */}
         <motion.div {...fi()} className="mb-6 text-center">
           <Chip>Use Anywhere</Chip>
-          <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-4 uppercase text-white">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-4 uppercase ">
             Anywhere &amp; Anytime<br /><RedText>Projection</RedText>
           </h2>
-          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
+          <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#6b7280" }}>
             Mount it to the ceiling. Take it camping. Use it in the car. The MOVI projects wherever life takes you.
           </p>
         </motion.div>
@@ -160,18 +160,18 @@ export default function Projector() {
           </motion.div>
           <motion.div {...fi()}>
             <Chip>Educational</Chip>
-            <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-6 leading-tight text-white">
+            <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-6 leading-tight ">
               Interactive<br /><RedText>Educational Projection</RedText>
             </h2>
-            <p className="text-base leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed mb-4" style={{ color: "#6b7280" }}>
               Interactive displays can be used as an exciting educational tool that keeps younger audiences
               entertained while being taught.
             </p>
-            <p className="text-base leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed mb-4" style={{ color: "#6b7280" }}>
               Using motion tracking, pupils and teachers are able to interact with the projected image
               to reveal new layers — perfect for starting discussions.
             </p>
-            <p className="text-base leading-relaxed" style={{ color: "#94a3b8" }}>
+            <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
               Teachers can project live from the web or upload their own videos, pictures, and audio
               based on the current curriculum — and students can interact within seconds.
             </p>

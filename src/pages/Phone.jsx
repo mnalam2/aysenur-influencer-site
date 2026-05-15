@@ -46,7 +46,7 @@ export default function Phone() {
       <section
         className="relative overflow-hidden dot-grid"
         style={{
-          background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)",
+          background: BG,
           paddingTop: "88px",
         }}
       >
@@ -72,7 +72,7 @@ export default function Phone() {
             >
               A Smartphone.<br />A Cinema.<br />One Device.
             </h1>
-            <p className="text-lg leading-relaxed mb-10" style={{ color: "#64748b" }}>
+            <p className="text-lg leading-relaxed mb-10" style={{ color: "#6b7280" }}>
               MOVI is a premium metal-body Android smartphone engineered around one breakthrough:
               a laser projector that lives in your pocket.
             </p>
@@ -86,10 +86,10 @@ export default function Phone() {
                 { k: "Network",    v: "4G LTE Unlocked" },
               ].map((s) => (
                 <div key={s.k} className="px-5 py-4" style={{ background: CARD2 }}>
-                  <div className="text-[9px] font-bold tracking-widest uppercase mb-1" style={{ color: "#334155" }}>
+                  <div className="text-[9px] font-bold tracking-widest uppercase mb-1" style={{ color: "#d1d5db" }}>
                     {s.k}
                   </div>
-                  <div className="text-sm font-bold text-white">{s.v}</div>
+                  <div className="text-sm font-bold ">{s.v}</div>
                 </div>
               ))}
             </div>
@@ -141,19 +141,19 @@ export default function Phone() {
       </section>
 
       {/* ── PHOTO GALLERY ─────────────────────────────── */}
-      <section style={{ background: "#080a0d", borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#334155" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
               Gallery
             </div>
             <h2
-              className="font-extrabold text-white"
+              className="font-extrabold "
               style={{ fontSize: "clamp(2rem,4vw,3.5rem)", letterSpacing: "-0.04em" }}
             >
               MOVI in the Wild
             </h2>
-            <p className="text-base mt-3" style={{ color: "#475569" }}>
+            <p className="text-base mt-3" style={{ color: "#9ca3af" }}>
               From outdoor movie nights to boardroom presentations — everywhere deserves a bigger screen.
             </p>
           </motion.div>
@@ -195,11 +195,11 @@ export default function Phone() {
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#334155" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
               Compare
             </div>
             <h2
-              className="font-extrabold text-white"
+              className="font-extrabold "
               style={{ fontSize: "clamp(2rem,4vw,3.5rem)", letterSpacing: "-0.04em" }}
             >
               Standard vs Pro
@@ -210,10 +210,10 @@ export default function Phone() {
             <div className="overflow-hidden" style={{ border: `1px solid ${BORDER}` }}>
               {/* Header */}
               <div className="grid grid-cols-3">
-                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#334155", background: "rgba(0,0,0,0.3)" }}>
+                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#d1d5db", background: "rgba(0,0,0,0.3)" }}>
                   Feature
                 </div>
-                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: "#475569", background: "rgba(0,0,0,0.3)", borderLeft: `1px solid ${BORDER}` }}>
+                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: "#9ca3af", background: "rgba(0,0,0,0.3)", borderLeft: `1px solid ${BORDER}` }}>
                   MOVI Standard
                 </div>
                 <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: RED, background: "rgba(239,65,54,0.06)", borderLeft: `1px solid ${BORDER}` }}>
@@ -235,7 +235,7 @@ export default function Phone() {
                   className="grid grid-cols-3 text-sm"
                   style={{ borderTop: `1px solid ${BORDER}`, background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
                 >
-                  <div className="px-6 py-4 font-medium text-sm" style={{ color: "#475569" }}>{feat}</div>
+                  <div className="px-6 py-4 font-medium text-sm" style={{ color: "#9ca3af" }}>{feat}</div>
                   <div className="px-6 py-4 font-semibold text-white text-center" style={{ borderLeft: `1px solid ${BORDER}` }}>{std}</div>
                   <div className="px-6 py-4 font-bold text-center" style={{ color: RED, borderLeft: `1px solid ${BORDER}`, background: "rgba(239,65,54,0.03)" }}>{pro}</div>
                 </div>
@@ -246,7 +246,7 @@ export default function Phone() {
       </section>
 
       {/* ── MOVI TWO HIGHLIGHT ────────────────────────── */}
-      <section style={{ background: "#080a0d", borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi(0.1)}>
             <div style={{ border: `1px solid rgba(239,65,54,0.2)`, background: "rgba(239,65,54,0.04)" }}>
@@ -265,7 +265,7 @@ export default function Phone() {
                     {["70–80 lm brightness","Contrast 400:1","Autofocus","Throw Ratio 1.2","1080P Resolution — 100% Offset"].map((spec) => (
                       <div key={spec} className="flex items-center gap-3">
                         <div className="w-1 h-1 flex-shrink-0" style={{ background: RED }} />
-                        <span className="text-sm" style={{ color: "#94a3b8" }}>{spec}</span>
+                        <span className="text-sm" style={{ color: "#6b7280" }}>{spec}</span>
                       </div>
                     ))}
                   </div>
@@ -283,7 +283,7 @@ export default function Phone() {
                   >
                     CES 2027
                   </div>
-                  <div className="text-sm mb-6" style={{ color: "#475569" }}>
+                  <div className="text-sm mb-6" style={{ color: "#9ca3af" }}>
                     Launch date: <strong className="text-white">Q1, 2027</strong>
                   </div>
                   <a
@@ -304,11 +304,11 @@ export default function Phone() {
       <section style={{ background: BG, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#334155" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
               Specifications
             </div>
             <h2
-              className="font-extrabold text-white"
+              className="font-extrabold "
               style={{ fontSize: "clamp(2rem,4vw,3.5rem)", letterSpacing: "-0.04em" }}
             >
               Full Technical Specs
@@ -329,9 +329,9 @@ export default function Phone() {
                 <table className="w-full">
                   <tbody>
                     {cat.rows.map(([k, v]) => (
-                      <tr key={k} style={{ borderBottom: "1px solid rgba(255,255,255,0.03)" }} className="last:border-0">
-                        <td className="px-5 py-3 text-xs align-top w-5/12" style={{ color: "#475569" }}>{k}</td>
-                        <td className="px-5 py-3 text-xs font-semibold text-white">{v}</td>
+                      <tr key={k} style={{ borderBottom: "1px solid rgba(0,0,0,0.04)" }} className="last:border-0">
+                        <td className="px-5 py-3 text-xs align-top w-5/12" style={{ color: "#9ca3af" }}>{k}</td>
+                        <td className="px-5 py-3 text-xs font-semibold ">{v}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -347,7 +347,7 @@ export default function Phone() {
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <motion.div {...fi()}>
-              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#334155" }}>
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#d1d5db" }}>
                 Use Cases
               </div>
               <h2
@@ -364,7 +364,7 @@ export default function Phone() {
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <Check size={13} className="flex-shrink-0" style={{ color: RED }} />
-                    <span className="text-base" style={{ color: "#94a3b8" }}>{item}</span>
+                    <span className="text-base" style={{ color: "#6b7280" }}>{item}</span>
                   </div>
                 ))}
               </div>

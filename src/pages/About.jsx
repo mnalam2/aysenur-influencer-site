@@ -10,7 +10,7 @@ export default function About() {
       <section
         className="relative overflow-hidden dot-grid"
         style={{
-          background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)",
+          background: BG,
           paddingTop: "88px",
         }}
       >
@@ -28,7 +28,7 @@ export default function About() {
             >
               Wireless Mobi<br />Solution, Inc.
             </h1>
-            <p className="text-xl max-w-2xl font-light" style={{ color: "#64748b" }}>
+            <p className="text-xl max-w-2xl font-light" style={{ color: "#6b7280" }}>
               An American company born in San Diego, driven by a single question: what if the screen
               was as big as you wanted it to be?
             </p>
@@ -42,16 +42,16 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
             <motion.div {...fi()}>
-              <p className="text-lg leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
                 Founded in 2008, Wireless Mobi Solution, Inc. (WMS) is a privately held company
                 headquartered in San Diego, California. Our mission is to deliver wireless expertise
                 to enterprise customers through innovative devices, software, and infrastructure solutions.
               </p>
-              <p className="text-lg leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
                 With a diverse design team in San Diego, WMS created the MOVI smartphone by asking one question:
                 <em className="text-white"> what if the screen was as big as you wanted it to be?</em>
               </p>
-              <p className="text-lg leading-relaxed mb-12" style={{ color: "#94a3b8" }}>
+              <p className="text-lg leading-relaxed mb-12" style={{ color: "#6b7280" }}>
                 The MOVI debuted at CES 2018. Now, MOVI TWO is coming in 2027 — the next generation of
                 projector smartphone, built on everything we've learned.
               </p>
@@ -62,17 +62,17 @@ export default function About() {
                   <div key={s.l} className="px-5 py-6" style={{ background: BG }}>
                     <div
                       className="font-extrabold mb-1"
-                      style={{ color: "white", fontSize: "1.5rem", letterSpacing: "-0.03em" }}
+                      style={{ color: "#0a0c0f", fontSize: "1.5rem", letterSpacing: "-0.03em" }}
                     >
                       {s.n}
                     </div>
-                    <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#334155" }}>{s.l}</div>
+                    <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#d1d5db" }}>{s.l}</div>
                   </div>
                 ))}
               </div>
 
               {/* Why MOVI */}
-              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#334155" }}>
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#d1d5db" }}>
                 Why MOVI?
               </div>
               <div className="space-y-3">
@@ -86,7 +86,7 @@ export default function About() {
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <Check size={13} style={{ color: RED, marginTop: 3, flexShrink: 0 }} />
-                    <span className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{item}</span>
+                    <span className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -155,16 +155,16 @@ export default function About() {
                 Educational
               </div>
               <h2
-                className="font-extrabold leading-none tracking-tight mb-6 text-white"
+                className="font-extrabold leading-none tracking-tight mb-6 "
                 style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em" }}
               >
                 Interactive<br />Educational<br />Projection
               </h2>
-              <p className="text-base sm:text-lg leading-relaxed mb-4" style={{ color: "#94a3b8" }}>
+              <p className="text-base sm:text-lg leading-relaxed mb-4" style={{ color: "#6b7280" }}>
                 Educational Interactive Projection (Floor and/or Globe) — Interactive displays can be used
                 as an exciting educational tool that keeps younger audiences entertained while being taught.
               </p>
-              <p className="text-base leading-relaxed" style={{ color: "#64748b" }}>
+              <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
                 Teachers can project live from the web or upload their own videos, pictures, and audio
                 based on the current curriculum — and students can interact within seconds.
               </p>
