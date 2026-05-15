@@ -474,13 +474,11 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "center 70%" }}
         />
-        {/* Cinematic gradient */}
+        {/* Top fades to full black (hides baked-in text), middle shows photo, bottom goes dark */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(4,5,8,0.97) 0%, rgba(4,5,8,0.35) 55%, rgba(4,5,8,0) 100%)" }}
+          style={{ background: "linear-gradient(to bottom, rgba(4,5,8,1) 0%, rgba(4,5,8,1) 20%, rgba(4,5,8,0.15) 48%, rgba(4,5,8,0.97) 100%)" }}
         />
-        {/* Solid strip cuts off the top of the image where text is baked in */}
-        <div className="absolute top-0 left-0 right-0" style={{ height: "32%", background: "#04050a" }} />
         <motion.div
           {...fi()}
           className="relative z-10 px-8 sm:px-14 lg:px-20 py-16 lg:py-24 max-w-3xl w-full"
