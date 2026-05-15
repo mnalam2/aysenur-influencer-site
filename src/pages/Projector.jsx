@@ -152,32 +152,44 @@ export default function Projector() {
           </button>
         </motion.div>
 
-        {/* ── EDUCATIONAL ──────────────────────────────── */}
-        <div className="grid lg:grid-cols-2 gap-14 items-center" style={{ paddingTop: 20 }}>
-          <motion.div {...fi(0.1)} className="flex justify-center">
-            <img src="/images/usecase-3.jpg" alt="Educational projection"
-              className="rounded-2xl w-full object-cover" style={{ maxHeight: 440 }} />
-          </motion.div>
-          <motion.div {...fi()}>
-            <Chip>Educational</Chip>
-            <h2 className="text-4xl sm:text-5xl font-extrabold mt-3 mb-6 leading-tight ">
-              Interactive<br /><RedText>Educational Projection</RedText>
-            </h2>
-            <p className="text-base leading-relaxed mb-4" style={{ color: "#6b7280" }}>
-              Interactive displays can be used as an exciting educational tool that keeps younger audiences
-              entertained while being taught.
-            </p>
-            <p className="text-base leading-relaxed mb-4" style={{ color: "#6b7280" }}>
-              Using motion tracking, pupils and teachers are able to interact with the projected image
-              to reveal new layers — perfect for starting discussions.
-            </p>
-            <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
-              Teachers can project live from the web or upload their own videos, pictures, and audio
-              based on the current curriculum — and students can interact within seconds.
-            </p>
-          </motion.div>
-        </div>
       </div>
+
+      {/* ── EDUCATIONAL ──────────────────────────────── */}
+      <section className="overflow-hidden" style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
+        <div className="flex flex-col lg:flex-row-reverse">
+          <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden flex items-center justify-center" style={{ minHeight: 400, background: "#050607" }}>
+            <img
+              src="/images/education5.jpg"
+              alt="Educational interactive projection"
+              loading="lazy"
+              className="w-full h-full object-contain"
+              style={{ minHeight: 400, maxHeight: 560 }}
+            />
+          </motion.div>
+          <div className="lg:w-1/2 flex items-center">
+            <motion.div {...fi()} className="px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-24 max-w-xl">
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: RED }}>
+                Educational
+              </div>
+              <h2
+                className="font-extrabold leading-none tracking-tight mb-6"
+                style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em" }}
+              >
+                Interactive<br />Educational<br />Projection
+              </h2>
+              <p className="text-base sm:text-lg leading-relaxed mb-4" style={{ color: "#6b7280" }}>
+                Educational Interactive Projection (Floor and/or Globe) — interactive displays keep younger
+                audiences engaged while being taught. Using motion tracking, pupils and teachers interact
+                with the projected image to reveal new layers — perfect for starting discussions.
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: "#6b7280" }}>
+                Teachers can project live from the web or upload their own videos, pictures, and audio
+                based on the current curriculum — and students can interact within seconds.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
