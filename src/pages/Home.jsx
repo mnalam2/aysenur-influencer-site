@@ -415,8 +415,9 @@ export default function Home() {
 
           <motion.div
             {...fi(0.1)}
-            className="relative w-full overflow-hidden"
+            className="relative w-full overflow-hidden group cursor-pointer"
             style={{ aspectRatio: "16/9", maxHeight: 560, background: "#000" }}
+            onClick={toggleVideo}
           >
             <div
               className="absolute inset-0 bg-center bg-cover"
@@ -431,31 +432,26 @@ export default function Home() {
                 <source src="/videos/movi-demo.mp4" type="video/mp4" />
               </video>
             </div>
-            <button
-              onClick={toggleVideo}
-              aria-label={videoPaused ? "Play" : "Pause"}
-              className="absolute inset-0 flex items-center justify-center z-10 group"
-            >
-              <div
-                className="flex items-center justify-center w-16 h-16 backdrop-blur-sm transition-all duration-200 opacity-0 group-hover:opacity-100"
-                style={{ background: "rgba(0,0,0,0.5)", border: "2px solid rgba(255,255,255,0.25)" }}
-              >
-                {videoPaused ? <Play size={22} className="text-white ml-1" /> : <Pause size={22} className="text-white" />}
-              </div>
-            </button>
+
+            {/* Controls — appear on hover, pinned to bottom-right */}
             <div
-              className="absolute bottom-0 left-0 right-0 z-10 px-5 py-3 flex items-center justify-between"
-              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)" }}
+              className="absolute bottom-0 left-0 right-0 z-10 px-5 py-4 flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)" }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={toggleVideo} className="flex items-center gap-2 text-white text-xs font-semibold hover:opacity-75 transition">
-                <div className="flex items-center justify-center w-7 h-7" style={{ background: "rgba(255,255,255,0.13)" }}>
-                  {videoPaused ? <Play size={11} className="ml-0.5" /> : <Pause size={11} />}
-                </div>
-                {videoPaused ? "Play" : "Pause"}
+              <button
+                onClick={toggleVideo}
+                aria-label={videoPaused ? "Play" : "Pause"}
+                className="flex items-center justify-center w-8 h-8 rounded-full text-white hover:bg-white/20 transition-colors"
+              >
+                {videoPaused ? <Play size={15} className="ml-0.5" /> : <Pause size={15} />}
               </button>
-              <button onClick={toggleMute} className="flex items-center gap-2 text-white text-xs font-semibold hover:opacity-75 transition">
+              <button
+                onClick={toggleMute}
+                aria-label={videoMuted ? "Unmute" : "Mute"}
+                className="flex items-center justify-center w-8 h-8 rounded-full text-white hover:bg-white/20 transition-colors"
+              >
                 {videoMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                {videoMuted ? "Unmute" : "Mute"}
               </button>
             </div>
           </motion.div>
