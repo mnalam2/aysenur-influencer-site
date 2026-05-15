@@ -132,6 +132,7 @@ export default function Home() {
               width: "min(340px, 65vw)",
               objectFit: "contain",
               filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.18))",
+              mixBlendMode: "multiply",
               position: "relative",
             }}
           />
