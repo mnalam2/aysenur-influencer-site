@@ -8,12 +8,11 @@ import "keen-slider/keen-slider.min.css";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/shared";
 
 const GALLERY_IMGS = [
-  { src: "/images/projector-hero.jpg", alt: "MOVI projecting on a wall"   },
-  { src: "/images/usecase-1.jpg",      alt: "MOVI outdoor projection"     },
-  { src: "/images/usecase-3.jpg",      alt: "MOVI educational use"        },
-  { src: "/images/usecase-4.jpg",      alt: "MOVI ceiling projection"     },
-  { src: "/images/usecase-5.jpg",      alt: "MOVI in the car"             },
-  { src: "/images/feature-1.jpeg",     alt: "MOVI enterprise use"         },
+  { src: "/images/usecase-1.jpg",  alt: "MOVI outdoor projection"  },
+  { src: "/images/usecase-3.jpg",  alt: "MOVI educational use"     },
+  { src: "/images/usecase-4.jpg",  alt: "MOVI ceiling projection"  },
+  { src: "/images/usecase-5.jpg",  alt: "MOVI in the car"          },
+  { src: "/images/feature-1.jpeg", alt: "MOVI enterprise use"      },
 ];
 
 const SPECS = [
@@ -30,6 +29,7 @@ const SPECS = [
 
 export default function Phone() {
   const navigate = useNavigate();
+  const [gallerySlide, setGallerySlide] = useState(0);
   const [galleryRef, gallerySlider] = useKeenSlider({
     loop: true, mode: "snap", drag: true,
     slides: { perView: 1, spacing: 12 },
@@ -37,6 +37,7 @@ export default function Phone() {
       "(min-width: 640px)":  { slides: { perView: 2, spacing: 16 } },
       "(min-width: 1024px)": { slides: { perView: 3, spacing: 20 } },
     },
+    slideChanged(s) { setGallerySlide(s.track.details.rel); },
   });
 
   return (
@@ -170,22 +171,45 @@ export default function Phone() {
                 </div>
               ))}
             </div>
+
+            {/* Arrows — larger tap target on mobile */}
             <button
               onClick={() => gallerySlider.current?.prev()}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center z-10"
-              style={{ background: "rgba(8,10,13,0.88)", border: `1px solid ${BORDER}` }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
+              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
               aria-label="Previous"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={22} className="text-white" />
             </button>
             <button
               onClick={() => gallerySlider.current?.next()}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center z-10"
-              style={{ background: "rgba(8,10,13,0.88)", border: `1px solid ${BORDER}` }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
+              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
               aria-label="Next"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={22} className="text-white" />
             </button>
+
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-5">
+              {GALLERY_IMGS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => gallerySlider.current?.moveToIdx(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  style={{
+                    width: gallerySlide === i ? 20 : 6,
+                    height: 6,
+                    borderRadius: 3,
+                    background: gallerySlide === i ? RED : BORDER,
+                    transition: "all 0.3s ease",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
