@@ -5,12 +5,12 @@ import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
 
 const PRESS = [
-  { name: "Time",             domain: "time.com"            },
-  { name: "PCMag",            domain: "pcmag.com"           },
-  { name: "CNET",             domain: "cnet.com"            },
-  { name: "Business Insider", domain: "businessinsider.com" },
-  { name: "Engadget",         domain: "engadget.com"        },
-  { name: "NotebookCheck",    domain: "notebookcheck.net"   },
+  { name: "Time",             src: "/images/press/time.svg",            h: 32 },
+  { name: "PCMag",            src: "/images/press/pcmag.svg",           h: 28 },
+  { name: "CNET",             src: "/images/press/cnet.svg",            h: 30 },
+  { name: "Business Insider", src: "/images/press/businessinsider.svg", h: 36 },
+  { name: "Engadget",         src: "/images/press/engadget.svg",        h: 28 },
+  { name: "NotebookCheck",    src: "/images/press/notebookcheck.svg",   h: 26 },
 ];
 
 const REVIEWS = [
@@ -522,16 +522,9 @@ export default function Home() {
               {PRESS.map((pub) => (
                 <img
                   key={pub.name}
-                  src={`https://logo.clearbit.com/${pub.domain}`}
+                  src={pub.src}
                   alt={pub.name}
-                  title={pub.name}
-                  style={{ height: 28, objectFit: "contain", filter: "grayscale(1)", opacity: 0.6 }}
-                  onError={(e) => {
-                    e.target.replaceWith(Object.assign(document.createElement("span"), {
-                      textContent: pub.name,
-                      style: "font-size:1rem;font-weight:700;color:#374151;letter-spacing:-0.02em",
-                    }));
-                  }}
+                  style={{ height: pub.h, objectFit: "contain", filter: "grayscale(1)", opacity: 0.55 }}
                 />
               ))}
             </div>
