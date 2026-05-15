@@ -91,8 +91,8 @@ export default function Services() {
         <motion.div {...fi()}>
           <GlassCard className="p-10 text-center"
             style={{ borderColor: "rgba(239,65,54,0.2)", background: "linear-gradient(135deg,rgba(239,65,54,0.04),rgba(17,20,24,1))" }}>
-            <h3 className="text-3xl font-extrabold mb-4 ">Ready to talk enterprise?</h3>
-            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "#6b7280" }}>
+            <h3 className="text-3xl font-extrabold mb-4 text-white">Ready to talk enterprise?</h3>
+            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
               Whether you need IoT infrastructure, a private 5G network, or AI-powered analytics —
               our team responds personally within 48 hours.
             </p>
