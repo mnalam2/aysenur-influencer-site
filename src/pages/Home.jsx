@@ -472,25 +472,17 @@ export default function Home() {
           alt="MOVI TWO — Coming 2027"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 70%" }}
         />
-        {/* Top fades to full black (hides baked-in text), middle shows photo, bottom goes dark */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(4,5,8,1) 0%, rgba(4,5,8,1) 20%, rgba(4,5,8,0.15) 48%, rgba(4,5,8,0.97) 100%)" }}
+          style={{ background: "linear-gradient(to top, rgba(4,5,8,0.97) 0%, rgba(4,5,8,0.45) 50%, rgba(4,5,8,0.05) 100%)" }}
         />
         <motion.div
           {...fi()}
           className="relative z-10 px-8 sm:px-14 lg:px-20 py-16 lg:py-24 max-w-3xl w-full"
         >
-          <div className="text-[10px] font-bold tracking-[0.28em] uppercase mb-4" style={{ color: RED }}>
+          <div className="text-[10px] font-bold tracking-[0.28em] uppercase mb-6" style={{ color: RED }}>
             Coming · CES 2027
-          </div>
-          <div
-            className="font-extrabold leading-none text-white mb-6"
-            style={{ fontSize: "clamp(2rem,6vw,4rem)", letterSpacing: "-0.04em", opacity: 0.5 }}
-          >
-            COMING 2027
           </div>
           <h2
             className="font-extrabold leading-none text-white mb-6"
@@ -498,9 +490,9 @@ export default function Home() {
           >
             MOVI TWO
           </h2>
-          <p className="text-base sm:text-lg max-w-md mb-10 font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
-            1080p · DLP · 70–80 lm · Autofocus.<br />
-            The next generation is coming.
+          <p className="text-lg sm:text-xl max-w-lg mb-10 font-light" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Next-generation DLP projector smartphone — 1080p · 70–80 lm · Autofocus.
+            The future of your screen is coming.
           </p>
           <a
             href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest&body=Hi%2C%20I%27d%20like%20to%20register%20my%20interest%20for%20MOVI%20TWO."
