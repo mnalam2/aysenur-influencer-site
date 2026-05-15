@@ -105,7 +105,7 @@ export default function About() {
                 >
                   <div>
                     <div className="text-[9px] font-bold uppercase tracking-[0.22em] mb-2" style={{ color: RED }}>
-                      CES 2027 · Q1 2027
+                      CES 2027 · Q2 2027
                     </div>
                     <div
                       className="font-extrabold text-white mb-3"

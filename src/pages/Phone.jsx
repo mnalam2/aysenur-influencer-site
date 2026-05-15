@@ -306,7 +306,7 @@ export default function Phone() {
                     CES 2027
                   </div>
                   <div className="text-sm mb-6" style={{ color: "#9ca3af" }}>
-                    Launch date: <strong style={{ color: "#0a0c0f" }}>Q1, 2027</strong>
+                    Launch date: <strong style={{ color: "#0a0c0f" }}>Q2, 2027</strong>
                   </div>
                   <a
                     href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
