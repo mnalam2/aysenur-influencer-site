@@ -114,7 +114,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
           className="relative z-10 flex justify-center items-center"
-          style={{ margin: "-1.5rem 0" }}
+          style={{ margin: "1.5rem 0" }}
         >
           <div
             className="absolute inset-0 pointer-events-none glow-pulse"
