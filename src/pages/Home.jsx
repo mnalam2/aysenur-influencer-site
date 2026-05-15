@@ -4,14 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
 
-const PRESS = [
-  { name: "Time",             src: "/images/press/time.svg",            h: 32 },
-  { name: "PCMag",            src: "/images/press/pcmag.svg",           h: 28 },
-  { name: "CNET",             src: "/images/press/cnet.svg",            h: 30 },
-  { name: "Business Insider", src: "/images/press/businessinsider.svg", h: 36 },
-  { name: "Engadget",         src: "/images/press/engadget.svg",        h: 28 },
-  { name: "NotebookCheck",    src: "/images/press/notebookcheck.svg",   h: 26 },
-];
+const PRESS = ["Time", "PCMag", "CNET", "Business Insider", "Engadget", "NotebookCheck"];
 
 const REVIEWS = [
   {
@@ -512,20 +505,22 @@ export default function Home() {
       </section>
 
       {/* ── PRESS — editorial minimal ─────────────────────── */}
-      <section style={{ borderTop: `1px solid ${BORDER}` }} className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div {...fi()} className="text-center">
-            <div className="text-[9px] font-bold tracking-[0.28em] uppercase mb-10" style={{ color: "#9ca3af" }}>
+      <section style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }} className="py-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div {...fi()}>
+            <div className="text-[9px] font-bold tracking-[0.28em] uppercase text-center mb-8" style={{ color: "#9ca3af" }}>
               As Featured In
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16">
+            <div className="grid grid-cols-3 sm:grid-cols-6 divide-x" style={{ borderColor: BORDER }}>
               {PRESS.map((pub) => (
-                <img
-                  key={pub.name}
-                  src={pub.src}
-                  alt={pub.name}
-                  style={{ height: pub.h, objectFit: "contain", filter: "grayscale(1)", opacity: 0.55 }}
-                />
+                <div key={pub} className="flex items-center justify-center py-5 px-3">
+                  <span
+                    className="text-xs sm:text-sm font-bold text-center leading-tight"
+                    style={{ color: "#6b7280", letterSpacing: "-0.01em" }}
+                  >
+                    {pub}
+                  </span>
+                </div>
               ))}
             </div>
           </motion.div>
