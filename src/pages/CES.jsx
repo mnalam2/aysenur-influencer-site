@@ -73,6 +73,39 @@ export default function CES() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
+        {/* ── CES FEATURE CARD ──────────────────────── */}
+        <motion.div {...fi()} className="mb-20">
+          <GlassCard className="overflow-hidden"
+            style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
+            <div className="grid md:grid-cols-2">
+              <div className="p-8 sm:p-12 flex flex-col justify-center">
+                <p className="text-base leading-relaxed mb-6" style={{ color: "#6b7280" }}>
+                  The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
+                  drawing international attention as one of the show's most innovative mobile devices.
+                  Exhibited at the Sands Expo, <strong style={{ color: "#0a0c0f" }}>Booth #52827</strong>.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {["Android Authority","Liliputing","Android Guys","Gizmochina","NotebookCheck"].map((p) => (
+                    <span key={p} className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: "#6b7280" }}>
+                      {p}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-1 p-1">
+                {["/images/ces-1.jpg","/images/ces-2.jpg","/images/ces-3.jpg","/images/wms-press.jpg"].map((src, i) => (
+                  <div key={i} className="overflow-hidden" style={{ height: 160 }}>
+                    <img src={src} alt={`CES 2018 photo ${i + 1}`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </GlassCard>
+        </motion.div>
+
+
         {/* ── TIME ARTICLE FEATURE ─────────────────── */}
         <motion.div {...fi(0.05)} className="mb-20">
           <Chip>Featured Coverage</Chip>
@@ -131,38 +164,6 @@ export default function CES() {
               </div>
             </div>
           </a>
-        </motion.div>
-
-        {/* ── CES FEATURE CARD ──────────────────────── */}
-        <motion.div {...fi()} className="mb-20">
-          <GlassCard className="overflow-hidden"
-            style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
-            <div className="grid md:grid-cols-2">
-              <div className="p-8 sm:p-12 flex flex-col justify-center">
-                <p className="text-base leading-relaxed mb-6" style={{ color: "#6b7280" }}>
-                  The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
-                  drawing international attention as one of the show's most innovative mobile devices.
-                  Exhibited at the Sands Expo, <strong style={{ color: "#0a0c0f" }}>Booth #52827</strong>.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {["Android Authority","Liliputing","Android Guys","Gizmochina","NotebookCheck"].map((p) => (
-                    <span key={p} className="text-xs font-semibold px-3 py-1.5 rounded-full"
-                      style={{ background: CARD2, border: `1px solid ${BORDER}`, color: "#6b7280" }}>
-                      {p}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-1 p-1">
-                {["/images/ces-1.jpg","/images/ces-2.jpg","/images/ces-3.jpg","/images/wms-press.jpg"].map((src, i) => (
-                  <div key={i} className="overflow-hidden" style={{ height: 160 }}>
-                    <img src={src} alt={`CES 2018 photo ${i + 1}`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </GlassCard>
         </motion.div>
 
         {/* ── PR NEWSWIRE ──────────────────────────── */}
