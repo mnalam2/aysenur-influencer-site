@@ -465,13 +465,13 @@ export default function Home() {
       {/* ── MOVI TWO — cinematic dark break ─────────────── */}
       <section
         className="relative overflow-hidden flex flex-col items-start justify-end"
-        style={{ minHeight: "88vh" }}
+        style={{ minHeight: "88vh", background: "#e2a932" }}
       >
         <img
           src="/images/movi-two-promo.jpeg"
           alt="MOVI TWO — Coming 2027"
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover lg:object-contain"
         />
         <div
           className="absolute inset-0"
