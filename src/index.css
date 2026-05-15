@@ -4,14 +4,20 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 104px;
+  scroll-padding-top: 88px;
   overflow-x: hidden;
 }
 body {
   overflow-x: hidden;
 }
 
-/* ── Announcement ticker ──────────────────── */
+/* ── Dot grid background (Nothing-phone inspired) ── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ── Announcement ticker ──────────────────────── */
 @keyframes ticker {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -45,4 +51,14 @@ body {
 
 .float-badge {
   animation: floatY 4s ease-in-out infinite;
+}
+
+/* ── Scroll indicator bounce ──────────────── */
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(5px); }
+}
+
+.scroll-bounce {
+  animation: bounceY 1.8s ease-in-out infinite;
 }

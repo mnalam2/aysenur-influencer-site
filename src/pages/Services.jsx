@@ -1,27 +1,36 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { RED, BG, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, BORDER, GlassCard, fi } from "../components/shared";
 
 export default function Services() {
   return (
     <div style={{ background: BG }} className="min-h-screen">
       {/* ── PAGE HERO ─────────────────────────────────── */}
-      <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+      <section
+        className="relative overflow-hidden dot-grid"
+        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+      >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
         }} />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <Chip>Enterprise Services</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
-            Beyond the Phone.<br /><RedText>Full Wireless Solutions.</RedText>
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-            Wireless Mobi Solution, Inc. (WMS) empowers system integrators, enterprise customers,
-            and government agencies with commercial-ready IoT, 5G, AI, and cyber solutions.
-          </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: RED }}>
+              Enterprise Services
+            </div>
+            <h1
+              className="font-extrabold leading-none text-white mb-6"
+              style={{ fontSize: "clamp(2.5rem,7vw,5rem)", letterSpacing: "-0.05em" }}
+            >
+              Beyond the Phone.<br />Full Wireless Solutions.
+            </h1>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+              Wireless Mobi Solution, Inc. (WMS) empowers system integrators, enterprise customers,
+              and government agencies with commercial-ready IoT, 5G, AI, and cyber solutions.
+            </p>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
         {/* ── INTRO WITH IMAGE ──────────────────────── */}

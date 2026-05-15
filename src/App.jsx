@@ -108,51 +108,56 @@ function Layout() {
           borderBottom: navScrolled ? `1px solid ${BORDER}` : "none",
         }}
       >
-        {/* Announcement ticker — top strip inside header */}
+        {/* Announcement ticker — top strip */}
         <div
-          className="overflow-hidden py-2"
+          className="overflow-hidden"
           style={{
-            background: "rgba(239,65,54,0.1)",
-            borderBottom: "1px solid rgba(239,65,54,0.18)",
+            background: "rgba(239,65,54,0.07)",
+            borderBottom: "1px solid rgba(239,65,54,0.15)",
+            height: 28,
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <div className="ticker-track">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="flex-shrink-0 flex items-center text-[10px] sm:text-xs font-bold uppercase tracking-widest px-5"
-                style={{ color: RED }}
+                className="flex-shrink-0 flex items-center font-bold uppercase px-6"
+                style={{ color: RED, fontSize: "9px", letterSpacing: "0.2em" }}
               >
                 {item}
-                <span className="ml-5 opacity-30">·</span>
+                <span className="ml-6 opacity-20">·</span>
               </span>
             ))}
           </div>
         </div>
 
         {/* Nav row */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[60px] flex items-center justify-between">
           {/* Logo */}
           <Link to="/" style={{ textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
             <WMSLogo />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex gap-1" aria-label="Primary">
+          <nav className="hidden lg:flex gap-0" aria-label="Primary">
             {NAV.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 end={!!l.exact}
                 style={({ isActive }) => ({
-                  color: isActive ? RED : "#94a3b8",
-                  background: isActive ? "rgba(239,65,54,0.1)" : "transparent",
+                  color: isActive ? "white" : "#475569",
+                  background: "transparent",
                   textDecoration: "none",
-                  padding: "6px 14px",
-                  borderRadius: 999,
-                  fontSize: 14,
-                  fontWeight: 500,
-                  transition: "all 0.2s",
+                  padding: "6px 13px",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  transition: "color 0.2s",
+                  borderBottom: isActive ? `1px solid ${RED}` : "1px solid transparent",
                 })}
               >
                 {l.label}
@@ -161,23 +166,24 @@ function Layout() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             <NavLink to="/contact"
               style={({ isActive }) => ({
-                color: isActive ? "#fff" : "#94a3b8",
+                color: isActive ? "white" : "#475569",
                 textDecoration: "none",
-                fontSize: 14,
-                fontWeight: 500,
-                padding: "6px 14px",
-                borderRadius: 999,
-                background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
-                transition: "all 0.2s",
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                transition: "color 0.2s",
+                borderBottom: isActive ? `1px solid ${RED}` : "1px solid transparent",
+                padding: "6px 0",
               })}>
               Contact
             </NavLink>
             <Link to="/order"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold text-white"
-              style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.35)`, textDecoration: "none" }}>
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white tracking-widest uppercase"
+              style={{ background: RED, textDecoration: "none", letterSpacing: "0.1em" }}>
               Order — $699
             </Link>
           </div>

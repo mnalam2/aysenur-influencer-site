@@ -1,28 +1,37 @@
 import { motion } from "framer-motion";
 import { Check, ShieldCheck, Truck, RotateCcw, Headphones } from "lucide-react";
-import { RED, BG, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, BORDER, GlassCard, fi } from "../components/shared";
 
 export default function Order() {
   return (
     <div style={{ background: BG }} className="min-h-screen">
 
       {/* ── PAGE HERO ─────────────────────────────────── */}
-      <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+      <section
+        className="relative overflow-hidden dot-grid"
+        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+      >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.09) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 65%)"
         }} />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <Chip>Order</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
-            Get Your <RedText>MOVI Phone</RedText>
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-            Free USA shipping. Global &amp; Africa shipping $100.
-            Every order is handled personally — we respond within 24 hours.
-          </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: RED }}>
+              Order
+            </div>
+            <h1
+              className="font-extrabold leading-none text-white mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+            >
+              Get Your MOVI Phone
+            </h1>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+              Free USA shipping. Global &amp; Africa shipping $100.
+              Every order is handled personally — we respond within 24 hours.
+            </p>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
 
@@ -180,21 +189,24 @@ export default function Order() {
       </div>
 
       {/* ── BUY NOW BAR ─────────────────────────────── */}
-      <section className="py-16 text-center" style={{ background: "linear-gradient(135deg, #0099cc 0%, #006b99 100%)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <section className="py-24 text-center dot-grid" style={{ background: "#080a0d", borderTop: `1px solid ${BORDER}` }}>
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fi()}>
-            <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.65)" }}>
-              Free USA Shipping · Global & Africa shipping $100
-            </p>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white uppercase mb-6 tracking-wide">
+            <div className="text-[9px] font-bold tracking-[0.3em] uppercase mb-8" style={{ color: "#1e293b" }}>
+              Free USA Shipping · Global &amp; Africa $100 Flat
+            </div>
+            <h2
+              className="font-extrabold text-white mb-10"
+              style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", letterSpacing: "-0.05em" }}
+            >
               Order Your MOVI Today
             </h2>
             <a
               href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Pro&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Pro%20(4GB%2F64GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
-              className="inline-block px-10 py-4 rounded-full font-bold text-lg bg-white hover:opacity-90 transition"
-              style={{ color: "#0077aa" }}
+              className="inline-flex items-center gap-2 px-12 py-5 font-bold text-lg text-white hover:opacity-90 transition"
+              style={{ background: RED, boxShadow: "0 0 60px rgba(239,65,54,0.28)" }}
             >
-              Order Now — $699 →
+              Order Now — $699
             </a>
           </motion.div>
         </div>

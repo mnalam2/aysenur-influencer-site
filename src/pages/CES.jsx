@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
+import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/shared";
 
 const PRESS_LINKS = [
   ["Yahoo", "https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
@@ -56,22 +56,31 @@ export default function CES() {
   return (
     <div style={{ background: BG }} className="min-h-screen">
       {/* ── PAGE HERO ─────────────────────────────────── */}
-      <div className="relative pt-32 pb-20 text-center overflow-hidden"
-        style={{ background: `linear-gradient(180deg,#0d1018 0%,${BG} 100%)` }}>
+      <section
+        className="relative overflow-hidden dot-grid"
+        style={{ background: "linear-gradient(180deg,#080a0d 0%,#0a0c0f 100%)", paddingTop: "88px" }}
+      >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 65%)"
         }} />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <Chip>Press</Chip>
-          <h1 className="text-5xl sm:text-6xl font-extrabold mt-4 mb-4 leading-tight text-white">
-            Seen at <RedText>CES 2018</RedText>
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-            The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
-            drawing international attention as one of the show's most innovative mobile devices.
-          </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: RED }}>
+              Press &amp; Media
+            </div>
+            <h1
+              className="font-extrabold leading-none text-white mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+            >
+              Seen at CES 2018
+            </h1>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: "#64748b" }}>
+              The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
+              drawing international attention as one of the show's most innovative mobile devices.
+            </p>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20">
         {/* ── CES FEATURE CARD ──────────────────────── */}
