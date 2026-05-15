@@ -109,19 +109,19 @@ function Layout() {
         <div className="aurora-blob aurora-blob--red" style={{
           position: "absolute", top: "-25%", left: "-20%",
           width: "85vmax", height: "85vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(239,65,54,0.18), rgba(239,65,54,0) 62%)",
+          background: "radial-gradient(circle, rgba(200,55,45,0.16), rgba(200,55,45,0) 62%)",
           filter: "blur(40px)",
         }} />
-        <div className="aurora-blob aurora-blob--cyan" style={{
+        <div className="aurora-blob aurora-blob--steel" style={{
           position: "absolute", bottom: "-25%", right: "-20%",
           width: "90vmax", height: "90vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(13,180,232,0.16), rgba(13,180,232,0) 62%)",
+          background: "radial-gradient(circle, rgba(40,70,110,0.18), rgba(40,70,110,0) 62%)",
           filter: "blur(40px)",
         }} />
-        <div className="aurora-blob aurora-blob--violet" style={{
+        <div className="aurora-blob aurora-blob--charcoal" style={{
           position: "absolute", top: "30%", left: "40%",
           width: "60vmax", height: "60vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(120,90,220,0.10), rgba(120,90,220,0) 62%)",
+          background: "radial-gradient(circle, rgba(30,35,45,0.14), rgba(30,35,45,0) 62%)",
           filter: "blur(50px)",
         }} />
         {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}

@@ -30,10 +30,10 @@ body {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
   50%      { transform: translate3d(5vw,  10vh, 0) scale(1.15); }
 }
-.aurora-blob          { will-change: transform; }
-.aurora-blob--red     { animation: auroraDriftA 28s ease-in-out infinite; }
-.aurora-blob--cyan    { animation: auroraDriftB 36s ease-in-out infinite; }
-.aurora-blob--violet  { animation: auroraDriftC 24s ease-in-out infinite; }
+.aurora-blob            { will-change: transform; }
+.aurora-blob--red       { animation: auroraDriftA 28s ease-in-out infinite; }
+.aurora-blob--steel     { animation: auroraDriftB 36s ease-in-out infinite; }
+.aurora-blob--charcoal  { animation: auroraDriftC 24s ease-in-out infinite; }
 
 /* ── Announcement ticker ──────────────────────── */
 @keyframes ticker {
