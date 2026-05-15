@@ -131,13 +131,13 @@ export default function About() {
       {/* ── EDUCATIONAL ───────────────────────────────── */}
       <section className="overflow-hidden" style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="flex flex-col lg:flex-row-reverse">
-          <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden" style={{ minHeight: 400 }}>
+          <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden flex items-center justify-center" style={{ minHeight: 400, background: "#050607" }}>
             <img
               src="/images/education5.jpg"
               alt="Educational interactive projection"
               loading="lazy"
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              style={{ minHeight: 400, maxHeight: 600 }}
+              className="w-full h-full object-contain"
+              style={{ minHeight: 400, maxHeight: 560 }}
             />
           </motion.div>
           <div className="lg:w-1/2 flex items-center">
