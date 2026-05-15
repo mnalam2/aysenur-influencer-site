@@ -472,12 +472,12 @@ export default function Home() {
           alt="MOVI TWO — Coming 2027"
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: "center 60%" }}
+          style={{ objectPosition: "center bottom" }}
         />
         {/* Full-coverage overlay — hides any baked-in image text */}
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(4,5,8,0.82) 0%, rgba(4,5,8,0.55) 40%, rgba(4,5,8,0.92) 100%)" }}
+          style={{ background: "linear-gradient(to bottom, rgba(4,5,8,0.96) 0%, rgba(4,5,8,0.70) 45%, rgba(4,5,8,0.95) 100%)" }}
         />
         <motion.div
           {...fi()}
