@@ -85,7 +85,7 @@ export default function Phone() {
                 { k: "Network",    v: "4G LTE Unlocked" },
               ].map((s) => (
                 <div key={s.k} className="px-5 py-4" style={{ background: CARD2 }}>
-                  <div className="text-[9px] font-bold tracking-widest uppercase mb-1" style={{ color: "#d1d5db" }}>
+                  <div className="text-[9px] font-bold tracking-widest uppercase mb-1" style={{ color: "#9ca3af" }}>
                     {s.k}
                   </div>
                   <div className="text-sm font-bold ">{s.v}</div>
@@ -143,7 +143,7 @@ export default function Phone() {
       <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               Gallery
             </div>
             <h2
@@ -194,7 +194,7 @@ export default function Phone() {
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               Compare
             </div>
             <h2
@@ -303,7 +303,7 @@ export default function Phone() {
       <section style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               Specifications
             </div>
             <h2
@@ -346,7 +346,7 @@ export default function Phone() {
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <motion.div {...fi()}>
-              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#d1d5db" }}>
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
                 Use Cases
               </div>
               <h2

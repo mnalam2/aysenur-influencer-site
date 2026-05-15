@@ -211,7 +211,7 @@ export default function Home() {
           transition={{ delay: 1.8, duration: 0.7 }}
           className="absolute bottom-8 z-10 flex flex-col items-center gap-2 scroll-bounce"
         >
-          <div className="text-[9px] font-bold tracking-[0.25em] uppercase" style={{ color: "#d1d5db" }}>
+          <div className="text-[9px] font-bold tracking-[0.25em] uppercase" style={{ color: "#9ca3af" }}>
             Scroll
           </div>
           <div className="w-px h-8" style={{ background: "linear-gradient(to bottom, #d1d5db, transparent)" }} />
@@ -402,7 +402,7 @@ export default function Home() {
       <section style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-10 text-center">
-            <div className="text-[10px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#d1d5db" }}>
+            <div className="text-[10px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               See It In Action
             </div>
             <h2
@@ -508,7 +508,7 @@ export default function Home() {
       <section style={{ borderTop: `1px solid ${BORDER}` }} className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fi()} className="text-center">
-            <div className="text-[9px] font-bold tracking-[0.28em] uppercase mb-10" style={{ color: "#d1d5db" }}>
+            <div className="text-[9px] font-bold tracking-[0.28em] uppercase mb-10" style={{ color: "#9ca3af" }}>
               As Featured In
             </div>
             <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-14">
@@ -516,7 +516,7 @@ export default function Home() {
                 <span
                   key={pub}
                   className="text-lg sm:text-xl font-bold"
-                  style={{ color: "#d1d5db", letterSpacing: "-0.02em" }}
+                  style={{ color: "#374151", letterSpacing: "-0.02em" }}
                 >
                   {pub}
                 </span>
@@ -530,7 +530,7 @@ export default function Home() {
       <section className="py-24" style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fi()} className="mb-16">
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               Reviews
             </div>
             <h2

@@ -65,13 +65,13 @@ export default function About() {
                     >
                       {s.n}
                     </div>
-                    <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#d1d5db" }}>{s.l}</div>
+                    <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#9ca3af" }}>{s.l}</div>
                   </div>
                 ))}
               </div>
 
               {/* Why MOVI */}
-              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#d1d5db" }}>
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
                 Why MOVI?
               </div>
               <div className="space-y-3">
