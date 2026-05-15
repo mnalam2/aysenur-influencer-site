@@ -1,49 +1,34 @@
-// Image: 1061×454. Top 70% = black logo; bottom 30% = "AN AMERICAN COMPANY" (cropped).
-// filter: invert(1) hue-rotate(180deg) converts black bg → white, white letters → black,
-// cyan squares survive (hue 180° round-trip). brightness(0.976) nudges
-// the resulting white (255) down to ≈ #f9f8f5 (249) so it matches the site bg exactly.
-const IMG_W   = 1061;
-const IMG_H   = 454;
-const SHOW_PCT = 0.70;    // top fraction containing the logo
+// Image: 1061×454. Top 70% = WMS logo (black bg). Bottom 30% = "AN AMERICAN COMPANY" (white bg).
+const IMG_W = 1061;
+const IMG_H = 454;
+const LOGO_H = 52;                                        // total nav logo height
+const LOGO_W  = Math.round(IMG_W / IMG_H * LOGO_H);      // ~120px (natural aspect)
+const TOP_H   = Math.round(LOGO_H * 0.70);               // ~36px — WMS section
+const BOT_H   = LOGO_H - TOP_H;                          // ~16px — "AN AMERICAN COMPANY"
+const CROP_X  = 8;                                        // px to trim from each side
 
-const LOGO_H  = 40;
-const FULL_H  = Math.round(LOGO_H / SHOW_PCT);          // 57px rendered total height
-const LOGO_W  = Math.round(IMG_W / IMG_H * FULL_H);     // 133px
-
-// Scale up so any white JPEG-padding pixels are pushed outside overflow:hidden
-const SCALE   = 1.22;
-const RW      = Math.round(LOGO_W * SCALE);
-const RH      = Math.round(FULL_H * SCALE);
-const OX      = Math.round((RW - LOGO_W) / 2);  // center crop horizontally
-const OY      = Math.round((RH - FULL_H) * 0.1); // slight top crop
+const shared = {
+  position: "absolute", top: 0, left: 0,
+  width: LOGO_W, height: LOGO_H, objectFit: "fill",
+};
 
 export default function WMSLogo() {
   return (
     <div
-      style={{
-        position: "relative",
-        display: "inline-block",
-        width: LOGO_W,
-        height: LOGO_H,
-        overflow: "hidden",
-        lineHeight: 0,
-      }}
+      style={{ position: "relative", display: "inline-block", width: LOGO_W, height: LOGO_H, lineHeight: 0 }}
       aria-label="WMS — Wireless Mobi Solution"
     >
-      <img
-        src="/images/wms-logo.jpeg"
-        alt="WMS logo"
-        style={{
-          position: "absolute",
-          top: -OY,
-          left: -OX,
-          width: RW,
-          height: RH,
-          objectFit: "fill",
-          // black bg → #f9f8f5, white letters → near-black, cyan stays ≈ cyan
-          filter: "invert(1) hue-rotate(180deg) brightness(0.976)",
-        }}
-      />
+      {/* WMS logo section: invert black bg → #f9f8f5, white letters → dark, cyan stays */}
+      <img src="/images/wms-logo.jpeg" alt="" style={{
+        ...shared,
+        clipPath: `inset(0 ${CROP_X}px ${BOT_H}px ${CROP_X}px)`,
+        filter: "invert(1) hue-rotate(180deg) brightness(0.976)",
+      }} />
+      {/* "AN AMERICAN COMPANY" section: natural colors, white bg ≈ site bg */}
+      <img src="/images/wms-logo.jpeg" alt="WMS logo" style={{
+        ...shared,
+        clipPath: `inset(${TOP_H}px ${CROP_X}px 0 ${CROP_X}px)`,
+      }} />
     </div>
   );
 }
