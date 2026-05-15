@@ -61,7 +61,7 @@ export default function About() {
                   <div key={s.l} className="px-5 py-6 flex flex-col justify-between" style={{ minHeight: 80 }}>
                     <div
                       className="font-extrabold mb-1"
-                      style={{ color: "#0a0c0f", fontSize: s.n.length > 4 ? "1.1rem" : "1.5rem", letterSpacing: "-0.03em", lineHeight: 1.1 }}
+                      style={{ color: "#0a0c0f", fontSize: "1.3rem", letterSpacing: "-0.03em", lineHeight: 1.1, whiteSpace: "nowrap" }}
                     >
                       {s.n}
                     </div>
