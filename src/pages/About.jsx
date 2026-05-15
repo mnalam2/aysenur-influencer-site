@@ -91,9 +91,9 @@ export default function About() {
               </div>
             </motion.div>
 
-            <motion.div {...fi(0.1)} className="space-y-px" style={{ background: BORDER }}>
+            <motion.div {...fi(0.1)}>
               {/* MOVI TWO teaser */}
-              <div className="relative overflow-hidden" style={{ height: 320 }}>
+              <div className="relative overflow-hidden" style={{ height: 420 }}>
                 <img
                   src="/images/movi-two-promo.jpeg"
                   alt="MOVI TWO — Coming 2027"
@@ -122,14 +122,6 @@ export default function About() {
                     </a>
                   </div>
                 </div>
-              </div>
-
-              <div className="overflow-hidden" style={{ height: 240 }}>
-                <img
-                  src="/images/services-team.jpg"
-                  alt="WMS engineering team"
-                  className="w-full h-full object-cover"
-                />
               </div>
             </motion.div>
           </div>
