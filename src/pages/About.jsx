@@ -133,7 +133,7 @@ export default function About() {
         <div className="flex flex-col lg:flex-row-reverse">
           <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden" style={{ minHeight: 400 }}>
             <img
-              src="/images/usecase-3.jpg"
+              src="/images/education5.jpg"
               alt="Educational interactive projection"
               loading="lazy"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
