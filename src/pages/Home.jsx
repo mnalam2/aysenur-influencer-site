@@ -77,7 +77,7 @@ export default function Home() {
 
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.55, delay: 0.1 }}
           className="relative z-10 mb-6"
         >
@@ -91,7 +91,7 @@ export default function Home() {
 
         {/* Enormous hero wordmark */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.65, delay: 0.2 }}
           className="relative z-10 text-center px-4"
         >
@@ -138,7 +138,7 @@ export default function Home() {
 
           {/* Floating badge — left */}
           <motion.div
-            initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.5 }}
             className="absolute left-0 top-1/3 -translate-x-1/4 sm:-translate-x-full px-4 py-3 float-badge hidden sm:block"
             style={{
@@ -155,7 +155,7 @@ export default function Home() {
 
           {/* Floating badge — right */}
           <motion.div
-            initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.5 }}
             className="absolute right-0 bottom-1/3 translate-x-1/4 sm:translate-x-full px-4 py-3 hidden sm:block"
             style={{
@@ -173,7 +173,7 @@ export default function Home() {
 
         {/* Tagline + CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.55 }}
           className="relative z-10 text-center px-4 mt-4"
         >
