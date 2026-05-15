@@ -233,10 +233,10 @@ export default function Phone() {
             <div className="overflow-hidden" style={{ border: `1px solid ${BORDER}` }}>
               {/* Header */}
               <div className="grid grid-cols-3">
-                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#d1d5db", background: "rgba(0,0,0,0.3)" }}>
+                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest" style={{ color: "#9ca3af", background: "rgba(0,0,0,0.04)" }}>
                   Feature
                 </div>
-                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: "#9ca3af", background: "rgba(0,0,0,0.3)", borderLeft: `1px solid ${BORDER}` }}>
+                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: "#6b7280", background: "rgba(0,0,0,0.04)", borderLeft: `1px solid ${BORDER}` }}>
                   MOVI Standard
                 </div>
                 <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: RED, background: "rgba(239,65,54,0.06)", borderLeft: `1px solid ${BORDER}` }}>
