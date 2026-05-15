@@ -124,7 +124,7 @@ export default function Home() {
           />
 
           <img
-            src="/images/movi2-render.webp"
+            src="/images/movi-hero.png"
             alt="MOVI — smartphone with built-in laser projector"
             fetchPriority="high"
             loading="eager"
