@@ -32,6 +32,28 @@ export function RedText({ children }) {
   return <span style={{ color: RED }}>{children}</span>;
 }
 
+export function FeaturePill({ children }) {
+  return (
+    <span
+      className="px-3 py-1.5 rounded-full text-xs font-semibold"
+      style={{ background: "rgba(239,65,54,0.1)", border: "1px solid rgba(239,65,54,0.2)", color: "#fca5a5" }}
+    >
+      {children}
+    </span>
+  );
+}
+
+export function SpecPill({ children }) {
+  return (
+    <span
+      className="px-3 py-1.5 rounded-full text-xs font-semibold"
+      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: "#94a3b8" }}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function fi(delay = 0) {
   return {
     initial:     { opacity: 0, y: 18 },

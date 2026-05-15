@@ -11,4 +11,38 @@ body {
   overflow-x: hidden;
 }
 
+/* ── Announcement ticker ──────────────────── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
+.ticker-track {
+  display: flex;
+  animation: ticker 40s linear infinite;
+  will-change: transform;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Glow pulse on phone render ───────────── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.85; }
+}
+
+.glow-pulse {
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+/* ── Subtle floating for hero badges ─────── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-6px);  }
+}
+
+.float-badge {
+  animation: floatY 4s ease-in-out infinite;
+}
