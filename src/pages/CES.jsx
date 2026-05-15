@@ -1,7 +1,4 @@
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
 const PRESS_LINKS = [
@@ -44,14 +41,6 @@ const MEDIA_LINKS = [
 ];
 
 export default function CES() {
-  const [galleryRef, gallerySlider] = useKeenSlider({
-    loop: true, mode: "snap", drag: true,
-    slides: { perView: 1, spacing: 12 },
-    breakpoints: {
-      "(min-width: 640px)":  { slides: { perView: 2, spacing: 16 } },
-      "(min-width: 1024px)": { slides: { perView: 3, spacing: 20 } },
-    },
-  });
 
   return (
     <div className="min-h-screen">
@@ -115,40 +104,6 @@ export default function CES() {
           </GlassCard>
         </motion.div>
 
-        {/* ── GALLERY SLIDER ───────────────────────── */}
-        <motion.div {...fi()} className="mb-6">
-          <Chip>Gallery</Chip>
-          <h2 className="text-4xl font-extrabold mt-3 mb-4 ">The Perfect MOVI Experience</h2>
-          <p style={{ color: "#6b7280" }} className="text-lg max-w-xl mb-10">
-            From outdoor movie nights to business presentations — everywhere deserves a bigger screen.
-          </p>
-        </motion.div>
-
-        <motion.div {...fi(0.1)} className="relative mb-20">
-          <div ref={galleryRef} className="keen-slider rounded-2xl overflow-hidden">
-            {["/images/usecase-1.jpg","/images/usecase-1b.jpg","/images/usecase-3.jpg",
-              "/images/usecase-4.jpg","/images/usecase-5.jpg","/images/usecase-6.jpg",
-              "/images/usecase-7.jpg","/images/usecase-8.jpg","/images/feature-1.jpeg",
-              "/images/feature-2.jpeg","/images/feature-3.jpeg"].map((src, n) => (
-              <div key={n} className="keen-slider__slide">
-                <div className="rounded-2xl overflow-hidden" style={{ height: 320 }}>
-                  <img src={src} alt={`MOVI use case ${n + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-                </div>
-              </div>
-            ))}
-          </div>
-          <button onClick={() => gallerySlider.current?.prev()}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
-            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}` }}>
-            <ChevronLeft size={18} />
-          </button>
-          <button onClick={() => gallerySlider.current?.next()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
-            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}` }}>
-            <ChevronRight size={18} />
-          </button>
-        </motion.div>
 
         {/* ── PR NEWSWIRE ──────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
