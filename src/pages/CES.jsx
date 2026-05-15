@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/shared";
+import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
 const PRESS_LINKS = [
   ["Yahoo", "https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
