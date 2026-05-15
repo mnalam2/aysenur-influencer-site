@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
 const PRESS_LINKS = [
@@ -104,6 +105,66 @@ export default function CES() {
           </GlassCard>
         </motion.div>
 
+
+        {/* ── TIME ARTICLE FEATURE ─────────────────── */}
+        <motion.div {...fi(0.05)} className="mb-20">
+          <Chip>Featured Coverage</Chip>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-8 uppercase leading-tight">
+            As Seen in <RedText>TIME</RedText>
+          </h2>
+          <a
+            href="https://time.com/5097330/android-projector-phone-ces-2018/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", display: "block" }}
+          >
+            <div
+              className="overflow-hidden flex flex-col sm:flex-row hover:shadow-lg transition-shadow duration-300"
+              style={{ border: `1px solid ${BORDER}`, background: CARD }}
+            >
+              {/* Article image */}
+              <div className="sm:w-72 flex-shrink-0 overflow-hidden" style={{ minHeight: 220 }}>
+                <img
+                  src="/images/projector-hero.jpg"
+                  alt="MOVI phone featured in TIME"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  style={{ minHeight: 220 }}
+                />
+              </div>
+              {/* Article content */}
+              <div className="flex flex-col justify-between p-7 sm:p-9 flex-1">
+                <div>
+                  {/* TIME logo */}
+                  <div className="flex items-center gap-2 mb-5">
+                    <span
+                      className="font-extrabold tracking-tighter"
+                      style={{ color: "#e21b1b", fontSize: "1.4rem", letterSpacing: "-0.04em" }}
+                    >
+                      TIME
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "#9ca3af" }}>
+                      · January 2018
+                    </span>
+                  </div>
+                  <h3
+                    className="font-extrabold leading-snug mb-3"
+                    style={{ fontSize: "clamp(1.1rem,2.5vw,1.5rem)", color: "#0a0c0f", letterSpacing: "-0.02em" }}
+                  >
+                    This Android Phone With a Built-In Projector Is Perfect For Movie Lovers
+                  </h3>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: "#6b7280" }}>
+                    by Lisa Eadicicco — The Movi phone wants to solve the problem of watching movies and
+                    TV shows on tiny smartphone screens by adding a pico-projector that can beam content
+                    onto any flat surface up to 100 inches.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: RED }}>
+                  Read on TIME.com <ExternalLink size={14} />
+                </div>
+              </div>
+            </div>
+          </a>
+        </motion.div>
 
         {/* ── PR NEWSWIRE ──────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
