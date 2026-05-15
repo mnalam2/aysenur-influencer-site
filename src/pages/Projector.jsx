@@ -45,7 +45,7 @@ export default function Projector() {
           <motion.div {...fi(0.1)} className="order-2 lg:order-1">
             <div className="relative rounded-3xl overflow-hidden"
               style={{ boxShadow: `0 0 80px rgba(239,65,54,0.2)` }}>
-              <img src="/images/projector-hero.jpg"
+              <img src="/images/about-back.png"
                 alt="MOVI phone projecting a photo onto a wall"
                 className="w-full object-cover" style={{ maxHeight: 520 }} />
               <div className="absolute inset-0"
