@@ -56,14 +56,13 @@ export default function Home() {
   };
 
   return (
-    <div style={{ background: BG }}>
+    <div>
 
       {/* ── HERO: Full-viewport, light, dot-grid ────────── */}
       <section
         className="relative flex flex-col items-center justify-center overflow-hidden dot-grid"
         style={{
           minHeight: "100svh",
-          background: BG,
           paddingTop: "88px",
           paddingBottom: "64px",
         }}
@@ -235,7 +234,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS — huge editorial numbers ──────────────── */}
-      <section style={{ background: BG }}>
+      <section>
         <div className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6">
             {[
@@ -314,7 +313,7 @@ export default function Home() {
       </section>
 
       {/* ── FEATURE: TECHNOLOGY — dot-grid, reversed ─────── */}
-      <section className="overflow-hidden dot-grid" style={{ background: BG, borderTop: `1px solid ${BORDER}` }}>
+      <section className="overflow-hidden dot-grid" style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="flex flex-col lg:flex-row-reverse">
           <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden" style={{ minHeight: 440 }}>
             <img
@@ -400,7 +399,7 @@ export default function Home() {
       </section>
 
       {/* ── VIDEO ────────────────────────────────────────── */}
-      <section style={{ background: BG, borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-10 text-center">
             <div className="text-[10px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#d1d5db" }}>
@@ -506,7 +505,7 @@ export default function Home() {
       </section>
 
       {/* ── PRESS — editorial minimal ─────────────────────── */}
-      <section style={{ background: BG, borderTop: `1px solid ${BORDER}` }} className="py-16">
+      <section style={{ borderTop: `1px solid ${BORDER}` }} className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fi()} className="text-center">
             <div className="text-[9px] font-bold tracking-[0.28em] uppercase mb-10" style={{ color: "#d1d5db" }}>

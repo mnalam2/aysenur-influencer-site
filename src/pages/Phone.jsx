@@ -40,13 +40,12 @@ export default function Phone() {
   });
 
   return (
-    <div style={{ background: BG }} className="min-h-screen">
+    <div className="min-h-screen">
 
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
         style={{
-          background: BG,
           paddingTop: "88px",
         }}
       >
@@ -301,7 +300,7 @@ export default function Phone() {
       </section>
 
       {/* ── FULL SPEC TABLE ───────────────────────────── */}
-      <section style={{ background: BG, borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi()} className="mb-12">
             <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#d1d5db" }}>

@@ -96,8 +96,16 @@ function Layout() {
   const navScrolled = scrollY > 40;
 
   return (
-    <div style={{ background: BG, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
+    <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
+
+      {/* Fixed dot-grid canvas — stays put as content scrolls over it */}
+      <div aria-hidden="true" style={{
+        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
+        backgroundColor: "#f9f8f5",
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.13) 1px, transparent 1px)",
+        backgroundSize: "22px 22px",
+      }} />
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header
@@ -248,10 +256,12 @@ function Layout() {
       </header>
 
       {/* ── PAGE CONTENT ────────────────────────────── */}
-      <Outlet />
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Outlet />
+      </div>
 
       {/* ── FOOTER ───────────────────────────────────── */}
-      <footer style={{ borderTop: `1px solid ${BORDER}`, background: BG }}>
+      <footer style={{ borderTop: `1px solid ${BORDER}`, position: "relative", zIndex: 1 }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
 

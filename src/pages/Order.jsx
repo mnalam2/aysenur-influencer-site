@@ -4,12 +4,12 @@ import { RED, BG, BORDER, GlassCard, fi } from "../components/shared";
 
 export default function Order() {
   return (
-    <div style={{ background: BG }} className="min-h-screen">
+    <div className="min-h-screen">
 
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ background: BG, paddingTop: "88px" }}
+        style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 65%)"

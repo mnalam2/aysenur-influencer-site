@@ -11,11 +11,9 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Dot grid background (Nothing-phone inspired) ── */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
+/* dot-grid sections are transparent — the fixed canvas in App.jsx provides
+   the dot pattern so it never moves while content scrolls over it. */
+.dot-grid { background: transparent; }
 
 /* ── Announcement ticker ──────────────────────── */
 @keyframes ticker {

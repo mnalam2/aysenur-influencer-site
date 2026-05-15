@@ -11,11 +11,11 @@ export default function Projector() {
   });
 
   return (
-    <div style={{ background: BG }} className="min-h-screen">
+    <div className="min-h-screen">
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <div
         className="relative overflow-hidden dot-grid"
-        style={{ background: BG, paddingTop: "88px" }}
+        style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(0,180,232,0.06) 0%, transparent 65%)"

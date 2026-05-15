@@ -4,13 +4,12 @@ import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
 
 export default function About() {
   return (
-    <div style={{ background: BG }} className="min-h-screen">
+    <div className="min-h-screen">
 
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
         style={{
-          background: BG,
           paddingTop: "88px",
         }}
       >
@@ -37,7 +36,7 @@ export default function About() {
       </section>
 
       {/* ── COMPANY STORY ─────────────────────────────── */}
-      <section style={{ background: BG, borderTop: `1px solid ${BORDER}` }}>
+      <section style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20 lg:py-28">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
@@ -59,7 +58,7 @@ export default function About() {
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-px mb-12" style={{ background: BORDER }}>
                 {[{ n: "2008", l: "Founded" },{ n: "San Diego", l: "HQ" },{ n: "2027", l: "MOVI TWO" }].map((s) => (
-                  <div key={s.l} className="px-5 py-6" style={{ background: BG }}>
+                  <div key={s.l} className="px-5 py-6">
                     <div
                       className="font-extrabold mb-1"
                       style={{ color: "#0a0c0f", fontSize: "1.5rem", letterSpacing: "-0.03em" }}
