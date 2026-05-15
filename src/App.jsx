@@ -103,14 +103,16 @@ function Layout() {
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundColor: "#f9f8f5",
-        // Hexagonally-offset circle outlines — honeycomb ring lattice.
-        // Two identical layers shifted by (half-col, half-row) to form the hex offset.
+        // Triangular wireframe mesh: three line families at 0°/60°/120°
+        // form equilateral triangles. Filled-circle dots at vertices add
+        // a node accent. Darker contrast (0.13 / 0.18) than dot grids.
         backgroundImage: [
-          "radial-gradient(circle, transparent 24px, rgba(0,0,0,0.07) 24px, rgba(0,0,0,0.07) 25px, transparent 25px)",
-          "radial-gradient(circle, transparent 24px, rgba(0,0,0,0.07) 24px, rgba(0,0,0,0.07) 25px, transparent 25px)",
+          "repeating-linear-gradient(0deg,   transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
+          "repeating-linear-gradient(60deg,  transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
+          "repeating-linear-gradient(120deg, transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
+          "radial-gradient(circle, rgba(10,12,15,0.32) 1.6px, transparent 1.6px)",
         ].join(", "),
-        backgroundSize: "52px 90px",
-        backgroundPosition: "0 0, 26px 45px",
+        backgroundSize: "auto, auto, auto, 32.33px 56px",
       }} />
 
       {/* ── HEADER ───────────────────────────────────── */}
