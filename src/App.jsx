@@ -99,21 +99,38 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed background canvas — stays put while content scrolls */}
+      {/* Fixed aurora canvas — soft drifting color blobs + whisper-faint dot grid.
+          Blobs slowly orbit (CSS keyframes) creating a living, ethereal feel.
+          Pattern is fixed to the viewport so content scrolls over a "world" that breathes. */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundColor: "#f9f8f5",
-        // Triangular wireframe mesh: three line families at 0°/60°/120°
-        // form equilateral triangles. Filled-circle dots at vertices add
-        // a node accent. Darker contrast (0.13 / 0.18) than dot grids.
-        backgroundImage: [
-          "repeating-linear-gradient(0deg,   transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
-          "repeating-linear-gradient(60deg,  transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
-          "repeating-linear-gradient(120deg, transparent 0, transparent 27px, rgba(10,12,15,0.13) 27px, rgba(10,12,15,0.13) 28px)",
-          "radial-gradient(circle, rgba(10,12,15,0.32) 1.6px, transparent 1.6px)",
-        ].join(", "),
-        backgroundSize: "auto, auto, auto, 32.33px 56px",
-      }} />
+        backgroundColor: "#f9f8f5", overflow: "hidden",
+      }}>
+        <div className="aurora-blob aurora-blob--red" style={{
+          position: "absolute", top: "-25%", left: "-20%",
+          width: "85vmax", height: "85vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(239,65,54,0.18), rgba(239,65,54,0) 62%)",
+          filter: "blur(40px)",
+        }} />
+        <div className="aurora-blob aurora-blob--cyan" style={{
+          position: "absolute", bottom: "-25%", right: "-20%",
+          width: "90vmax", height: "90vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(13,180,232,0.16), rgba(13,180,232,0) 62%)",
+          filter: "blur(40px)",
+        }} />
+        <div className="aurora-blob aurora-blob--violet" style={{
+          position: "absolute", top: "30%", left: "40%",
+          width: "60vmax", height: "60vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(120,90,220,0.10), rgba(120,90,220,0) 62%)",
+          filter: "blur(50px)",
+        }} />
+        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }} />
+      </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header

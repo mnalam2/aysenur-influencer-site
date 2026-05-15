@@ -12,8 +12,28 @@ body {
 }
 
 /* dot-grid sections are transparent — the fixed canvas in App.jsx provides
-   the dot pattern so it never moves while content scrolls over it. */
+   the pattern so it never moves while content scrolls over it. */
 .dot-grid { background: transparent; }
+
+/* ── Aurora blob drift — three offset orbits give an organic, "breathing" feel ── */
+@keyframes auroraDriftA {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(8vw,  -6vh, 0) scale(1.10); }
+  66%      { transform: translate3d(-7vw,  9vh, 0) scale(0.94); }
+}
+@keyframes auroraDriftB {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  25%      { transform: translate3d(-9vw, 8vh, 0) scale(0.92); }
+  60%      { transform: translate3d(6vw, -7vh, 0) scale(1.12); }
+}
+@keyframes auroraDriftC {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(5vw,  10vh, 0) scale(1.15); }
+}
+.aurora-blob          { will-change: transform; }
+.aurora-blob--red     { animation: auroraDriftA 28s ease-in-out infinite; }
+.aurora-blob--cyan    { animation: auroraDriftB 36s ease-in-out infinite; }
+.aurora-blob--violet  { animation: auroraDriftC 24s ease-in-out infinite; }
 
 /* ── Announcement ticker ──────────────────────── */
 @keyframes ticker {
