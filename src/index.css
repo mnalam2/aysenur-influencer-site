@@ -62,3 +62,13 @@ body {
 .scroll-bounce {
   animation: bounceY 1.8s ease-in-out infinite;
 }
+
+/* ── Blue square pulse (WMS logo) ────────── */
+@keyframes blueSquarePulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(13, 180, 232, 0); }
+  50%       { box-shadow: 0 0 8px 4px rgba(13, 180, 232, 0.9); }
+}
+
+.blue-sq-pulse {
+  animation: blueSquarePulse 2s ease-in-out infinite;
+}

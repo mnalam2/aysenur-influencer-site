@@ -1,58 +1,36 @@
-import { RED } from "./shared";
+const IMG_ASPECT = 931 / 473;
+const LOGO_H = 44;
+const LOGO_W = Math.round(LOGO_H * IMG_ASPECT); // ~87px
+const SQ_LEFT_PCT = [63.5, 71.2, 78.9];
+const SQ_TOP_PX   = Math.round(LOGO_H * 0.691); // ~30px
+const SQ_W_PX     = Math.round(LOGO_W * 0.062); // ~5px
+const SQ_H_PX     = Math.round(LOGO_H * 0.110); // ~5px
 
 export default function WMSLogo() {
   return (
     <div
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 11,
-        lineHeight: 1,
-      }}
+      style={{ position: "relative", display: "inline-block", lineHeight: 0 }}
       aria-label="WMS — Wireless Mobi Solution"
     >
-      {/* WMS. wordmark — clean, deck-style */}
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "baseline",
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 900,
-          fontSize: "1.45rem",
-          letterSpacing: "-0.045em",
-          color: "#0a0c0f",
-          lineHeight: 1,
-        }}
-      >
-        WMS<span style={{ color: RED, marginLeft: 1 }}>.</span>
-      </div>
-
-      {/* Separator */}
-      <div
-        style={{
-          width: 1,
-          height: 22,
-          background: "rgba(0,0,0,0.14)",
-          flexShrink: 0,
-        }}
+      <img
+        src="/images/wms-logo.jpeg"
+        alt="WMS logo"
+        style={{ height: LOGO_H, width: LOGO_W, display: "block", objectFit: "cover" }}
       />
-
-      {/* Subtitle wordmark */}
-      <div
-        style={{
-          fontSize: "0.55rem",
-          fontWeight: 700,
-          letterSpacing: "0.15em",
-          color: "#94a3b8",
-          lineHeight: 1.3,
-          textTransform: "uppercase",
-          whiteSpace: "nowrap",
-        }}
-      >
-        Wireless Mobi
-        <br />
-        Solution
-      </div>
+      {SQ_LEFT_PCT.map((leftPct, i) => (
+        <div
+          key={i}
+          className="blue-sq-pulse"
+          style={{
+            position: "absolute",
+            left: `${leftPct}%`,
+            top: SQ_TOP_PX,
+            width: SQ_W_PX,
+            height: SQ_H_PX,
+            animationDelay: `${i * 0.28}s`,
+          }}
+        />
+      ))}
     </div>
   );
 }
