@@ -103,13 +103,14 @@ function Layout() {
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundColor: "#f9f8f5",
+        // Hexagonally-offset circle outlines — honeycomb ring lattice.
+        // Two identical layers shifted by (half-col, half-row) to form the hex offset.
         backgroundImage: [
-          // Concentric rings from viewport center — evokes a projector lens
-          "repeating-radial-gradient(circle at 50% 46%, transparent 0px, transparent 72px, rgba(0,0,0,0.055) 72px, rgba(0,0,0,0.055) 73px)",
-          // Fine square dot grid layered on top
-          "radial-gradient(circle, rgba(0,0,0,0.12) 1.5px, transparent 1.5px)",
+          "radial-gradient(circle, transparent 24px, rgba(0,0,0,0.07) 24px, rgba(0,0,0,0.07) 25px, transparent 25px)",
+          "radial-gradient(circle, transparent 24px, rgba(0,0,0,0.07) 24px, rgba(0,0,0,0.07) 25px, transparent 25px)",
         ].join(", "),
-        backgroundSize: "auto, 28px 28px",
+        backgroundSize: "52px 90px",
+        backgroundPosition: "0 0, 26px 45px",
       }} />
 
       {/* ── HEADER ───────────────────────────────────── */}
