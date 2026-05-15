@@ -54,6 +54,18 @@ const NAV = [
   { to: "/support",   label: "Support"                 },
 ];
 
+/* ── ANNOUNCEMENT TICKER ITEMS ───────────────────────────── */
+const TICKER_ITEMS = [
+  "CES 2018 · Las Vegas Debut",
+  "Time Magazine · Best of CES",
+  "PCMag Editor's Pick",
+  "100-Inch Projection",
+  "Always in Focus — No Warm-Up",
+  "Free USA Shipping",
+  "Android · 4G LTE Unlocked",
+  "MOVI TWO Coming 2027",
+];
+
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -91,11 +103,34 @@ function Layout() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: navScrolled ? "rgba(10,12,15,0.97)" : "transparent",
-          backdropFilter: navScrolled ? "blur(18px)" : "none",
+          background: navScrolled ? "rgba(10,12,15,0.97)" : "rgba(10,12,15,0.78)",
+          backdropFilter: "blur(18px)",
           borderBottom: navScrolled ? `1px solid ${BORDER}` : "none",
         }}
       >
+        {/* Announcement ticker — top strip inside header */}
+        <div
+          className="overflow-hidden py-2"
+          style={{
+            background: "rgba(239,65,54,0.1)",
+            borderBottom: "1px solid rgba(239,65,54,0.18)",
+          }}
+        >
+          <div className="ticker-track">
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span
+                key={i}
+                className="flex-shrink-0 flex items-center text-[10px] sm:text-xs font-bold uppercase tracking-widest px-5"
+                style={{ color: RED }}
+              >
+                {item}
+                <span className="ml-5 opacity-30">·</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Nav row */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" style={{ textDecoration: "none" }} onClick={() => setMobileOpen(false)}>

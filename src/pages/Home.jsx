@@ -4,17 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, FeaturePill, SpecPill, fi } from "../components/shared";
 
-const TICKER_ITEMS = [
-  "CES 2018 · Las Vegas Debut",
-  "Time Magazine · Best of CES",
-  "PCMag Editor's Pick",
-  "100-Inch Projection",
-  "Always in Focus — No Warm-Up",
-  "Free USA Shipping",
-  "Android · 4G LTE Unlocked",
-  "MOVI TWO Coming 2027",
-];
-
 const FEATURES = [
   {
     tag: "Projection",
@@ -99,26 +88,9 @@ export default function Home() {
   return (
     <div style={{ background: BG }}>
 
-      {/* ── ANNOUNCEMENT TICKER ──────────────────────────────────── */}
-      <div className="overflow-hidden py-2.5"
-        style={{ background: "rgba(239,65,54,0.08)", borderBottom: "1px solid rgba(239,65,54,0.18)" }}>
-        <div className="ticker-track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span
-              key={i}
-              className="flex-shrink-0 flex items-center text-xs font-bold uppercase tracking-widest px-6"
-              style={{ color: RED }}
-            >
-              {item}
-              <span className="ml-6 opacity-30">·</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section
-        className="relative pt-24 pb-0 overflow-hidden"
+        className="relative pt-32 pb-0 overflow-hidden"
         style={{ background: "linear-gradient(180deg,#0d1018 0%,#0a0c0f 100%)" }}
       >
         {/* Background red bloom */}
