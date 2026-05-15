@@ -26,8 +26,8 @@ export default function Projector() {
             Projector Technology
           </div>
           <h1
-            className="font-extrabold leading-none text-white mb-6"
-            style={{ fontSize: "clamp(2.5rem,7vw,5rem)", letterSpacing: "-0.05em" }}
+            className="font-extrabold leading-none mb-6"
+            style={{ fontSize: "clamp(2.5rem,7vw,5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
           >
             Laser Beam Steering.<br />Always in Focus.
           </h1>
@@ -55,7 +55,7 @@ export default function Projector() {
 
           <motion.div {...fi()} className="order-1 lg:order-2">
             <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
-              MOVI uses <strong className="text-white">Laser Beam Steering (LBS)</strong> — a solid-state
+              MOVI uses <strong style={{ color: "#0a0c0f" }}>Laser Beam Steering (LBS)</strong> — a solid-state
               mirror directs a laser beam pixel-by-pixel to build a crisp, vivid image on any flat surface.
               No warm-up. No focus adjustment. No bulb to replace. Ever.
             </p>

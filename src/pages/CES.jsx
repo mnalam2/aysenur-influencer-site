@@ -69,8 +69,8 @@ export default function CES() {
               Press &amp; Media
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Seen at CES 2018
             </h1>
@@ -92,7 +92,7 @@ export default function CES() {
                 <p className="text-base leading-relaxed mb-6" style={{ color: "#6b7280" }}>
                   The MOVI smartphone made its global debut at CES 2018 in Las Vegas, January 9–12,
                   drawing international attention as one of the show's most innovative mobile devices.
-                  Exhibited at the Sands Expo, <strong className="text-white">Booth #52827</strong>.
+                  Exhibited at the Sands Expo, <strong style={{ color: "#0a0c0f" }}>Booth #52827</strong>.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {["Android Authority","Liliputing","Android Guys","Gizmochina","NotebookCheck"].map((p) => (

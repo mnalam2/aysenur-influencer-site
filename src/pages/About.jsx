@@ -22,8 +22,8 @@ export default function About() {
               About Us
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,6rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Wireless Mobi<br />Solution, Inc.
             </h1>
@@ -48,7 +48,7 @@ export default function About() {
               </p>
               <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
                 With a diverse design team in San Diego, WMS created the MOVI smartphone by asking one question:
-                <em className="text-white"> what if the screen was as big as you wanted it to be?</em>
+                <em style={{ color: "#0a0c0f", fontStyle: "italic" }}> what if the screen was as big as you wanted it to be?</em>
               </p>
               <p className="text-lg leading-relaxed mb-12" style={{ color: "#6b7280" }}>
                 The MOVI debuted at CES 2018. Now, MOVI TWO is coming in 2027 — the next generation of

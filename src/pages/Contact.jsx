@@ -19,8 +19,8 @@ export default function Contact() {
               Contact
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Get in Touch
             </h1>

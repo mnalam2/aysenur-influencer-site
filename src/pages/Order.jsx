@@ -20,8 +20,8 @@ export default function Order() {
               Order
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Get Your MOVI Phone
             </h1>
@@ -57,8 +57,8 @@ export default function Order() {
               </ul>
               <a
                 href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Standard&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Standard%20(3GB%2F32GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
-                className="block w-full py-3 rounded-xl text-center font-bold text-sm text-white hover:opacity-80 transition"
-                style={{ background: "rgba(0,0,0,0.04)", border: `1px solid ${BORDER}` }}
+                className="block w-full py-3 rounded-xl text-center font-bold text-sm hover:opacity-70 transition"
+                style={{ background: "rgba(0,0,0,0.04)", border: `1px solid ${BORDER}`, color: "#374151" }}
               >
                 Order MOVI
               </a>
@@ -126,7 +126,7 @@ export default function Order() {
         {/* ── WHAT'S IN THE BOX ───────────────────── */}
         <motion.div {...fi()} className="mb-16 max-w-3xl mx-auto">
           <GlassCard className="p-8">
-            <h3 className="font-bold text-lg mb-6 text-white text-center">What's in the Box</h3>
+            <h3 className="font-bold text-lg mb-6 text-center" style={{ color: "#0a0c0f" }}>What's in the Box</h3>
             <div className="grid sm:grid-cols-3 gap-4 text-center">
               {[
                 { emoji: "📱", label: "MOVI Phone",       sub: "Standard or Pro" },
@@ -138,7 +138,7 @@ export default function Order() {
               ].map((item) => (
                 <div key={item.label} className="p-4 rounded-xl" style={{ background: "rgba(0,0,0,0.02)", border: `1px solid ${BORDER}` }}>
                   <div className="text-2xl mb-2">{item.emoji}</div>
-                  <div className="font-semibold text-sm text-white mb-0.5">{item.label}</div>
+                  <div className="font-semibold text-sm mb-0.5" style={{ color: "#0a0c0f" }}>{item.label}</div>
                   <div className="text-xs" style={{ color: "#9ca3af" }}>{item.sub}</div>
                 </div>
               ))}
@@ -149,7 +149,7 @@ export default function Order() {
         {/* ── SHIPPING INFO ────────────────────────── */}
         <motion.div {...fi()} className="max-w-3xl mx-auto mb-16">
           <GlassCard className="p-8">
-            <h3 className="font-bold text-xl mb-6 text-white text-center">Shipping Information</h3>
+            <h3 className="font-bold text-xl mb-6 text-center" style={{ color: "#0a0c0f" }}>Shipping Information</h3>
             <div className="grid sm:grid-cols-3 gap-6 text-center">
               {[
                 { flag: "🇺🇸", label: "USA Shipping",    detail: "Free · 5–7 business days"      },
@@ -158,7 +158,7 @@ export default function Order() {
               ].map((s) => (
                 <div key={s.label}>
                   <div className="text-3xl mb-2">{s.flag}</div>
-                  <div className="font-bold text-sm text-white mb-1">{s.label}</div>
+                  <div className="font-bold text-sm mb-1" style={{ color: "#0a0c0f" }}>{s.label}</div>
                   <div className="text-xs" style={{ color: "#6b7280" }}>{s.detail}</div>
                 </div>
               ))}
@@ -180,7 +180,7 @@ export default function Order() {
                   style={{ background: "rgba(239,65,54,0.1)", border: "1px solid rgba(239,65,54,0.2)", color: RED }}>
                   {g.icon}
                 </div>
-                <div className="font-bold text-sm text-white mb-1">{g.label}</div>
+                <div className="font-bold text-sm mb-1" style={{ color: "#0a0c0f" }}>{g.label}</div>
                 <div className="text-xs" style={{ color: "#9ca3af" }}>{g.sub}</div>
               </GlassCard>
             ))}
@@ -196,8 +196,8 @@ export default function Order() {
               Free USA Shipping · Global &amp; Africa $100 Flat
             </div>
             <h2
-              className="font-extrabold text-white mb-10"
-              style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold mb-10"
+              style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Order Your MOVI Today
             </h2>

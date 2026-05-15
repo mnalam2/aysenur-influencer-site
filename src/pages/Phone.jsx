@@ -66,8 +66,8 @@ export default function Phone() {
               The MOVI Phone
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,7vw,5.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,7vw,5.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               A Smartphone.<br />A Cinema.<br />One Device.
             </h1>
@@ -103,8 +103,8 @@ export default function Phone() {
               </button>
               <button
                 onClick={() => navigate("/projector")}
-                className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-base text-white hover:opacity-80 transition"
-                style={{ border: "1px solid rgba(255,255,255,0.14)" }}
+                className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-base hover:opacity-70 transition"
+                style={{ border: `1px solid ${BORDER}`, color: "#374151" }}
               >
                 Projector Tech <ArrowRight size={15} />
               </button>
@@ -235,7 +235,7 @@ export default function Phone() {
                   style={{ borderTop: `1px solid ${BORDER}`, background: i % 2 === 1 ? "rgba(255,255,255,0.01)" : "transparent" }}
                 >
                   <div className="px-6 py-4 font-medium text-sm" style={{ color: "#9ca3af" }}>{feat}</div>
-                  <div className="px-6 py-4 font-semibold text-white text-center" style={{ borderLeft: `1px solid ${BORDER}` }}>{std}</div>
+                  <div className="px-6 py-4 font-semibold text-center" style={{ borderLeft: `1px solid ${BORDER}`, color: "#374151" }}>{std}</div>
                   <div className="px-6 py-4 font-bold text-center" style={{ color: RED, borderLeft: `1px solid ${BORDER}`, background: "rgba(239,65,54,0.03)" }}>{pro}</div>
                 </div>
               ))}
@@ -255,8 +255,8 @@ export default function Phone() {
                     MOVI TWO
                   </div>
                   <h3
-                    className="font-extrabold text-white mb-6"
-                    style={{ fontSize: "clamp(1.8rem,3vw,2.5rem)", letterSpacing: "-0.04em" }}
+                    className="font-extrabold mb-6"
+                    style={{ fontSize: "clamp(1.8rem,3vw,2.5rem)", letterSpacing: "-0.04em", color: "#0a0c0f" }}
                   >
                     MOVI-2 DLP Projector Engine
                   </h3>
@@ -277,13 +277,13 @@ export default function Phone() {
                     Upcoming Launch
                   </div>
                   <div
-                    className="font-extrabold text-white mb-2"
-                    style={{ fontSize: "clamp(2rem,4vw,3rem)", letterSpacing: "-0.04em" }}
+                    className="font-extrabold mb-2"
+                    style={{ fontSize: "clamp(2rem,4vw,3rem)", letterSpacing: "-0.04em", color: "#0a0c0f" }}
                   >
                     CES 2027
                   </div>
                   <div className="text-sm mb-6" style={{ color: "#9ca3af" }}>
-                    Launch date: <strong className="text-white">Q1, 2027</strong>
+                    Launch date: <strong style={{ color: "#0a0c0f" }}>Q1, 2027</strong>
                   </div>
                   <a
                     href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
@@ -350,8 +350,8 @@ export default function Phone() {
                 Use Cases
               </div>
               <h2
-                className="font-extrabold text-white mb-10"
-                style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95 }}
+                className="font-extrabold mb-10"
+                style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95, color: "#0a0c0f" }}
               >
                 What Can the<br />MOVI Do?
               </h2>

@@ -65,8 +65,8 @@ export default function Support() {
               Support
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(3rem,8vw,5.5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               How Can We<br />Help You?
             </h1>
@@ -80,7 +80,7 @@ export default function Support() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-20">
         {/* ── FAQ ──────────────────────────────────── */}
         <motion.div {...fi()} className="mb-10">
-          <h2 className="text-3xl font-extrabold text-white mb-2">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-extrabold mb-2" style={{ color: "#0a0c0f" }}>Frequently Asked Questions</h2>
           <p style={{ color: "#6b7280" }}>Can't find your answer? Email us — we respond personally.</p>
         </motion.div>
 

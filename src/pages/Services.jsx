@@ -19,8 +19,8 @@ export default function Services() {
               Enterprise Services
             </div>
             <h1
-              className="font-extrabold leading-none text-white mb-6"
-              style={{ fontSize: "clamp(2.5rem,7vw,5rem)", letterSpacing: "-0.05em" }}
+              className="font-extrabold leading-none mb-6"
+              style={{ fontSize: "clamp(2.5rem,7vw,5rem)", letterSpacing: "-0.05em", color: "#0a0c0f" }}
             >
               Beyond the Phone.<br />Full Wireless Solutions.
             </h1>
