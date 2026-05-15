@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence kept for mobile menu + scroll-top
 import { Menu, X, ArrowUp, Check, Mail, Phone, MapPin } from "lucide-react";
@@ -69,14 +69,25 @@ const TICKER_ITEMS = [
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
-  const [scrollY, setScrollY]         = useState(0);
-  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [scrollY, setScrollY]             = useState(0);
+  const [mobileOpen, setMobileOpen]       = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const fn = () => {
-      setScrollY(window.scrollY);
-      setShowScrollTop(window.scrollY > 600);
+      const current = window.scrollY;
+      if (current < 10) {
+        setHeaderVisible(true);
+      } else if (current > lastScrollY.current + 4) {
+        setHeaderVisible(false);
+      } else if (current < lastScrollY.current - 4) {
+        setHeaderVisible(true);
+      }
+      lastScrollY.current = current;
+      setScrollY(current);
+      setShowScrollTop(current > 600);
     };
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
@@ -134,8 +145,10 @@ function Layout() {
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50"
         style={{
+          transform: headerVisible ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 0.3s ease, background 0.3s",
           background: navScrolled ? "rgba(249,248,245,0.97)" : "rgba(249,248,245,0.88)",
           backdropFilter: "blur(20px)",
           borderBottom: `1px solid ${BORDER}`,
