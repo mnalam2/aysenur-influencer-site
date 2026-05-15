@@ -58,10 +58,10 @@ export default function About() {
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-px mb-12" style={{ background: BORDER }}>
                 {[{ n: "2008", l: "Founded" },{ n: "San Diego", l: "HQ" },{ n: "2027", l: "MOVI TWO" }].map((s) => (
-                  <div key={s.l} className="px-5 py-6">
+                  <div key={s.l} className="px-5 py-6 flex flex-col justify-between" style={{ minHeight: 80 }}>
                     <div
                       className="font-extrabold mb-1"
-                      style={{ color: "#0a0c0f", fontSize: "1.5rem", letterSpacing: "-0.03em" }}
+                      style={{ color: "#0a0c0f", fontSize: s.n.length > 4 ? "1.1rem" : "1.5rem", letterSpacing: "-0.03em", lineHeight: 1.1 }}
                     >
                       {s.n}
                     </div>
