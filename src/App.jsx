@@ -99,12 +99,17 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed dot-grid canvas — stays put as content scrolls over it */}
+      {/* Fixed background canvas — stays put while content scrolls */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundColor: "#f9f8f5",
-        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.13) 1px, transparent 1px)",
-        backgroundSize: "22px 22px",
+        backgroundImage: [
+          // Concentric rings from viewport center — evokes a projector lens
+          "repeating-radial-gradient(circle at 50% 46%, transparent 0px, transparent 72px, rgba(0,0,0,0.055) 72px, rgba(0,0,0,0.055) 73px)",
+          // Fine square dot grid layered on top
+          "radial-gradient(circle, rgba(0,0,0,0.12) 1.5px, transparent 1.5px)",
+        ].join(", "),
+        backgroundSize: "auto, 28px 28px",
       }} />
 
       {/* ── HEADER ───────────────────────────────────── */}
