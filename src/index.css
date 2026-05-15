@@ -63,24 +63,3 @@ body {
   animation: bounceY 1.8s ease-in-out infinite;
 }
 
-/* ── WMS logo: sequential loading squares ─── */
-/* All three share a 2.4 s cycle. Squares pop in one by one,
-   hold together briefly, then all vanish — repeat. */
-@keyframes sqLoad0 {
-  0%,   5%  { opacity: 0; transform: scale(0.4); }
-  18%,  82% { opacity: 1; transform: scale(1); }
-  94%, 100% { opacity: 0; transform: scale(0.4); }
-}
-@keyframes sqLoad1 {
-  0%,  33%  { opacity: 0; transform: scale(0.4); }
-  46%,  82% { opacity: 1; transform: scale(1); }
-  94%, 100% { opacity: 0; transform: scale(0.4); }
-}
-@keyframes sqLoad2 {
-  0%,  60%  { opacity: 0; transform: scale(0.4); }
-  72%,  82% { opacity: 1; transform: scale(1); }
-  94%, 100% { opacity: 0; transform: scale(0.4); }
-}
-.sq-load-0 { animation: sqLoad0 2.4s ease-in-out infinite; }
-.sq-load-1 { animation: sqLoad1 2.4s ease-in-out infinite; }
-.sq-load-2 { animation: sqLoad2 2.4s ease-in-out infinite; }
