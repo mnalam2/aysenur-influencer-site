@@ -132,7 +132,7 @@ export default function Projector() {
         <motion.div {...fi(0.1)} className="relative mb-20">
           <div ref={anywhereRef} className="keen-slider rounded-2xl overflow-hidden">
             {["/images/usecase-5.jpg","/images/usecase-6.jpg","/images/usecase-7.jpg",
-              "/images/usecase-8.jpg","/images/projector-hero.jpg"].map((src, i) => (
+              "/images/usecase-8.jpg"].map((src, i) => (
               <div key={i} className="keen-slider__slide">
                 <div style={{ height: 420 }}>
                   <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
