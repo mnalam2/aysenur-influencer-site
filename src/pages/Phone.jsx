@@ -399,22 +399,19 @@ export default function Phone() {
           </motion.div>
 
           <motion.div {...fi(0.1)} className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ background: BORDER }}>
-            <div className="overflow-hidden" style={{ height: 320 }}>
-              <img
-                src="/uploads/2021/05/img5_aa3380b2-d302-4440-826d-40ea8e27d2b4.jpg"
-                alt="MOVI projector gaming session"
-                loading="lazy"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="overflow-hidden" style={{ height: 320 }}>
-              <img
-                src="/uploads/2021/06/perfact-movi-lover9.jpg"
-                alt="MOVI outdoor movie night"
-                loading="lazy"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
+            {[
+              { src: "/uploads/2021/05/img5_aa3380b2-d302-4440-826d-40ea8e27d2b4.jpg", alt: "MOVI projector gaming session" },
+              { src: "/uploads/2021/06/perfact-movi-lover9.jpg",                        alt: "MOVI outdoor movie night"     },
+              { src: "/uploads/img15.jpg",                                               alt: "MOVI 3D projection"           },
+              { src: "/uploads/img16.jpg",                                               alt: "MOVI family movie"            },
+            ].map((img, i) => (
+              <div key={i} className="overflow-hidden" style={{ height: 320 }}>
+                <img
+                  src={img.src} alt={img.alt} loading="lazy"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
