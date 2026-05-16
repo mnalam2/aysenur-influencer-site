@@ -9,7 +9,7 @@ import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/share
 
 const GALLERY_IMGS = [
   { src: "/images/usecase-1.jpg",  alt: "MOVI outdoor projection"  },
-  { src: "/images/usecase-1b.jpg", alt: "MOVI outdoor lady"        },
+  { src: "/uploads/IMG_0680.jpeg", alt: "MOVI outdoor lady"        },
   { src: "/images/usecase-3.jpg",  alt: "MOVI educational use"     },
   { src: "/images/usecase-4.jpg",  alt: "MOVI ceiling projection"  },
 ];
