@@ -154,9 +154,9 @@ function Layout() {
         <div
           className="overflow-hidden"
           style={{
-            background: "rgba(239,65,54,0.07)",
-            borderBottom: "1px solid rgba(239,65,54,0.15)",
-            height: 28,
+            background: "#0a0c0f",
+            borderBottom: "1px solid rgba(255,255,255,0.06)",
+            height: 36,
             display: "flex",
             alignItems: "center",
           }}
@@ -165,11 +165,11 @@ function Layout() {
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="flex-shrink-0 flex items-center font-bold uppercase px-6"
-                style={{ color: RED, fontSize: "9px", letterSpacing: "0.2em", opacity: 0.85 }}
+                className="flex-shrink-0 flex items-center font-semibold uppercase px-6"
+                style={{ color: "#f5f5f7", fontSize: "11px", letterSpacing: "0.14em" }}
               >
                 {item}
-                <span className="ml-6 opacity-20">·</span>
+                <span className="ml-6" style={{ color: RED, opacity: 0.7 }}>·</span>
               </span>
             ))}
           </div>
