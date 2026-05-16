@@ -109,38 +109,34 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed static canvas — warm cream base with abstract laser beams:
-          three diffused diagonal light trails (brand red, cool cyan, soft violet)
-          crossing the viewport, plus radial bloom points and an edge vignette. */}
+      {/* Fixed static canvas — projection-on-wall effect: a warm dimmed plaster
+          wall lit by a soft warm spotlight with a strong corner vignette so the
+          viewport reads as a surface being projected onto. */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundColor: "#f9f8f5", overflow: "hidden",
+        backgroundColor: "#ede5d4", overflow: "hidden",
       }}>
-        {/* Diagonal laser beams — diffused linear gradients with soft edges */}
+        {/* Wall plaster grain — fine fractal noise for surface texture */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: [
-            // Brand red beam — top-left → bottom-right
-            "linear-gradient(118deg, transparent 22%, rgba(239,65,54,0.10) 44%, rgba(239,65,54,0.22) 50%, rgba(239,65,54,0.10) 56%, transparent 78%)",
-            // Cool cyan beam — top-right → bottom-left
-            "linear-gradient(242deg, transparent 26%, rgba(70,170,220,0.08) 47%, rgba(70,170,220,0.18) 52%, rgba(70,170,220,0.08) 57%, transparent 76%)",
-            // Soft violet accent — shallower angle
-            "linear-gradient(162deg, transparent 38%, rgba(160,110,210,0.09) 50%, transparent 62%)",
-          ].join(", "),
+          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0 0.10 0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`,
+          backgroundSize: "300px 300px",
+          opacity: 0.8,
         }} />
-        {/* Bloom points where beams cross — adds the "trail" glow */}
+        {/* Soft warm projection cone — large elliptical spotlight, gentle falloff */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: [
-            "radial-gradient(circle at 28% 38%, rgba(239,65,54,0.14), transparent 30%)",
-            "radial-gradient(circle at 72% 62%, rgba(70,170,220,0.12), transparent 32%)",
-            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18), transparent 28%)",
-          ].join(", "),
+          background: "radial-gradient(ellipse 70% 55% at 50% 42%, rgba(255,250,232,0.78) 0%, rgba(255,245,215,0.5) 22%, rgba(255,240,205,0.22) 48%, transparent 75%)",
         }} />
-        {/* Edge vignette — frames the beams and adds depth */}
+        {/* Bright hotspot — projector focal point */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse at center, transparent 50%, rgba(20,30,45,0.08) 100%)",
+          background: "radial-gradient(circle at 50% 42%, rgba(255,255,245,0.4) 0%, transparent 18%)",
+        }} />
+        {/* Room vignette — darkens corners to emphasize the lit area */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse at 50% 42%, transparent 38%, rgba(50,35,20,0.28) 100%)",
         }} />
       </div>
 
