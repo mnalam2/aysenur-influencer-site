@@ -137,14 +137,17 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Laser beam sweep — diagonal beam crossing the page periodically */}
-        <div className="laser-sweep" style={{
+        {/* Film grain — jittering noise overlay for cinematic feel */}
+        <div className="film-grain" style={{
           position: "absolute",
-          top: "-30%",
-          left: 0,
-          width: "100%",
-          height: "160%",
-          background: "linear-gradient(105deg, transparent 46%, rgba(239,65,54,0.05) 48.5%, rgba(239,65,54,0.18) 50%, rgba(239,65,54,0.05) 51.5%, transparent 54%)",
+          top: "-10%",
+          left: "-10%",
+          width: "120%",
+          height: "120%",
+          opacity: 0.18,
+          mixBlendMode: "multiply",
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E\")",
+          backgroundSize: "200px 200px",
           pointerEvents: "none",
         }} />
       </div>
