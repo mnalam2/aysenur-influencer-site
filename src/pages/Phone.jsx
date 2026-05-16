@@ -368,52 +368,54 @@ export default function Phone() {
       {/* ── WHAT CAN MOVI DO ──────────────────────────── */}
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
-          <motion.div {...fi()}>
-            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
-              Use Cases
-            </div>
-            <h2
-              className="font-extrabold mb-10"
-              style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95, color: "#0a0c0f" }}
-            >
-              What Can the<br />MOVI Do?
-            </h2>
-            <div className="space-y-3">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div {...fi()}>
+              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
+                Use Cases
+              </div>
+              <h2
+                className="font-extrabold mb-10"
+                style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95, color: "#0a0c0f" }}
+              >
+                What Can the<br />MOVI Do?
+              </h2>
+              <div className="space-y-3">
+                {[
+                  "Sales tool for professionals","Sales presentations","Meetings in the office",
+                  "Private cinema & romantic moments","In-car movies","Beat the traffic jam",
+                  "Gaming","Enjoy a 3D world","Outdoor travel","Give you more happiness",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <Check size={13} className="flex-shrink-0" style={{ color: RED }} />
+                    <span className="text-base" style={{ color: "#6b7280" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => navigate("/order")}
+                className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
+                style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
+              >
+                Order Now — $699
+              </button>
+            </motion.div>
+
+            <motion.div {...fi(0.1)} className="grid grid-cols-2 gap-px" style={{ background: BORDER }}>
               {[
-                "Sales tool for professionals","Sales presentations","Meetings in the office",
-                "Private cinema & romantic moments","In-car movies","Beat the traffic jam",
-                "Gaming","Enjoy a 3D world","Outdoor travel","Give you more happiness",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <Check size={13} className="flex-shrink-0" style={{ color: RED }} />
-                  <span className="text-base" style={{ color: "#6b7280" }}>{item}</span>
+                { src: "/uploads/2021/05/img5_aa3380b2-d302-4440-826d-40ea8e27d2b4.jpg", alt: "MOVI projector gaming session" },
+                { src: "/uploads/2021/06/perfact-movi-lover9.jpg",                        alt: "MOVI outdoor movie night"     },
+                { src: "/uploads/img15.jpg",                                               alt: "MOVI 3D projection"           },
+                { src: "/uploads/img16.jpg",                                               alt: "MOVI family movie"            },
+              ].map((img, i) => (
+                <div key={i} className="overflow-hidden" style={{ height: 260 }}>
+                  <img
+                    src={img.src} alt={img.alt} loading="lazy"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
               ))}
-            </div>
-            <button
-              onClick={() => navigate("/order")}
-              className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
-              style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
-            >
-              Order Now — $699
-            </button>
-          </motion.div>
-
-          <motion.div {...fi(0.1)} className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ background: BORDER }}>
-            {[
-              { src: "/uploads/2021/05/img5_aa3380b2-d302-4440-826d-40ea8e27d2b4.jpg", alt: "MOVI projector gaming session" },
-              { src: "/uploads/2021/06/perfact-movi-lover9.jpg",                        alt: "MOVI outdoor movie night"     },
-              { src: "/uploads/img15.jpg",                                               alt: "MOVI 3D projection"           },
-              { src: "/uploads/img16.jpg",                                               alt: "MOVI family movie"            },
-            ].map((img, i) => (
-              <div key={i} className="overflow-hidden" style={{ height: 320 }}>
-                <img
-                  src={img.src} alt={img.alt} loading="lazy"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            ))}
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>
