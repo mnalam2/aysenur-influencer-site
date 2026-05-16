@@ -9,6 +9,7 @@ import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/share
 
 const GALLERY_IMGS = [
   { src: "/images/usecase-1.jpg",  alt: "MOVI outdoor projection"  },
+  { src: "/images/usecase-1b.jpg", alt: "MOVI outdoor lady"        },
   { src: "/images/usecase-3.jpg",  alt: "MOVI educational use"     },
   { src: "/images/usecase-4.jpg",  alt: "MOVI ceiling projection"  },
   { src: "/images/usecase-5.jpg",  alt: "MOVI in the car"          },
@@ -367,49 +368,36 @@ export default function Phone() {
       {/* ── WHAT CAN MOVI DO ──────────────────────────── */}
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <motion.div {...fi()}>
-              <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
-                Use Cases
-              </div>
-              <h2
-                className="font-extrabold mb-10"
-                style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95, color: "#0a0c0f" }}
-              >
-                What Can the<br />MOVI Do?
-              </h2>
-              <div className="space-y-3">
-                {[
-                  "Sales tool for professionals","Sales presentations","Meetings in the office",
-                  "Private cinema & romantic moments","In-car movies","Beat the traffic jam",
-                  "Gaming","Enjoy a 3D world","Outdoor travel","Give you more happiness",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <Check size={13} className="flex-shrink-0" style={{ color: RED }} />
-                    <span className="text-base" style={{ color: "#6b7280" }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <button
-                onClick={() => navigate("/order")}
-                className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
-                style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
-              >
-                Order Now — $699
-              </button>
-            </motion.div>
-
-            <motion.div {...fi(0.1)} className="space-y-px" style={{ background: BORDER }}>
-              {["/images/usecase-1.jpg","/images/usecase-1b.jpg","/images/usecase-4.jpg"].map((src, i) => (
-                <div key={i} className="overflow-hidden" style={{ height: 200 }}>
-                  <img
-                    src={src} alt={`MOVI use case ${i + 1}`} loading="lazy"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  />
+          <motion.div {...fi()}>
+            <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
+              Use Cases
+            </div>
+            <h2
+              className="font-extrabold mb-10"
+              style={{ fontSize: "clamp(2.5rem,5vw,4rem)", letterSpacing: "-0.04em", lineHeight: 0.95, color: "#0a0c0f" }}
+            >
+              What Can the<br />MOVI Do?
+            </h2>
+            <div className="space-y-3">
+              {[
+                "Sales tool for professionals","Sales presentations","Meetings in the office",
+                "Private cinema & romantic moments","In-car movies","Beat the traffic jam",
+                "Gaming","Enjoy a 3D world","Outdoor travel","Give you more happiness",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <Check size={13} className="flex-shrink-0" style={{ color: RED }} />
+                  <span className="text-base" style={{ color: "#6b7280" }}>{item}</span>
                 </div>
               ))}
-            </motion.div>
-          </div>
+            </div>
+            <button
+              onClick={() => navigate("/order")}
+              className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
+              style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
+            >
+              Order Now — $699
+            </button>
+          </motion.div>
         </div>
       </section>
     </div>
