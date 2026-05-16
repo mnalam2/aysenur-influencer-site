@@ -8,10 +8,11 @@ import "keen-slider/keen-slider.min.css";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/shared";
 
 const GALLERY_IMGS = [
-  { src: "/images/usecase-1.jpg",  alt: "MOVI outdoor projection"  },
-  { src: "/uploads/IMG_0680.jpeg", alt: "MOVI outdoor lady"        },
-  { src: "/images/usecase-3.jpg",  alt: "MOVI educational use"     },
-  { src: "/images/usecase-4.jpg",  alt: "MOVI ceiling projection"  },
+  { src: "/images/usecase-1.jpg",                                                    alt: "MOVI outdoor projection"  },
+  { src: "/uploads/IMG_0680.jpeg",                                                   alt: "MOVI outdoor lady"        },
+  { src: "/images/usecase-3.jpg",                                                    alt: "MOVI educational use"     },
+  { src: "/images/usecase-4.jpg",                                                    alt: "MOVI ceiling projection"  },
+  { src: "/uploads/2021/05/img2_dc9afeec-0f92-46b0-8621-4b8b103bc84e-1.jpg",        alt: "MOVI mountain projection" },
 ];
 
 const SPECS = [
