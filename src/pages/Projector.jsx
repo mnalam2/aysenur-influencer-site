@@ -55,8 +55,6 @@ export default function Projector() {
 
           <motion.div {...fi()} className="order-1 lg:order-2">
             <p className="text-lg leading-relaxed mb-6" style={{ color: "#6b7280" }}>
-              MOVI uses <strong style={{ color: "#0a0c0f" }}>Laser Beam Steering (LBS)</strong> — a solid-state
-              mirror directs a laser beam pixel-by-pixel to build a crisp, vivid image on any flat surface.
               No warm-up. No focus adjustment. No bulb to replace. Ever.
             </p>
             <p className="text-base leading-relaxed mb-8" style={{ color: "#6b7280" }}>
