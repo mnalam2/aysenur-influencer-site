@@ -11,7 +11,7 @@ export default function Contact() {
         style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -42,7 +42,7 @@ export default function Contact() {
             <motion.div key={c.label} {...fi(0.05)}>
               <GlassCard className="p-7 text-center flex flex-col items-center h-full hover:border-red-900/30 transition-colors">
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
-                  style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.2)`, color: RED }}>
+                  style={{ background: "rgba(37,99,235,0.1)", border: `1px solid rgba(37,99,235,0.2)`, color: RED }}>
                   {c.icon}
                 </div>
                 <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#6b7280" }}>{c.label}</div>
@@ -72,7 +72,7 @@ export default function Contact() {
               </a>
               <a href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
-                style={{ border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
+                style={{ border: `1px solid rgba(37,99,235,0.3)`, color: RED }}>
                 MOVI TWO Interest
               </a>
             </div>
@@ -82,7 +82,7 @@ export default function Contact() {
         {/* ── CAREERS ──────────────────────────────── */}
         <motion.div {...fi(0.15)}>
           <GlassCard className="p-8 flex flex-col sm:flex-row items-center justify-between gap-6"
-            style={{ borderColor: "rgba(239,65,54,0.15)" }}>
+            style={{ borderColor: "rgba(37,99,235,0.15)" }}>
             <div>
               <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Careers</div>
               <h3 className="font-bold text-xl mb-2 ">Join the MOVI Team</h3>
@@ -93,7 +93,7 @@ export default function Contact() {
             </div>
             <a href="mailto:work@moviphones.com?subject=Career%20Inquiry&body=Hi%20WMS%20Team%2C%0A%0AI%27d%20love%20to%20join%20your%20team.%0A%0AName%3A%20%0ARole%20interest%3A%20"
               className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition"
-              style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
+              style={{ background: "rgba(37,99,235,0.1)", border: `1px solid rgba(37,99,235,0.3)`, color: RED }}>
               <Mail size={14} /> work@moviphones.com
             </a>
           </GlassCard>

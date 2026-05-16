@@ -155,8 +155,8 @@ function Layout() {
         <div
           className="overflow-hidden"
           style={{
-            background: "rgba(239,65,54,0.07)",
-            borderBottom: "1px solid rgba(239,65,54,0.15)",
+            background: "rgba(37,99,235,0.07)",
+            borderBottom: "1px solid rgba(37,99,235,0.15)",
             height: 28,
             display: "flex",
             alignItems: "center",
@@ -268,7 +268,7 @@ function Layout() {
                       fontSize: 15,
                       fontWeight: 500,
                       color: isActive ? RED : "#374151",
-                      background: isActive ? "rgba(239,65,54,0.06)" : "transparent",
+                      background: isActive ? "rgba(37,99,235,0.06)" : "transparent",
                       textDecoration: "none",
                       transition: "all 0.15s",
                     })}
@@ -404,7 +404,7 @@ function Layout() {
             initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="fixed bottom-6 right-6 w-11 h-11 rounded-full flex items-center justify-center z-50 text-white"
-            style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.5)` }}
+            style={{ background: RED, boxShadow: `0 0 24px rgba(37,99,235,0.5)` }}
             aria-label="Scroll to top">
             <ArrowUp size={18} />
           </motion.button>

@@ -14,7 +14,7 @@ export default function About() {
         }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

@@ -11,7 +11,7 @@ export default function Services() {
         style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -90,7 +90,7 @@ export default function Services() {
         {/* ── ENTERPRISE CTA ───────────────────────── */}
         <motion.div {...fi()}>
           <GlassCard className="p-10 text-center"
-            style={{ borderColor: "rgba(239,65,54,0.2)", background: "linear-gradient(135deg,rgba(239,65,54,0.04),rgba(17,20,24,1))" }}>
+            style={{ borderColor: "rgba(37,99,235,0.2)", background: "linear-gradient(135deg,rgba(37,99,235,0.04),rgba(17,20,24,1))" }}>
             <h3 className="text-3xl font-extrabold mb-4 text-white">Ready to talk enterprise?</h3>
             <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
               Whether you need IoT infrastructure, a private 5G network, or AI-powered analytics —
@@ -98,7 +98,7 @@ export default function Services() {
             </p>
             <a href="mailto:info@moviphones.com?subject=Enterprise%20Services%20Inquiry&body=Hi%20WMS%20Team%2C%0A%0AWe%20are%20interested%20in%20your%20enterprise%20services.%0A%0ACompany%3A%20%0AService%20needed%3A%20%0AContact%3A%20"
               className="inline-block px-10 py-4 rounded-full font-bold text-base text-white hover:opacity-90 transition"
-              style={{ background: RED, boxShadow: `0 0 28px rgba(239,65,54,0.4)` }}>
+              style={{ background: RED, boxShadow: `0 0 28px rgba(37,99,235,0.4)` }}>
               Get in Touch
             </a>
           </GlassCard>

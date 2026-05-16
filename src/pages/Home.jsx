@@ -71,7 +71,7 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse 60% 35% at 50% 110%, rgba(239,65,54,0.07) 0%, transparent 60%)",
+            background: "radial-gradient(ellipse 60% 35% at 50% 110%, rgba(37,99,235,0.07) 0%, transparent 60%)",
           }}
         />
 
@@ -83,7 +83,7 @@ export default function Home() {
         >
           <span
             className="inline-flex items-center gap-2 px-4 py-2 text-[10px] font-bold tracking-[0.22em] uppercase"
-            style={{ border: `1px solid rgba(239,65,54,0.3)`, color: RED }}
+            style={{ border: `1px solid rgba(37,99,235,0.3)`, color: RED }}
           >
             ★ CES 2018 · Las Vegas
           </span>
@@ -118,7 +118,7 @@ export default function Home() {
           <div
             className="absolute inset-0 pointer-events-none glow-pulse"
             style={{
-              background: "radial-gradient(ellipse 55% 50% at 50% 62%, rgba(239,65,54,0.1) 0%, transparent 68%)",
+              background: "radial-gradient(ellipse 55% 50% at 50% 62%, rgba(37,99,235,0.1) 0%, transparent 68%)",
               transform: "scale(1.35)",
             }}
           />
@@ -159,8 +159,8 @@ export default function Home() {
             transition={{ delay: 1.3, duration: 0.5 }}
             className="absolute right-0 bottom-1/3 translate-x-1/4 sm:translate-x-full px-4 py-3 hidden sm:block"
             style={{
-              background: "rgba(239,65,54,0.08)",
-              border: "1px solid rgba(239,65,54,0.25)",
+              background: "rgba(37,99,235,0.08)",
+              border: "1px solid rgba(37,99,235,0.25)",
               backdropFilter: "blur(12px)",
             }}
           >
@@ -191,7 +191,7 @@ export default function Home() {
             <button
               onClick={() => navigate("/order")}
               className="inline-flex items-center gap-2 px-10 py-4 font-bold text-base text-white hover:opacity-88 transition-opacity"
-              style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.25)" }}
+              style={{ background: RED, boxShadow: "0 0 40px rgba(37,99,235,0.25)" }}
             >
               Order Now — $699
             </button>
@@ -493,7 +493,7 @@ export default function Home() {
           <a
             href="mailto:info@moviphones.com?subject=MOVI%20TWO%20Interest&body=Hi%2C%20I%27d%20like%20to%20register%20my%20interest%20for%20MOVI%20TWO."
             className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold text-white hover:opacity-90 transition"
-            style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
+            style={{ background: RED, boxShadow: "0 0 40px rgba(37,99,235,0.35)" }}
           >
             Register Interest <ArrowRight size={14} />
           </a>
@@ -595,7 +595,7 @@ export default function Home() {
               <button
                 onClick={() => navigate("/order")}
                 className="px-12 py-5 font-bold text-lg text-white hover:opacity-90 transition"
-                style={{ background: RED, boxShadow: "0 0 70px rgba(239,65,54,0.28)" }}
+                style={{ background: RED, boxShadow: "0 0 70px rgba(37,99,235,0.28)" }}
               >
                 Order Now — $699
               </button>

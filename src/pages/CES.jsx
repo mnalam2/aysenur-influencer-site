@@ -50,7 +50,7 @@ export default function CES() {
         style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.07) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -75,7 +75,7 @@ export default function CES() {
         {/* ── CES FEATURE CARD ──────────────────────── */}
         <motion.div {...fi()} className="mb-20">
           <GlassCard className="overflow-hidden"
-            style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
+            style={{ borderColor: "rgba(37,99,235,0.2)", background: `linear-gradient(135deg,rgba(37,99,235,0.05),${CARD})` }}>
             <div className="grid md:grid-cols-2">
               <div className="p-8 sm:p-12 flex flex-col justify-center">
                 <p className="text-base leading-relaxed mb-6" style={{ color: "#6b7280" }}>
