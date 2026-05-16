@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Play, Pause, Volume2, VolumeX, ArrowRight, Award } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
 
 const PRESS = ["Time", "PCMag", "CNET", "Business Insider", "Engadget", "NotebookCheck"];
@@ -82,15 +82,12 @@ export default function Home() {
           className="relative z-10 mb-6"
         >
           <span
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase"
-            style={{
-              background: "#0a0c0f",
-              color: "#f5f5f7",
-              boxShadow: "0 6px 24px rgba(239,65,54,0.25), 0 0 0 1px rgba(255,255,255,0.04) inset",
-            }}
+            className="inline-flex items-center gap-2.5 text-sm font-medium"
+            style={{ color: "#6e6e73", letterSpacing: "0.01em" }}
           >
-            <Award size={13} style={{ color: RED }} />
-            CES 2018 · Las Vegas Debut
+            <span style={{ color: RED, fontWeight: 600 }}>Debuted at CES 2018</span>
+            <span style={{ color: "#d2d2d7" }}>·</span>
+            <span>Las Vegas</span>
           </span>
         </motion.div>
 
