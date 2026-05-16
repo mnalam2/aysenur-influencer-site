@@ -133,7 +133,9 @@ export default function Projector() {
           <div ref={anywhereRef} className="keen-slider overflow-hidden">
             {["/uploads/IMG_0660.jpeg","/uploads/IMG_0666.jpeg","/images/usecase-6.jpg","/images/usecase-7.jpg","/uploads/IMG_0688.jpeg","/uploads/2021/06/used-2.jpg"].map((src, i) => (
               <div key={i} className="keen-slider__slide">
-                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-auto block" />
+                <div className="w-full bg-black" style={{ aspectRatio: "16/9" }}>
+                  <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
+                </div>
               </div>
             ))}
           </div>
