@@ -66,68 +66,6 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── PIXEL RAIN ─ dot grid where pixels fade in/out in diagonal waves ── */
-function PixelRain() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const spacing = 26;
-    const dotSize = 1.6;
-    let rafId;
-    let t = 0;
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      t += 0.012;
-
-      for (let x = 0; x < width; x += spacing) {
-        for (let y = 0; y < height; y += spacing) {
-          const wave  = Math.sin(t + (x + y) * 0.015) * 0.5 + 0.5;
-          const wave2 = Math.sin(t * 0.7 - (x - y) * 0.012) * 0.5 + 0.5;
-          const a = 0.04 + wave * wave2 * 0.22;
-          ctx.fillStyle = `rgba(10, 12, 15, ${a})`;
-          ctx.fillRect(x, y, dotSize, dotSize);
-        }
-      }
-
-      rafId = requestAnimationFrame(draw);
-    };
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-    />
-  );
-}
-
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -193,8 +131,12 @@ function Layout() {
           width: "60vmax", height: "60vmax", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
         }} />
-        {/* Pixel rain — animated dot grid, fades in diagonal waves (LBS "pixel-by-pixel") */}
-        <PixelRain />
+        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
+        }} />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
