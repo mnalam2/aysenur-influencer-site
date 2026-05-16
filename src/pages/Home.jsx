@@ -64,7 +64,7 @@ export default function Home() {
         style={{
           minHeight: "100svh",
           paddingTop: "120px",
-          paddingBottom: "64px",
+          paddingBottom: "120px",
         }}
       >
         {/* Subtle red ambient low */}
