@@ -109,18 +109,24 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed static canvas — warm cream base with a subtle paper-grain texture
-          and a barely-there vignette for depth. Stays fixed so content scrolls over it. */}
+      {/* Fixed static canvas — warm cream base with a woven linen texture:
+          crosshatched warp + weft threads over a softer organic noise base,
+          plus a barely-there vignette for depth. */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundColor: "#f9f8f5", overflow: "hidden",
       }}>
-        {/* SVG fractal-noise grain — tiled across the viewport */}
+        {/* Linen weave — horizontal warp + vertical weft threads layered
+            over warm fractal-noise for organic fiber variation */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.06 0 0 0 0 0.08 0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`,
-          backgroundSize: "280px 280px",
-          opacity: 0.75,
+          backgroundImage: [
+            "repeating-linear-gradient(0deg, rgba(90,72,52,0.13) 0px, rgba(90,72,52,0.13) 1px, transparent 1px, transparent 4px)",
+            "repeating-linear-gradient(90deg, rgba(90,72,52,0.13) 0px, rgba(90,72,52,0.13) 1px, transparent 1px, transparent 4px)",
+            `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0 0.06 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`,
+          ].join(", "),
+          backgroundSize: "auto, auto, 320px 320px",
+          opacity: 0.85,
         }} />
         {/* Soft vignette — adds subtle depth toward the edges */}
         <div style={{
