@@ -63,7 +63,7 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center overflow-hidden dot-grid"
         style={{
           minHeight: "100svh",
-          paddingTop: "88px",
+          paddingTop: "120px",
           paddingBottom: "64px",
         }}
       >
@@ -82,12 +82,12 @@ export default function Home() {
           className="relative z-10 mb-6"
         >
           <span
-            className="inline-flex items-center gap-2.5 text-sm font-medium"
-            style={{ color: "#6e6e73", letterSpacing: "0.01em" }}
+            className="inline-flex items-center gap-3 text-[11px] font-semibold uppercase"
+            style={{ color: "#1d1d1f", letterSpacing: "0.2em" }}
           >
-            <span style={{ color: RED, fontWeight: 600 }}>Debuted at CES 2018</span>
-            <span style={{ color: "#d2d2d7" }}>·</span>
-            <span>Las Vegas</span>
+            <span className="inline-block w-8 h-px" style={{ background: RED }} />
+            Debuted at CES 2018 · Las Vegas
+            <span className="inline-block w-8 h-px" style={{ background: RED }} />
           </span>
         </motion.div>
 
