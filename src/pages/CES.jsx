@@ -93,7 +93,14 @@ export default function CES() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-1 p-1">
-                {["/images/ces-1.jpg","/images/ces-2.jpg","/images/ces-3.jpg","/images/wms-press.jpg"].map((src, i) => (
+                {[
+                  "/images/ces-1.jpg",
+                  "/images/ces-2.jpg",
+                  "/images/ces-3.jpg",
+                  "/images/wms-press.jpg",
+                  "/uploads/2021/05/img4_6a288176-008d-45a6-a805-0e725f280a95.jpg",
+                  "/uploads/2021/05/img3_37f56709-8eea-422a-b128-41bb351b686d.jpg",
+                ].map((src, i) => (
                   <div key={i} className="overflow-hidden" style={{ height: 160 }}>
                     <img src={src} alt={`CES 2018 photo ${i + 1}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
