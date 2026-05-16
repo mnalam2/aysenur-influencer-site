@@ -367,9 +367,9 @@ export default function Phone() {
 
       {/* ── WHAT CAN MOVI DO ──────────────────────────── */}
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div {...fi()}>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 items-stretch">
+            <motion.div {...fi()} className="px-6 py-20 lg:pr-16 flex flex-col justify-center">
               <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
                 Use Cases
               </div>
@@ -393,7 +393,7 @@ export default function Phone() {
               </div>
               <button
                 onClick={() => navigate("/order")}
-                className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
+                className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition self-start"
                 style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
               >
                 Order Now — $699
@@ -407,7 +407,7 @@ export default function Phone() {
                 { src: "/uploads/img15.jpg",                                               alt: "MOVI 3D projection"           },
                 { src: "/uploads/img16.jpg",                                               alt: "MOVI family movie"            },
               ].map((img, i) => (
-                <div key={i} className="overflow-hidden" style={{ height: 260 }}>
+                <div key={i} className="overflow-hidden" style={{ minHeight: 260 }}>
                   <img
                     src={img.src} alt={img.alt} loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
