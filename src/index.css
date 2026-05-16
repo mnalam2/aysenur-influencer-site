@@ -81,3 +81,16 @@ body {
   animation: bounceY 1.8s ease-in-out infinite;
 }
 
+/* ── Laser beam sweep — references LBS / "pixel-by-pixel" steering ── */
+@keyframes laserSweep {
+  0%   { transform: translate3d(-110%, 0, 0); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translate3d(110%, 0, 0); opacity: 0; }
+}
+
+.laser-sweep {
+  animation: laserSweep 11s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+

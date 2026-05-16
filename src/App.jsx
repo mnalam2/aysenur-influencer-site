@@ -137,6 +137,16 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
+        {/* Laser beam sweep — diagonal beam crossing the page periodically */}
+        <div className="laser-sweep" style={{
+          position: "absolute",
+          top: "-30%",
+          left: 0,
+          width: "100%",
+          height: "160%",
+          background: "linear-gradient(105deg, transparent 46%, rgba(239,65,54,0.05) 48.5%, rgba(239,65,54,0.18) 50%, rgba(239,65,54,0.05) 51.5%, transparent 54%)",
+          pointerEvents: "none",
+        }} />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
