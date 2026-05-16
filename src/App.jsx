@@ -109,39 +109,33 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed static canvas — cool LED-lit wall: a blue-tinted surface lit
-          by a bright blue-white LED bloom, with a deep navy vignette at the
-          edges. Matches the blue brand accent and the projector theme. */}
+      {/* Fixed aurora canvas — soft drifting color blobs + whisper-faint dot grid.
+          Blobs slowly orbit (CSS keyframes) creating a living, ethereal feel.
+          Pattern is fixed to the viewport so content scrolls over a "world" that breathes. */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundColor: "#e8edf8", overflow: "hidden",
+        backgroundColor: "#f9f8f5", overflow: "hidden",
       }}>
-        {/* Wall surface grain — fine noise with cool blue tint */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.12 0 0 0 0 0.22 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`,
-          backgroundSize: "300px 300px",
-          opacity: 0.7,
+        <div className="aurora-blob aurora-blob--navy" style={{
+          position: "absolute", top: "-25%", left: "-20%",
+          width: "85vmax", height: "85vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(20,40,75,0.18), rgba(20,40,75,0) 62%)",
         }} />
-        {/* LED projection bloom — wide cool blue-white light cone */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 75% 58% at 50% 42%, rgba(220,232,255,0.90) 0%, rgba(190,215,255,0.55) 25%, rgba(150,185,255,0.20) 50%, transparent 75%)",
+        <div className="aurora-blob aurora-blob--steel" style={{
+          position: "absolute", bottom: "-25%", right: "-20%",
+          width: "90vmax", height: "90vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(60,90,130,0.16), rgba(60,90,130,0) 62%)",
         }} />
-        {/* Bright LED hotspot — sharp focal point of the light source */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(circle at 50% 42%, rgba(255,255,255,0.55) 0%, rgba(210,225,255,0.25) 12%, transparent 28%)",
+        <div className="aurora-blob aurora-blob--charcoal" style={{
+          position: "absolute", top: "30%", left: "40%",
+          width: "60vmax", height: "60vmax", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
         }} />
-        {/* Brand-blue ambient glow ring — halo of the LED color */}
+        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 55% 42% at 50% 42%, transparent 30%, rgba(37,99,235,0.07) 60%, transparent 75%)",
-        }} />
-        {/* Deep navy edge vignette — pulls focus to the lit center */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse at 50% 42%, transparent 40%, rgba(10,20,60,0.30) 100%)",
+          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
         }} />
       </div>
 
