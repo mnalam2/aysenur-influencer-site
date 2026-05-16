@@ -65,7 +65,7 @@ export default function About() {
                     >
                       {s.n}
                     </div>
-                    <div className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#9ca3af" }}>{s.l}</div>
+                    <div className="text-xs font-bold tracking-widest uppercase" style={{ color: "#9ca3af" }}>{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -93,18 +93,18 @@ export default function About() {
 
             <motion.div {...fi(0.1)}>
               {/* MOVI TWO teaser */}
-              <div className="relative overflow-hidden" style={{ height: 420 }}>
+              <div className="relative overflow-hidden w-full" style={{ aspectRatio: "4/5", minHeight: 380 }}>
                 <img
                   src="/images/movi-two-promo.jpeg"
                   alt="MOVI TWO — Coming 2027"
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div
                   className="absolute inset-0 flex items-end p-8"
                   style={{ background: "linear-gradient(to top, rgba(4,5,8,0.97) 0%, transparent 55%)" }}
                 >
                   <div>
-                    <div className="text-[9px] font-bold uppercase tracking-[0.22em] mb-2" style={{ color: RED }}>
+                    <div className="text-xs font-bold uppercase tracking-[0.22em] mb-2" style={{ color: RED }}>
                       CES 2027 · Q2 2027
                     </div>
                     <div
