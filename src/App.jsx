@@ -109,33 +109,23 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed aurora canvas — soft drifting color blobs + whisper-faint dot grid.
-          Blobs slowly orbit (CSS keyframes) creating a living, ethereal feel.
-          Pattern is fixed to the viewport so content scrolls over a "world" that breathes. */}
+      {/* Fixed static canvas — warm cream base with a subtle paper-grain texture
+          and a barely-there vignette for depth. Stays fixed so content scrolls over it. */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundColor: "#f9f8f5", overflow: "hidden",
       }}>
-        <div className="aurora-blob aurora-blob--navy" style={{
-          position: "absolute", top: "-25%", left: "-20%",
-          width: "85vmax", height: "85vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(20,40,75,0.18), rgba(20,40,75,0) 62%)",
-        }} />
-        <div className="aurora-blob aurora-blob--steel" style={{
-          position: "absolute", bottom: "-25%", right: "-20%",
-          width: "90vmax", height: "90vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(60,90,130,0.16), rgba(60,90,130,0) 62%)",
-        }} />
-        <div className="aurora-blob aurora-blob--charcoal" style={{
-          position: "absolute", top: "30%", left: "40%",
-          width: "60vmax", height: "60vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
-        }} />
-        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
+        {/* SVG fractal-noise grain — tiled across the viewport */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
+          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.07 0 0 0 0 0.09 0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")`,
+          backgroundSize: "240px 240px",
+          opacity: 0.35,
+        }} />
+        {/* Soft vignette — adds subtle depth toward the edges */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse at center, transparent 55%, rgba(20,30,45,0.06) 100%)",
         }} />
       </div>
 
