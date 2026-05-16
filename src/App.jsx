@@ -66,8 +66,8 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── CONSTELLATION ─ moving dots connected by hairlines on near-pairs ── */
-function Constellation() {
+/* ── PIXEL RAIN ─ dot grid where pixels fade in/out in diagonal waves ── */
+function PixelRain() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -90,50 +90,23 @@ function Constellation() {
     resize();
     window.addEventListener("resize", resize);
 
-    const count = Math.min(90, Math.max(40, Math.floor((width * height) / 22000)));
-    const dots = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-    }));
-
-    const maxDist = 150;
-    const maxDistSq = maxDist * maxDist;
+    const spacing = 26;
+    const dotSize = 1.6;
     let rafId;
+    let t = 0;
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
+      t += 0.012;
 
-      for (const d of dots) {
-        d.x += d.vx;
-        d.y += d.vy;
-        if (d.x < 0 || d.x > width)  d.vx *= -1;
-        if (d.y < 0 || d.y > height) d.vy *= -1;
-      }
-
-      ctx.lineWidth = 1;
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const dsq = dx * dx + dy * dy;
-          if (dsq < maxDistSq) {
-            const a = (1 - dsq / maxDistSq) * 0.22;
-            ctx.strokeStyle = `rgba(20, 40, 75, ${a})`;
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.stroke();
-          }
+      for (let x = 0; x < width; x += spacing) {
+        for (let y = 0; y < height; y += spacing) {
+          const wave  = Math.sin(t + (x + y) * 0.015) * 0.5 + 0.5;
+          const wave2 = Math.sin(t * 0.7 - (x - y) * 0.012) * 0.5 + 0.5;
+          const a = 0.04 + wave * wave2 * 0.22;
+          ctx.fillStyle = `rgba(10, 12, 15, ${a})`;
+          ctx.fillRect(x, y, dotSize, dotSize);
         }
-      }
-
-      ctx.fillStyle = "rgba(20, 40, 75, 0.55)";
-      for (const d of dots) {
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, 1.6, 0, Math.PI * 2);
-        ctx.fill();
       }
 
       rafId = requestAnimationFrame(draw);
@@ -220,14 +193,8 @@ function Layout() {
           width: "60vmax", height: "60vmax", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
         }} />
-        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }} />
-        {/* Constellation — drifting dots with hairlines between near-pairs */}
-        <Constellation />
+        {/* Pixel rain — animated dot grid, fades in diagonal waves (LBS "pixel-by-pixel") */}
+        <PixelRain />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
