@@ -44,12 +44,12 @@ export default function Projector() {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <motion.div {...fi(0.1)} className="order-2 lg:order-1">
             <div className="relative rounded-3xl overflow-hidden"
-              style={{ boxShadow: `0 0 80px rgba(37,99,235,0.2)` }}>
+              style={{ boxShadow: `0 0 80px rgba(239,65,54,0.2)` }}>
               <img src="/images/about-back.png"
                 alt="MOVI phone projecting a photo onto a wall"
                 className="w-full object-cover" style={{ maxHeight: 520 }} />
               <div className="absolute inset-0"
-                style={{ background: "linear-gradient(135deg,rgba(37,99,235,0.08),transparent)" }} />
+                style={{ background: "linear-gradient(135deg,rgba(239,65,54,0.08),transparent)" }} />
             </div>
           </motion.div>
 
@@ -66,7 +66,7 @@ export default function Projector() {
             <div className="flex flex-wrap gap-3">
               {["Always in focus","No bulb replacement","12\"–100\" projection","HD 720p — 1280×720","80,000:1 contrast","Auto-keystone","50 Lumens"].map((t) => (
                 <span key={t} className="px-3 py-1.5 rounded-full text-xs font-semibold"
-                  style={{ background: "rgba(37,99,235,0.1)", border: `1px solid rgba(37,99,235,0.2)`, color: "#fca5a5" }}>
+                  style={{ background: "rgba(239,65,54,0.1)", border: `1px solid rgba(239,65,54,0.2)`, color: "#fca5a5" }}>
                   {t}
                 </span>
               ))}

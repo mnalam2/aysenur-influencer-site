@@ -50,7 +50,7 @@ export default function Phone() {
         }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 40% at 50% 0%, rgba(37,99,235,0.07) 0%, transparent 70%)"
+          background: "radial-gradient(ellipse 55% 40% at 50% 0%, rgba(239,65,54,0.07) 0%, transparent 70%)"
         }} />
 
         {/* Hero: two-column — specs left, phone right */}
@@ -97,7 +97,7 @@ export default function Phone() {
               <button
                 onClick={() => navigate("/order")}
                 className="px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
-                style={{ background: RED, boxShadow: "0 0 40px rgba(37,99,235,0.4)" }}
+                style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.4)" }}
               >
                 Order Now — $699
               </button>
@@ -121,7 +121,7 @@ export default function Phone() {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(37,99,235,0.18) 0%, transparent 70%)",
+                  background: "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(239,65,54,0.18) 0%, transparent 70%)",
                 }}
               />
               <img
@@ -238,7 +238,7 @@ export default function Phone() {
                 <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: "#6b7280", background: "rgba(0,0,0,0.04)", borderLeft: `1px solid ${BORDER}` }}>
                   MOVI Standard
                 </div>
-                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: RED, background: "rgba(37,99,235,0.06)", borderLeft: `1px solid ${BORDER}` }}>
+                <div className="px-6 py-5 text-[9px] font-bold uppercase tracking-widest text-center" style={{ color: RED, background: "rgba(239,65,54,0.06)", borderLeft: `1px solid ${BORDER}` }}>
                   MOVI Pro
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function Phone() {
                 >
                   <div className="px-6 py-4 font-medium text-sm" style={{ color: "#9ca3af" }}>{feat}</div>
                   <div className="px-6 py-4 font-semibold text-center" style={{ borderLeft: `1px solid ${BORDER}`, color: "#374151" }}>{std}</div>
-                  <div className="px-6 py-4 font-bold text-center" style={{ color: RED, borderLeft: `1px solid ${BORDER}`, background: "rgba(37,99,235,0.03)" }}>{pro}</div>
+                  <div className="px-6 py-4 font-bold text-center" style={{ color: RED, borderLeft: `1px solid ${BORDER}`, background: "rgba(239,65,54,0.03)" }}>{pro}</div>
                 </div>
               ))}
             </div>
@@ -271,7 +271,7 @@ export default function Phone() {
       <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
           <motion.div {...fi(0.1)}>
-            <div style={{ border: `1px solid rgba(37,99,235,0.2)`, background: "rgba(37,99,235,0.04)" }}>
+            <div style={{ border: `1px solid rgba(239,65,54,0.2)`, background: "rgba(239,65,54,0.04)" }}>
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="px-8 py-10 sm:px-12">
                   <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: RED }}>
@@ -294,7 +294,7 @@ export default function Phone() {
                 </div>
                 <div
                   className="flex flex-col justify-center px-8 py-10 sm:px-12 text-center"
-                  style={{ borderLeft: `1px solid rgba(37,99,235,0.2)` }}
+                  style={{ borderLeft: `1px solid rgba(239,65,54,0.2)` }}
                 >
                   <div className="text-[10px] font-bold uppercase tracking-[0.22em] mb-4" style={{ color: RED }}>
                     Upcoming Launch
@@ -393,7 +393,7 @@ export default function Phone() {
               <button
                 onClick={() => navigate("/order")}
                 className="mt-10 px-8 py-4 font-bold text-base text-white hover:opacity-90 transition"
-                style={{ background: RED, boxShadow: "0 0 40px rgba(37,99,235,0.35)" }}
+                style={{ background: RED, boxShadow: "0 0 40px rgba(239,65,54,0.35)" }}
               >
                 Order Now — $699
               </button>

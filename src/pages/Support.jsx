@@ -57,7 +57,7 @@ export default function Support() {
         style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.06) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.06) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -117,7 +117,7 @@ export default function Support() {
 
         {/* ── SUPPORT LINKS ────────────────────────── */}
         <motion.div {...fi()}>
-          <GlassCard className="p-8 text-center" style={{ borderColor: "rgba(37,99,235,0.15)" }}>
+          <GlassCard className="p-8 text-center" style={{ borderColor: "rgba(239,65,54,0.15)" }}>
             <h3 className="font-bold text-xl mb-3 ">Still Need Help?</h3>
             <p className="text-sm mb-6" style={{ color: "#6b7280" }}>
               Our team handles every inquiry personally. We typically respond within 24–48 hours.
@@ -135,7 +135,7 @@ export default function Support() {
               </a>
               <a href="tel:+16198874570"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/5 transition"
-                style={{ border: `1px solid rgba(37,99,235,0.3)`, color: RED }}>
+                style={{ border: `1px solid rgba(239,65,54,0.3)`, color: RED }}>
                 (619) 887-4570
               </a>
             </div>

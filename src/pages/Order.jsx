@@ -12,7 +12,7 @@ export default function Order() {
         style={{ paddingTop: "88px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 65%)"
+          background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 65%)"
         }} />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -68,7 +68,7 @@ export default function Order() {
           {/* Pro — featured */}
           <motion.div {...fi(0.08)}>
             <GlassCard className="p-8 flex flex-col h-full relative overflow-hidden"
-              style={{ borderColor: "rgba(37,99,235,0.4)", boxShadow: "0 0 40px rgba(37,99,235,0.12)" }}>
+              style={{ borderColor: "rgba(239,65,54,0.4)", boxShadow: "0 0 40px rgba(239,65,54,0.12)" }}>
               <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: RED }} />
               <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: RED }}>Most Popular</div>
               <h3 className="text-xl font-extrabold mb-1 ">MOVI Pro</h3>
@@ -88,7 +88,7 @@ export default function Order() {
               <a
                 href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Pro&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Pro%20(4GB%2F64GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
                 className="block w-full py-3 rounded-xl text-center font-bold text-sm text-white hover:opacity-90 transition"
-                style={{ background: RED, boxShadow: "0 0 20px rgba(37,99,235,0.3)" }}
+                style={{ background: RED, boxShadow: "0 0 20px rgba(239,65,54,0.3)" }}
               >
                 Order MOVI Pro
               </a>
@@ -97,7 +97,7 @@ export default function Order() {
 
           {/* Wholesale */}
           <motion.div {...fi(0.16)}>
-            <GlassCard className="p-8 flex flex-col h-full" style={{ borderColor: "rgba(37,99,235,0.15)" }}>
+            <GlassCard className="p-8 flex flex-col h-full" style={{ borderColor: "rgba(239,65,54,0.15)" }}>
               <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#6b7280" }}>Enterprise</div>
               <h3 className="text-xl font-extrabold mb-1 ">Wholesale</h3>
               <p className="text-sm mb-5" style={{ color: "#6b7280" }}>Min. 1,000 units · Custom pricing</p>
@@ -115,7 +115,7 @@ export default function Order() {
               <a
                 href="mailto:info@moviphones.com?subject=Wholesale%20Inquiry&body=Hi%2C%20I%27m%20interested%20in%20a%20wholesale%20order.%0A%0ACompany%3A%20%0AQty%3A%20%0AContact%3A%20"
                 className="block w-full py-3 rounded-xl text-center font-bold text-sm hover:opacity-90 transition"
-                style={{ background: "rgba(37,99,235,0.1)", border: "1px solid rgba(37,99,235,0.25)", color: RED }}
+                style={{ background: "rgba(239,65,54,0.1)", border: "1px solid rgba(239,65,54,0.25)", color: RED }}
               >
                 Inquire About Wholesale
               </a>
@@ -177,7 +177,7 @@ export default function Order() {
             ].map((g) => (
               <GlassCard key={g.label} className="p-5 text-center hover:border-red-900/30 transition-colors">
                 <div className="w-11 h-11 rounded-xl flex items-center justify-center mx-auto mb-3"
-                  style={{ background: "rgba(37,99,235,0.1)", border: "1px solid rgba(37,99,235,0.2)", color: RED }}>
+                  style={{ background: "rgba(239,65,54,0.1)", border: "1px solid rgba(239,65,54,0.2)", color: RED }}>
                   {g.icon}
                 </div>
                 <div className="font-bold text-sm mb-1" style={{ color: "#0a0c0f" }}>{g.label}</div>
@@ -204,7 +204,7 @@ export default function Order() {
             <a
               href="mailto:info@moviphones.com?subject=Order%20%E2%80%94%20MOVI%20Pro&body=Hi%2C%20I%27d%20like%20to%20order%20the%20MOVI%20Pro%20(4GB%2F64GB).%0A%0AName%3A%20%0AShipping%20address%3A%20"
               className="inline-flex items-center gap-2 px-12 py-5 font-bold text-lg text-white hover:opacity-90 transition"
-              style={{ background: RED, boxShadow: "0 0 60px rgba(37,99,235,0.28)" }}
+              style={{ background: RED, boxShadow: "0 0 60px rgba(239,65,54,0.28)" }}
             >
               Order Now — $699
             </a>
