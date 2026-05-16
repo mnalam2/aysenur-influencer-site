@@ -407,10 +407,10 @@ export default function Phone() {
                 { src: "/uploads/img15.jpg",                                               alt: "MOVI 3D projection"           },
                 { src: "/uploads/img16.jpg",                                               alt: "MOVI family movie"            },
               ].map((img, i) => (
-                <div key={i} className="overflow-hidden" style={{ minHeight: 260 }}>
+                <div key={i} className="overflow-hidden flex items-center justify-center" style={{ minHeight: 260, background: "#0a0c0f" }}>
                   <img
                     src={img.src} alt={img.alt} loading="lazy"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               ))}
