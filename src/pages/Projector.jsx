@@ -131,11 +131,9 @@ export default function Projector() {
 
         <motion.div {...fi(0.1)} className="relative mb-20">
           <div ref={anywhereRef} className="keen-slider overflow-hidden">
-            {["/uploads/IMG_0660.jpeg","/uploads/IMG_0666.jpeg","/images/usecase-6.jpg","/images/usecase-7.jpg","/uploads/IMG_0688.jpeg"].map((src, i) => (
+            {["/uploads/IMG_0660.jpeg","/uploads/IMG_0666.jpeg","/images/usecase-6.jpg","/images/usecase-7.jpg","/uploads/IMG_0688.jpeg","/uploads/2021/06/used-2.jpg"].map((src, i) => (
               <div key={i} className="keen-slider__slide">
-                <div className="w-full" style={{ aspectRatio: "4/3" }}>
-                  <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
-                </div>
+                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-auto block" />
               </div>
             ))}
           </div>
