@@ -134,9 +134,7 @@ export default function Projector() {
             {["/uploads/IMG_0660.jpeg","/uploads/IMG_0666.jpeg","/images/usecase-6.jpg","/images/usecase-7.jpg",
               "/images/usecase-8.jpg"].map((src, i) => (
               <div key={i} className="keen-slider__slide">
-                <div className="w-full" style={{ aspectRatio: "16/9" }}>
-                  <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
-                </div>
+                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-auto block" />
               </div>
             ))}
           </div>
