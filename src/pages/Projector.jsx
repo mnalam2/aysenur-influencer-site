@@ -1,14 +1,21 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
 import { RED, BG, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
+const ANYWHERE_IMGS = [
+  "/uploads/IMG_0660.jpeg",
+  "/uploads/IMG_0666.jpeg",
+  "/images/usecase-6.jpg",
+  "/images/usecase-7.jpg",
+  "/uploads/IMG_0688.jpeg",
+  "/uploads/2021/06/used-2.jpg",
+];
+
 export default function Projector() {
-  const [anywhereRef, anywhereSlider] = useKeenSlider({
-    loop: true, mode: "snap", slides: { perView: 1, spacing: 0 }, drag: true,
-  });
+  const [anywhereSlide, setAnywhereSlide] = useState(0);
+  const anywherePrev = () => setAnywhereSlide(i => (i - 1 + ANYWHERE_IMGS.length) % ANYWHERE_IMGS.length);
+  const anywhereNext = () => setAnywhereSlide(i => (i + 1) % ANYWHERE_IMGS.length);
 
   return (
     <div className="min-h-screen">
@@ -128,25 +135,52 @@ export default function Projector() {
         </motion.div>
 
         <motion.div {...fi(0.1)} className="relative mb-20">
-          <div ref={anywhereRef} className="keen-slider overflow-hidden">
-            {["/uploads/IMG_0660.jpeg","/uploads/IMG_0666.jpeg","/images/usecase-6.jpg","/images/usecase-7.jpg","/uploads/IMG_0688.jpeg","/uploads/2021/06/used-2.jpg"].map((src, i) => (
-              <div key={i} className="keen-slider__slide">
-                <div className="w-full bg-black" style={{ aspectRatio: "16/9" }}>
-                  <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
-                </div>
+          {/* Fade gallery */}
+          <div className="relative w-full bg-black overflow-hidden" style={{ aspectRatio: "16/9" }}>
+            {ANYWHERE_IMGS.map((src, i) => (
+              <div
+                key={i}
+                className="absolute inset-0"
+                style={{
+                  opacity: anywhereSlide === i ? 1 : 0,
+                  transition: "opacity 0.7s ease-in-out",
+                  pointerEvents: anywhereSlide === i ? "auto" : "none",
+                }}
+              >
+                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
               </div>
             ))}
           </div>
-          <button onClick={() => anywhereSlider.current?.prev()}
+          <button onClick={anywherePrev}
             className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
             style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
             <ChevronLeft size={18} />
           </button>
-          <button onClick={() => anywhereSlider.current?.next()}
+          <button onClick={anywhereNext}
             className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10"
             style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
             <ChevronRight size={18} />
           </button>
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-4">
+            {ANYWHERE_IMGS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setAnywhereSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                style={{
+                  width: anywhereSlide === i ? 20 : 6,
+                  height: 6,
+                  borderRadius: 3,
+                  background: anywhereSlide === i ? RED : BORDER,
+                  transition: "all 0.3s ease",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                }}
+              />
+            ))}
+          </div>
         </motion.div>
 
       </div>

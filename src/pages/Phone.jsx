@@ -2,9 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useKeenSlider } from "keen-slider/react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import "keen-slider/keen-slider.min.css";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/shared";
 
 const GALLERY_IMGS = [
@@ -30,15 +28,8 @@ const SPECS = [
 export default function Phone() {
   const navigate = useNavigate();
   const [gallerySlide, setGallerySlide] = useState(0);
-  const [galleryRef, gallerySlider] = useKeenSlider({
-    loop: true, mode: "snap", drag: true,
-    slides: { perView: 1, spacing: 12 },
-    breakpoints: {
-      "(min-width: 640px)":  { slides: { perView: 2, spacing: 16 } },
-      "(min-width: 1024px)": { slides: { perView: 3, spacing: 20 } },
-    },
-    slideChanged(s) { setGallerySlide(s.track.details.rel); },
-  });
+  const galleryPrev = () => setGallerySlide(i => (i - 1 + GALLERY_IMGS.length) % GALLERY_IMGS.length);
+  const galleryNext = () => setGallerySlide(i => (i + 1) % GALLERY_IMGS.length);
 
   return (
     <div className="min-h-screen">
@@ -159,22 +150,29 @@ export default function Phone() {
           </motion.div>
 
           <motion.div {...fi(0.1)} className="relative">
-            <div ref={galleryRef} className="keen-slider overflow-hidden">
+            {/* Fade gallery — one image at a time */}
+            <div className="relative overflow-hidden" style={{ height: 380 }}>
               {GALLERY_IMGS.map((img, n) => (
-                <div key={n} className="keen-slider__slide">
-                  <div className="overflow-hidden" style={{ height: 320 }}>
-                    <img
-                      src={img.src} alt={img.alt} loading="lazy"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
+                <div
+                  key={n}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: gallerySlide === n ? 1 : 0,
+                    transition: "opacity 0.7s ease-in-out",
+                    pointerEvents: gallerySlide === n ? "auto" : "none",
+                  }}
+                >
+                  <img
+                    src={img.src} alt={img.alt} loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               ))}
             </div>
 
-            {/* Arrows — larger tap target on mobile */}
+            {/* Arrows */}
             <button
-              onClick={() => gallerySlider.current?.prev()}
+              onClick={galleryPrev}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
               style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
               aria-label="Previous"
@@ -182,7 +180,7 @@ export default function Phone() {
               <ChevronLeft size={22} className="text-white" />
             </button>
             <button
-              onClick={() => gallerySlider.current?.next()}
+              onClick={galleryNext}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
               style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
               aria-label="Next"
@@ -195,7 +193,7 @@ export default function Phone() {
               {GALLERY_IMGS.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => gallerySlider.current?.moveToIdx(i)}
+                  onClick={() => setGallerySlide(i)}
                   aria-label={`Go to slide ${i + 1}`}
                   style={{
                     width: gallerySlide === i ? 20 : 6,
