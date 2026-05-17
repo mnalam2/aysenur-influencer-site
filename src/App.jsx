@@ -117,10 +117,7 @@ function Layout() {
         backgroundColor: "#f9f8f5",
       }}>
         {/* Soft cream wash so content stays readable over the photo */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "rgba(249,248,245,0.55)",
-        }} />
+        <div className="hero-photo-wash" style={{ position: "absolute", inset: 0 }} />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
