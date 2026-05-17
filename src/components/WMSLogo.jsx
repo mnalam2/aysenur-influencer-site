@@ -2,7 +2,7 @@ export default function WMSLogo() {
   return (
     <div className="wms-logo">
       <img
-        src="/images/BFB97489-C5AC-480B-BD4C-CB5A903B44DE.png"
+        src="/images/wm-logo-transparent.png"
         alt="WMS — Wireless Mobi Solution, An American Company"
       />
       <span className="wms-logo__dot wms-logo__dot--1" aria-hidden="true" />
