@@ -66,61 +66,6 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── CURSOR SPOTLIGHT ─ soft red glow that lazily trails the cursor ── */
-function CursorSpotlight() {
-  const spotRef = useRef(null);
-  const targetRef = useRef({ x: -9999, y: -9999 });
-  const currentRef = useRef({ x: -9999, y: -9999 });
-
-  useEffect(() => {
-    if (window.matchMedia("(hover: none)").matches) return;
-
-    const handleMove = (e) => {
-      targetRef.current.x = e.clientX;
-      targetRef.current.y = e.clientY;
-    };
-    window.addEventListener("mousemove", handleMove);
-
-    let rafId;
-    const tick = () => {
-      const cur = currentRef.current;
-      const tgt = targetRef.current;
-      cur.x += (tgt.x - cur.x) * 0.09;
-      cur.y += (tgt.y - cur.y) * 0.09;
-      if (spotRef.current) {
-        spotRef.current.style.transform =
-          `translate3d(${cur.x - 300}px, ${cur.y - 300}px, 0)`;
-      }
-      rafId = requestAnimationFrame(tick);
-    };
-    rafId = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={spotRef}
-      aria-hidden="true"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: 600,
-        height: 600,
-        pointerEvents: "none",
-        zIndex: 1,
-        background:
-          "radial-gradient(circle, rgba(239,65,54,0.22) 0%, rgba(239,65,54,0.10) 30%, transparent 65%)",
-        willChange: "transform",
-      }}
-    />
-  );
-}
-
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -193,9 +138,6 @@ function Layout() {
           backgroundSize: "26px 26px",
         }} />
       </div>
-
-      {/* Cursor spotlight — soft projector-like glow following the mouse */}
-      <CursorSpotlight />
 
       {/* ── HEADER ───────────────────────────────────── */}
       <header
