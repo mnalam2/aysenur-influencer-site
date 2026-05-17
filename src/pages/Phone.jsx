@@ -166,7 +166,7 @@ export default function Phone() {
 
           <motion.div {...fi(0.1)} className="relative">
             {/* Fade gallery — one image at a time */}
-            <div className="relative overflow-hidden" style={{ height: 380 }}>
+            <div className="group relative overflow-hidden" style={{ height: 380 }}>
               {GALLERY_IMGS.map((img, n) => (
                 <div
                   key={n}
@@ -183,25 +183,25 @@ export default function Phone() {
                   />
                 </div>
               ))}
-            </div>
 
-            {/* Arrows */}
-            <button
-              onClick={galleryPrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
-              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-              aria-label="Previous"
-            >
-              <ChevronLeft size={22} className="text-white" />
-            </button>
-            <button
-              onClick={galleryNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10"
-              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-              aria-label="Next"
-            >
-              <ChevronRight size={22} className="text-white" />
-            </button>
+              {/* Arrows — visible only on hover */}
+              <button
+                onClick={galleryPrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+                aria-label="Previous"
+              >
+                <ChevronLeft size={22} className="text-white" />
+              </button>
+              <button
+                onClick={galleryNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+                aria-label="Next"
+              >
+                <ChevronRight size={22} className="text-white" />
+              </button>
+            </div>
 
             {/* Dot indicators */}
             <div className="flex justify-center gap-2 mt-5">
