@@ -15,9 +15,10 @@ body {
    the pattern so it never moves while content scrolls over it. */
 .dot-grid { background: transparent; }
 
-/* Fixed photo background — desktop fills height, mobile fits width so the
-   decorative palm/stone edges stay visible instead of being cropped out. */
+/* Fixed photo background — uses a landscape image on desktop and a
+   portrait-oriented image on mobile so both viewports look intentional. */
 .hero-photo-bg {
+  background-image: url('/uploads/IMG_0701.jpeg');
   background-size: cover;
   background-position: center;
 }
@@ -26,18 +27,9 @@ body {
 }
 @media (max-width: 768px) {
   .hero-photo-bg {
-    background-size: 100% auto;
-    background-position: center top;
-  }
-  /* Fade the wash into solid cream so the image's hard bottom edge dissolves */
-  .hero-photo-wash {
-    background: linear-gradient(
-      to bottom,
-      rgba(249,248,245,0.35) 0%,
-      rgba(249,248,245,0.55) 30%,
-      rgba(249,248,245,0.90) 55%,
-      rgba(249,248,245,1.00) 75%
-    );
+    background-image: url('/uploads/B3A1FC18-E769-4C95-832E-71D202E92DFC.png');
+    background-size: cover;
+    background-position: center;
   }
 }
 

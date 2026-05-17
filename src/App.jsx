@@ -112,7 +112,6 @@ function Layout() {
       {/* Fixed background — stone & palm fronds photograph */}
       <div aria-hidden="true" className="hero-photo-bg" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundImage: "url('/uploads/IMG_0701.jpeg')",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#f9f8f5",
       }}>
