@@ -153,7 +153,7 @@ export default function Projector() {
 
       {/* Full-bleed gallery */}
       <motion.div {...fi(0.1)} className="relative mb-20">
-        <div className="group relative w-full overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)" }}>
+        <div className="group relative w-full overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)", background: "#f9f8f5" }}>
           {ANYWHERE_IMGS.map((src, i) => (
             <div
               key={i}
@@ -164,7 +164,7 @@ export default function Projector() {
                 pointerEvents: anywhereSlide === i ? "auto" : "none",
               }}
             >
-              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
+              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
             </div>
           ))}
 

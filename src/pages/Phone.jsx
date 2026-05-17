@@ -167,7 +167,7 @@ export default function Phone() {
 
         {/* Full-bleed gallery */}
         <motion.div {...fi(0.1)} className="relative pb-16">
-          <div className="group relative overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)" }}>
+          <div className="group relative overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)", background: "#f9f8f5" }}>
             {GALLERY_IMGS.map((img, n) => (
               <div
                 key={n}
@@ -180,7 +180,7 @@ export default function Phone() {
               >
                 <img
                   src={img.src} alt={img.alt} loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             ))}
