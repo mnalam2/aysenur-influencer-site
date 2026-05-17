@@ -148,7 +148,7 @@ export default function Phone() {
 
       {/* ── PHOTO GALLERY ─────────────────────────────── */}
       <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
-        <div className="max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-7xl mx-auto px-6 pt-20 pb-10">
           <motion.div {...fi()} className="mb-12">
             <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
               Gallery
@@ -163,68 +163,68 @@ export default function Phone() {
               From outdoor movie nights to boardroom presentations — everywhere deserves a bigger screen.
             </p>
           </motion.div>
-
-          <motion.div {...fi(0.1)} className="relative">
-            {/* Fade gallery — one image at a time */}
-            <div className="group relative overflow-hidden" style={{ height: 380 }}>
-              {GALLERY_IMGS.map((img, n) => (
-                <div
-                  key={n}
-                  className="absolute inset-0"
-                  style={{
-                    opacity: gallerySlide === n ? 1 : 0,
-                    transition: "opacity 0.7s ease-in-out",
-                    pointerEvents: gallerySlide === n ? "auto" : "none",
-                  }}
-                >
-                  <img
-                    src={img.src} alt={img.alt} loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-
-              {/* Arrows — visible only on hover */}
-              <button
-                onClick={galleryPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-                aria-label="Previous"
-              >
-                <ChevronLeft size={22} className="text-white" />
-              </button>
-              <button
-                onClick={galleryNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-                aria-label="Next"
-              >
-                <ChevronRight size={22} className="text-white" />
-              </button>
-            </div>
-
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-2 mt-5">
-              {GALLERY_IMGS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => { setGallerySlide(i); resetTimer(); }}
-                  aria-label={`Go to slide ${i + 1}`}
-                  style={{
-                    width: gallerySlide === i ? 20 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background: gallerySlide === i ? RED : BORDER,
-                    transition: "all 0.3s ease",
-                    border: "none",
-                    padding: 0,
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
-            </div>
-          </motion.div>
         </div>
+
+        {/* Full-bleed gallery */}
+        <motion.div {...fi(0.1)} className="relative pb-16">
+          <div className="group relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+            {GALLERY_IMGS.map((img, n) => (
+              <div
+                key={n}
+                className="absolute inset-0"
+                style={{
+                  opacity: gallerySlide === n ? 1 : 0,
+                  transition: "opacity 0.7s ease-in-out",
+                  pointerEvents: gallerySlide === n ? "auto" : "none",
+                }}
+              >
+                <img
+                  src={img.src} alt={img.alt} loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+
+            {/* Arrows — visible only on hover */}
+            <button
+              onClick={galleryPrev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+              aria-label="Previous"
+            >
+              <ChevronLeft size={22} className="text-white" />
+            </button>
+            <button
+              onClick={galleryNext}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+              aria-label="Next"
+            >
+              <ChevronRight size={22} className="text-white" />
+            </button>
+          </div>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-5">
+            {GALLERY_IMGS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setGallerySlide(i); resetTimer(); }}
+                aria-label={`Go to slide ${i + 1}`}
+                style={{
+                  width: gallerySlide === i ? 20 : 6,
+                  height: 6,
+                  borderRadius: 3,
+                  background: gallerySlide === i ? RED : BORDER,
+                  transition: "all 0.3s ease",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
+                }}
+              />
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* ── STANDARD vs PRO ───────────────────────────── */}

@@ -149,58 +149,58 @@ export default function Projector() {
           </p>
         </motion.div>
 
-        <motion.div {...fi(0.1)} className="relative mb-20">
-          {/* Fade gallery */}
-          <div className="group relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
-            {ANYWHERE_IMGS.map((src, i) => (
-              <div
-                key={i}
-                className="absolute inset-0"
-                style={{
-                  opacity: anywhereSlide === i ? 1 : 0,
-                  transition: "opacity 0.7s ease-in-out",
-                  pointerEvents: anywhereSlide === i ? "auto" : "none",
-                }}
-              >
-                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
-              </div>
-            ))}
-
-            {/* Arrows — visible only on hover */}
-            <button onClick={anywherePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
-              <ChevronLeft size={18} />
-            </button>
-            <button onClick={anywhereNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
-              <ChevronRight size={18} />
-            </button>
-          </div>
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {ANYWHERE_IMGS.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setAnywhereSlide(i); resetAnywhereTimer(); }}
-                aria-label={`Go to slide ${i + 1}`}
-                style={{
-                  width: anywhereSlide === i ? 20 : 6,
-                  height: 6,
-                  borderRadius: 3,
-                  background: anywhereSlide === i ? RED : BORDER,
-                  transition: "all 0.3s ease",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
       </div>
+
+      {/* Full-bleed gallery */}
+      <motion.div {...fi(0.1)} className="relative mb-20">
+        <div className="group relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          {ANYWHERE_IMGS.map((src, i) => (
+            <div
+              key={i}
+              className="absolute inset-0"
+              style={{
+                opacity: anywhereSlide === i ? 1 : 0,
+                transition: "opacity 0.7s ease-in-out",
+                pointerEvents: anywhereSlide === i ? "auto" : "none",
+              }}
+            >
+              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
+            </div>
+          ))}
+
+          {/* Arrows — visible only on hover */}
+          <button onClick={anywherePrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
+            <ChevronLeft size={18} />
+          </button>
+          <button onClick={anywhereNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
+            <ChevronRight size={18} />
+          </button>
+        </div>
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-4">
+          {ANYWHERE_IMGS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setAnywhereSlide(i); resetAnywhereTimer(); }}
+              aria-label={`Go to slide ${i + 1}`}
+              style={{
+                width: anywhereSlide === i ? 20 : 6,
+                height: 6,
+                borderRadius: 3,
+                background: anywhereSlide === i ? RED : BORDER,
+                transition: "all 0.3s ease",
+                border: "none",
+                padding: 0,
+                cursor: "pointer",
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
 
       {/* ── EDUCATIONAL ──────────────────────────────── */}
       <section className="overflow-hidden" style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
