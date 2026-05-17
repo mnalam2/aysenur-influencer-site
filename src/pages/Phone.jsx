@@ -147,7 +147,7 @@ export default function Phone() {
       </section>
 
       {/* ── PHOTO GALLERY ─────────────────────────────── */}
-      <section style={{ background: "#f9f8f5", borderTop: `1px solid ${BORDER}` }}>
+      <section className="dot-grid" style={{ borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 pt-20 pb-10">
           <motion.div {...fi()} className="mb-12">
             <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-4" style={{ color: "#9ca3af" }}>
@@ -167,7 +167,7 @@ export default function Phone() {
 
         {/* Full-bleed gallery */}
         <motion.div {...fi(0.1)} className="relative pb-16">
-          <div className="group relative overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)", background: "#f9f8f5" }}>
+          <div className="group relative overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)" }}>
             {GALLERY_IMGS.map((img, n) => (
               <div
                 key={n}
