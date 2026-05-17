@@ -66,96 +66,6 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── AURORA STREAM ─ particles drifting along an evolving flow field ── */
-function AuroraStream() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const count = Math.min(180, Math.max(80, Math.floor((width * height) / 11000)));
-    const particles = Array.from({ length: count }, (_, i) => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      life: Math.random() * 400,
-      red: i % 5 === 0,
-    }));
-
-    const SPEED    = 1.1;
-    const FLOW     = 0.0035;
-    const MAX_LIFE = 480;
-    let rafId;
-    let t = 0;
-
-    const draw = () => {
-      t += 0.0035;
-
-      // Fade existing pixels by reducing their alpha — keeps canvas transparent
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0,0,0,0.045)";
-      ctx.fillRect(0, 0, width, height);
-
-      // Draw new trail segments
-      ctx.globalCompositeOperation = "source-over";
-      ctx.lineWidth = 1.1;
-      for (const p of particles) {
-        const angle = (Math.sin(p.x * FLOW + t * 0.6) + Math.cos(p.y * FLOW - t * 0.4)) * Math.PI;
-        const vx = Math.cos(angle) * SPEED;
-        const vy = Math.sin(angle) * SPEED;
-        const nx = p.x + vx;
-        const ny = p.y + vy;
-        ctx.strokeStyle = p.red ? "rgba(239,65,54,0.5)" : "rgba(20,40,75,0.4)";
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(nx, ny);
-        ctx.stroke();
-        p.x = nx;
-        p.y = ny;
-        p.life++;
-
-        if (p.x < -10 || p.x > width + 10 || p.y < -10 || p.y > height + 10 || p.life > MAX_LIFE) {
-          p.x = Math.random() * width;
-          p.y = Math.random() * height;
-          p.life = 0;
-        }
-      }
-
-      rafId = requestAnimationFrame(draw);
-    };
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-    />
-  );
-}
-
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -227,8 +137,6 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Aurora stream — particles drift along an evolving flow field */}
-        <AuroraStream />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
