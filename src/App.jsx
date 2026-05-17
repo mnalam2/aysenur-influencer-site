@@ -66,8 +66,8 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── CONSTELLATION ─ slowly drifting dots with hairlines between near-pairs ── */
-function Constellation() {
+/* ── WIREFRAME SHAPES ─ outlined hexagons, triangles, circles, squares drifting ── */
+function WireframeShapes() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -90,50 +90,67 @@ function Constellation() {
     resize();
     window.addEventListener("resize", resize);
 
-    const count = Math.min(100, Math.max(50, Math.floor((width * height) / 22000)));
-    const dots = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.08,
-      vy: (Math.random() - 0.5) * 0.08,
-    }));
+    const TYPES = ["hex", "tri", "circle", "square"];
+    const count = Math.min(40, Math.max(20, Math.floor((width * height) / 55000)));
+    const shapes = Array.from({ length: count }, () => {
+      const r = 22 + Math.random() * 68;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        a: Math.random() * Math.PI * 2,
+        va: (Math.random() - 0.5) * 0.004,
+        r,
+        type: TYPES[Math.floor(Math.random() * TYPES.length)],
+        alpha: 0.13 + Math.random() * 0.20,
+      };
+    });
 
-    const maxDist = 160;
-    const maxDistSq = maxDist * maxDist;
     let rafId;
+
+    const drawShape = (s) => {
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.a);
+      ctx.strokeStyle = `rgba(20, 40, 75, ${s.alpha})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+
+      if (s.type === "circle") {
+        ctx.arc(0, 0, s.r, 0, Math.PI * 2);
+      } else if (s.type === "square") {
+        const r = s.r * 0.85;
+        ctx.rect(-r, -r, r * 2, r * 2);
+      } else {
+        const sides = s.type === "tri" ? 3 : 6;
+        for (let i = 0; i < sides; i++) {
+          const ang = (i / sides) * Math.PI * 2 - Math.PI / 2;
+          const x = Math.cos(ang) * s.r;
+          const y = Math.sin(ang) * s.r;
+          if (i === 0) ctx.moveTo(x, y);
+          else         ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+      }
+
+      ctx.stroke();
+      ctx.restore();
+    };
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      for (const d of dots) {
-        d.x += d.vx;
-        d.y += d.vy;
-        if (d.x < 0 || d.x > width)  d.vx *= -1;
-        if (d.y < 0 || d.y > height) d.vy *= -1;
-      }
-
-      ctx.lineWidth = 1;
-      for (let i = 0; i < dots.length; i++) {
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const dsq = dx * dx + dy * dy;
-          if (dsq < maxDistSq) {
-            const a = (1 - dsq / maxDistSq) * 0.22;
-            ctx.strokeStyle = `rgba(20, 40, 75, ${a})`;
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      ctx.fillStyle = "rgba(20, 40, 75, 0.55)";
-      for (const d of dots) {
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, 1.6, 0, Math.PI * 2);
-        ctx.fill();
+      for (const s of shapes) {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.a += s.va;
+        // Wrap around viewport edges
+        if (s.x < -s.r)         s.x = width + s.r;
+        else if (s.x > width + s.r)  s.x = -s.r;
+        if (s.y < -s.r)         s.y = height + s.r;
+        else if (s.y > height + s.r) s.y = -s.r;
+        drawShape(s);
       }
 
       rafId = requestAnimationFrame(draw);
@@ -226,8 +243,8 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Constellation — slowly drifting dots with hairlines between near-pairs */}
-        <Constellation />
+        {/* Wireframe shapes — drifting outlined hexagons, triangles, circles, squares */}
+        <WireframeShapes />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
