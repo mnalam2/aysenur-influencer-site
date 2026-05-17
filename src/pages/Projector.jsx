@@ -15,7 +15,7 @@ export default function Projector() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <div
         className="relative overflow-hidden dot-grid"
-        style={{ paddingTop: "88px" }}
+        style={{ paddingTop: "60px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(0,180,232,0.06) 0%, transparent 65%)"

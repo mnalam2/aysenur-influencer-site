@@ -9,7 +9,7 @@ export default function Order() {
       {/* ── PAGE HERO ─────────────────────────────────── */}
       <section
         className="relative overflow-hidden dot-grid"
-        style={{ paddingTop: "88px" }}
+        style={{ paddingTop: "60px" }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
           background: "radial-gradient(ellipse 55% 35% at 50% 0%, rgba(239,65,54,0.08) 0%, transparent 65%)"

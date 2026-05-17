@@ -63,7 +63,7 @@ export default function Home() {
         className="relative flex flex-col items-center justify-center overflow-hidden dot-grid"
         style={{
           minHeight: "100svh",
-          paddingTop: "120px",
+          paddingTop: "84px",
           paddingBottom: "120px",
         }}
       >

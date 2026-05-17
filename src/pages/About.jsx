@@ -10,7 +10,7 @@ export default function About() {
       <section
         className="relative overflow-hidden dot-grid"
         style={{
-          paddingTop: "88px",
+          paddingTop: "60px",
         }}
       >
         <div className="absolute inset-0 pointer-events-none" style={{
