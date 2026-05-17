@@ -151,7 +151,7 @@ export default function Projector() {
 
         <motion.div {...fi(0.1)} className="relative mb-20">
           {/* Fade gallery */}
-          <div className="group relative w-full bg-black overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          <div className="group relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
             {ANYWHERE_IMGS.map((src, i) => (
               <div
                 key={i}
@@ -162,7 +162,7 @@ export default function Projector() {
                   pointerEvents: anywhereSlide === i ? "auto" : "none",
                 }}
               >
-                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
+                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
               </div>
             ))}
 
