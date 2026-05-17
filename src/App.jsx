@@ -54,17 +54,6 @@ const NAV = [
   { to: "/support",   label: "Support"                 },
 ];
 
-/* ── ANNOUNCEMENT TICKER ITEMS ───────────────────────────── */
-const TICKER_ITEMS = [
-  "CES 2018 · Las Vegas Debut",
-  "Time Magazine · Best of CES",
-  "PCMag Editor's Pick",
-  "100-Inch Projection",
-  "Always in Focus — No Warm-Up",
-  "Free USA Shipping",
-  "Android · 4G LTE Unlocked",
-  "MOVI TWO Coming 2027",
-];
 
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
@@ -130,31 +119,6 @@ function Layout() {
           borderBottom: `1px solid ${BORDER}`,
         }}
       >
-        {/* Announcement ticker — top strip */}
-        <div
-          className="overflow-hidden"
-          style={{
-            background: "#0a0c0f",
-            borderBottom: "1px solid rgba(255,255,255,0.06)",
-            height: 36,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div className="ticker-track">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span
-                key={i}
-                className="flex-shrink-0 flex items-center font-semibold uppercase px-6"
-                style={{ color: "#f5f5f7", fontSize: "11px", letterSpacing: "0.14em" }}
-              >
-                {item}
-                <span className="ml-6" style={{ color: RED, opacity: 0.7 }}>·</span>
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* Nav row */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[60px] flex items-center justify-between">
           {/* Logo */}

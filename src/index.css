@@ -53,21 +53,6 @@ body {
 .aurora-blob--steel     { animation: auroraDriftB 36s ease-in-out infinite; }
 .aurora-blob--charcoal  { animation: auroraDriftC 24s ease-in-out infinite; }
 
-/* ── Announcement ticker ──────────────────────── */
-@keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.ticker-track {
-  display: flex;
-  animation: ticker 40s linear infinite;
-  will-change: transform;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
 
 /* ── Glow pulse on phone render ───────────── */
 @keyframes glowPulse {
