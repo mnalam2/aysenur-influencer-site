@@ -66,106 +66,6 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── FLOATING GLYPHS ─ tiny dashes, plus marks, dots drifting like runes ── */
-function FloatingGlyphs() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const TYPES = ["dash", "dash", "dash", "plus", "dot"];
-    const count = Math.min(140, Math.max(70, Math.floor((width * height) / 14000)));
-    const glyphs = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      a: Math.random() * Math.PI * 2,
-      va: (Math.random() - 0.5) * 0.003,
-      size: 4 + Math.random() * 8,
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      alpha: 0.18 + Math.random() * 0.28,
-    }));
-
-    let rafId;
-
-    const drawGlyph = (g) => {
-      ctx.save();
-      ctx.translate(g.x, g.y);
-      ctx.rotate(g.a);
-      const color = `rgba(20, 40, 75, ${g.alpha})`;
-      ctx.strokeStyle = color;
-      ctx.fillStyle = color;
-      ctx.lineWidth = 1;
-      ctx.lineCap = "round";
-
-      if (g.type === "dash") {
-        ctx.beginPath();
-        ctx.moveTo(-g.size, 0);
-        ctx.lineTo(g.size, 0);
-        ctx.stroke();
-      } else if (g.type === "plus") {
-        ctx.beginPath();
-        ctx.moveTo(-g.size, 0); ctx.lineTo(g.size, 0);
-        ctx.moveTo(0, -g.size); ctx.lineTo(0, g.size);
-        ctx.stroke();
-      } else { // dot
-        ctx.beginPath();
-        ctx.arc(0, 0, 1.4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      ctx.restore();
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, width, height);
-      for (const g of glyphs) {
-        g.x += g.vx;
-        g.y += g.vy;
-        g.a += g.va;
-        if (g.x < -20)              g.x = width + 20;
-        else if (g.x > width + 20)  g.x = -20;
-        if (g.y < -20)              g.y = height + 20;
-        else if (g.y > height + 20) g.y = -20;
-        drawGlyph(g);
-      }
-      rafId = requestAnimationFrame(draw);
-    };
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-    />
-  );
-}
-
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -237,8 +137,6 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Floating glyphs — tiny dashes, plus marks, dots drifting like runes */}
-        <FloatingGlyphs />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
