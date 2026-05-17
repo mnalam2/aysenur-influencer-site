@@ -164,7 +164,7 @@ export default function Projector() {
                 pointerEvents: anywhereSlide === i ? "auto" : "none",
               }}
             >
-              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
+              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
             </div>
           ))}
 

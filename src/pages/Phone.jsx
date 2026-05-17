@@ -180,7 +180,7 @@ export default function Phone() {
               >
                 <img
                   src={img.src} alt={img.alt} loading="lazy"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
