@@ -152,30 +152,32 @@ export default function Projector() {
       </div>
 
       {/* Full-bleed gallery */}
-      <motion.div {...fi(0.1)} className="relative mb-20">
-        <div className="group relative w-full overflow-hidden dot-grid" style={{ height: "clamp(280px, 38vw, 460px)" }}>
-          {ANYWHERE_IMGS.map((src, i) => (
-            <div
-              key={i}
-              className="absolute inset-0"
-              style={{
-                opacity: anywhereSlide === i ? 1 : 0,
-                transition: "opacity 0.7s ease-in-out",
-                pointerEvents: anywhereSlide === i ? "auto" : "none",
-              }}
-            >
-              <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-cover" />
-            </div>
-          ))}
-
-          {/* Arrows — visible only on hover */}
+      <motion.div {...fi(0.1)} className="mb-20">
+        <div className="group flex items-center">
           <button onClick={anywherePrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="flex-shrink-0 mx-3 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
             <ChevronLeft size={18} />
           </button>
+
+          <div className="flex-1 relative overflow-hidden dot-grid" style={{ height: "clamp(280px, 38vw, 460px)" }}>
+            {ANYWHERE_IMGS.map((src, i) => (
+              <div
+                key={i}
+                className="absolute inset-0"
+                style={{
+                  opacity: anywhereSlide === i ? 1 : 0,
+                  transition: "opacity 0.7s ease-in-out",
+                  pointerEvents: anywhereSlide === i ? "auto" : "none",
+                }}
+              >
+                <img src={src} alt={`MOVI projection ${i + 1}`} className="w-full h-full object-contain" />
+              </div>
+            ))}
+          </div>
+
           <button onClick={anywhereNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            className="flex-shrink-0 mx-3 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
             <ChevronRight size={18} />
           </button>
