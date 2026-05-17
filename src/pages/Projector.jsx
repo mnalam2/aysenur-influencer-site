@@ -153,7 +153,7 @@ export default function Projector() {
 
       {/* Full-bleed gallery */}
       <motion.div {...fi(0.1)} className="relative mb-20">
-        <div className="group relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+        <div className="group relative w-full overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)" }}>
           {ANYWHERE_IMGS.map((src, i) => (
             <div
               key={i}

@@ -167,7 +167,7 @@ export default function Phone() {
 
         {/* Full-bleed gallery */}
         <motion.div {...fi(0.1)} className="relative pb-16">
-          <div className="group relative overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          <div className="group relative overflow-hidden" style={{ height: "clamp(280px, 38vw, 460px)" }}>
             {GALLERY_IMGS.map((img, n) => (
               <div
                 key={n}
