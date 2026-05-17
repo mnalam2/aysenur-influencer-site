@@ -72,9 +72,9 @@ body {
   background-color: #4DA3D9;
   opacity: 0;
 }
-.wms-logo__dot--1 { left: 71.9%; top: 54.2%; animation: wmsLogoDot1 2.4s steps(1, end) infinite; }
-.wms-logo__dot--2 { left: 78.5%; top: 54.2%; animation: wmsLogoDot2 2.4s steps(1, end) infinite; }
-.wms-logo__dot--3 { left: 85.1%; top: 54.2%; animation: wmsLogoDot3 2.4s steps(1, end) infinite; }
+.wms-logo__dot--1 { left: 71.9%; top: 54.2%; animation: wmsLogoDot1 1.6s steps(1, end) infinite; }
+.wms-logo__dot--2 { left: 78.5%; top: 54.2%; animation: wmsLogoDot2 1.6s steps(1, end) infinite; }
+.wms-logo__dot--3 { left: 85.1%; top: 54.2%; animation: wmsLogoDot3 1.6s steps(1, end) infinite; }
 
 @keyframes wmsLogoDot1 {
   0%, 74.99%   { opacity: 1; }
