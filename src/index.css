@@ -53,6 +53,43 @@ body {
 .aurora-blob--steel     { animation: auroraDriftB 36s ease-in-out infinite; }
 .aurora-blob--charcoal  { animation: auroraDriftC 24s ease-in-out infinite; }
 
+/* ── WMS logo with flashing dots ──────────────── */
+.wms-logo {
+  position: relative;
+  display: inline-block;
+  height: 56px;
+  line-height: 0;
+}
+.wms-logo img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+.wms-logo__dot {
+  position: absolute;
+  width: 7%;
+  aspect-ratio: 1;
+  background-color: #4DA3D9;
+  opacity: 0;
+}
+.wms-logo__dot--1 { left: 74.5%; top: 37%; animation: wmsLogoDot1 2.4s steps(1, end) infinite; }
+.wms-logo__dot--2 { left: 82.3%; top: 37%; animation: wmsLogoDot2 2.4s steps(1, end) infinite; }
+.wms-logo__dot--3 { left: 90.1%; top: 37%; animation: wmsLogoDot3 2.4s steps(1, end) infinite; }
+
+@keyframes wmsLogoDot1 {
+  0%, 74.99%   { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
+@keyframes wmsLogoDot2 {
+  0%, 24.99%   { opacity: 0; }
+  25%, 74.99%  { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
+@keyframes wmsLogoDot3 {
+  0%, 49.99%   { opacity: 0; }
+  50%, 74.99%  { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
 
 /* ── Glow pulse on phone render ───────────── */
 @keyframes glowPulse {
