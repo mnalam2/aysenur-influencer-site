@@ -66,108 +66,6 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── WARP STARFIELD ─ 3D-projected stars streaking outward from center ── */
-function WarpStarfield() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let cx = width / 2;
-    let cy = height / 2;
-    const onResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      cx = width / 2;
-      cy = height / 2;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    onResize();
-    window.addEventListener("resize", onResize);
-
-    const count = Math.min(400, Math.max(200, Math.floor((width * height) / 5500)));
-    const focal = 350;
-    const speed = 7;
-    const maxZ  = 1000;
-    const minZ  = 1;
-
-    const spawn = (s) => {
-      s.x = (Math.random() - 0.5) * width * 2.2;
-      s.y = (Math.random() - 0.5) * height * 2.2;
-      s.z = Math.random() * maxZ + minZ;
-    };
-    const stars = Array.from({ length: count }, () => {
-      const s = { x: 0, y: 0, z: 0 };
-      spawn(s);
-      return s;
-    });
-
-    let rafId;
-
-    const draw = () => {
-      // Light alpha fade — gives subtle motion-blur trails behind each streak
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0,0,0,0.22)";
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.globalCompositeOperation = "source-over";
-      ctx.lineCap = "round";
-
-      for (const s of stars) {
-        const prevZ = s.z;
-        s.z -= speed;
-        if (s.z <= minZ) { spawn(s); continue; }
-
-        const k  = focal / s.z;
-        const pk = focal / prevZ;
-        const x  = s.x * k  + cx;
-        const y  = s.y * k  + cy;
-        const px = s.x * pk + cx;
-        const py = s.y * pk + cy;
-
-        if ((x < -100 && px < -100) || (x > width + 100 && px > width + 100) ||
-            (y < -100 && py < -100) || (y > height + 100 && py > height + 100)) continue;
-
-        const t = (maxZ - s.z) / maxZ;
-        const alpha = Math.min(0.85, t * 0.9 + 0.05);
-        const w     = Math.max(0.5, t * 2);
-
-        ctx.strokeStyle = `rgba(20,40,75,${alpha})`;
-        ctx.lineWidth   = w;
-        ctx.beginPath();
-        ctx.moveTo(px, py);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-      }
-
-      rafId = requestAnimationFrame(draw);
-    };
-    rafId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
-    />
-  );
-}
-
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -239,8 +137,6 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Warp starfield — 3D-projected stars streaking outward from center */}
-        <WarpStarfield />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
