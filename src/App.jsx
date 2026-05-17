@@ -354,7 +354,7 @@ function Layout() {
               </div>
               <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748b" }}>Follow</div>
               <div className="flex flex-wrap gap-3">
-                {[["Facebook","https://www.facebook.com/MoviWMS"],["Twitter","#"],["Instagram","#"],["Snapchat","#"]].map(([name, href]) => (
+                {[["Facebook","https://www.facebook.com/MoviWMS/"],["Twitter","https://twitter.com/MoviPhones"],["Instagram","https://www.instagram.com/MoviWMS/"],["Snapchat","https://www.snapchat.com/add/moviphones"]].map(([name, href]) => (
                   <a key={name} href={href} target="_blank" rel="noopener noreferrer"
                     className="text-xs font-semibold hover:opacity-70 transition-opacity"
                     style={{ color: "#6b7280", textDecoration: "none" }}>

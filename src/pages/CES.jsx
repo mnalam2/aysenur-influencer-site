@@ -35,8 +35,8 @@ const MEDIA_LINKS = [
   ["GizChina", "https://www.gizchina.com/2018/01/11/smartphones-now-come-with-in-built-projector-moviphone-is-one-of-them/"],
   ["YouTube Demo", "https://www.youtube.com/watch?time_continue=1&v=ed5G9Oucn_U"],
   ["YouTube — Full Review", "https://youtu.be/H6KcWKYpET8"],
-  ["Twitter / @moviphones", "https://twitter.com/moviphones?lang=en"],
-  ["Instagram", "https://www.instagram.com/p/BdunN_wFkLV/"],
+  ["Twitter / @MoviPhones", "https://twitter.com/MoviPhones"],
+  ["Instagram / @MoviWMS", "https://www.instagram.com/MoviWMS/"],
   ["ComputerWorld", "https://www.computerworld.com/article/3260185/smartphones/get-ready-for-an-explosion-of-smartphone-innovation.html"],
 ];
 
