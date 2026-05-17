@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Play, Pause, Volume2, VolumeX, ArrowRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, fi } from "../components/shared";
@@ -55,32 +55,11 @@ export default function Home() {
     videoRef.current.muted = next;
   };
 
-  /* ── Scroll-driven hero cinema ──────────────────── */
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const phoneScale     = useTransform(scrollYProgress, [0, 0.65], [1, 1.22]);
-  const phoneRotate    = useTransform(scrollYProgress, [0, 0.65], [0, 7]);
-  const phoneY         = useTransform(scrollYProgress, [0, 1],    [0, -140]);
-  const phoneOpacity   = useTransform(scrollYProgress, [0.55, 0.95], [1, 0]);
-  const wordmarkY      = useTransform(scrollYProgress, [0, 1],    [0, 80]);
-  const wordmarkScale  = useTransform(scrollYProgress, [0, 0.6],  [1, 1.3]);
-  const glowScale      = useTransform(scrollYProgress, [0, 0.7],  [1.35, 2.6]);
-  const beamScaleY     = useTransform(scrollYProgress, [0, 0.7],  [0, 1]);
-  const beamOpacity    = useTransform(scrollYProgress, [0.05, 0.4, 0.9], [0, 0.7, 0]);
-  const taglineY       = useTransform(scrollYProgress, [0, 0.4],  [0, 40]);
-  const taglineOpacity = useTransform(scrollYProgress, [0, 0.4],  [1, 0]);
-  const badgeOpacity   = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const scrollIndOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-
   return (
     <div>
 
       {/* ── HERO: Full-viewport, light, dot-grid ────────── */}
       <section
-        ref={heroRef}
         className="relative flex flex-col items-center justify-center overflow-hidden dot-grid"
         style={{
           minHeight: "100svh",
@@ -100,7 +79,6 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.55, delay: 0.1 }}
-          style={{ opacity: badgeOpacity }}
           className="relative z-10 mb-6"
         >
           <span
@@ -117,7 +95,6 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.65, delay: 0.2 }}
-          style={{ y: wordmarkY, scale: wordmarkScale }}
           className="relative z-10 text-center px-4"
         >
           <h1
@@ -135,41 +112,16 @@ export default function Home() {
 
         {/* Phone render — centered */}
         <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
           className="relative z-10 flex justify-center items-center"
-          style={{
-            margin: "1.5rem 0",
-            y: phoneY,
-            scale: phoneScale,
-            rotateZ: phoneRotate,
-            opacity: phoneOpacity,
-          }}
+          style={{ margin: "1.5rem 0" }}
         >
-          {/* Projector beam emerging from the phone — grows as you scroll */}
-          <motion.div
-            aria-hidden="true"
-            className="absolute pointer-events-none"
-            style={{
-              top: "-80%",
-              left: "50%",
-              width: "min(220px, 50vw)",
-              height: "85%",
-              transform: "translateX(-50%)",
-              transformOrigin: "bottom center",
-              scaleY: beamScaleY,
-              opacity: beamOpacity,
-              background: "linear-gradient(180deg, transparent 0%, rgba(239,65,54,0.05) 30%, rgba(239,65,54,0.35) 100%)",
-              clipPath: "polygon(38% 0%, 62% 0%, 100% 100%, 0% 100%)",
-              filter: "blur(20px)",
-            }}
-          />
-
-          <motion.div
+          <div
             className="absolute inset-0 pointer-events-none glow-pulse"
             style={{
               background: "radial-gradient(ellipse 55% 50% at 50% 62%, rgba(239,65,54,0.1) 0%, transparent 68%)",
-              scale: glowScale,
+              transform: "scale(1.35)",
             }}
           />
 
@@ -225,7 +177,6 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          style={{ y: taglineY, opacity: taglineOpacity }}
           className="relative z-10 text-center px-4 mt-4"
         >
           <p
@@ -260,7 +211,6 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.7 }}
-          style={{ opacity: scrollIndOpacity }}
           className="absolute bottom-8 z-10 flex flex-col items-center gap-2 scroll-bounce"
         >
           <div className="text-[9px] font-bold tracking-[0.25em] uppercase" style={{ color: "#9ca3af" }}>
