@@ -66,6 +66,129 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
+/* ── TOPOGRAPHIC CONTOURS ─ marching-squares iso-lines on an evolving field ── */
+function TopoContours() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const CELL = 32;
+    const LEVELS = [-1, -0.6, -0.2, 0.2, 0.6, 1];
+
+    let width = 0, height = 0, cols = 0, rows = 0;
+    let field = new Float32Array(0);
+
+    const onResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cols = Math.ceil(width / CELL) + 1;
+      rows = Math.ceil(height / CELL) + 1;
+      field = new Float32Array(cols * rows);
+    };
+    onResize();
+    window.addEventListener("resize", onResize);
+
+    let rafId;
+    let t = 0;
+
+    const draw = () => {
+      t += 0.008;
+
+      // Sample the scalar field
+      for (let j = 0; j < rows; j++) {
+        for (let i = 0; i < cols; i++) {
+          const x = i * CELL;
+          const y = j * CELL;
+          field[j * cols + i] =
+            Math.sin(x * 0.008 + t * 0.4) * Math.cos(y * 0.010 - t * 0.3) +
+            Math.sin((x + y) * 0.006 + t * 0.5) * 0.5;
+        }
+      }
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineWidth = 1;
+
+      for (let li = 0; li < LEVELS.length; li++) {
+        const thr = LEVELS[li];
+        const alpha = 0.22 - Math.abs(thr) * 0.08;
+        ctx.strokeStyle = `rgba(20,40,75,${alpha})`;
+        ctx.beginPath();
+
+        for (let j = 0; j < rows - 1; j++) {
+          for (let i = 0; i < cols - 1; i++) {
+            const idx = j * cols + i;
+            const a = field[idx];
+            const b = field[idx + 1];
+            const c = field[idx + cols + 1];
+            const d = field[idx + cols];
+
+            let code = 0;
+            if (a > thr) code |= 1;
+            if (b > thr) code |= 2;
+            if (c > thr) code |= 4;
+            if (d > thr) code |= 8;
+            if (code === 0 || code === 15) continue;
+
+            const x = i * CELL;
+            const y = j * CELL;
+            const topX   = x + CELL * (thr - a) / (b - a);
+            const rightY = y + CELL * (thr - b) / (c - b);
+            const botX   = x + CELL * (thr - d) / (c - d);
+            const leftY  = y + CELL * (thr - a) / (d - a);
+
+            switch (code) {
+              case 1: case 14:
+                ctx.moveTo(topX, y); ctx.lineTo(x, leftY); break;
+              case 2: case 13:
+                ctx.moveTo(topX, y); ctx.lineTo(x + CELL, rightY); break;
+              case 3: case 12:
+                ctx.moveTo(x, leftY); ctx.lineTo(x + CELL, rightY); break;
+              case 4: case 11:
+                ctx.moveTo(x + CELL, rightY); ctx.lineTo(botX, y + CELL); break;
+              case 5:
+                ctx.moveTo(topX, y); ctx.lineTo(x, leftY);
+                ctx.moveTo(x + CELL, rightY); ctx.lineTo(botX, y + CELL); break;
+              case 6: case 9:
+                ctx.moveTo(topX, y); ctx.lineTo(botX, y + CELL); break;
+              case 7: case 8:
+                ctx.moveTo(x, leftY); ctx.lineTo(botX, y + CELL); break;
+              case 10:
+                ctx.moveTo(topX, y); ctx.lineTo(x + CELL, rightY);
+                ctx.moveTo(x, leftY); ctx.lineTo(botX, y + CELL); break;
+            }
+          }
+        }
+        ctx.stroke();
+      }
+
+      rafId = requestAnimationFrame(draw);
+    };
+    rafId = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
+    />
+  );
+}
+
 /* ── SHARED LAYOUT ─────────────────────────────────────── */
 function Layout() {
   const location = useLocation();
@@ -137,6 +260,8 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
+        {/* Topographic contour lines — iso-lines of an evolving scalar field */}
+        <TopoContours />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
