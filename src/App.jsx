@@ -66,8 +66,8 @@ const TICKER_ITEMS = [
   "MOVI TWO Coming 2027",
 ];
 
-/* ── TOPOGRAPHIC CONTOURS ─ marching-squares iso-lines on an evolving field ── */
-function TopoContours() {
+/* ── WARP STARFIELD ─ 3D-projected stars streaking outward from center ── */
+function WarpStarfield() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -76,97 +76,76 @@ function TopoContours() {
     const ctx = canvas.getContext("2d");
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    const CELL = 32;
-    const LEVELS = [-1, -0.6, -0.2, 0.2, 0.6, 1];
-
-    let width = 0, height = 0, cols = 0, rows = 0;
-    let field = new Float32Array(0);
-
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let cx = width / 2;
+    let cy = height / 2;
     const onResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
+      cx = width / 2;
+      cy = height / 2;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = width + "px";
       canvas.style.height = height + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cols = Math.ceil(width / CELL) + 1;
-      rows = Math.ceil(height / CELL) + 1;
-      field = new Float32Array(cols * rows);
     };
     onResize();
     window.addEventListener("resize", onResize);
 
+    const count = Math.min(400, Math.max(200, Math.floor((width * height) / 5500)));
+    const focal = 350;
+    const speed = 7;
+    const maxZ  = 1000;
+    const minZ  = 1;
+
+    const spawn = (s) => {
+      s.x = (Math.random() - 0.5) * width * 2.2;
+      s.y = (Math.random() - 0.5) * height * 2.2;
+      s.z = Math.random() * maxZ + minZ;
+    };
+    const stars = Array.from({ length: count }, () => {
+      const s = { x: 0, y: 0, z: 0 };
+      spawn(s);
+      return s;
+    });
+
     let rafId;
-    let t = 0;
 
     const draw = () => {
-      t += 0.008;
+      // Light alpha fade — gives subtle motion-blur trails behind each streak
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0,0,0,0.22)";
+      ctx.fillRect(0, 0, width, height);
 
-      // Sample the scalar field
-      for (let j = 0; j < rows; j++) {
-        for (let i = 0; i < cols; i++) {
-          const x = i * CELL;
-          const y = j * CELL;
-          field[j * cols + i] =
-            Math.sin(x * 0.008 + t * 0.4) * Math.cos(y * 0.010 - t * 0.3) +
-            Math.sin((x + y) * 0.006 + t * 0.5) * 0.5;
-        }
-      }
+      ctx.globalCompositeOperation = "source-over";
+      ctx.lineCap = "round";
 
-      ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 1;
+      for (const s of stars) {
+        const prevZ = s.z;
+        s.z -= speed;
+        if (s.z <= minZ) { spawn(s); continue; }
 
-      for (let li = 0; li < LEVELS.length; li++) {
-        const thr = LEVELS[li];
-        const alpha = 0.22 - Math.abs(thr) * 0.08;
+        const k  = focal / s.z;
+        const pk = focal / prevZ;
+        const x  = s.x * k  + cx;
+        const y  = s.y * k  + cy;
+        const px = s.x * pk + cx;
+        const py = s.y * pk + cy;
+
+        if ((x < -100 && px < -100) || (x > width + 100 && px > width + 100) ||
+            (y < -100 && py < -100) || (y > height + 100 && py > height + 100)) continue;
+
+        const t = (maxZ - s.z) / maxZ;
+        const alpha = Math.min(0.85, t * 0.9 + 0.05);
+        const w     = Math.max(0.5, t * 2);
+
         ctx.strokeStyle = `rgba(20,40,75,${alpha})`;
+        ctx.lineWidth   = w;
         ctx.beginPath();
-
-        for (let j = 0; j < rows - 1; j++) {
-          for (let i = 0; i < cols - 1; i++) {
-            const idx = j * cols + i;
-            const a = field[idx];
-            const b = field[idx + 1];
-            const c = field[idx + cols + 1];
-            const d = field[idx + cols];
-
-            let code = 0;
-            if (a > thr) code |= 1;
-            if (b > thr) code |= 2;
-            if (c > thr) code |= 4;
-            if (d > thr) code |= 8;
-            if (code === 0 || code === 15) continue;
-
-            const x = i * CELL;
-            const y = j * CELL;
-            const topX   = x + CELL * (thr - a) / (b - a);
-            const rightY = y + CELL * (thr - b) / (c - b);
-            const botX   = x + CELL * (thr - d) / (c - d);
-            const leftY  = y + CELL * (thr - a) / (d - a);
-
-            switch (code) {
-              case 1: case 14:
-                ctx.moveTo(topX, y); ctx.lineTo(x, leftY); break;
-              case 2: case 13:
-                ctx.moveTo(topX, y); ctx.lineTo(x + CELL, rightY); break;
-              case 3: case 12:
-                ctx.moveTo(x, leftY); ctx.lineTo(x + CELL, rightY); break;
-              case 4: case 11:
-                ctx.moveTo(x + CELL, rightY); ctx.lineTo(botX, y + CELL); break;
-              case 5:
-                ctx.moveTo(topX, y); ctx.lineTo(x, leftY);
-                ctx.moveTo(x + CELL, rightY); ctx.lineTo(botX, y + CELL); break;
-              case 6: case 9:
-                ctx.moveTo(topX, y); ctx.lineTo(botX, y + CELL); break;
-              case 7: case 8:
-                ctx.moveTo(x, leftY); ctx.lineTo(botX, y + CELL); break;
-              case 10:
-                ctx.moveTo(topX, y); ctx.lineTo(x + CELL, rightY);
-                ctx.moveTo(x, leftY); ctx.lineTo(botX, y + CELL); break;
-            }
-          }
-        }
+        ctx.moveTo(px, py);
+        ctx.lineTo(x, y);
         ctx.stroke();
       }
 
@@ -260,8 +239,8 @@ function Layout() {
           backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
         }} />
-        {/* Topographic contour lines — iso-lines of an evolving scalar field */}
-        <TopoContours />
+        {/* Warp starfield — 3D-projected stars streaking outward from center */}
+        <WarpStarfield />
       </div>
 
       {/* ── HEADER ───────────────────────────────────── */}
