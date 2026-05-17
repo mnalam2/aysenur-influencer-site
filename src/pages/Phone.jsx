@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +28,23 @@ const SPECS = [
 export default function Phone() {
   const navigate = useNavigate();
   const [gallerySlide, setGallerySlide] = useState(0);
-  const galleryPrev = () => setGallerySlide(i => (i - 1 + GALLERY_IMGS.length) % GALLERY_IMGS.length);
-  const galleryNext = () => setGallerySlide(i => (i + 1) % GALLERY_IMGS.length);
+  const galleryTimerRef = useRef(null);
+
+  const resetTimer = () => {
+    clearInterval(galleryTimerRef.current);
+    galleryTimerRef.current = setInterval(
+      () => setGallerySlide(i => (i + 1) % GALLERY_IMGS.length),
+      4000
+    );
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => clearInterval(galleryTimerRef.current);
+  }, []);
+
+  const galleryPrev = () => { setGallerySlide(i => (i - 1 + GALLERY_IMGS.length) % GALLERY_IMGS.length); resetTimer(); };
+  const galleryNext = () => { setGallerySlide(i => (i + 1) % GALLERY_IMGS.length); resetTimer(); };
 
   return (
     <div className="min-h-screen">
@@ -193,7 +208,7 @@ export default function Phone() {
               {GALLERY_IMGS.map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setGallerySlide(i)}
+                  onClick={() => { setGallerySlide(i); resetTimer(); }}
                   aria-label={`Go to slide ${i + 1}`}
                   style={{
                     width: gallerySlide === i ? 20 : 6,

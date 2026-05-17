@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { RED, BG, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
@@ -14,8 +14,23 @@ const ANYWHERE_IMGS = [
 
 export default function Projector() {
   const [anywhereSlide, setAnywhereSlide] = useState(0);
-  const anywherePrev = () => setAnywhereSlide(i => (i - 1 + ANYWHERE_IMGS.length) % ANYWHERE_IMGS.length);
-  const anywhereNext = () => setAnywhereSlide(i => (i + 1) % ANYWHERE_IMGS.length);
+  const anywhereTimerRef = useRef(null);
+
+  const resetAnywhereTimer = () => {
+    clearInterval(anywhereTimerRef.current);
+    anywhereTimerRef.current = setInterval(
+      () => setAnywhereSlide(i => (i + 1) % ANYWHERE_IMGS.length),
+      4000
+    );
+  };
+
+  useEffect(() => {
+    resetAnywhereTimer();
+    return () => clearInterval(anywhereTimerRef.current);
+  }, []);
+
+  const anywherePrev = () => { setAnywhereSlide(i => (i - 1 + ANYWHERE_IMGS.length) % ANYWHERE_IMGS.length); resetAnywhereTimer(); };
+  const anywhereNext = () => { setAnywhereSlide(i => (i + 1) % ANYWHERE_IMGS.length); resetAnywhereTimer(); };
 
   return (
     <div className="min-h-screen">
@@ -166,7 +181,7 @@ export default function Projector() {
             {ANYWHERE_IMGS.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setAnywhereSlide(i)}
+                onClick={() => { setAnywhereSlide(i); resetAnywhereTimer(); }}
                 aria-label={`Go to slide ${i + 1}`}
                 style={{
                   width: anywhereSlide === i ? 20 : 6,
