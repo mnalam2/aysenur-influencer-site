@@ -109,33 +109,19 @@ function Layout() {
     <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
       className="min-h-screen">
 
-      {/* Fixed aurora canvas — soft drifting color blobs + whisper-faint dot grid.
-          Blobs slowly orbit (CSS keyframes) creating a living, ethereal feel.
-          Pattern is fixed to the viewport so content scrolls over a "world" that breathes. */}
+      {/* Fixed background — stone & palm fronds photograph */}
       <div aria-hidden="true" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        backgroundColor: "#f9f8f5", overflow: "hidden",
+        backgroundImage: "url('/uploads/IMG_0701.jpeg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f9f8f5",
       }}>
-        <div className="aurora-blob aurora-blob--navy" style={{
-          position: "absolute", top: "-25%", left: "-20%",
-          width: "85vmax", height: "85vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(20,40,75,0.18), rgba(20,40,75,0) 62%)",
-        }} />
-        <div className="aurora-blob aurora-blob--steel" style={{
-          position: "absolute", bottom: "-25%", right: "-20%",
-          width: "90vmax", height: "90vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(60,90,130,0.16), rgba(60,90,130,0) 62%)",
-        }} />
-        <div className="aurora-blob aurora-blob--charcoal" style={{
-          position: "absolute", top: "30%", left: "40%",
-          width: "60vmax", height: "60vmax", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(25,28,35,0.15), rgba(25,28,35,0) 62%)",
-        }} />
-        {/* Whisper-faint texture overlay so the aurora isn't completely smooth */}
+        {/* Soft cream wash so content stays readable over the photo */}
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(circle, rgba(10,12,15,0.045) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
+          background: "rgba(249,248,245,0.55)",
         }} />
       </div>
 
