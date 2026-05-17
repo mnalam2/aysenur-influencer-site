@@ -110,11 +110,9 @@ function Layout() {
       className="min-h-screen">
 
       {/* Fixed background — stone & palm fronds photograph */}
-      <div aria-hidden="true" style={{
+      <div aria-hidden="true" className="hero-photo-bg" style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
         backgroundImage: "url('/uploads/IMG_0701.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundColor: "#f9f8f5",
       }}>

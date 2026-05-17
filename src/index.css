@@ -15,6 +15,19 @@ body {
    the pattern so it never moves while content scrolls over it. */
 .dot-grid { background: transparent; }
 
+/* Fixed photo background — desktop fills height, mobile fits width so the
+   decorative palm/stone edges stay visible instead of being cropped out. */
+.hero-photo-bg {
+  background-size: cover;
+  background-position: center;
+}
+@media (max-width: 768px) {
+  .hero-photo-bg {
+    background-size: 100% auto;
+    background-position: center top;
+  }
+}
+
 /* ── Aurora blob drift — three offset orbits give an organic, "breathing" feel ── */
 @keyframes auroraDriftA {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
