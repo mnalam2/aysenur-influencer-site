@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { RED, BG, CARD, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../components/shared";
 
+const CES_VIDEO_ID = "to5M7MJA2GQ";
+
 const PRESS_LINKS = [
   ["Yahoo", "https://finance.yahoo.com/news/movi-smartphone-embedded-pico-projector-140000543.html"],
   ["Market Watch", "https://www.marketwatch.com/story/movi-smartphone-with-embedded-pico-projector-showcased-at-ces-2018-2018-01-08"],
@@ -107,6 +109,26 @@ export default function CES() {
                   </div>
                 ))}
               </div>
+            </div>
+          </GlassCard>
+        </motion.div>
+
+        {/* ── CES VIDEO ────────────────────────────── */}
+        <motion.div {...fi()} className="mb-20">
+          <GlassCard className="overflow-hidden p-6 sm:p-10"
+            style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
+            <Chip className="mb-4">CES 2018 — Live Demo</Chip>
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 uppercase leading-tight">
+              Watch the MOVI <RedText>at CES 2018</RedText>
+            </h2>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: "56.25%", boxShadow: `0 0 60px rgba(239,65,54,0.15)` }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${CES_VIDEO_ID}`}
+                title="MOVI at CES 2018"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </GlassCard>
         </motion.div>
