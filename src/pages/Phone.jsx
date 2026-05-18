@@ -29,6 +29,7 @@ export default function Phone() {
   const navigate = useNavigate();
   const [gallerySlide, setGallerySlide] = useState(0);
   const galleryTimerRef = useRef(null);
+  const touchStartX = useRef(null);
 
   const resetTimer = () => {
     clearInterval(galleryTimerRef.current);
@@ -45,6 +46,14 @@ export default function Phone() {
 
   const galleryPrev = () => { setGallerySlide(i => (i - 1 + GALLERY_IMGS.length) % GALLERY_IMGS.length); resetTimer(); };
   const galleryNext = () => { setGallerySlide(i => (i + 1) % GALLERY_IMGS.length); resetTimer(); };
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? galleryNext() : galleryPrev();
+    touchStartX.current = null;
+  };
 
   return (
     <div className="min-h-screen">
@@ -168,7 +177,8 @@ export default function Phone() {
         {/* Full-bleed gallery */}
         <motion.div {...fi(0.1)} className="pb-16 px-4">
           <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-            <div className="group relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            <div className="group relative overflow-hidden" style={{ aspectRatio: "4/3" }}
+              onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
               {GALLERY_IMGS.map((img, n) => (
                 <div
                   key={n}

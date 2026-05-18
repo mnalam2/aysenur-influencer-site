@@ -15,6 +15,7 @@ const ANYWHERE_IMGS = [
 export default function Projector() {
   const [anywhereSlide, setAnywhereSlide] = useState(0);
   const anywhereTimerRef = useRef(null);
+  const touchStartX = useRef(null);
 
   const resetAnywhereTimer = () => {
     clearInterval(anywhereTimerRef.current);
@@ -31,6 +32,14 @@ export default function Projector() {
 
   const anywherePrev = () => { setAnywhereSlide(i => (i - 1 + ANYWHERE_IMGS.length) % ANYWHERE_IMGS.length); resetAnywhereTimer(); };
   const anywhereNext = () => { setAnywhereSlide(i => (i + 1) % ANYWHERE_IMGS.length); resetAnywhereTimer(); };
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? anywhereNext() : anywherePrev();
+    touchStartX.current = null;
+  };
 
   return (
     <div className="min-h-screen">
@@ -154,7 +163,8 @@ export default function Projector() {
       {/* Full-bleed gallery */}
       <motion.div {...fi(0.1)} className="mb-20 px-4">
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <div className="group relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+          <div className="group relative overflow-hidden" style={{ aspectRatio: "4/3" }}
+            onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             {ANYWHERE_IMGS.map((src, i) => (
               <div
                 key={i}
