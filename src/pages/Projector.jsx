@@ -7,7 +7,7 @@ const ANYWHERE_IMGS = [
   "/uploads/IMG_0660.jpeg",
   "/uploads/IMG_0666.jpeg",
   "/images/648F6435-A5D7-4302-A030-8EB353ACE4C2.png",
-  "/images/580DBD7C-DC6C-4D26-814A-F8A9D229BF40.png",
+  "/images/14310B6B-3448-4973-954E-E4F5433B21CD.png",
   "/uploads/IMG_0688.jpeg",
   "/images/IMG_0725.jpeg",
 ];

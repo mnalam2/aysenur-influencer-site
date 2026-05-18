@@ -8,8 +8,8 @@ import { RED, BG, CARD, CARD2, BORDER, GlassCard, fi } from "../components/share
 const GALLERY_IMGS = [
   { src: "/images/usecase-1.jpg",                                                    alt: "MOVI outdoor projection"  },
   { src: "/uploads/IMG_0680.jpeg",                                                   alt: "MOVI outdoor lady"        },
-  { src: "/images/usecase-3.jpg",                                                    alt: "MOVI educational use"     },
-  { src: "/images/usecase-4.jpg",                                                    alt: "MOVI ceiling projection"  },
+  { src: "/images/30CB2BCA-9BD8-4CFE-8942-5C8D14680AC0.png",                         alt: "MOVI educational use"     },
+  { src: "/images/580DBD7C-DC6C-4D26-814A-F8A9D229BF40.png",                        alt: "MOVI ceiling projection"  },
   { src: "/uploads/2021/05/img2_dc9afeec-0f92-46b0-8621-4b8b103bc84e-1.jpg",        alt: "MOVI mountain projection" },
 ];
 
