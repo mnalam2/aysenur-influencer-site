@@ -9,7 +9,7 @@ const ANYWHERE_IMGS = [
   "/images/usecase-6.jpg",
   "/images/usecase-7.jpg",
   "/uploads/IMG_0688.jpeg",
-  "/uploads/2021/06/used-2.jpg",
+  "/images/IMG_0725.jpeg",
 ];
 
 export default function Projector() {
