@@ -392,7 +392,7 @@ export default function Phone() {
       {/* ── WHAT CAN MOVI DO ──────────────────────────── */}
       <section style={{ background: CARD2, borderTop: `1px solid ${BORDER}` }}>
         <div className="max-w-7xl mx-auto px-6 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div {...fi()} className="flex flex-col justify-center">
               <div className="text-[10px] font-bold tracking-[0.22em] uppercase mb-6" style={{ color: "#9ca3af" }}>
                 Use Cases
