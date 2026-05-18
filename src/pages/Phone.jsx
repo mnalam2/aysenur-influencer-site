@@ -198,7 +198,7 @@ export default function Phone() {
 
               <button
                 onClick={galleryPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
                 aria-label="Previous"
               >
@@ -206,7 +206,7 @@ export default function Phone() {
               </button>
               <button
                 onClick={galleryNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 hidden md:flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
                 aria-label="Next"
               >

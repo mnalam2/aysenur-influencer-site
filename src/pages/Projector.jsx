@@ -180,12 +180,12 @@ export default function Projector() {
             ))}
 
             <button onClick={anywherePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden md:flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
               <ChevronLeft size={18} />
             </button>
             <button onClick={anywhereNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden md:flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{ background: "rgba(10,12,15,0.8)", border: `1px solid ${BORDER}`, color: "white" }}>
               <ChevronRight size={18} />
             </button>
