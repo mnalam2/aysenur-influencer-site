@@ -319,7 +319,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row-reverse">
           <motion.div {...fi(0.1)} className="lg:w-1/2 overflow-hidden" style={{ minHeight: 440 }}>
             <img
-              src="/images/feature-1.jpeg"
+              src="/images/IMG_0746.jpeg"
               alt="MOVI laser beam steering technology"
               loading="lazy"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
