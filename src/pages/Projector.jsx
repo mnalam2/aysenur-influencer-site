@@ -6,7 +6,7 @@ import { RED, BG, CARD2, BORDER, GlassCard, Chip, RedText, fi } from "../compone
 const ANYWHERE_IMGS = [
   "/uploads/IMG_0660.jpeg",
   "/uploads/IMG_0666.jpeg",
-  "/images/usecase-6.jpg",
+  "/images/30CB2BCA-9BD8-4CFE-8942-5C8D14680AC0.png",
   "/images/14310B6B-3448-4973-954E-E4F5433B21CD.png",
   "/uploads/IMG_0688.jpeg",
   "/images/IMG_0725.jpeg",
