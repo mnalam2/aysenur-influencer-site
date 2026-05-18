@@ -118,6 +118,9 @@ export default function CES() {
           <GlassCard className="overflow-hidden p-6 sm:p-10"
             style={{ borderColor: "rgba(239,65,54,0.2)", background: `linear-gradient(135deg,rgba(239,65,54,0.05),${CARD})` }}>
             <Chip className="mb-4">CES 2018 — Live Demo</Chip>
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-6 uppercase leading-tight">
+              Watch the MOVI<br /><RedText>at CES 2018</RedText>
+            </h2>
             <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: "56.25%", boxShadow: `0 0 60px rgba(239,65,54,0.15)` }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
