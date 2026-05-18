@@ -166,41 +166,43 @@ export default function Phone() {
         </div>
 
         {/* Full-bleed gallery */}
-        <motion.div {...fi(0.1)} className="pb-16">
-          <div className="group relative overflow-hidden dot-grid" style={{ height: "clamp(280px, 38vw, 460px)" }}>
-            {GALLERY_IMGS.map((img, n) => (
-              <div
-                key={n}
-                className="absolute inset-0"
-                style={{
-                  opacity: gallerySlide === n ? 1 : 0,
-                  transition: "opacity 0.7s ease-in-out",
-                  pointerEvents: gallerySlide === n ? "auto" : "none",
-                }}
-              >
-                <img
-                  src={img.src} alt={img.alt} loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
+        <motion.div {...fi(0.1)} className="pb-16 px-4">
+          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+            <div className="group relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              {GALLERY_IMGS.map((img, n) => (
+                <div
+                  key={n}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: gallerySlide === n ? 1 : 0,
+                    transition: "opacity 0.7s ease-in-out",
+                    pointerEvents: gallerySlide === n ? "auto" : "none",
+                  }}
+                >
+                  <img
+                    src={img.src} alt={img.alt} loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
 
-            <button
-              onClick={galleryPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-              aria-label="Previous"
-            >
-              <ChevronLeft size={22} className="text-white" />
-            </button>
-            <button
-              onClick={galleryNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
-              aria-label="Next"
-            >
-              <ChevronRight size={22} className="text-white" />
-            </button>
+              <button
+                onClick={galleryPrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+                aria-label="Previous"
+              >
+                <ChevronLeft size={22} className="text-white" />
+              </button>
+              <button
+                onClick={galleryNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "rgba(8,10,13,0.75)", backdropFilter: "blur(8px)" }}
+                aria-label="Next"
+              >
+                <ChevronRight size={22} className="text-white" />
+              </button>
+            </div>
           </div>
 
           {/* Dot indicators */}
