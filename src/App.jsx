@@ -11,15 +11,21 @@ import "@fontsource/inter/800.css";
 import WMSLogo from "./components/WMSLogo";
 import { RED, BG, CARD2, BORDER } from "./components/shared";
 
-import Home         from "./pages/Home";
-import PhonePage    from "./pages/Phone";
-import Projector    from "./pages/Projector";
-import About     from "./pages/About";
-import CES       from "./pages/CES";
-import Services  from "./pages/Services";
-import Support   from "./pages/Support";
-import Order     from "./pages/Order";
-import Contact   from "./pages/Contact";
+import Home           from "./pages/Home";
+import PhonePage      from "./pages/Phone";
+import Projector      from "./pages/Projector";
+import About          from "./pages/About";
+import CES            from "./pages/CES";
+import Services       from "./pages/Services";
+import Support        from "./pages/Support";
+import Order          from "./pages/Order";
+import Contact        from "./pages/Contact";
+import Specifications from "./pages/Specifications";
+import Shipping       from "./pages/Shipping";
+import Refund         from "./pages/Refund";
+import Warranty       from "./pages/Warranty";
+import Privacy        from "./pages/Privacy";
+import Terms          from "./pages/Terms";
 
 export default function App() {
   return (
@@ -34,7 +40,13 @@ export default function App() {
           <Route path="services"  element={<Services />}  />
           <Route path="support"   element={<Support />}   />
           <Route path="order"     element={<Order />}     />
-          <Route path="contact"   element={<Contact />}   />
+          <Route path="contact"        element={<Contact />}        />
+          <Route path="specifications" element={<Specifications />} />
+          <Route path="shipping"       element={<Shipping />}       />
+          <Route path="refund"         element={<Refund />}         />
+          <Route path="warranty"       element={<Warranty />}       />
+          <Route path="privacy"        element={<Privacy />}        />
+          <Route path="terms"          element={<Terms />}          />
           {/* 404 fallback */}
           <Route path="*" element={<Home />} />
         </Route>
@@ -265,7 +277,7 @@ function Layout() {
             {/* Useful links */}
             <div>
               <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Useful Links</div>
-              {[["Moviphone", "/phone"],["Specifications", "/phone"],["About Us", "/about"],
+              {[["Moviphone", "/phone"],["Specifications", "/specifications"],["About Us", "/about"],
                 ["CES", "/ces"],["Media Release", "/ces"],["Services", "/services"],["Projector", "/projector"]].map(([l, to]) => (
                 <div key={l} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
@@ -280,22 +292,28 @@ function Layout() {
               <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Support</div>
               {[
                 { label: "FAQs", to: "/support" },
-                { label: "Warranty", email: "warranty@moviphones.com" },
-                { label: "Shipping Policy", email: "info@moviphones.com" },
-                { label: "Refund & Replacement", email: "info@moviphones.com" },
+                { label: "Warranty", to: "/warranty" },
+                { label: "Shipping Policy", to: "/shipping" },
+                { label: "Refund & Replacement", to: "/refund" },
                 { label: "Order", to: "/order" },
                 { label: "Contact Us", to: "/contact" },
               ].map((l) => (
                 <div key={l.label} className="flex items-center gap-2 mb-2">
                   <Check size={11} style={{ color: RED, flexShrink: 0 }} />
-                  {l.to
-                    ? <Link to={l.to} className="text-sm hover:opacity-70 transition-opacity"
-                        style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</Link>
-                    : <a href={`mailto:${l.email}?subject=${encodeURIComponent(l.label + " Inquiry")}`}
-                        className="text-sm hover:opacity-70 transition-opacity"
-                        style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</a>}
+                  <Link to={l.to} className="text-sm hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</Link>
                 </div>
               ))}
+              <div className="mt-4 pt-4" style={{ borderTop: `1px solid ${BORDER}` }}>
+                <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748b" }}>Legal</div>
+                {[["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"]].map(([l, to]) => (
+                  <div key={l} className="flex items-center gap-2 mb-2">
+                    <Check size={11} style={{ color: RED, flexShrink: 0 }} />
+                    <Link to={to} className="text-sm hover:opacity-70 transition-opacity"
+                      style={{ color: "#6b7280", textDecoration: "none" }}>{l}</Link>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Contact */}
@@ -334,8 +352,14 @@ function Layout() {
             <p className="text-xs" style={{ color: "#9ca3af" }}>
               © {new Date().getFullYear()} Wireless Mobi Solution, Inc. All rights reserved.
             </p>
-            <a href="mailto:info@moviphones.com" className="text-xs hover:opacity-70 transition-opacity"
-              style={{ color: "#9ca3af" }}>info@moviphones.com</a>
+            <div className="flex items-center gap-4">
+              <Link to="/privacy" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af", textDecoration: "none" }}>Privacy Policy</Link>
+              <Link to="/terms" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af", textDecoration: "none" }}>Terms of Service</Link>
+              <a href="mailto:info@moviphones.com" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af" }}>info@moviphones.com</a>
+            </div>
           </div>
         </div>
       </footer>
