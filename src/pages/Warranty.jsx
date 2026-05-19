@@ -63,13 +63,13 @@ export default function Warranty() {
         <motion.div {...fi()}>
           <div className="grid grid-cols-3 gap-4 mb-6">
             {[
-              { value: "1 Year", label: "Warranty Period" },
-              { value: "60 Days", label: "Repaired/Replaced Coverage" },
-              { value: "Free Repair", label: "Or Replacement" },
+              { value: "1 Year",    label: "Warranty"        },
+              { value: "60 Days",   label: "Repair Coverage" },
+              { value: "Free",      label: "Repair or Replace" },
             ].map((s) => (
-              <GlassCard key={s.label} className="p-5 text-center">
+              <GlassCard key={s.label} className="p-3 sm:p-5 text-center">
                 <div className="font-extrabold text-base mb-1" style={{ color: RED }}>{s.value}</div>
-                <div className="text-xs uppercase tracking-wider" style={{ color: "#6b7280" }}>{s.label}</div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider leading-tight" style={{ color: "#6b7280" }}>{s.label}</div>
               </GlassCard>
             ))}
           </div>
