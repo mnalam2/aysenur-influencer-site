@@ -118,11 +118,11 @@ export default function Phone() {
                 Order Now — $699
               </button>
               <button
-                onClick={() => navigate("/projector")}
+                onClick={() => navigate("/specifications")}
                 className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-base hover:opacity-70 transition"
                 style={{ border: `1px solid ${BORDER}`, color: "#374151" }}
               >
-                Projector Tech <ArrowRight size={15} />
+                Full Specs <ArrowRight size={15} />
               </button>
             </div>
           </motion.div>

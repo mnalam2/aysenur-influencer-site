@@ -57,13 +57,14 @@ export default function App() {
 
 /* ── NAV LINKS ──────────────────────────────────────────── */
 const NAV = [
-  { to: "/",          label: "Home",      exact: true  },
-  { to: "/phone",     label: "Phone"                   },
-  { to: "/projector", label: "Projector"               },
-  { to: "/about",     label: "About"                   },
-  { to: "/ces",       label: "CES"                     },
-  { to: "/services",  label: "Services"                },
-  { to: "/support",   label: "Support"                 },
+  { to: "/",              label: "Home",  exact: true },
+  { to: "/phone",         label: "Phone"              },
+  { to: "/specifications",label: "Specs"              },
+  { to: "/projector",     label: "Projector"          },
+  { to: "/about",         label: "About"              },
+  { to: "/ces",           label: "CES"                },
+  { to: "/services",      label: "Services"           },
+  { to: "/support",       label: "Support"            },
 ];
 
 
