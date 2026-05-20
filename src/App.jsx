@@ -1,414 +1,383 @@
-/*
-  React (JavaScript) single-file version for Vite + Netlify
-  - No TypeScript syntax (fixes esbuild “Expected ')' but found ':'”)
-  - Uses react-helmet-async with local HelmetProvider (no change to main.jsx needed)
-  - Accessible nav, sections, progressive hero, slider, lightbox, SEO JSON-LD
+import { useState, useEffect, useRef } from "react";
+import { BrowserRouter, Routes, Route, Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence kept for mobile menu + scroll-top
+import { Menu, X, ArrowUp, Check, Mail, Phone, MapPin } from "lucide-react";
 
-  Install deps:
-    npm i framer-motion lucide-react keen-slider react-helmet-async @fontsource/playfair-display
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
 
-  If you already added Tailwind, classes will just work. If not, you can still ship this as plain CSS utility classes (they’ll be ignored).
-*/
+import WMSLogo from "./components/WMSLogo";
+import { RED, BG, CARD2, BORDER } from "./components/shared";
 
-import { Mail, Instagram, ChevronDown, ArrowUp, Youtube, Music2, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-// Helmet removed to avoid extra dependency on Netlify
-// We will set document.title in useEffect and move meta tags to public/index.html
-import "keen-slider/keen-slider.min.css";
-import { useKeenSlider } from "keen-slider/react";
-import "@fontsource/playfair-display";
+import Home           from "./pages/Home";
+import PhonePage      from "./pages/Phone";
+import Projector      from "./pages/Projector";
+import About          from "./pages/About";
+import CES            from "./pages/CES";
+import Services       from "./pages/Services";
+import Support        from "./pages/Support";
+import Order          from "./pages/Order";
+import Contact        from "./pages/Contact";
+import Specifications from "./pages/Specifications";
+import Shipping       from "./pages/Shipping";
+import Refund         from "./pages/Refund";
+import Warranty       from "./pages/Warranty";
+import Privacy        from "./pages/Privacy";
+import Terms          from "./pages/Terms";
 
-export default function AysenurInfluencerSite() {
-  return <Page />;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index       element={<Home />}      />
+          <Route path="phone"     element={<PhonePage />} />
+          <Route path="projector" element={<Projector />} />
+          <Route path="about"     element={<About />}     />
+          <Route path="ces"       element={<CES />}       />
+          <Route path="services"  element={<Services />}  />
+          <Route path="support"   element={<Support />}   />
+          <Route path="order"     element={<Order />}     />
+          <Route path="contact"        element={<Contact />}        />
+          <Route path="specifications" element={<Specifications />} />
+          <Route path="shipping"       element={<Shipping />}       />
+          <Route path="refund"         element={<Refund />}         />
+          <Route path="warranty"       element={<Warranty />}       />
+          <Route path="privacy"        element={<Privacy />}        />
+          <Route path="terms"          element={<Terms />}          />
+          {/* 404 fallback */}
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-function Page() {
-  // Lightbox state
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const openLightbox = (src) => setLightboxImage(src);
-  const closeLightbox = () => setLightboxImage(null);
+/* ── NAV LINKS ──────────────────────────────────────────── */
+const NAV = [
+  { to: "/",              label: "Home",  exact: true },
+  { to: "/phone",         label: "Phone"              },
+  { to: "/specifications",label: "Specs"              },
+  { to: "/projector",     label: "Projector"          },
+  { to: "/about",         label: "About"              },
+  { to: "/ces",           label: "CES"                },
+  { to: "/services",      label: "Services"           },
+  { to: "/support",       label: "Support"            },
+];
 
-  // Scroll-to-top visibility
+
+/* ── SHARED LAYOUT ─────────────────────────────────────── */
+function Layout() {
+  const location = useLocation();
+  const [navScrolled, setNavScrolled]     = useState(false);
+  const [mobileOpen, setMobileOpen]       = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 500);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Reduced motion preference
-  const prefersReducedMotion = useReducedMotion();
-
-  // Set document title client-side (meta moved to index.html)
-  useEffect(() => {
-    document.title = "Aysenur Alam | Lifestyle & Fashion";
-  }, []);
-
-  // Hero: progressive swap from poster image to video after hydration
-  const [showVideo, setShowVideo] = useState(false);
-  useEffect(() => {
-    const id = window.setTimeout(() => setShowVideo(true), 0);
-    return () => window.clearTimeout(id);
-  }, []);
-
-  // Video pause/resume when offscreen
-  const videoRef = useRef(null);
-  useEffect(() => {
-    if (!videoRef.current) return;
-    const el = videoRef.current;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const isVisible = entries[0]?.isIntersecting;
-        if (!el) return;
-        if (isVisible) {
-          el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [showVideo]);
-
-  // Slider
-  const [sliderRef, slider] = useKeenSlider({
-    loop: true,
-    mode: "snap",
-    rubberband: true,
-    slides: { perView: 1, spacing: 16 },
-    drag: true,
-    renderMode: "precision",
-  });
-
-  // Featured looks (Cloudinary filenames)
-  const featuredLooks = [
-    "29055FAD-6228-4195-9C4A-8981D4961E4E_rgmf4y.jpg",
-    "IMG_1312_avzg8x.jpg",
-    "20FF5F9B-D102-4ECF-9515-77E880EBC6DE_sm7m17.heic",
-    "080F033E-C47E-496F-8B9D-85DF878CD6A8_hg188b.jpg",
-    "IMG_7861_v7c6ym.jpg",
-  ];
-
-  // Cloudinary helpers
-  const CLD_BASE = "https://res.cloudinary.com/deh9ptcb7/image/upload";
-  const cldUrl = (file, w = 1600) => `${CLD_BASE}/f_auto,q_auto,c_fill,g_auto,w_${w}/${file}`;
-  const cldSrcSet = (file, widths = [480, 768, 1024, 1280, 1600, 2000]) =>
-    widths.map((w) => `${cldUrl(file, w)} ${w}w`).join(", ");
-
-  // Smooth scroll helper
-  const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  // Close lightbox on ESC + arrow key slide nav
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") slider.current?.prev();
-      if (e.key === "ArrowRight") slider.current?.next();
+    const fn = () => {
+      const current = window.scrollY;
+      if (current < 10) {
+        setHeaderVisible(true);
+      } else if (current > lastScrollY.current + 4) {
+        setHeaderVisible(false);
+      } else if (current < lastScrollY.current - 4) {
+        setHeaderVisible(true);
+      }
+      lastScrollY.current = current;
+      setNavScrolled(current > 40);
+      setShowScrollTop(current > 600);
     };
-    if (lightboxImage) window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [lightboxImage, slider]);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
 
-  // JSON-LD Person schema
-  const personJsonLd = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: "Aysenur Alam",
-      url: "https://aysenuralam.com/",
-      image: `${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`,
-      sameAs: [
-        "https://www.instagram.com/ayseniorr/",
-        "https://www.tiktok.com/@aysenurbutaya",
-        "https://youtube.com/@aysenuralam",
-        "https://linktr.ee/ayseniorr",
-      ],
-      jobTitle: "Lifestyle & Fashion Creator",
-    }),
-    []
-  );
+  // Close mobile menu on route change
+  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
+
+  // Scroll to top on page change
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [location.pathname]);
+
+  // Set document title
+  useEffect(() => {
+    document.title = "Movi Phones | Built-In Laser Projector Smartphone";
+  }, []);
+
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8] text-[#4a3f3e] selection:bg-[#d9cfc1] selection:text-[#3b3130]" style={{ fontFamily: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif" }}>
-      {/* HEAD moved to public/index.html. Title set via useEffect below. */}
+    <div style={{ fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: "#0a0c0f" }}
+      className="min-h-screen">
 
-      {/* NAV */}
-      <header className="sticky top-0 z-40 bg-[#f5f0e8]/80 backdrop-blur border-b border-[#e8e0d6]">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold tracking-wide">Aysenur Alam</a>
-          <nav aria-label="Primary">
-            <ul className="flex gap-4 text-sm">
-              <li><a className="hover:underline" href="#looks">Looks</a></li>
-              <li><a className="hover:underline" href="#about">About</a></li>
-              <li><a className="hover:underline" href="#work">Work with me</a></li>
-            </ul>
+      {/* Fixed background — stone & palm fronds photograph */}
+      <div aria-hidden="true" className="hero-photo-bg" style={{
+        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f9f8f5",
+      }}>
+        {/* Soft cream wash so content stays readable over the photo */}
+        <div className="hero-photo-wash" style={{ position: "absolute", inset: 0 }} />
+      </div>
+
+      {/* ── HEADER ───────────────────────────────────── */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          transform: headerVisible ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 0.3s ease, background 0.3s",
+          background: navScrolled ? "rgba(249,248,245,0.97)" : "rgba(249,248,245,0.88)",
+          backdropFilter: "blur(20px)",
+          borderBottom: `1px solid ${BORDER}`,
+        }}
+      >
+        {/* Nav row */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[60px] flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" style={{ textDecoration: "none" }} onClick={() => setMobileOpen(false)}>
+            <WMSLogo />
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex gap-0" aria-label="Primary">
+            {NAV.map((l) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={!!l.exact}
+                style={({ isActive }) => ({
+                  color: isActive ? "#0a0c0f" : "#6b7280",
+                  background: "transparent",
+                  textDecoration: "none",
+                  padding: "6px 13px",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  transition: "color 0.2s",
+                  borderBottom: isActive ? `1px solid ${RED}` : "1px solid transparent",
+                })}
+              >
+                {l.label}
+              </NavLink>
+            ))}
           </nav>
-        </div>
-      </header>
 
-      {/* HERO */}
-      <section id="home" className="relative h-[80vh] max-h-[900px] rounded-none md:rounded-2xl overflow-hidden shadow-md mx-0 md:mx-6 mt-4">
-        {!showVideo ? (
-          <img
-            src={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`}
-            alt="Aysenur presenting an elegant look"
-            className="absolute inset-0 w-full h-full object-cover"
-            width={1920}
-            height={1080}
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            src="https://res.cloudinary.com/deh9ptcb7/video/upload/v1751529899/e47fd93721ae4952ada0d5c50c114b7d_gbj5bi.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={`${CLD_BASE}/f_auto,q_auto/look1_nvqz1k.jpg`}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        )}
-
-        <div className="relative z-10 flex flex-col justify-center items-center h-full text-white bg-black/30 backdrop-blur-sm">
-          <motion.h1
-            initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
-            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold tracking-wide text-center"
-          >
-            Aysenur Alam
-          </motion.h1>
-          <p className="mt-2 text-lg md:text-xl italic text-center">Inspiring everyday elegance</p>
-
-          <div className="flex justify-center mt-4 gap-3 md:gap-4 flex-wrap">
-            <a
-              href="https://www.instagram.com/ayseniorr/"
-              target="_blank"
-              rel="noopener noreferrer me"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-              aria-label="Open Instagram profile in a new tab"
-            >
-              <Instagram className="mr-2 h-4 w-4" /> Instagram
-            </a>
-
-            <a
-              href="mailto:aysenuralam@gmail.com?subject=Brand%20Collab%20Inquiry&body=Hi%20Aysenur,%0D%0AWe'd%20love%20to%20work%20with%20you%20on..."
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-              aria-label="Email Aysenur about collaboration"
-            >
-              <Mail className="mr-2 h-4 w-4" /> Contact
-            </a>
-
-            <a
-              href="https://linktr.ee/ayseniorr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              🔗 Linktree
-            </a>
-
-            <a
-              href="https://www.tiktok.com/@aysenurbutaya?_t=ZP-8xiO3wnA7BP&_r=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              <Music2 className="mr-2 h-4 w-4" /> TikTok
-            </a>
-
-            <a
-              href="https://youtube.com/@aysenuralam?si=aCGSQKZ48F1tiD3e"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus:outline-none focus-visible:ring"
-            >
-              <Youtube className="mr-2 h-4 w-4" /> YouTube
-            </a>
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center gap-4">
+            <NavLink to="/contact"
+              style={({ isActive }) => ({
+                color: isActive ? "#0a0c0f" : "#6b7280",
+                textDecoration: "none",
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                transition: "color 0.2s",
+                borderBottom: isActive ? `1px solid ${RED}` : "1px solid transparent",
+                padding: "6px 0",
+              })}>
+              Contact
+            </NavLink>
+            <Link to="/order"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white tracking-widest uppercase"
+              style={{ background: RED, textDecoration: "none", letterSpacing: "0.1em" }}>
+              Order — $699
+            </Link>
           </div>
 
+          {/* Mobile hamburger */}
           <button
-            className="mt-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 focus-visible:ring"
-            onClick={() => scrollToId("looks")}
-            aria-label="Scroll to Featured Looks"
+            className="lg:hidden p-2 rounded-lg"
+            style={{ color: "#6b7280" }}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
-            {!prefersReducedMotion && <ChevronDown className="text-white animate-bounce" size={24} />}
-            {prefersReducedMotion && <ChevronDown className="text-white" size={24} />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </section>
 
-      {/* QUOTE */}
-      <section className="text-center my-12 italic text-lg text-[#7a6e6c] px-6">
-        “Elegance is when the inside is as beautiful as the outside.” – Coco Chanel
-      </section>
+        {/* ── MOBILE MENU ──────────────────────────── */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="lg:hidden overflow-hidden"
+              style={{ background: "rgba(249,248,245,0.99)", backdropFilter: "blur(20px)", borderTop: `1px solid ${BORDER}` }}
+            >
+              <div className="px-4 py-6 flex flex-col gap-1">
+                {[...NAV, { to: "/contact", label: "Contact" }].map((l) => (
+                  <NavLink
+                    key={l.to}
+                    to={l.to}
+                    end={!!l.exact}
+                    onClick={() => setMobileOpen(false)}
+                    style={({ isActive }) => ({
+                      display: "block",
+                      textAlign: "left",
+                      padding: "12px 16px",
+                      fontSize: 15,
+                      fontWeight: 500,
+                      color: isActive ? RED : "#374151",
+                      background: isActive ? "rgba(239,65,54,0.06)" : "transparent",
+                      textDecoration: "none",
+                      transition: "all 0.15s",
+                    })}
+                  >
+                    {l.label}
+                  </NavLink>
+                ))}
+                <Link
+                  to="/order"
+                  onClick={() => setMobileOpen(false)}
+                  className="block mt-3 px-4 py-3 rounded-xl text-sm font-bold text-center text-white"
+                  style={{ background: RED, textDecoration: "none" }}
+                >
+                  Order Now — $699
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
-      {/* LOOKS */}
-      <main id="looks" className="max-w-5xl mx-auto px-4">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Featured Looks</h2>
-            <div className="relative">
-              <button
-                onClick={() => slider.current?.prev()}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#f5f0e8] text-[#5a4e4d] p-2 rounded-full shadow z-10 focus-visible:ring"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft size={20} />
-              </button>
+      {/* ── PAGE CONTENT ────────────────────────────── */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Outlet />
+      </div>
 
-              <div ref={sliderRef} className="keen-slider touch-pan-x">
-                {featuredLooks.map((fileName, idx) => (
-                  <div className="keen-slider__slide" key={fileName}>
-                    <button
-                      onClick={() => openLightbox(cldUrl(fileName, 1920))}
-                      className="block w-full"
-                      aria-label={`Open featured look ${idx + 1}`}
-                    >
-                      <motion.img
-                        src={cldUrl(fileName, 1200)}
-                        srcSet={cldSrcSet(fileName)}
-                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 80vw, 900px"
-                        alt={`Featured look ${idx + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                        width={1200}
-                        height={800}
-                        className="rounded-xl shadow-md object-cover w-full h-72 md:h-[28rem] aspect-[3/2] hover:scale-[1.02] hover:shadow-lg transition-transform"
-                      />
-                    </button>
+      {/* ── FOOTER ───────────────────────────────────── */}
+      <footer style={{ borderTop: `1px solid ${BORDER}`, position: "relative", zIndex: 1 }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-1 mb-4">
+                <span className="text-lg font-extrabold" style={{ color: RED }}>MOVI</span>
+                <span className="text-lg font-extrabold" style={{ color: "#0a0c0f" }}>PHONES</span>
+              </div>
+              <p className="text-xs leading-relaxed mb-4" style={{ color: "#64748b" }}>
+                A product of Wireless Mobi Solution, Inc. (WMS) — an American company, built and shipped worldwide.
+              </p>
+              <p className="text-xs leading-relaxed mb-2" style={{ color: "#64748b" }}>
+                <span style={{ color: "#94a3b8" }}>Laser Beam Steering (LBS)</span> — a laser beam pulses
+                light individually to form each pixel, projected onto any flat surface.
+              </p>
+              <Link to="/projector" className="text-xs font-semibold hover:text-white transition-colors"
+                style={{ color: RED, textDecoration: "none" }}>
+                Read More »
+              </Link>
+            </div>
+
+            {/* Useful links */}
+            <div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Useful Links</div>
+              {[["Moviphone", "/phone"],["Specifications", "/specifications"],["About Us", "/about"],
+                ["CES", "/ces"],["Media Release", "/ces"],["Services", "/services"],["Projector", "/projector"]].map(([l, to]) => (
+                <div key={l} className="flex items-center gap-2 mb-2">
+                  <Check size={11} style={{ color: RED, flexShrink: 0 }} />
+                  <Link to={to} className="text-sm hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>{l}</Link>
+                </div>
+              ))}
+            </div>
+
+            {/* Support */}
+            <div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Support</div>
+              {[
+                { label: "FAQs", to: "/support" },
+                { label: "Warranty", to: "/warranty" },
+                { label: "Shipping Policy", to: "/shipping" },
+                { label: "Refund & Replacement", to: "/refund" },
+                { label: "Order", to: "/order" },
+                { label: "Contact Us", to: "/contact" },
+              ].map((l) => (
+                <div key={l.label} className="flex items-center gap-2 mb-2">
+                  <Check size={11} style={{ color: RED, flexShrink: 0 }} />
+                  <Link to={l.to} className="text-sm hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>{l.label}</Link>
+                </div>
+              ))}
+              <div className="mt-4 pt-4" style={{ borderTop: `1px solid ${BORDER}` }}>
+                <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748b" }}>Legal</div>
+                {[["Privacy Policy", "/privacy"], ["Terms of Service", "/terms"]].map(([l, to]) => (
+                  <div key={l} className="flex items-center gap-2 mb-2">
+                    <Check size={11} style={{ color: RED, flexShrink: 0 }} />
+                    <Link to={to} className="text-sm hover:opacity-70 transition-opacity"
+                      style={{ color: "#6b7280", textDecoration: "none" }}>{l}</Link>
                   </div>
                 ))}
               </div>
+            </div>
 
-              <button
-                onClick={() => slider.current?.next()}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#f5f0e8] text-[#5a4e4d] p-2 rounded-full shadow z-10 focus-visible:ring"
-                aria-label="Next slide"
-              >
-                <ChevronRight size={20} />
-              </button>
+            {/* Contact */}
+            <div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#64748b" }}>Get in Touch</div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2 text-sm" style={{ color: "#64748b" }}>
+                  <MapPin size={14} style={{ flexShrink: 0, marginTop: 2, color: RED }} />
+                  <span>30 N Gould ST, Suite-R<br />Sheridan, WY 82801 USA</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
+                  <Phone size={14} style={{ color: RED, flexShrink: 0 }} />
+                  <a href="tel:+16198874570" className="hover:opacity-70 transition-opacity">(619) 887 4570</a>
+                </div>
+                <div className="flex items-center gap-2 text-sm" style={{ color: "#64748b" }}>
+                  <Mail size={14} style={{ color: RED, flexShrink: 0 }} />
+                  <a href="mailto:info@moviphones.com" className="hover:opacity-70 transition-opacity"
+                    style={{ textDecoration: "none" }}>info@moviphones.com</a>
+                </div>
+              </div>
+              <div className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#64748b" }}>Follow</div>
+              <div className="flex flex-wrap gap-3">
+                {[["Facebook","https://www.facebook.com/MoviWMS/"],["Twitter","https://twitter.com/MoviPhones"],["Instagram","https://www.instagram.com/MoviWMS/"],["Snapchat","https://www.snapchat.com/add/moviphones"]].map(([name, href]) => (
+                  <a key={name} href={href} target="_blank" rel="noopener noreferrer"
+                    className="text-xs font-semibold hover:opacity-70 transition-opacity"
+                    style={{ color: "#6b7280", textDecoration: "none" }}>
+                    {name}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        </motion.div>
-      </main>
 
-      {/* LIGHTBOX */}
-      {lightboxImage && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Expanded image"
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
-          onClick={closeLightbox}
-        >
-          <img
-            src={lightboxImage}
-            alt="Expanded featured look"
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-full max-h-[90vh] rounded-xl border-4 border-white shadow-xl"
-          />
-        </div>
-      )}
-
-      {/* ABOUT */}
-      <section id="about" className="max-w-5xl mx-auto px-4 py-10">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-3">About</h2>
-            <p className="text-base leading-relaxed text-[#5a4e4d]">
-              I’m Aysenur, a lifestyle & fashion creator focused on everyday elegance—styling, beauty, and home moments that feel effortless and warm.
-              I collaborate with brands to craft content that’s authentic, feminine, and saves-to-favorites.
+          <div className="flex flex-col sm:flex-row items-center justify-between pt-8 gap-4"
+            style={{ borderTop: `1px solid ${BORDER}` }}>
+            <p className="text-xs" style={{ color: "#9ca3af" }}>
+              © {new Date().getFullYear()} Wireless Mobi Solution, Inc. All rights reserved.
             </p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* WORK WITH ME */}
-      <section id="work" className="max-w-5xl mx-auto px-4 py-10">
-        <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          <div className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-4">Work with me</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <ul className="list-disc pl-5 space-y-2 text-[#5a4e4d]">
-                  <li><strong>Content</strong>: Reels, TikToks, static posts, YouTube Shorts</li>
-                  <li><strong>Verticals</strong>: Fashion, beauty, lifestyle, travel, home</li>
-                  <li><strong>Deliverables</strong>: UGC, whitelisting, brand photos, lookbooks</li>
-                  <li><strong>Turnaround</strong>: 5–10 days (rush available)</li>
-                </ul>
-              </div>
-              <div>
-                <ul className="list-disc pl-5 space-y-2 text-[#5a4e4d]">
-                  <li><strong>Audience</strong>: share IG/TikTok stats on request</li>
-                  <li><strong>Past partners</strong>: available in media kit</li>
-                  <li><strong>Process</strong>: Brief → moodboard → shoot → edit → deliver</li>
-                  <li>
-                    <a href="/media-kit.pdf" className="underline hover:no-underline" target="_blank" rel="noopener noreferrer">Download media kit (PDF)</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="mailto:aysenuralam@gmail.com?subject=Brand%20Collab%20Inquiry&body=Hi%20Aysenur,%0D%0AWe'd%20love%20to%20work%20with%20you%20on...%0D%0ABudget:%20%0D%0ATimeline:%20%0D%0ADeliverables:%20"
-                className="inline-flex items-center px-4 py-2 rounded-full bg-[#d9cfc1] text-[#5a4e4d] hover:bg-[#cdbfb0] focus-visible:ring"
-              >
-                <Mail className="mr-2 h-4 w-4" /> Email me
-              </a>
-              <a
-                href="https://www.instagram.com/ayseniorr/"
-                target="_blank"
-                rel="noopener noreferrer me"
-                className="inline-flex items-center px-4 py-2 rounded-full bg-[#f5f0e8] text-[#5a4e4d] hover:bg-[#e8ded0] focus-visible:ring"
-              >
-                <Instagram className="mr-2 h-4 w-4" /> DM on Instagram
-              </a>
+            <div className="flex items-center gap-4">
+              <Link to="/privacy" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af", textDecoration: "none" }}>Privacy Policy</Link>
+              <Link to="/terms" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af", textDecoration: "none" }}>Terms of Service</Link>
+              <a href="mailto:info@moviphones.com" className="text-xs hover:opacity-70 transition-opacity"
+                style={{ color: "#9ca3af" }}>info@moviphones.com</a>
             </div>
           </div>
-        </motion.div>
-      </section>
-
-      {/* SCROLL TO TOP */}
-      {showScrollTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 bg-[#d9cfc1] hover:bg-[#cdbfb0] text-[#5a4e4d] p-3 rounded-full shadow-lg z-50 focus-visible:ring"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={20} />
-        </button>
-      )}
-
-      {/* FOOTER */}
-      <footer className="text-center py-10 text-sm text-[#7a6e6c] border-t border-[#e8e0d6] mt-10">
-        © {new Date().getFullYear()} Aysenur Alam · All rights reserved
+        </div>
       </footer>
+
+      {/* ── SCROLL TO TOP ────────────────────────────── */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 right-6 w-11 h-11 rounded-full flex items-center justify-center z-50 text-white"
+            style={{ background: RED, boxShadow: `0 0 24px rgba(239,65,54,0.5)` }}
+            aria-label="Scroll to top">
+            <ArrowUp size={18} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

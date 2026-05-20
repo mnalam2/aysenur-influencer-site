@@ -1,3 +1,124 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
+
+/* dot-grid sections are transparent — the fixed canvas in App.jsx provides
+   the pattern so it never moves while content scrolls over it. */
+.dot-grid { background: transparent; }
+
+/* Fixed photo background — uses a landscape image on desktop and a
+   portrait-oriented image on mobile so both viewports look intentional. */
+.hero-photo-bg {
+  background-image: url('/uploads/IMG_0701.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+.hero-photo-wash {
+  background: rgba(249,248,245,0.55);
+}
+@media (max-width: 768px) {
+  .hero-photo-bg {
+    background-image: url('/uploads/B3A1FC18-E769-4C95-832E-71D202E92DFC.png');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* ── Aurora blob drift — three offset orbits give an organic, "breathing" feel ── */
+@keyframes auroraDriftA {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(8vw,  -6vh, 0) scale(1.10); }
+  66%      { transform: translate3d(-7vw,  9vh, 0) scale(0.94); }
+}
+@keyframes auroraDriftB {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  25%      { transform: translate3d(-9vw, 8vh, 0) scale(0.92); }
+  60%      { transform: translate3d(6vw, -7vh, 0) scale(1.12); }
+}
+@keyframes auroraDriftC {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(5vw,  10vh, 0) scale(1.15); }
+}
+.aurora-blob            { will-change: transform; }
+.aurora-blob--navy      { animation: auroraDriftA 28s ease-in-out infinite; }
+.aurora-blob--steel     { animation: auroraDriftB 36s ease-in-out infinite; }
+.aurora-blob--charcoal  { animation: auroraDriftC 24s ease-in-out infinite; }
+
+/* ── WMS logo with flashing dots ──────────────── */
+.wms-logo {
+  position: relative;
+  display: inline-block;
+  height: 56px;
+  line-height: 0;
+}
+.wms-logo img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+.wms-logo__dot {
+  position: absolute;
+  width: 6.1%;
+  aspect-ratio: 103 / 98;
+  background-color: #4DA3D9;
+  opacity: 0;
+}
+.wms-logo__dot--1 { left: 71.9%; top: 54.2%; animation: wmsLogoDot1 0.8s steps(1, end) infinite; }
+.wms-logo__dot--2 { left: 78.5%; top: 54.2%; animation: wmsLogoDot2 0.8s steps(1, end) infinite; }
+.wms-logo__dot--3 { left: 85.1%; top: 54.2%; animation: wmsLogoDot3 0.8s steps(1, end) infinite; }
+
+@keyframes wmsLogoDot1 {
+  0%, 74.99%   { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
+@keyframes wmsLogoDot2 {
+  0%, 24.99%   { opacity: 0; }
+  25%, 74.99%  { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
+@keyframes wmsLogoDot3 {
+  0%, 49.99%   { opacity: 0; }
+  50%, 74.99%  { opacity: 1; }
+  75%, 100%    { opacity: 0; }
+}
+
+/* ── Glow pulse on phone render ───────────── */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.85; }
+}
+
+.glow-pulse {
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+/* ── Subtle floating for hero badges ─────── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-6px);  }
+}
+
+.float-badge {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* ── Scroll indicator bounce ──────────────── */
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(5px); }
+}
+
+.scroll-bounce {
+  animation: bounceY 1.8s ease-in-out infinite;
+}
+
+
